@@ -13,34 +13,11 @@ class IptbmFullTechDescription extends Model
     protected $fillable=[
         'iptbm_technology_profile_id',
         'narrative',
-        'pictures_text',
-        'pictures_pdf',
-        'pictures_image',
-        'process_text',
-        'process_pdf',
-        'process_image',
-        'requirement_pdf',
-        'requirement_text',
-        'other_documents_text',
-        'other_documents_pdf',
-        'application_of_tech_text',
-        'application_of_tech_pdf',
-        'application_of_tech_image',
-        'other_application_text',
-        'other_application_pdf',
-        'other_application_image',
-        'market_potential_text',
-        'market_potential_pdf',
-        'market_potential_image',
-        'significant_text',
-        'significant_pdf',
-        'significant_image',
-        'similar_tech_text',
-        'similar_tech_pdf',
-        'similar_tech_email',
-        'limitation_text',
-        'limitation_pdf',
-        'limitation_image',
+        'process_flow',
+        'requirements',
+        'significance_of_technology',
+        'limitation_of_technology',
+        'application_of_technology',
     ];
 
     public function technology_profile(): BelongsTo
@@ -52,4 +29,10 @@ class IptbmFullTechDescription extends Model
     {
         return $this->hasMany(IptbmTechnologyAdoptor::class,'full_tech_id','id');
     }
+
+    public function technology_photos(): HasMany
+    {
+        return $this->hasMany(IptbmFullTechPhoto::class,'iptbm_full_tech_descriptions_id','id');
+    }
+
 }

@@ -14,7 +14,16 @@ return new class extends Migration
         Schema::create('iptbm_full_tech_descriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('iptbm_technology_profile_id')->constrained('iptbm_technology_profiles')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('narrative')->nullable();
+            $table->text('narrative')->nullable();
+            $table->text('process_flow')->nullable();
+            $table->text('requirements')->nullable();
+            $table->text('significance_of_technology')->nullable();
+            $table->text('limitation_of_technology')->nullable();
+            $table->text('application_of_technology')->nullable();
+            $table->text('other_application')->nullable();
+
+            /*
+             * $table->string('narrative')->nullable();
             $table->text('pictures_text')->nullable();
             $table->string('pictures_pdf')->nullable();
             $table->string('pictures_image')->nullable();
@@ -43,6 +52,7 @@ return new class extends Migration
             $table->text('limitation_text')->nullable();
             $table->string('limitation_pdf')->nullable();
             $table->string('limitation_image')->nullable();
+             */
             $table->timestamps();
         });
     }
