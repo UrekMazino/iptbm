@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Livewire\Iptbm\Staff\Profile;
+
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class UploadProfile extends Component
+{
+    use WithFileUploads;
+    public $photo;
+    public $profile;
+
+    public function mount($profile): void
+    {
+        $this->profile=$profile;
+    }
+
+
+
+    public function upload()
+    {
+        $this->validate([
+            'photo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+        if($this->profile->logo)
+        {
+            if (Storage::exists($this->profile->logo)) {
+                Storage::delete($this->profile->logo);
+            }
+        }
+
+
+        $path=$this->photo->store('public/profile');
+        $this->profile->logo=$path;
+        $this->profile->save();
+        return redirect()->route('iptbm.staff.ipProfile');
+    }
+
+
+    public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('livewire.iptbm.staff.profile.upload-profile');
+    }
+}

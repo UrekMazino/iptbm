@@ -1,0 +1,32 @@
+<?php
+
+namespace App\View\Components\iptbm;
+
+use App\Models\iptbm\IptbmCommodity;
+use App\Models\iptbm\IptbmIndustry;
+use Closure;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+
+class AddCommodity extends Component
+{
+    private $id;
+
+    /**
+     * Create a new component instance.
+     */
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     */
+    public function render(): View|Closure|string
+    {
+        return view('components.iptbm.add-commodity',[
+            'industry_id' => $this->id
+        ]);
+    }
+}

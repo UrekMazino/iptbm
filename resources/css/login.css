@@ -1,0 +1,8 @@
+.temp-background
+{
+
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background: radial-gradient(#154360, #000) no-repeat 50% 50%;
+}
