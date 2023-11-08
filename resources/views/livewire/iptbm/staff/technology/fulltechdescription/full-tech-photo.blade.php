@@ -59,19 +59,89 @@
 
         </x-pop-modal>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-            @foreach($photos as $photo)
-                <div class="flex rounded justify-center items-center aspect-square border border-gray-400 dark:border-gray-600 p-2">
-                    <img class="w-auto h-auto max-h-full" src="{{\Illuminate\Support\Facades\Storage::url($photo->file)}}">
-                </div>
-
-            @endforeach
-                <div class="flex rounded justify-center items-center aspect-square border border-gray-400 dark:border-gray-600 p-2">
-                    <div>
-                        <button class="hover:text-sky-600 duration-300 transition">
-                            See more..
-                        </button>
+            @if($photos->count()>0)
+                @foreach($photos as $photo)
+                    <x-pop-modal name="tech-photo-{{$photo->id}}" class="max-w-3xl">
+                        <div class="w-full h-auto max-h-full flex justify-center items-center relative">
+                            <img  class="w-auto  max-h-full" src="{{\Illuminate\Support\Facades\Storage::url($photo->file)}}">
+                            @if($photo->file_description)
+                                <div class="opacity-0 hover:opacity-100 transition duration-300 absolute top-0 left-0 flex justify-center items-center w-full h-full">
+                                    <div class="font-medium text-lg text-gray-200 dark:text-white  p-4 w-full h-auto bg-gray-900 dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 rounded-lg shadow-lg">
+                                        {{ $photo->file_description}}
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    </x-pop-modal>
+                    <div class="flex rounded overflow-hidden justify-center items-center aspect-square border border-gray-300 dark:border-gray-600 p-2 relative">
+                        <div class="absolute top-0  right-0 w-fit h-fit p-2 rounded-full">
+                            <x-pop-modal name="deletTechPhoto-{{$photo->id}}" class="max-w-md text-center">
+                                <div class="w-1/2 m-auto aspect-square justify-center flex items-center">
+                                    <img  class="w-auto  max-h-full" src="{{\Illuminate\Support\Facades\Storage::url($photo->file)}}">
+                                </div>
+                                <p class="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to delete this item?</p>
+                                <div class="flex justify-center items-center space-x-4">
+                                    <button data-modal-toggle="deletTechPhoto-{{$photo->id}}" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                        No, cancel
+                                    </button>
+                                    <button type="submit" wire:click.prevent="deletePhoto('{{$photo->id}}')" data-modal-toggle="deletTechPhoto-{{$photo->id}}" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                        Yes, I'm sure
+                                    </button>
+                                </div>
+                            </x-pop-modal>
+                            <button data-modal-toggle="deletTechPhoto-{{$photo->id}}">
+                                <svg class="w-4 h-4 text-red-500 dark:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <img data-modal-toggle="tech-photo-{{$photo->id}}" class="w-auto cursor-pointer h-auto hover:scale-110 transition duration-300 max-h-full" src="{{\Illuminate\Support\Facades\Storage::url($photo->file)}}">
                     </div>
-                </div>
+
+                @endforeach
+                    @if($photo->count()>3)
+                        <div class="flex rounded justify-center items-center aspect-square border border-gray-400 dark:border-gray-600 p-2">
+                            <div>
+                                <x-pop-modal name="galerryModal" class="max-w-3xl text-center" close-action="resetView">
+                                    @if($viewPictures)
+
+                                        <ul class="space-y-10">
+                                            @if($technology_photos)
+                                                @foreach($technology_photos as $image)
+                                                    <li>
+                                                        <div class="w-full h-auto max-h-full  border border-gray-300 dark:border-gray-600 p-4">
+                                                            <img  class="w-auto m-auto max-h-full" src="{{\Illuminate\Support\Facades\Storage::url($image->file)}}">
+                                                            @if($image->file_description)
+                                                                <div class=" flex justify-center items-center w-full h-full">
+                                                                    <div class="font-medium text-lg text-gray-200 dark:text-white  p-4 w-full h-auto bg-gray-900 dark:bg-gray-800   ">
+                                                                        {{ $image->file_description}}
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+
+                                        </ul>
+                                    @else
+                                        <x-secondary-button class="mx-auto" wire:click.prevent="viewPictures">
+                                            View Images
+                                        </x-secondary-button>
+                                    @endif
+
+                                </x-pop-modal>
+                                <button data-modal-toggle="galerryModal" class="hover:text-sky-600 duration-300 transition">
+                                    See more..
+                                </button>
+                            </div>
+                        </div>
+                    @endif
+
+            @else
+                No data available
+            @endif
+
         </div>
 
     </div>

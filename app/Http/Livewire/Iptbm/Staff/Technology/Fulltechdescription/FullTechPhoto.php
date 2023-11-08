@@ -15,6 +15,24 @@ class FullTechPhoto extends Component
     public $description;
     public $type;
 
+    public $viewPictures=false;
+    public $technology_photos;
+
+    public function deletePhoto(IptbmFullTechPhoto $photo)
+    {
+        $photo->delete();
+        $this->emit('reloadPage');
+    }
+
+    public function viewPictures()
+    {
+        $this->technology_photos=IptbmFullTechPhoto::latest()->where('iptbm_full_tech_descriptions_id',$this->fulltechdescription->id)->get();
+        $this->resetView();
+    }
+    public function resetView()
+    {
+        $this->viewPictures=!$this->viewPictures;
+    }
 
     public function saveForm()
     {
@@ -37,7 +55,7 @@ class FullTechPhoto extends Component
         return [
             'photoModel'=>'required|image|mimes:png,jpg,jpeg|max:2048',
             'description'=>[
-                'required',
+                'nullable',
                 'max:100',
                 Rule::unique(IptbmFullTechPhoto::class,'file_description')->where('iptbm_full_tech_descriptions_id',$this->fulltechdescription->id)
             ],

@@ -67,9 +67,11 @@
                             <th scope="col" class=" techStat  px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Tech Status
                             </th>
+                            {{---------
                             <th scope="col" class=" delete  px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Delete Request
                             </th>
+                            -----------}}
                             <th scope="col" class=" action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Actions
                             </th>
@@ -111,9 +113,7 @@
                             <th scope="col" class="fil  border border-gray-300 dark:border-gray-600  bg-gray-50 dark:bg-gray-700 ">
                                 Tech Status
                             </th>
-                            <th scope="col" class=" delete   border border-gray-300 dark:border-gray-600  bg-gray-50 dark:bg-gray-700 ">
 
-                            </th>
 
                             <th scope="col"  class="read-only  border border-gray-300 dark:border-gray-600  bg-gray-50 dark:bg-gray-700 ">
 
@@ -257,6 +257,7 @@
                                         @endforeach
                                     </ul>
                                 </td>
+                              {{-------------
                                 <td>
                                     <div class="w-fit flex justify-center items-center m-auto p-0">
                                         <div id="deleteModal-confirm-{{$technology->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -287,6 +288,7 @@
                                         </x-secondary-button>
                                     </div>
                                 </td>
+                              -----------}}
                                 <td>
                                     <livewire:iptbm.admin.technology.technology-control wire:key="tech-admin-del-{{$technology->id}}" :technology="$technology" />
                                 </td>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('application_of_technology')->nullable();
             $table->text('other_application')->nullable();
 
+
             /*
              * $table->string('narrative')->nullable();
             $table->text('pictures_text')->nullable();

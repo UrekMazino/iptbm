@@ -4,12 +4,12 @@
         <x-item-header>
             {{$title}}
         </x-item-header>
-        <x-pop-modal name="updateMod-{{$univKey}}" modal-title="Updated {{$title}} attachment" class="max-w-xl" static="true">
+        <x-pop-modal name="updateMod-{{$univKey}}" modal-title="Update {{$title}} attachment" class="max-w-xl" static="true">
 
             <form class="space-y-2" wire:submit.prevent="saveForm('{{$data}}')">
                 <div>
                     <x-input-label value="Attachment"/>
-                    <x-text-input wire:model="model" placeholder="upload pdf" type="file" class="w-full"/>
+                    <x-text-input wire:model="model" placeholder="upload pdf" type="file" accept="application/pdf" class="w-full"/>
                     <x-input-error :messages="$errors->get('model')"/>
                 </div>
                 <div>
