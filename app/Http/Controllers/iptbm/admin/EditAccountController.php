@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class EditAccountController extends Controller
@@ -16,14 +17,9 @@ class EditAccountController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($id): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|\Illuminate\Http\RedirectResponse
+    public function index(User $id): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|RedirectResponse
     {
-
-        $user=User::with("profile","profile.agency","profile.agency.region")->find($id);
-        if(!$user)
-        {
-            return redirect()->route('iptbm.admin.addrecord.account');
-        }
+        $user=$id->load("profile","profile.agency","profile.agency.region");
         return view('admin.iptbm.add-record.edit-account',['user'=>$user]);
     }
 }

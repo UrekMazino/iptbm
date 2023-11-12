@@ -102,7 +102,7 @@
                                     @foreach($profile->users as $user)
                                         <li class="py-2 break-words">
 
-                                            <a href="{{route("iptbm.admin.addrecord.editaccount",['id'=>$profile->id])}}" class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
+                                            <a href="{{route("iptbm.admin.addrecord.editaccount",['id'=>$user->id])}}" class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
                                                 <div>
                                                     {{$user->name}}
                                                 </div>
