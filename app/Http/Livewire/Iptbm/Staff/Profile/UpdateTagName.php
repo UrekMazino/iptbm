@@ -12,6 +12,7 @@ class UpdateTagName extends Component
     public function mount($profile): void
     {
         $this->profile=$profile;
+        $this->tagLine= $this->profile->tag_line;
     }
 
 
@@ -30,6 +31,7 @@ class UpdateTagName extends Component
 
     public function render()
     {
+
         return view('livewire.iptbm.staff.profile.update-tag-name');
     }
 }

@@ -1,7 +1,33 @@
 <div class="my-4">
-    <button data-modal-target="upload_tagname"   data-modal-toggle="upload_tagname" class="mx-auto block text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-800 dark:focus:ring-blue-800" type="button">
-        Update Tag Line
-    </button>
+    <x-pop-modal modal-title="Update Tag line" name="upload_tagname" class="max-w-2xl" static="true">
+        <form class="space-y-6" wire:submit.prevent="update">
+
+            <x-text-box wire:model="tagLine" rows="4" placeholder="Enter text here" />
+
+            <x-secondary-button wire:loading.attr="disabled" class="w-full " type="submit">
+                <div class="mx-auto text-center text-sky-600 p-2" wire:loading.remove  wire:target="update">
+                    Submit
+                </div>
+                <div class="mx-auto text-sky-600 text-center p-2" wire:loading wire:target="update">
+                    Processing
+                </div>
+            </x-secondary-button>
+
+
+        </form>
+    </x-pop-modal>
+
+    <x-secondary-button data-modal-toggle="upload_tagname">
+        <div class="justify-center flex items-center gap-2">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                <path d="M15.045.007 9.31 0a1.965 1.965 0 0 0-1.4.585L.58 7.979a2 2 0 0 0 0 2.805l6.573 6.631a1.956 1.956 0 0 0 1.4.585 1.965 1.965 0 0 0 1.4-.585l7.409-7.477A2 2 0 0 0 18 8.479v-5.5A2.972 2.972 0 0 0 15.045.007Zm-2.452 6.438a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+            </svg>
+            <div>
+                Tag name
+            </div>
+        </div>
+    </x-secondary-button>
+
     <!-- Main modal -->
     <div id="upload_tagname" wire:ignore.self data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-2xl max-h-full">
@@ -36,4 +62,5 @@
             </div>
         </div>
     </div>
+
 </div>

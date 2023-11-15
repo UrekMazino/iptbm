@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\abh\AbhController;
 use App\Http\Controllers\iptbm\admin\AccountsController;
 use App\Http\Controllers\iptbm\admin\AdminDashboard;
 use App\Http\Controllers\iptbm\admin\AgenciesController;
@@ -267,10 +268,14 @@ Route::middleware(['component:IPTBM','auth','verified'])->prefix('/iptbm')->grou
     });
 
 });
+
+Route::middleware(['component:ABH','auth','verified'])->group(function () {
+    Route::controller(AbhController::class)->prefix('/abh')->group(function () {
+        Route::get('/{dashboard?}','dashboard')->where(['dashboard'=>'dashboard']);
+    });
+});
+
 require __DIR__.'/auth.php';
-
-
-
 
 Route::middleware(['auth:admin_iptbm', 'verified'])->prefix('/admin/iptbm')->group(function (){
     Route::get('/', [AdminDashboard::class,'index'])->name('admin.iptbm.dashboard');

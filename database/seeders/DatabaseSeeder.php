@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\abh\AbhProfile;
+use Database\Seeders\abh\AbhProfileSeeder;
+use Database\Seeders\abh\AbhUserSeeder;
 use Database\Seeders\iptbm\AgencySeeder;
 use Database\Seeders\iptbm\CommoditySeeder;
 use Database\Seeders\iptbm\FullTechSeeder;
@@ -26,7 +29,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $this->call([
+        /*
+         * $this->call([
             IptbmAdminSeeder::class,
             RegionSeeder::class,
             AgencySeeder::class,
@@ -43,6 +47,13 @@ class DatabaseSeeder extends Seeder
             TechnologySeeder::class,
             FullTechSeeder::class
 
+        ]);
+         */
+        $this->call([
+            abh\RegionSeeder::class,
+            AbhProfileSeeder::class,
+            abh\AgencySeeder::class,
+            AbhUserSeeder::class
         ]);
     }
 }

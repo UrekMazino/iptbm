@@ -28,7 +28,7 @@ class RedirectIfAuthenticated
 
             if (Auth::guard($guard)->check()) {
 
-                $role = Auth::user()->role;
+
                 $type=Auth::user()->component;
 
                 return match ($type) {

@@ -5,7 +5,9 @@
 >
     <div class="overflow-y-auto py-5 pb-10 px-3 h-full bg-white dark:bg-gray-800">
         <div class="my-1 mb-4  rounded-lg bg-gray-200 dark:bg-gray-700 p-2 py-3">
+           {{----------
             <livewire:iptbm.staff.user.user-profile />
+            -------------}}
         </div>
 
         <ul class="space-y-2  text-gray-600 dark:text-gray-400">

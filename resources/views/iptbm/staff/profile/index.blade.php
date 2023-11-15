@@ -75,10 +75,10 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3">
-                    <div class="col-span-1 ">
+                    <div class=" justify-center items-center flex ">
                         <livewire:iptbm.staff.profile.upload-profile :profile="$profile"/>
                     </div>
-                    <div class="col-span-2 col-end-4">
+                    <div class="col-span-2 justify-center items-center flex ">
                         <livewire:iptbm.staff.profile.update-tag-name :profile="$profile"/>
                     </div>
                 </div>

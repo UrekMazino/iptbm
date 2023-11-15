@@ -26,7 +26,7 @@ class UploadProfile extends Component
     public function upload()
     {
         $this->validate([
-            'photo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'photo' => 'required|image|mimes:png,jpg,jpeg|max:20480',
         ]);
         if($this->profile->logo)
         {
