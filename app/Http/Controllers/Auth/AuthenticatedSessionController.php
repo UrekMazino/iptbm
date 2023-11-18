@@ -45,7 +45,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $type=Auth::user()->component;
+        $type=Auth::guard('web_abh')->user()->component;
+
+
 
         $route=$this->RedirectToComponent($type);
 

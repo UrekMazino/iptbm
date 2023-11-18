@@ -44,15 +44,21 @@ class LoginRequest extends FormRequest
 
         $this->ensureIsNotRateLimited();
 // !Auth::guard('web_abh')->attempt($this->only('email', 'password'), $this->boolean('remember'))
-        if ( !Auth::guard('web')->attempt($this->only('email','password'), $this->boolean('remember'))||
-            !Auth::guard('web_abh')->attempt($this->only('email', 'password'), $this->boolean('remember')))
+        if ( Auth::guard('web')->attempt($this->only('email','password'), $this->boolean('remember')))
         {
+
+            RateLimiter::clear($this->throttleKey());
+        }elseif(Auth::guard('web_abh')->attempt($this->only('email', 'password'), $this->boolean('remember')))
+        {
+            RateLimiter::clear($this->throttleKey());
+        }else{
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
-                'Password' => trans('auth.failed'),
+                // 'Password' => trans('auth.failed'),
             ]);
         }
+
 
 
         RateLimiter::clear($this->throttleKey());
