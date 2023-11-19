@@ -31,8 +31,14 @@ class DatabaseSeeder extends Seeder
 
         /*
          * $this->call([
+
+
+        ]);
+         */
+        $this->call([
             IptbmAdminSeeder::class,
-            RegionSeeder::class,
+           /*
+            *  RegionSeeder::class,
             AgencySeeder::class,
             InventorSeeder::class,
             ProfileSeeder::class,
@@ -45,15 +51,11 @@ class DatabaseSeeder extends Seeder
             TechTRansSeeder::class,
             ProtectionStatusSeeder::class,
             TechnologySeeder::class,
-            FullTechSeeder::class
-
-        ]);
-         */
-        $this->call([
+            FullTechSeeder::class,
             abh\RegionSeeder::class,
             AbhProfileSeeder::class,
             abh\AgencySeeder::class,
-            AbhUserSeeder::class
+            */
         ]);
     }
 }

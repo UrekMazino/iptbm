@@ -17,16 +17,26 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
+
+
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
 
-            if ($guard=="admin_iptbm" && Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::IPTBM_ADMIN_DASHBOARD);
+            if ($guard=="admin" && Auth::guard($guard)->check()) {
+
+                $type=Auth::guard('admin')->user()->component;
+
+                return match ($type) {
+                    'IPTBM' => redirect(RouteServiceProvider::IPTBM_ADMIN_DASHBOARD),
+                    'ABH' => redirect(RouteServiceProvider::ABH_ADMIN_DASHBOARD),
+                    default =>redirect( '/admin/login'),
+                };
+
             }
 
 
-            if (Auth::guard($guard)->check()) {
+            if (Auth::check()) {
 
 
                 $type=Auth::user()->component;
@@ -40,6 +50,7 @@ class RedirectIfAuthenticated
 
             }
         }
+
 
         return $next($request);
     }

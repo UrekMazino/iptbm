@@ -40,14 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'web_abh' => [
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'abh_users',
+            'provider' => 'admin',
         ],
-        'admin_iptbm' => [
-            'driver' => 'session',
-            'provider' => 'admin_iptbm',
-        ],
+
     ],
 
     /*
@@ -73,15 +70,11 @@ return [
             'model' => App\Models\User::class
 
         ],
-        'abh_users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\AbhUser::class
-
-        ],
-        'admin_iptbm' => [
+        'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\admins\IptbmAdmin::class
         ],
+
 
         // 'users' => [
         //     'driver' => 'database',

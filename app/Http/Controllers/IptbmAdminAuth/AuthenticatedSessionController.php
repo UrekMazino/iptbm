@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('admin.iptbm.auth.login');
+        return view('admin.auth.login');
     }
 
     /**
@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('admin_iptbm')->logout();
+        Auth::guard('admin')->logout();
 
         $request->session()->invalidate();
 

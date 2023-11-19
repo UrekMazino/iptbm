@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\abh\AbhController;
+use App\Http\Controllers\abh\admin\AbhAdminController;
 use App\Http\Controllers\iptbm\admin\AccountsController;
 use App\Http\Controllers\iptbm\admin\AdminDashboard;
 use App\Http\Controllers\iptbm\admin\AgenciesController;
@@ -43,6 +44,7 @@ use App\Http\Livewire\Iptbm\Admin\IpAlert\IpAlert;
 use App\Http\Livewire\Iptbm\Admin\Plantvariety\PlantVariety;
 use App\Http\Livewire\Iptbm\Admin\Trademark\TradeMark;
 use App\Http\Livewire\Iptbm\Admin\UtilityModel\UtilityModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -56,7 +58,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+/*
+ *
+ */
 Route::get('/', function () {
+    if(Auth::guard('admin')->check())
+    {
+        return Redirect::to('admin/login');
+    }
     return Redirect::to('login');
 });
 
@@ -65,7 +74,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 Route::middleware(['component:IPTBM','auth','verified'])->prefix('/iptbm')->group(function () {
 
@@ -275,9 +283,12 @@ Route::middleware(['component:ABH','auth','verified'])->group(function () {
     });
 });
 
+
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth:admin_iptbm', 'verified'])->prefix('/admin/iptbm')->group(function (){
+
+
+Route::middleware(['component:IPTBM','auth:admin', 'verified'])->prefix('/admin/iptbm')->group(function (){
     Route::get('/', [AdminDashboard::class,'index'])->name('admin.iptbm.dashboard');
     Route::get('/dashboard', [AdminDashboard::class,'index'])->name('admin.iptbm.dashboard');
     Route::prefix('/add-record')->group(function () {
@@ -377,4 +388,12 @@ Route::middleware(['auth:admin_iptbm', 'verified'])->prefix('/admin/iptbm')->gro
     });
 });
 
+Route::middleware(['component:ABH','auth:admin', 'verified'])->group(function (){
+    Route::controller(AbhAdminController::class)->prefix('/admin/abh')->group(function (){
+        Route::get('/{dashboard?}','index')->name('abh.admin.dashboard');
+
+    });
+});
+
 require __DIR__.'/IptbmAdminAuth.php';
+

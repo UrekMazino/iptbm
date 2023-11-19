@@ -45,9 +45,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $type=Auth::guard('web_abh')->user()->component;
-
-
+        $type=Auth::user()->component;
 
         $route=$this->RedirectToComponent($type);
 
@@ -61,7 +59,7 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
 
-        Auth::guard('web')->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
 
@@ -71,15 +69,5 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-    public function destroy_abh(Request $request): RedirectResponse
-    {
-        Auth::guard('web_abh')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
-    }
 
 }

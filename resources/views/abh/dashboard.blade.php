@@ -1,50 +1,32 @@
-<x-ahh.abh-layout>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-        <div
-            class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
-        ></div>
+<x-abh.abh-layout>
+    <div class=" md:px-4 space-y-4">
+        <x-header-label class="mt-10">
+            ABH Dashboard
+        </x-header-label>
+       <x-grid col="5" gap="4">
+           <div class="md:col-span-3">
+              <livewire:abh.dashboard.calendar />
+           </div>
+           <div class="md:col-span-2">
+              <livewire:abh.dashboard.recent-profile />
+           </div>
+       </x-grid>
+        <x-grid col="3" gap="4">
+            <div>
+               <livewire:abh.dashboard.abh-profiles/>
+            </div>
+            <div>
+                <livewire:abh.dashboard.abh-technologies/>
+            </div>
+            <div>
+                <livewire:abh.dashboard.tech-trans-place/>
+            </div>
+        </x-grid>
+        <div>
+            <livewire:abh.dashboard.abh-istablish />
+        </div>
+        <div>
+            <livewire:abh.dashboard.abh-map />
+        </div>
     </div>
-    <div
-        class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
-    ></div>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-    </div>
-    <div
-        class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
-    ></div>
-    <div class="grid grid-cols-2 gap-4">
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-        <div
-            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
-        ></div>
-    </div>
-</x-ahh.abh-layout>
+</x-abh.abh-layout>

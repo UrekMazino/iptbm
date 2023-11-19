@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('abh_users', function (Blueprint $table) {
+        Schema::create('abh_admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_profiles_id')->constrained('abh_profiles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
-            $table->string('component')->comment('[IPTBM,ATBI,ABH]');
+            $table->string('component');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('abh_users');
+        Schema::dropIfExists('abh_admins');
     }
 };

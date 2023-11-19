@@ -17,7 +17,7 @@ class IptbmAdmin extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $guard = 'admin_iptbm';
+    protected $guard = 'admin';
     protected $fillable = [
         'name',
         'component',

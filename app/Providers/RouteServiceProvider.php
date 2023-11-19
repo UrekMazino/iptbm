@@ -19,6 +19,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
     public const IPTBM_ADMIN_DASHBOARD = '/admin/iptbm/dashboard';
+
+    public const ABH_ADMIN_DASHBOARD = '/admin/abh/dashboard';
+
+
+
     public const IPTBM_STAFF_DASHBOARD = '/iptbm/dashboard';
     public const ATBI_STAFF_DASHBOARD = '/atbi/dashboard';
     public const ABH_STAFF_DASHBOARD = '/abh/dashboard';

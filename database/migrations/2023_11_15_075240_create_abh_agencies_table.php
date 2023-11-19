@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('abh_agencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_regions')->constrained('abh_regions')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('abh_regions_id')->constrained('abh_regions')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('abh_profiles_id')->constrained('abh_profiles')->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('name');
             $table->string('address')->nullable();

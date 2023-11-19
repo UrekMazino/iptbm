@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('abh_regions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->string('rrdcc_chair')->nullable();
+            $table->string('consortium')->nullable();
+            $table->string('consortium_director')->nullable();
             $table->timestamps();
         });
     }

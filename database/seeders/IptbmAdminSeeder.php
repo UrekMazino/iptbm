@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\admins\AbhAdmin;
 use App\Models\admins\IptbmAdmin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,8 +17,8 @@ class IptbmAdminSeeder extends Seeder
     {
         IptbmAdmin::create([
             'name'=>'Andy Mark Servania',
-            'component'=>'iptbm',
-            'email'=>'andymarkservania1991@gmail.com',
+            'component'=>'ABH',
+            'email'=>'rdesystem@capsu.edu.ph',
             'password'=>Hash::make('iptbmadmin12345'),
         ]);
     }

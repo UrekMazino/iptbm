@@ -30,7 +30,9 @@
                         Regional Agri-Aqua Innovation System Enhancement (RAISE)
                     </div>
                     <div class="font-bold px-10 font- my-3 pb-2 text-xl text-white text-center border-b border-b-gray-500">
-                        IP-TBM
+                        @if(isset($component))
+                            {{$component}}
+                        @endif
                     </div>
                 </div>
                 <div class=" mt-4 px-6 py-2   ">

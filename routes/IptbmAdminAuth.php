@@ -10,45 +10,45 @@ use App\Http\Controllers\IptbmAdminAuth\PasswordResetLinkController;
 use App\Http\Controllers\IptbmAdminAuth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest:admin_iptbm')->group(function () {
+Route::middleware(['guest','guest:admin'])->group(function () {
 
-    Route::get('admin/iptbm/login', [AuthenticatedSessionController::class, 'create'])
+    Route::get('admin/login', [AuthenticatedSessionController::class, 'create'])
         ->name('admin.iptbm.login');
 
-    Route::post('admin/iptbm/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('admin/login', [AuthenticatedSessionController::class, 'store']);
 
-    Route::get('admin/iptbm/forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('admin.iptbm.password.request');
+    Route::get('admin/forgot-password', [PasswordResetLinkController::class, 'create'])
+        ->name('admin.password.request');
 
-    Route::post('admin/iptbm/forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('admin.iptbm.password.email');
+    Route::post('admin/forgot-password', [PasswordResetLinkController::class, 'store'])
+        ->name('admin.password.email');
 
-    Route::get('admin/iptbm/reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('admin.iptbm.password.reset');
+    Route::get('admin/reset-password/{token}', [NewPasswordController::class, 'create'])
+        ->name('admin.password.reset');
 
-    Route::post('admin/iptbm/reset-password', [NewPasswordController::class, 'store'])
+    Route::post('admin/reset-password', [NewPasswordController::class, 'store'])
         ->name('admin.password.store');
 });
 
-Route::middleware('auth:admin_iptbm')->group(function () {
-    Route::get('admin/iptbm/verify-email', EmailVerificationPromptController::class)
-        ->name('admin.iptbm.verification.notice');
+Route::middleware('auth:admin')->group(function () {
+    Route::get('admin/verify-email', EmailVerificationPromptController::class)
+        ->name('admin.verification.notice');
 
-    Route::get('admin/iptbm/verify-email/{id}/{hash}', VerifyEmailController::class)
+    Route::get('admin/verify-email/{id}/{hash}', VerifyEmailController::class)
         ->middleware(['signed', 'throttle:6,1'])
-        ->name('admin.iptbm.verification.verify');
+        ->name('admin.verification.verify');
 
     Route::post('admin/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')
-        ->name('admin.iptbm.verification.send');
+        ->name('admin.verification.send');
 
-    Route::get('admin/iptbm/confirm-password', [ConfirmablePasswordController::class, 'show'])
+    Route::get('admin/confirm-password', [ConfirmablePasswordController::class, 'show'])
         ->name('admin.password.confirm');
 
-    Route::post('admin/iptbm/confirm-password', [ConfirmablePasswordController::class, 'store']);
+    Route::post('admin/confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::put('admin/iptbm/password', [PasswordController::class, 'update'])->name('admin.password.update');
+    Route::put('admin/password', [PasswordController::class, 'update'])->name('admin.password.update');
 
     Route::post('admin/logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('admin.iptbm.logout');
+        ->name('admin.logout');
 });

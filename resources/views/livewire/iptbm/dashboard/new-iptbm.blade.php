@@ -1,8 +1,8 @@
-<div class="rounded-lg bg-gray-50 dark:bg-gray-700 w-full h-full p-2">
-    <h1 class="text-gray-700 dark:text-gray-300 mt-2 font-medium text-lg">
-        Recently added IP-TBMs
-    </h1>
-    <div class="mt-2 w-full h-3/4 overflow-y-auto ">
+<x-card>
+   <x-item-header>
+       Recently added IP-TBMs
+   </x-item-header>
+    <div class="mt-4 w-full h-3/4 overflow-y-auto ">
         <ul class="list-none space-y-3">
             @foreach($iptbmProfile->take(5) as $profile)
                 <li>
@@ -14,9 +14,9 @@
                                 {{$profile->agency->name}}
                             </a>
                         </div>
-                       <div class="text-sm">
-                           {{\Carbon\Carbon::parse($profile->created_at)->format('F-d-Y')}}
-                       </div>
+                        <div class="text-sm">
+                            {{\Carbon\Carbon::parse($profile->created_at)->format('F-d-Y')}}
+                        </div>
 
                     </div>
 
@@ -25,4 +25,4 @@
         </ul>
 
     </div>
-</div>
+</x-card>
