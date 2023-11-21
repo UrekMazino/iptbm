@@ -42,5 +42,12 @@ class AbhProfile extends Model
         return $this->hasMany(ProfileContact::class,'abh_profiles_id','id')->where('type','email');
     }
 
+    public function projects(): HasMany
+    {
+        return $this->hasMany(AbhProject::class,'abh_profiles_id','id');
+    }
+
+
+
 
 }

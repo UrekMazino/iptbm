@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\abh\AbhProfile;
 use App\Models\iptbm\IptbmProfile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,8 +48,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function profile(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function profile(): BelongsTo
     {
         return $this->belongsTo(IptbmProfile::class,'profile_id','id');
+    }
+    public function abh_profile(): BelongsTo
+    {
+        return $this->belongsTo(AbhProfile::class,'abh_profiles_id','id');
     }
 }

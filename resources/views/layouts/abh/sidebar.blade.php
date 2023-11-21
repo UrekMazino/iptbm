@@ -58,7 +58,7 @@
                                 <ul id="dropdown-profile" class="py-2 space-y-2 text-sm text-gray-900 dark:text-gray-400 ">
 
                                     <li>
-                                        <a href="{{route("iptbm.staff.ipProfile")}}" class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()=="iptbm.staff.ipProfile") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">My Profile</a>
+                                        <a href="{{route("abh.staff.profile")}}" class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()=="abh.staff.profile") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">My Profile</a>
                                     </li>
                                     <li>
                                         <a href="{{route("iptbm.staff.allProfile")}}" class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="iptbm.staff.allProfile") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All Profiles</a>

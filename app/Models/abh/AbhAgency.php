@@ -17,4 +17,9 @@ class AbhAgency extends Model
     {
         return $this->belongsTo(AbhProfile::class,'abh_profiles_id','id');
     }
+
+    function region()
+    {
+        return $this->belongsTo(AbhRegion::class,'abh_regions_id','id');
+    }
 }

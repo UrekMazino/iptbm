@@ -15,4 +15,5 @@ class AbhController extends Controller
     {
         return view('abh.dashboard');
     }
+
 }

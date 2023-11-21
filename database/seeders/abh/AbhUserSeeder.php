@@ -15,12 +15,5 @@ class AbhUserSeeder extends Seeder
     public function run(): void
     {
 
-        AbhUser::create([
-            'abh_profiles_id'=>'1',
-            'name' => 'Andy Mark Servania',
-            'component' => 'ABH',
-            'email' => 'rdesystem@capsu.edu.ph',
-            'password' =>Hash::make('Staff12345'),
-        ]);
     }
 }
