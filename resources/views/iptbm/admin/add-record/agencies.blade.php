@@ -3,7 +3,8 @@
 @section('sub-content')
     <div class="container-fluid">
         <div class="relative overflow-x-auto my-4">
-            <table class="w-100 text-sm border border-gray-500 rounded text-left text-gray-500 dark:text-gray-400"  id="agencyTable">
+            <table class="w-100 text-sm border border-gray-500 rounded text-left text-gray-500 dark:text-gray-400"
+                   id="agencyTable">
                 <thead class="text-base text-gray-700 uppercase bg-gray-400 dark:bg-gray-700 dark:text-gray-200">
                 <tr>
                     <th scope="col" class="px-6 py-3">
@@ -42,12 +43,13 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             function format(d) {
 
 
-                let div=$('<div class="mb-3">');
-                let headsDiv=$('<div>')
-                $.each(d.head,function (index,data){
+                let div = $('<div class="mb-3">');
+                let headsDiv = $('<div>')
+                $.each(d.head, function (index, data) {
                     headsDiv.append(
                         $('<div>').append(
                             $('<div class="fw-bold text-muted">').text('Agency Heads'),
@@ -63,30 +65,30 @@
                                         $('<div class="col-md-auto text-start">').append(
                                             $('<div class="text-muted fw-bold">').text('Contact Details'),
                                             $('<ul class="list-group ">').append(function () {
-                                                let frag=$(document.createDocumentFragment())
-                                                if(data.email){
-                                                    frag.append( $('<li class="list-group-numbered">').append(
+                                                let frag = $(document.createDocumentFragment())
+                                                if (data.email) {
+                                                    frag.append($('<li class="list-group-numbered">').append(
                                                         $('<span class="text-muted">').text("Email: "),
                                                         $('<span >').text(data.email)
                                                     ))
 
                                                 }
-                                                if(data.mobile){
-                                                    frag.append( $('<li class="list-group-numbered">').append(
+                                                if (data.mobile) {
+                                                    frag.append($('<li class="list-group-numbered">').append(
                                                         $('<span>').text("Mobile: "),
                                                         $('<span >').text(data.mobile)
                                                     ))
 
                                                 }
-                                                if(data.fax){
-                                                    frag.append( $('<li class="list-group-numbered">').append(
+                                                if (data.fax) {
+                                                    frag.append($('<li class="list-group-numbered">').append(
                                                         $('<span>').text("Fax: "),
                                                         $('<span >').text(data.fax)
                                                     ))
 
                                                 }
-                                                if(data.tel){
-                                                    frag.append( $('<li class="list-group-numbered">').append(
+                                                if (data.tel) {
+                                                    frag.append($('<li class="list-group-numbered">').append(
                                                         $('<span>').text("Phone: "),
                                                         $('<span >').text(data.tel)
                                                     ))
@@ -96,7 +98,6 @@
                                             })
                                         )
                                     )
-
                                 )
                             )
                         )
@@ -105,6 +106,7 @@
 
                 return div.append(headsDiv)
             }
+
             var table = $('#agencyTable').DataTable({
                 rowCallback: function (row, data) {
                     $(row).addClass('bg-gray-800 border-b text-base dark:bg-gray-800 dark:hover:text-gray-50 dark:border-gray-700 transition duration:300 hover:bg-gray-200 dark:hover:bg-gray-600');
@@ -112,40 +114,40 @@
                 ajax: '{{route("iptbm.admin.addrecord.get_agencies")}}',
 
                 pagingType: 'full_numbers',
-                horizontalScroll:true,
+                horizontalScroll: true,
                 dom: 'Bfrtip',
                 buttons: [
                     {
-                        extend:'pageLength',
-                        text:'pageLength',
+                        extend: 'pageLength',
+                        text: 'pageLength',
                         className: 'bg-gray-700 dark:bg-gray-600'
                     },
                     {
-                        extend:'colvis',
-                        text:'Visible Column',
+                        extend: 'colvis',
+                        text: 'Visible Column',
                         className: 'bg-gray-700 dark:bg-gray-600'
                     },
                     {
-                        extend:'excel',
-                        text:'excel',
+                        extend: 'excel',
+                        text: 'excel',
                         className: 'bg-gray-700 dark:bg-gray-600'
                     },
                     {
-                        extend:'csv',
-                        text:'csv',
+                        extend: 'csv',
+                        text: 'csv',
                         className: 'bg-gray-700 dark:bg-gray-600'
                     },
                     {
-                        extend:'pdf',
-                        text:'pdf',
+                        extend: 'pdf',
+                        text: 'pdf',
                         className: 'bg-gray-700 dark:bg-gray-600'
                     },
 
                     {
                         text: '<span class="fa-solid fa-plus-square me-2"></span> new Record',
                         className: 'bg-gray-700 dark:bg-gray-600',
-                        action: function ( e, dt, node, config ) {
-                            window.location.href="{{ route("iptbm.admin.addrecord.add_agency")}}"
+                        action: function (e, dt, node, config) {
+                            window.location.href = "{{ route("iptbm.admin.addrecord.add_agency")}}"
                         }
                     }
                 ],
@@ -162,11 +164,11 @@
                         className: 'py-3'
                     },
                     {data: 'region.name'},
-                    { data: 'address' },
+                    {data: 'address'},
 
                     {
                         data: null,
-                        render:function (data){
+                        render: function (data) {
                             return `<button class="btn btn-sm btn-outline-danger"><span class="fa-solid fa-trash-can"></span></button>`
                         }
                     }

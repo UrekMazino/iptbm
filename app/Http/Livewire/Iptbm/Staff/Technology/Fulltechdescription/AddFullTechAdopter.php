@@ -22,19 +22,21 @@ class AddFullTechAdopter extends Component
     {
         $this->validate();
         $this->fulltechdescription->adoptors()->save(new IptbmTechnologyAdoptor([
-            'adoptor_name'=>$this->adopterModel
+            'adoptor_name' => $this->adopterModel
         ]));
         $this->emit('reloadPage');
     }
+
     public function rules()
     {
         return [
-            'adopterModel'=>[
+            'adopterModel' => [
                 'required',
-                Rule::unique(IptbmTechnologyAdoptor::class,'adoptor_name')->where('full_tech_id',$this->fulltechdescription->id)
+                Rule::unique(IptbmTechnologyAdoptor::class, 'adoptor_name')->where('full_tech_id', $this->fulltechdescription->id)
             ]
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
@@ -42,11 +44,12 @@ class AddFullTechAdopter extends Component
 
     public function mount($fullDescription)
     {
-        $this->fulltechdescription=$fullDescription;
+        $this->fulltechdescription = $fullDescription;
     }
+
     public function render()
     {
-        $list=IptbmAdoptor::pluck('name');
+        $list = IptbmAdoptor::pluck('name');
 
         return view('livewire.iptbm.staff.technology.fulltechdescription.add-full-tech-adopter')->with([
             'list' => $list,

@@ -10,12 +10,10 @@ use App\Rules\iptbm\ValueExistsInTable;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Response;
 
 class DeploymentController extends Controller
 {
@@ -28,50 +26,49 @@ class DeploymentController extends Controller
     {
 
 
-        $deployedTechnologies=IptbmDeploymentPathway::with('technology')->get();
-        $profile = IptbmProfile::with("technologies","technologies.techgenerators","technologies.techgenerators.inventor")->where("agency_id", Auth::user()->profile->agency->id)->first();
+        $deployedTechnologies = IptbmDeploymentPathway::with('technology')->get();
+        $profile = IptbmProfile::with("technologies", "technologies.techgenerators", "technologies.techgenerators.inventor")->where("agency_id", Auth::user()->profile->agency->id)->first();
 
 
-        return view('iptbm.staff.deployment.index',[
+        return view('iptbm.staff.deployment.index', [
             'deployedTechnologies' => $deployedTechnologies,
             'profile' => $profile
         ]);
     }
 
 
-
     public function deploy_tech(Request $request): RedirectResponse
     {
         $request->validate([
-            'techId'=>[
+            'techId' => [
                 'required',
                 new ValueExistsInTable([
-                    'iptbm_extension_pathways'=>'technology_id',
-                    'iptbm_ip_alerts'=>'technology_id',
-                    'iptbm_commercialization_precoms'=>'technology_id',
-                    'iptbm_commercialization_adopters'=>'technology_id',
-                ],'Technology',"Technology is currently under in different pathways.")
+                    'iptbm_extension_pathways' => 'technology_id',
+                    'iptbm_ip_alerts' => 'technology_id',
+                    'iptbm_commercialization_precoms' => 'technology_id',
+                    'iptbm_commercialization_adopters' => 'technology_id',
+                ], 'Technology', "Technology is currently under in different pathways.")
             ],
-            'adopter'=>[
+            'adopter' => [
                 'required',
-                Rule::unique(IptbmDeploymentPathway::class,'adoptor_name')->where('technology_id',$request->techId)
+                Rule::unique(IptbmDeploymentPathway::class, 'adoptor_name')->where('technology_id', $request->techId)
             ],
-            'address'=>'required'
-        ],[
-            'techId.required'=>'Technology is missing.',
+            'address' => 'required'
+        ], [
+            'techId.required' => 'Technology is missing.',
         ]);
-        $technology=IptbmTechnologyProfile::find($request->techId);
+        $technology = IptbmTechnologyProfile::find($request->techId);
         $technology->deployment()->save(new IptbmDeploymentPathway([
-            'adoptor_name'=>$request->adopter,
-            'address'=>$request->address
+            'adoptor_name' => $request->adopter,
+            'address' => $request->address
         ]));
         return redirect()->back();
     }
 
     public function ajax_call(Request $request)
     {
-        $data=IptbmDeploymentPathway::with('technology')->get();
-        if($request->ajax()){
+        $data = IptbmDeploymentPathway::with('technology')->get();
+        if ($request->ajax()) {
             return response()->json($data);
         }
 

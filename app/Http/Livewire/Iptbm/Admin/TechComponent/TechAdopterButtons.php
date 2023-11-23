@@ -8,6 +8,7 @@ class TechAdopterButtons extends Component
 {
     public $adopter;
     public $adopterNameModel;
+
     public function delete()
     {
         $this->adopter->delete();
@@ -17,13 +18,14 @@ class TechAdopterButtons extends Component
     public function editName()
     {
         $this->validate();
-        $this->adopter->name=$this->adopterNameModel;
+        $this->adopter->name = $this->adopterNameModel;
         $this->adopter->save();
         $this->emit('reloadPage');
     }
+
     public function reseter()
     {
-        $this->adopterNameModel=$this->adopter->name;
+        $this->adopterNameModel = $this->adopter->name;
         $this->resetValidation([
             'adopterNameModel'
         ]);
@@ -31,10 +33,11 @@ class TechAdopterButtons extends Component
 
     public function rules()
     {
-        return[
-            'adopterNameModel' =>'required|max:50|unique:iptbm_adoptors,name',
+        return [
+            'adopterNameModel' => 'required|max:50|unique:iptbm_adoptors,name',
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
@@ -42,9 +45,10 @@ class TechAdopterButtons extends Component
 
     public function mount($adopter)
     {
-        $this->adopter=$adopter;
-        $this->adopterNameModel=$this->adopter->name;
+        $this->adopter = $adopter;
+        $this->adopterNameModel = $this->adopter->name;
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.tech-component.tech-adopter-buttons');

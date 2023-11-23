@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class IptbmIpTaskStage extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'ip_task_id',
         'stage_name'
     ];
@@ -18,11 +19,11 @@ class IptbmIpTaskStage extends Model
 
     function task(): BelongsTo
     {
-        return $this->belongsTo(IptbmIpTask::class,"ip_task_id","id");
+        return $this->belongsTo(IptbmIpTask::class, "ip_task_id", "id");
     }
 
     function applications(): HasMany
     {
-        return $this->hasMany(IptbmIpAlertTask::class,"stage_id","id");
+        return $this->hasMany(IptbmIpAlertTask::class, "stage_id", "id");
     }
 }

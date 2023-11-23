@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -25,7 +24,7 @@ class DeadlineNotificationMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($technology,$iptype,$applicationnumber,$task,$stage, $deadline, $url)
+    public function __construct($technology, $iptype, $applicationnumber, $task, $stage, $deadline, $url)
     {
         $this->technology = $technology;
         $this->applicationnumber = $applicationnumber;
@@ -54,9 +53,9 @@ class DeadlineNotificationMail extends Mailable
         return new Content(
             markdown: 'iptbm.mail.deadline-notification',
             with: [
-                'technologyname'=>$this->technology,
-                'applicationnumber'=>$this->applicationnumber,
-                'iptype'=>$this->iptype,
+                'technologyname' => $this->technology,
+                'applicationnumber' => $this->applicationnumber,
+                'iptype' => $this->iptype,
                 'task' => $this->task,
                 'stage' => $this->stage,
                 'deadline' => $this->deadline,

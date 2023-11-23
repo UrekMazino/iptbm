@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TaskDeadline extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'ip_alert_task_id',
         'frequency',
@@ -16,8 +17,9 @@ class TaskDeadline extends Model
         'day_of_week',
         'time_day'
     ];
+
     public function task(): BelongsTo
     {
-        return $this->belongsTo(IptbmIpAlertTask::class,'ip_alert_task_id','id');
+        return $this->belongsTo(IptbmIpAlertTask::class, 'ip_alert_task_id', 'id');
     }
 }

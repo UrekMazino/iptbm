@@ -8,7 +8,6 @@ use App\Models\iptbm\IptbmIndustry;
 use App\Models\iptbm\IptbmTechIndustry;
 use App\Models\iptbm\IptbmTechnologyProfile;
 use App\Models\iptbm\IptbmTechStatus;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -39,11 +38,10 @@ class AddTechnology extends Component
                 'mimes:png,jpg,jpeg',
                 'max:2048',
                 function ($attribute, $value, $fail) {
-                    if($this->photo)
-                    {
+                    if ($this->photo) {
                         $temporaryFilePath = $this->photo->getRealPath();
                         if (!getimagesize($temporaryFilePath)) {
-                            $this->photo=null;
+                            $this->photo = null;
                             $fail('The file must be an image.');
                         }
                     }
@@ -56,9 +54,9 @@ class AddTechnology extends Component
 
     public function mount($profile)
     {
-        $this->profile=$profile;
-        $this->agencies=IptbmAgency::all();
-        $this->industries=IptbmIndustry::all();
+        $this->profile = $profile;
+        $this->agencies = IptbmAgency::all();
+        $this->industries = IptbmIndustry::all();
 
     }
 
@@ -66,61 +64,56 @@ class AddTechnology extends Component
     {
         $this->validateOnly($propertyName);
     }
+
     public function submit()
     {
         $this->validate([
-            'photo'=>[
+            'photo' => [
                 'nullable',
                 'image',
                 'mimes:png,jpg,jpeg',
                 'max:2048',
-                function($attribute, $value, $fail){
-            if($this->photo)
-            {
-                $temporaryFilePath = $this->photo->getRealPath();
-                if (!getimagesize($temporaryFilePath)) {
-                    $this->photo=null;
-                    $fail('The file must be an image.');
-                }
-            }
+                function ($attribute, $value, $fail) {
+                    if ($this->photo) {
+                        $temporaryFilePath = $this->photo->getRealPath();
+                        if (!getimagesize($temporaryFilePath)) {
+                            $this->photo = null;
+                            $fail('The file must be an image.');
+                        }
+                    }
 
                 }
             ],
             'description' => 'required|min:10|max:1000',
-            'title'=>'required|min:5|unique:iptbm_technology_profiles,title',
-            'techIndustry'=>'required',
-            'techAgency'=>'required|exists:iptbm_agencies,id',
-            'yearDeveloped'=>'required|date_format:Y',
-            'techStatus'=>'required|in:Laboratory experiment stage / Lab testing / Greenhouse testing,Pilot Testing stage,Upscaled Testing stage,Commercial scale testing stage,Technology ready for commercialization,Commercialized technology'
+            'title' => 'required|min:5|unique:iptbm_technology_profiles,title',
+            'techIndustry' => 'required',
+            'techAgency' => 'required|exists:iptbm_agencies,id',
+            'yearDeveloped' => 'required|date_format:Y',
+            'techStatus' => 'required|in:Laboratory experiment stage / Lab testing / Greenhouse testing,Pilot Testing stage,Upscaled Testing stage,Commercial scale testing stage,Technology ready for commercialization,Commercialized technology'
         ]);
-        if($this->photo)
-        {
-            $path=$this->photo->store('public/technology_profiles');
-        }else{
-            $path='';
+        if ($this->photo) {
+            $path = $this->photo->store('public/technology_profiles');
+        } else {
+            $path = '';
         }
 
 
-
-        $technology= new IptbmTechnologyProfile([
-        'title'=>$this->title,
-        'year_developed'=>$this->yearDeveloped,
-        'tech_desc'=>$this->description,
-        'tech_photo'=>$path,
-        'tech_owner'=>$this->techIndustry,
+        $technology = new IptbmTechnologyProfile([
+            'title' => $this->title,
+            'year_developed' => $this->yearDeveloped,
+            'tech_desc' => $this->description,
+            'tech_photo' => $path,
+            'tech_owner' => $this->techIndustry,
         ]);
-
-
-
 
 
         $this->profile->technologies()->save($technology);
-        $techIndustry=new IptbmTechIndustry([
-            'iptbm_industry_id'=>$this->techIndustry
+        $techIndustry = new IptbmTechIndustry([
+            'iptbm_industry_id' => $this->techIndustry
         ]);
 
-        $techStatus=new IptbmTechStatus([
-            'status'=>$this->techStatus
+        $techStatus = new IptbmTechStatus([
+            'status' => $this->techStatus
         ]);
         $technology->industries()->save($techIndustry);
         $technology->statuses()->save($techStatus);
@@ -137,12 +130,10 @@ class AddTechnology extends Component
         ]);
         session()->flash('techno', 'New Technology was added successfully');
 
-        return redirect()->route('iptbm.staff.technology.show',['id'=>$technology->id]);
+        return redirect()->route('iptbm.staff.technology.show', ['id' => $technology->id]);
 
 
     }
-
-
 
 
     public function render()

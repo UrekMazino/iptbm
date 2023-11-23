@@ -1,4 +1,4 @@
-<div >
+<div>
     <x-header-label>
         Region Details
     </x-header-label>
@@ -9,17 +9,18 @@
                     <x-item-header>
                         Region Name
                     </x-item-header>
-                    <x-pop-modal name="changeRegName" modal-title="Update Region Name"   static="true" class="max-w-lg">
+                    <x-pop-modal name="changeRegName" modal-title="Update Region Name" static="true" class="max-w-lg">
                         <form class="space-y-4" wire:submit.prevent="updateRegionName">
                             <div>
-                                <x-input-label for="editRegName" value="Region name" />
-                                <x-text-input wire:model.lazy="regionName" id="editRegName" class="w-full" placeholder="enter text here"/>
-                                <x-input-error :messages="$errors->get('regionName')" />
+                                <x-input-label for="editRegName" value="Region name"/>
+                                <x-text-input wire:model.lazy="regionName" id="editRegName" class="w-full"
+                                              placeholder="enter text here"/>
+                                <x-input-error :messages="$errors->get('regionName')"/>
                             </div>
                             <x-secondary-button wire:loading wire:target="updateRegionName">
                                 Processing
                             </x-secondary-button>
-                            <x-submit-button type="submit" wire:loading.remove wire:target="updateRegionName" >
+                            <x-submit-button type="submit" wire:loading.remove wire:target="updateRegionName">
                                 Update
                             </x-submit-button>
                         </form>
@@ -39,17 +40,18 @@
                     <x-item-header>
                         RRDC Chair
                     </x-item-header>
-                    <x-pop-modal name="changeChairName" modal-title="Update RRDC Chair"   static="true" class="max-w-lg">
+                    <x-pop-modal name="changeChairName" modal-title="Update RRDC Chair" static="true" class="max-w-lg">
                         <form class="space-y-4" wire:submit.prevent="updaterdeChair">
                             <div>
-                                <x-input-label for="editrrdeChair" value="RRDC Chair" />
-                                <x-text-input wire:model.lazy="rrdcChair" id="editrrdeChair" class="w-full" placeholder="enter text here"/>
-                                <x-input-error :messages="$errors->get('rrdcChair')" />
+                                <x-input-label for="editrrdeChair" value="RRDC Chair"/>
+                                <x-text-input wire:model.lazy="rrdcChair" id="editrrdeChair" class="w-full"
+                                              placeholder="enter text here"/>
+                                <x-input-error :messages="$errors->get('rrdcChair')"/>
                             </div>
                             <x-secondary-button wire:loading wire:target="updaterdeChair">
                                 Processing
                             </x-secondary-button>
-                            <x-secondary-button type="submit" wire:loading.remove wire:target="updaterdeChair" >
+                            <x-secondary-button type="submit" wire:loading.remove wire:target="updaterdeChair">
                                 Submit
                             </x-secondary-button>
                         </form>
@@ -68,17 +70,18 @@
                     <x-item-header>
                         Consortium
                     </x-item-header>
-                    <x-pop-modal name="changeConsort" modal-title="Update Consortium"   static="true" class="max-w-lg">
+                    <x-pop-modal name="changeConsort" modal-title="Update Consortium" static="true" class="max-w-lg">
                         <form class="space-y-4" wire:submit.prevent="updateConsortium">
                             <div>
-                                <x-input-label for="editconSort" value="Consortium" />
-                                <x-text-input wire:model.lazy="consortium" id="editconSort" class="w-full" placeholder="enter text here"/>
-                                <x-input-error :messages="$errors->get('consortium')" />
+                                <x-input-label for="editconSort" value="Consortium"/>
+                                <x-text-input wire:model.lazy="consortium" id="editconSort" class="w-full"
+                                              placeholder="enter text here"/>
+                                <x-input-error :messages="$errors->get('consortium')"/>
                             </div>
                             <x-secondary-button wire:loading wire:target="updateConsortium">
                                 Processing
                             </x-secondary-button>
-                            <x-secondary-button type="submit" wire:loading.remove wire:target="updateConsortium" >
+                            <x-secondary-button type="submit" wire:loading.remove wire:target="updateConsortium">
                                 Submit
                             </x-secondary-button>
                         </form>
@@ -97,17 +100,19 @@
                     <x-item-header>
                         Consortium Director
                     </x-item-header>
-                    <x-pop-modal name="changeDir" modal-title="Update Consortium Director"   static="true" class="max-w-lg">
+                    <x-pop-modal name="changeDir" modal-title="Update Consortium Director" static="true"
+                                 class="max-w-lg">
                         <form class="space-y-4" wire:submit.prevent="updateConsortiumDir">
                             <div>
-                                <x-input-label for="editDir" value="Consortium Director" />
-                                <x-text-input wire:model.lazy="consortiumDir" id="editDir" class="w-full" placeholder="enter text here"/>
-                                <x-input-error :messages="$errors->get('consortiumDir')" />
+                                <x-input-label for="editDir" value="Consortium Director"/>
+                                <x-text-input wire:model.lazy="consortiumDir" id="editDir" class="w-full"
+                                              placeholder="enter text here"/>
+                                <x-input-error :messages="$errors->get('consortiumDir')"/>
                             </div>
                             <x-secondary-button wire:loading wire:target="updateConsortiumDir">
                                 Processing
                             </x-secondary-button>
-                            <x-secondary-button type="submit" wire:loading.remove wire:target="updateConsortiumDir" >
+                            <x-secondary-button type="submit" wire:loading.remove wire:target="updateConsortiumDir">
                                 Submit
                             </x-secondary-button>
                         </form>
@@ -132,7 +137,8 @@
                         @forelse($region->agencies as $agency)
                             <li>
 
-                                <a href="{{route("iptbm.admin.view-agency",['agency'=>$agency->id])}}" class="inline-flex items-center justify-center p-3 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600 dark:hover:text-white">
+                                <a href="{{route("iptbm.admin.view-agency",['agency'=>$agency->id])}}"
+                                   class="inline-flex items-center justify-center p-3 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600 dark:hover:text-white">
                                     {{$agency->name}}
                                 </a>
 

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmIpTaskInchargeUnit extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'ip_alert_task_id',
         'name'
     ];

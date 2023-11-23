@@ -13,7 +13,7 @@ class AddIndustry extends Component
     {
         $this->validate();
         IptbmIndustry::create([
-            'name'=>strtoupper($this->industry)
+            'name' => strtoupper($this->industry)
         ]);
         $this->emit('reloadPage');
     }
@@ -25,19 +25,22 @@ class AddIndustry extends Component
         $this->reset('industry');
         $this->resetValidation(['industry']);
     }
+
     public function rules()
     {
         return [
-            'industry' =>[
+            'industry' => [
                 'required',
                 'unique:iptbm_industries,name'
             ]
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.tech-component.add-industry');

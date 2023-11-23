@@ -2,9 +2,7 @@
 
 namespace Database\Seeders\iptbm;
 
-use App\Models\iptbm\IptbmCommodity;
 use App\Models\iptbm\IptbmIndustry;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CommoditySeeder extends Seeder
@@ -14,10 +12,9 @@ class CommoditySeeder extends Seeder
      */
 
 
-
     public function run(): void
     {
-        $data=[
+        $data = [
             [
                 [
                     'name' => 'Abaca'
@@ -306,11 +303,9 @@ class CommoditySeeder extends Seeder
         ];
 
 
-
-        $industry=IptbmIndustry::all();
-        foreach ($industry as $key => $val)
-        {
-            if($key<5){
+        $industry = IptbmIndustry::all();
+        foreach ($industry as $key => $val) {
+            if ($key < 5) {
                 $val->commodities()->createMany($data[$key]);
             }
 

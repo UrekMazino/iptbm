@@ -30,30 +30,31 @@
                 </div>
             </div>
         @endif
-            <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav
+            class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
-                    <div class="max-w-screen-xl flex flex-wrap items-center justify-start mx-auto p-4">
+                <div class="max-w-screen-xl flex flex-wrap items-center justify-start mx-auto p-4">
 
-                        <div class=" w-full flex  md:w-auto" id="navbar-default">
-                            <a href="{{route("iptbm.staff.allProfile")}}"
-                               class=" text-blue-500 inline-flex w-fit flex-col items-center justify-center px-5">
-                                <span class="fa-solid fa-home"></span>
-                            </a>
-                            <div class="m-auto col-start-2 col-end-6">
+                    <div class=" w-full flex  md:w-auto" id="navbar-default">
+                        <a href="{{route("iptbm.staff.allProfile")}}"
+                           class=" text-blue-500 inline-flex w-fit flex-col items-center justify-center px-5">
+                            <span class="fa-solid fa-home"></span>
+                        </a>
+                        <div class="m-auto col-start-2 col-end-6">
                     <span class="text-xl text-gray-400 dark:text-gray-500">
                         {{$profile->region->name}}
                     </span>
-                                <span class="text-sm ms-4 text-gray-700 dark:text-gray-400 hidden md:inline">
+                            <span class="text-sm ms-4 text-gray-700 dark:text-gray-400 hidden md:inline">
                         {{$profile->agency->name}}
                     </span>
-                            </div>
                         </div>
                     </div>
-                </nav>
-
+                </div>
             </nav>
+
+        </nav>
 
         <div class="my-3 mx-lg-5 mt-10 px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 p-5  gap-4 relative rounded-lg overflow-hidden">
@@ -359,7 +360,8 @@
                             <ul>
                                 @foreach($profile->projects as $project)
                                     <li class="text-gray-700 dark:text-gray-400">
-                                        <span class="fa-solid fa-asterisk me-2 text-gray-700 dark:text-gray-200"></span>{{$project->project_name}}
+                                        <span
+                                            class="fa-solid fa-asterisk me-2 text-gray-700 dark:text-gray-200"></span>{{$project->project_name}}
                                     </li>
                                 @endforeach
                             </ul>
@@ -373,7 +375,6 @@
             </div>
 
         </div>
-
 
 
     </div>

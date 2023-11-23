@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\iptbm\staff;
 
 use App\Http\Controllers\Controller;
-use App\Models\iptbm\IptbmIpAlert;
 use App\Models\iptbm\IptbmIpAlertTask;
 use App\Models\iptbm\IptbmIpTaskInchargeUnit;
 use App\Models\iptbm\IptbmIpTaskPersonel;
-use App\Models\iptbm\IptbmPatentAgent;
-use App\Models\iptbm\TaskDeadline;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -29,10 +26,10 @@ class IpTaskView extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(IptbmIpAlertTask $id ): Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
+    public function index(IptbmIpAlertTask $id): Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
     {
 
-        $ip_task = $id->load("stage","attachments","ip_alert","ip_alert.technology", "ip_alert.ip_type", 'personnel', 'units','task_deadline','ip_task_stage_notifications');
+        $ip_task = $id->load("stage", "attachments", "ip_alert", "ip_alert.technology", "ip_alert.ip_type", 'personnel', 'units', 'task_deadline', 'ip_task_stage_notifications');
 
         return view('iptbm.staff.ipmanagement.ip-task-view', [
             'ip_task' => $ip_task,
@@ -122,16 +119,16 @@ class IpTaskView extends Controller
         return redirect()->back()->with('update-task-status', 'Task Status updated successfully');
     }
 
-    public function deadline(Request $request,$id): RedirectResponse
+    public function deadline(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'deadline_date'=>[
+            'deadline_date' => [
                 'required',
-                'after:'.now()
+                'after:' . now()
             ],
         ]);
-        $ip_task=IptbmIpAlertTask::find($id);
-        $ip_task->deadline=$request->deadline_date;
+        $ip_task = IptbmIpAlertTask::find($id);
+        $ip_task->deadline = $request->deadline_date;
         $ip_task->save();
         return redirect()->back()->with('update-task-deadline', 'Task Deadline updated successfully');
     }
@@ -139,39 +136,39 @@ class IpTaskView extends Controller
     public function delete_deadline(Request $request): RedirectResponse
     {
         $request->validate([
-            'taskId'=>'required',
+            'taskId' => 'required',
         ]);
 
-        $ipTask=IptbmIpAlertTask::find($request->taskId);
-        $ipTask->deadline=null;
+        $ipTask = IptbmIpAlertTask::find($request->taskId);
+        $ipTask->deadline = null;
         $ipTask->save();
         return redirect()->back();
     }
 
-    public function update_description(Request $request,$id): RedirectResponse
+    public function update_description(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'task_desc'=>'required|min:10',
+            'task_desc' => 'required|min:10',
         ]);
-        $task=IptbmIpAlertTask::find($id);
-        $task->description=$request->task_desc;
+        $task = IptbmIpAlertTask::find($id);
+        $task->description = $request->task_desc;
         $task->save();
         return redirect()->back()->with('update-task-description', 'Task Description updated successfully');
     }
 
-    public function upload_attachment(Request $request,$id): RedirectResponse
+    public function upload_attachment(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'task_attachment'=>'required|mimes:pdf|max:2048',
+            'task_attachment' => 'required|mimes:pdf|max:2048',
         ]);
-        $file=$request->task_attachment->hashName();
-        $file_name='storage/attachment/'.$file;
-        $task=IptbmIpAlertTask::find($id);
-        $request->task_attachment->move(public_path('storage/attachment'),$file);
-        if(File::exists(public_path($task->attachment))){
+        $file = $request->task_attachment->hashName();
+        $file_name = 'storage/attachment/' . $file;
+        $task = IptbmIpAlertTask::find($id);
+        $request->task_attachment->move(public_path('storage/attachment'), $file);
+        if (File::exists(public_path($task->attachment))) {
             File::delete(public_path($task->attachment));
         }
-        $task->attachment=$file_name;
+        $task->attachment = $file_name;
         $task->save();
         return redirect()->back()->with('update-task-attachment', 'Task Attachment updated successfully');
     }
@@ -179,30 +176,29 @@ class IpTaskView extends Controller
     public function delete_attachment(Request $request): RedirectResponse
     {
         $request->validate([
-            'task_id'=>'required'
+            'task_id' => 'required'
         ]);
 
-        $task=IptbmIpAlertTask::find($request->task_id);
-        if(File::exists(public_path('storage/attachment/'.$task->attachment)))
-        {
-            File::delete(public_path('storage/attachment/'.$task->attachment));
-            $task->attachment=null;
+        $task = IptbmIpAlertTask::find($request->task_id);
+        if (File::exists(public_path('storage/attachment/' . $task->attachment))) {
+            File::delete(public_path('storage/attachment/' . $task->attachment));
+            $task->attachment = null;
         }
 
         $task->save();
         return redirect()->back();
     }
 
-    public function update_notification(Request $request,$id): RedirectResponse
+    public function update_notification(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'notif_time'=>'required|date_format:H:i',
-        ],[
-            'notif_time.required'=>'Time must be required',
-            'notif_time.date_format'=>'Wrong format of time',
+            'notif_time' => 'required|date_format:H:i',
+        ], [
+            'notif_time.required' => 'Time must be required',
+            'notif_time.date_format' => 'Wrong format of time',
         ]);
-        $task=IptbmIpAlertTask::find($id);
-        $task->notification_time=$request->notif_time;
+        $task = IptbmIpAlertTask::find($id);
+        $task->notification_time = $request->notif_time;
         $task->save();
         return redirect()->back()->with('update-task-notification', 'Task Notification updated successfully');
     }

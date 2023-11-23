@@ -10,12 +10,13 @@ class IptbmPatentAgentContact extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'type',
         'contact'
     ];
+
     function patent_agent(): BelongsTo
     {
-        return $this->belongsTo(IptbmPatentAgent::class,'patent_agent_id','id');
+        return $this->belongsTo(IptbmPatentAgent::class, 'patent_agent_id', 'id');
     }
 }

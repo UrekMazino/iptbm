@@ -15,7 +15,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -24,7 +23,7 @@ class IpProfile extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $deadlines=IptbmIpAlertTask::with(['ip_alert',
+        $deadlines = IptbmIpAlertTask::with(['ip_alert',
             'stage',
             'ip_task_stage_notifications',
             'stage.task',
@@ -32,10 +31,10 @@ class IpProfile extends Controller
             'task_deadline',
             'ip_alert.technology',
             'ip_alert.technology.iptbmprofiles',
-            'ip_alert.technology.iptbmprofiles.contact'=>function($query){
-                $query->where('contact_type','email');
+            'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
+                $query->where('contact_type', 'email');
             }])
-              ->whereDate('deadline','>',now())
+            ->whereDate('deadline', '>', now())
             ->get();
 
     }
@@ -47,24 +46,21 @@ class IpProfile extends Controller
     {
 
 
-
-        $check=IptbmProfile::where('agency_id',Auth::user()->profile->agency->id)
-            ->where('region_id',Auth::user()->profile->agency->region->id)
+        $check = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)
+            ->where('region_id', Auth::user()->profile->agency->region->id)
             ->exists();
 
         if (!$check) {
             return redirect()->route('iptbm.staff.addProfile');
         }
-        $profile = IptbmProfile::with('contact','projects','projects.projectDetails','agency','agency.head','agency.region')->where('agency_id', Auth::user()->profile->agency->id)->first();
-
+        $profile = IptbmProfile::with('contact', 'projects', 'projects.projectDetails', 'agency', 'agency.head', 'agency.region')->where('agency_id', Auth::user()->profile->agency->id)->first();
 
 
         return view('iptbm.staff.profile.index', [
             'profile' => $profile,
-         //   'agency' => IptbmAgency::where('iptbm_region_id', Auth::user()->region_id)->get()
+            //   'agency' => IptbmAgency::where('iptbm_region_id', Auth::user()->region_id)->get()
         ]);
     }
-
 
 
     /**
@@ -75,49 +71,49 @@ class IpProfile extends Controller
     public function allProfile(): View|Factory|Application
     {
         $profile = IptbmProfile::all();
-        foreach ($profile as $val)
-        {
-            $val->region=IptbmRegion::select('name')->where('id',$val->region_id)->first();
-            $val->agency=IptbmAgency::select('name')->where('id',$val->agency_id)->first();
-            $val->access_state=Auth::user()->agency_id==$val->agency_id && Auth::user()->profile->agency->region->id;
+        foreach ($profile as $val) {
+            $val->region = IptbmRegion::select('name')->where('id', $val->region_id)->first();
+            $val->agency = IptbmAgency::select('name')->where('id', $val->agency_id)->first();
+            $val->access_state = Auth::user()->agency_id == $val->agency_id && Auth::user()->profile->agency->region->id;
         }
-        return view('iptbm.staff.profile.all-profile',[
+        return view('iptbm.staff.profile.all-profile', [
             'profile' => $profile
         ]);
     }
 
     public function viewProfile(IptbmProfile $id): View|Factory|Application
     {
-        $profile=$id->load('contact','projects');
+        $profile = $id->load('contact', 'projects');
 
         $profile->agency = IptbmAgency::find($profile->agency_id);
         $profile->agency_head = AgencyHead::find($profile->agency->id);
         $profile->region = IptbmRegion::find($profile->region_id);
 
-        return view('iptbm.staff.profile.public-view',[
+        return view('iptbm.staff.profile.public-view', [
             'profile' => $profile,
         ]);
     }
 
-    public function update_ip_policy(Request $request,$id): RedirectResponse
+    public function update_ip_policy(Request $request, $id): RedirectResponse
     {
 
         $request->validate([
-            'ip_policy' =>'required|boolean',
+            'ip_policy' => 'required|boolean',
         ]);
-        $profile=IptbmProfile::find($id);
-        $profile->ip_policy=$request->ip_policy;
+        $profile = IptbmProfile::find($id);
+        $profile->ip_policy = $request->ip_policy;
         $profile->save();
         return redirect()->back();
     }
-    public function update_techno_transfer(Request $request,$id): RedirectResponse
+
+    public function update_techno_transfer(Request $request, $id): RedirectResponse
     {
 
         $request->validate([
-            'techno_transfer' =>'required|boolean',
+            'techno_transfer' => 'required|boolean',
         ]);
-        $profile=IptbmProfile::find($id);
-        $profile->techno_transfer=$request->techno_transfer;
+        $profile = IptbmProfile::find($id);
+        $profile->techno_transfer = $request->techno_transfer;
         $profile->save();
         return redirect()->back();
     }
@@ -243,13 +239,13 @@ class IpProfile extends Controller
                     ]
                 );
             case "mobile":
-            $request->validate([
-                'contact' => 'required|unique:iptbm_profile_contacts|numeric'
-            ],
-                [
-                    'contact.unique' => 'Mobile number  has already been taken.'
-                ]
-            );
+                $request->validate([
+                    'contact' => 'required|unique:iptbm_profile_contacts|numeric'
+                ],
+                    [
+                        'contact.unique' => 'Mobile number  has already been taken.'
+                    ]
+                );
             case "fax":
                 $request->validate([
                     'contact' => 'required|unique:iptbm_profile_contacts|numeric'
@@ -288,8 +284,8 @@ class IpProfile extends Controller
 
     public function deletecontact(Request $request, string $id): RedirectResponse
     {
-        $contact=IptbmProfileContact::find($id);
-        if(!$contact->delete()){
+        $contact = IptbmProfileContact::find($id);
+        if (!$contact->delete()) {
             return redirect()->route('iptbm.staff.ipProfile')->with('iptbm-contact-fail', 'Unable to delete..!');
         }
         return redirect()->route('iptbm.staff.ipProfile')->with('iptbm-contact-success', 'Deleted..!');
@@ -298,7 +294,7 @@ class IpProfile extends Controller
     public function upload_logo(Request $request): RedirectResponse
     {
         $request->validate([
-            'profile_logo'=>'required|image|mimes:png,jpg,jpeg|max:2048',
+            'profile_logo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
         $profile = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)->first();
         $logo = $request->profile_logo->hashName();
@@ -316,10 +312,10 @@ class IpProfile extends Controller
     public function tagline(Request $request)
     {
         $request->validate([
-            'tagline'=>'required|min:5',
+            'tagline' => 'required|min:5',
         ]);
-        $profile = IptbmProfile::where('agency_id',Auth::user()->profile->agency->id)->first();
-        $profile->tag_line=$request->tagline;
+        $profile = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)->first();
+        $profile->tag_line = $request->tagline;
         $profile->save();
         return redirect()->back();
     }

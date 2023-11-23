@@ -12,6 +12,6 @@ class IptbmSendNotification extends Model
 
     public function ipAlertTask(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(IptbmIpAlertTask::class,'ipptbm_alert_task_id','id');
+        return $this->belongsTo(IptbmIpAlertTask::class, 'ipptbm_alert_task_id', 'id');
     }
 }

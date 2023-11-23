@@ -13,7 +13,7 @@ class AbhProfileController extends Controller
 
     public function index()
     {
-        $profile=\Auth::user()->abh_profile;
-        return view('abh.profile.index',compact('profile'));
+        $profile = \Auth::user()->abh_profile;
+        return view('abh.profile.index', compact('profile'));
     }
 }

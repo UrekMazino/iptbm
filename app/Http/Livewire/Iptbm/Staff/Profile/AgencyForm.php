@@ -19,7 +19,7 @@ class AgencyForm extends Component
 
         $this->profile = $profile;
 
-       // $this->agency_head = ($profile->agency->head->count() > 0) ? $profile->agency->head[0]->head : '';
+        // $this->agency_head = ($profile->agency->head->count() > 0) ? $profile->agency->head[0]->head : '';
     }
 
     public function showAgencyHeadForm(): void

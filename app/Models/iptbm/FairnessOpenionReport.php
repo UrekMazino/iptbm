@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class FairnessOpenionReport extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'precom_id',
         'pdf_file'
     ];
+
     public function pre_commercialization(): BelongsTo
     {
-        return $this->belongsTo(IptbmCommercializationPrecom::class,'precom_id','id');
+        return $this->belongsTo(IptbmCommercializationPrecom::class, 'precom_id', 'id');
     }
 }

@@ -1,5 +1,3 @@
-
-
 <div class="grid grid-cols-1 md:grid-cols-3 p-4  gap-4 relative md:rounded-lg overflow-hidden">
 
     <img src="{{Storage::url($profile->logo)}}" alt="Background Image"
@@ -11,7 +9,9 @@
             class="w-full  h-full p-6 bg-black overflow-hidden border-t border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             @if($profile->logo)
                 <a data-modal-target="authentication-modal" data-modal-toggle="profile" role="button">
-                    <img class="hover:scale-110 transition duration-300 max-w-lg rounded-lg object-contain w-full h-full" src="{{Storage::url($profile->logo)}}" alt="image description">
+                    <img
+                        class="hover:scale-110 transition duration-300 max-w-lg rounded-lg object-contain w-full h-full"
+                        src="{{Storage::url($profile->logo)}}" alt="image description">
                 </a>
             @endif
         </div>

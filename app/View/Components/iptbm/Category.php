@@ -2,7 +2,6 @@
 
 namespace App\View\Components\iptbm;
 
-use App\Models\iptbm\IptbmCommodity;
 use App\Models\iptbm\IptbmTechCategory;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -24,15 +23,15 @@ class Category extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($route,$sector,$indusId=null,$id=null)
+    public function __construct($route, $sector, $indusId = null, $id = null)
     {
         /**
          *  use industry id as parameter
          */
         $this->route = $route;
         $this->id = $id;
-        $this->indusId=$indusId;
-        $this->sector=$sector;
+        $this->indusId = $indusId;
+        $this->sector = $sector;
     }
 
     /**
@@ -40,8 +39,8 @@ class Category extends Component
      */
     public function render(): View|Closure|string
     {
-        $categories=IptbmTechCategory::where('iptbm_industry_id',$this->id)->get();
-        return view('components.iptbm.category',[
+        $categories = IptbmTechCategory::where('iptbm_industry_id', $this->id)->get();
+        return view('components.iptbm.category', [
             'categories' => $categories,
             'route' => $this->route,
             'indusId' => $this->indusId,

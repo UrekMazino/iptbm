@@ -10,12 +10,13 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
-    protected $commands=[
+    protected $commands = [
         Commands\iptbm\WeeklyNotification::class,
         Commands\iptbm\DailyNotification::class,
         Commands\iptbm\HighPriorityNotification::class,
         Commands\iptbm\CleanNotifLogs::class
     ];
+
     protected function schedule(Schedule $schedule): void
     {
         //  $schedule->command('notify:cron')->everySecond();
@@ -31,7 +32,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

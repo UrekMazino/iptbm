@@ -15,14 +15,15 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             function format(d) {
 
 
-                let div=$('<div class="mb-5">');
-                let list=$('<ul class="list-group my-2 mb-3 ms-3">')
-                if(d.agencies.length>0){
+                let div = $('<div class="mb-5">');
+                let list = $('<ul class="list-group my-2 mb-3 ms-3">')
+                if (d.agencies.length > 0) {
                     div.append($('<span class="text-muted fw-bold">').text("Agencies:"))
-                    $.each(d.agencies,function (index,agency){
+                    $.each(d.agencies, function (index, agency) {
                         list.append($('<li class="list-group-numbered">').append(
                             $('<a  href="#" class="link-primary text-decoration-none">').text(agency.name)
                         ))
@@ -36,11 +37,12 @@
 
                 return div
             }
+
             var table = $('#regTable').DataTable({
                 ajax: '{{route("iptbm.admin.addrecord.get_regions")}}',
                 stateSave: true,
                 pagingType: 'full_numbers',
-                horizontalScroll:true,
+                horizontalScroll: true,
                 dom: 'Bfrtip',
 
                 buttons: [
@@ -50,9 +52,9 @@
                     'pdf',
                     {
                         text: '<span class="fa-solid fa-plus-square me-2"></span> new Record',
-                        class:'blue',
-                        action: function ( e, dt, node, config ) {
-                            window.location.href="{{ route("iptbm.admin.addrecord.add_region")}}"
+                        class: 'blue',
+                        action: function (e, dt, node, config) {
+                            window.location.href = "{{ route("iptbm.admin.addrecord.add_region")}}"
                         }
                     }
                     // Add more buttons here
@@ -65,15 +67,15 @@
                         data: null,
                         defaultContent: '',
                     },
-                    { data: 'name' },
+                    {data: 'name'},
                     {
                         data: 'consortium',
-                        visible:false
+                        visible: false
                     },
-                    { data: 'consortium_director' },
+                    {data: 'consortium_director'},
                     {
                         data: null,
-                        render:function (data){
+                        render: function (data) {
                             return $('<div>').append(
                                 $('<a href="{{route("iptbm.admin.editregion.index")}}" class="btn btn-sm btn-outline-primary me-2">').append(
                                     $('<span class="fa-solid fa-pen-square">')

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Iptbm\Staff\Deployment;
 
 use App\Models\iptbm\IptbmDeploymentAdoptorContact;
-use App\Models\iptbm\IptbmExtensionAdoptorContact;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -16,31 +15,37 @@ class DeploymentTechDetails extends Component
     public $adopterName;
     public $adopterAddress;
 
-    public $showAdopterNameForm=false;
-    public $showAdopterAddressForm=false;
+    public $showAdopterNameForm = false;
+    public $showAdopterAddressForm = false;
 
 
-    public $showMobileForm=false;
-    public $showPhoneForm=false;
-    public $showFaxForm=false;
-    public $showEmailForm=false;
+    public $showMobileForm = false;
+    public $showPhoneForm = false;
+    public $showFaxForm = false;
+    public $showEmailForm = false;
 
 
     public $mobileModel;
     public $phoneModel;
     public $faxModel;
     public $emailModel;
+    public $listeners = ['loadData'];
+    protected $validationAttributes = [
+        'mobileModel' => 'Mobile number'
+    ];
+
     public function toggleShowMobileForm()
     {
-        $this->showMobileForm=!$this->showMobileForm;
+        $this->showMobileForm = !$this->showMobileForm;
         $this->reset('mobileModel');
         $this->resetValidation([
             'mobileModel'
         ]);
     }
+
     public function toggleShowPhoneForm()
     {
-        $this->showPhoneForm=!$this->showPhoneForm;
+        $this->showPhoneForm = !$this->showPhoneForm;
         $this->reset('phoneModel');
         $this->resetValidation([
             'phoneModel'
@@ -49,7 +54,7 @@ class DeploymentTechDetails extends Component
 
     public function toggleShowFaxForm()
     {
-        $this->showFaxForm=!$this->showFaxForm;
+        $this->showFaxForm = !$this->showFaxForm;
         $this->reset('faxModel');
         $this->resetValidation([
             'faxModel'
@@ -58,7 +63,7 @@ class DeploymentTechDetails extends Component
 
     public function toggleShowEmailForm()
     {
-        $this->showEmailForm=!$this->showEmailForm;
+        $this->showEmailForm = !$this->showEmailForm;
         $this->reset('emailModel');
         $this->resetValidation([
             'emailModel'
@@ -70,7 +75,7 @@ class DeploymentTechDetails extends Component
         $this->validateOnly('mobileModel');
         $this->deployment->contacts()->save(new IptbmDeploymentAdoptorContact([
             'type' => 'mobile',
-            'contact'=>$this->mobileModel
+            'contact' => $this->mobileModel
         ]));
         $this->deployment->save();
         $this->reset('mobileModel');
@@ -80,12 +85,13 @@ class DeploymentTechDetails extends Component
 
         $this->emit('reloadPage');
     }
+
     public function savePhone()
     {
         $this->validateOnly('phoneModel');
         $this->deployment->contacts()->save(new IptbmDeploymentAdoptorContact([
             'type' => 'phone',
-            'contact'=>$this->phoneModel
+            'contact' => $this->phoneModel
         ]));
         $this->deployment->save();
         $this->reset('phoneModel');
@@ -101,7 +107,7 @@ class DeploymentTechDetails extends Component
         $this->validateOnly('faxModel');
         $this->deployment->contacts()->save(new IptbmDeploymentAdoptorContact([
             'type' => 'fax',
-            'contact'=>$this->faxModel
+            'contact' => $this->faxModel
         ]));
         $this->deployment->save();
         $this->reset('faxModel');
@@ -111,12 +117,13 @@ class DeploymentTechDetails extends Component
 
         $this->emit('reloadPage');
     }
+
     public function saveEmail()
     {
         $this->validateOnly('emailModel');
         $this->deployment->contacts()->save(new IptbmDeploymentAdoptorContact([
             'type' => 'email',
-            'contact'=>$this->emailModel
+            'contact' => $this->emailModel
         ]));
         $this->deployment->save();
         $this->reset('emailModel');
@@ -127,83 +134,75 @@ class DeploymentTechDetails extends Component
         $this->emit('reloadPage');
     }
 
-
-
     public function rules()
     {
-        return[
-            'adopterName'=>[
+        return [
+            'adopterName' => [
                 'required',
             ],
-            'adopterAddress'=>[
+            'adopterAddress' => [
                 'required',
             ],
-            'mobileModel'=>[
+            'mobileModel' => [
                 'required',
                 'numeric',
                 'digits:11',
-                Rule::unique('iptbm_deployment_adoptor_contacts','contact')
-                    ->where('deployment_adopters_id',$this->deployment->id)
+                Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
+                    ->where('deployment_adopters_id', $this->deployment->id)
             ],
-            'phoneModel'=>[
+            'phoneModel' => [
                 'required',
                 'numeric',
                 'min_digits:6',
                 'max_digits:8',
-                Rule::unique('iptbm_deployment_adoptor_contacts','contact')
-                    ->where('deployment_adopters_id',$this->deployment->id)
+                Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
+                    ->where('deployment_adopters_id', $this->deployment->id)
             ],
-            'faxModel'=>[
+            'faxModel' => [
                 'required',
                 'numeric',
                 'min_digits:6',
                 'max_digits:8',
-                Rule::unique('iptbm_deployment_adoptor_contacts','contact')
-                    ->where('deployment_adopters_id',$this->deployment->id)
+                Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
+                    ->where('deployment_adopters_id', $this->deployment->id)
             ],
-            'emailModel'=>[
+            'emailModel' => [
                 'required',
                 'email',
-                Rule::unique('iptbm_deployment_adoptor_contacts','contact')
-                    ->where('deployment_adopters_id',$this->deployment->id)
+                Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
+                    ->where('deployment_adopters_id', $this->deployment->id)
             ],
         ];
     }
-
-    protected $validationAttributes =[
-        'mobileModel'=>'Mobile number'
-    ];
 
     public function updated($props)
     {
         $this->validateOnly($props);
     }
 
-    public $listeners=['loadData'];
-
     public function loadData()
     {
         $this->deployment->refresh();
-        $this->deploymentContact=$this->deployment->contacts;
+        $this->deploymentContact = $this->deployment->contacts;
     }
 
 
     public function toggleAdopterNameForm()
     {
-        $this->showAdopterNameForm=!$this->showAdopterNameForm;
+        $this->showAdopterNameForm = !$this->showAdopterNameForm;
 
         $this->resetValidation('adopterName');
         $this->reset('adopterName');
-        $this->adopterName=$this->deployment->adoptor_name;
+        $this->adopterName = $this->deployment->adoptor_name;
     }
 
     public function toggleAdopterAddressForm()
     {
-        $this->showAdopterAddressForm=!$this->showAdopterAddressForm;
+        $this->showAdopterAddressForm = !$this->showAdopterAddressForm;
 
         $this->resetValidation('adopterAddress');
         $this->reset('adopterAddress');
-        $this->adopterAddress=$this->deployment->address;
+        $this->adopterAddress = $this->deployment->address;
 
     }
 
@@ -211,7 +210,7 @@ class DeploymentTechDetails extends Component
     public function saveAdopterName()
     {
         $this->validateOnly('adopterName');
-        $this->deployment->adoptor_name=$this->adopterName;
+        $this->deployment->adoptor_name = $this->adopterName;
         $this->deployment->save();
         session()->flash('adopterName', 'Technology Adopter updated successfully');
     }
@@ -220,7 +219,7 @@ class DeploymentTechDetails extends Component
     public function saveAdopterAddress()
     {
         $this->validateOnly('adopterAddress');
-        $this->deployment->address=$this->adopterAddress;
+        $this->deployment->address = $this->adopterAddress;
         $this->deployment->save();
         session()->flash('adopterAddress', 'Technology Adopter updated successfully');
 
@@ -228,12 +227,13 @@ class DeploymentTechDetails extends Component
 
     public function mount($deployment)
     {
-        $this->deployment=$deployment;
-        $this->adopterName=$deployment->adoptor_name;
-        $this->adopterAddress=$deployment->address;
-        $this->deploymentContact=$deployment->contacts;
+        $this->deployment = $deployment;
+        $this->adopterName = $deployment->adoptor_name;
+        $this->adopterAddress = $deployment->address;
+        $this->deploymentContact = $deployment->contacts;
 
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.deployment.deployment-tech-details');

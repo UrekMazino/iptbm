@@ -39,9 +39,13 @@
                                 Loading...
                             </div>
                             @error('mobile')
-                            <div id="alert-border-2" class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400" role="alert">
-                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            <div id="alert-border-2"
+                                 class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400"
+                                 role="alert">
+                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                                 </svg>
                                 <div class="ml-3 text-sm font-medium">
                                     {{$message}}
@@ -64,8 +68,9 @@
                 <ul>
 
                     @foreach($contacts->where('type','mobile') as $contact)
-                        <li  class="text-gray-700 indent-2.5 dark:text-gray-300">
-                            <div class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
+                        <li class="text-gray-700 indent-2.5 dark:text-gray-300">
+                            <div
+                                class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
                                 <div>
                                     {{$contact->contact}}
                                 </div>
@@ -121,9 +126,13 @@
                                 Loading...
                             </div>
                             @error('phone')
-                            <div id="alert-border-2" class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400" role="alert">
-                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            <div id="alert-border-2"
+                                 class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400"
+                                 role="alert">
+                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                                 </svg>
                                 <div class="ml-3 text-sm font-medium">
                                     {{$message}}
@@ -147,7 +156,8 @@
 
                     @foreach($contacts->where('type','phone') as $contact)
                         <li class="text-gray-700 indent-2.5 dark:text-gray-300">
-                            <div class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
+                            <div
+                                class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
                                 <div>
                                     {{$contact->contact}}
                                 </div>
@@ -199,9 +209,13 @@
                                 Loading...
                             </div>
                             @error('fax')
-                            <div id="alert-border-2" class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400" role="alert">
-                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            <div id="alert-border-2"
+                                 class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400"
+                                 role="alert">
+                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                                 </svg>
                                 <div class="ml-3 text-sm font-medium">
                                     {{$message}}
@@ -224,7 +238,8 @@
                 <ul>
                     @foreach($contacts->where('type','fax') as $contact)
                         <li class="text-gray-700 indent-2.5 dark:text-gray-300">
-                            <div class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
+                            <div
+                                class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
                                 <div>
                                     {{$contact->contact}}
                                 </div>
@@ -277,9 +292,13 @@
                                 Loading...
                             </div>
                             @error('email')
-                            <div id="alert-border-2" class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400" role="alert">
-                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            <div id="alert-border-2"
+                                 class="mt-2 mb-4 flex items-center rounded-lg border-t border-r border-b border-l border-red-300 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400"
+                                 role="alert">
+                                <svg class="h-4 w-4 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                                 </svg>
                                 <div class="ml-3 text-sm font-medium">
                                     {{$message}}
@@ -303,7 +322,8 @@
 
                     @foreach($contacts->where('type','email') as $contact)
                         <li class="text-gray-700 indent-2.5 dark:text-gray-300">
-                            <div class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
+                            <div
+                                class="flex justify-between items-center hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
                                 <div>
                                     {{$contact->contact}}
                                 </div>

@@ -3,7 +3,6 @@
 namespace Database\Seeders\iptbm;
 
 use App\Models\iptbm\IptbmTechProtectionStatus;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProtectionStatusSeeder extends Seeder
@@ -13,7 +12,7 @@ class ProtectionStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        $data=[
+        $data = [
             [
                 'protection_status' => 'For filing'
             ],
@@ -41,8 +40,7 @@ class ProtectionStatusSeeder extends Seeder
 
         ];
 
-        foreach($data as $val)
-        {
+        foreach ($data as $val) {
             IptbmTechProtectionStatus::create($val);
         }
     }

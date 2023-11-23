@@ -10,16 +10,18 @@ class IptbmTechOwner extends Model
 {
 
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'iptbm_agencies_id'
     ];
 
     public function agency()
     {
-        return $this->belongsTo(IptbmAgency::class,'iptbm_agencies_id','id');
+        return $this->belongsTo(IptbmAgency::class, 'iptbm_agencies_id', 'id');
     }
+
     public function technology(): BelongsTo
     {
-        return $this->belongsTo(IptbmTechnologyProfile::class,'iptbm_technology_profiles_id','id');
+        return $this->belongsTo(IptbmTechnologyProfile::class, 'iptbm_technology_profiles_id', 'id');
     }
 }

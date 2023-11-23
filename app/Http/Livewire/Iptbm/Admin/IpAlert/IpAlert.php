@@ -16,7 +16,7 @@ class IpAlert extends Component
 
     public function mount()
     {
-        $this->ipAlert=IptbmIpAlert::with(
+        $this->ipAlert = IptbmIpAlert::with(
             [
 
                 'technology',
@@ -25,11 +25,12 @@ class IpAlert extends Component
                 'ip_task',
                 'ip_type',
             ])
-            ->whereHas('ip_type',function($query){
-                $query->where('name','Patent');
+            ->whereHas('ip_type', function ($query) {
+                $query->where('name', 'Patent');
             })
             ->get();
     }
+
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.iptbm.admin.ip-alert.ip-alert')

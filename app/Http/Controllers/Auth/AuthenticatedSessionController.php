@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -20,6 +19,22 @@ class AuthenticatedSessionController extends Controller
     public function create(): Application|Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
         return view('auth.login');
+    }
+
+    public function store(LoginRequest $request): RedirectResponse
+    {
+
+
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        $type = Auth::user()->component;
+
+        $route = $this->RedirectToComponent($type);
+
+
+        return redirect()->intended($route);
     }
 
     /**
@@ -32,25 +47,10 @@ class AuthenticatedSessionController extends Controller
 
         return match ($type) {
             'IPTBM' => RouteServiceProvider::IPTBM_STAFF_DASHBOARD,
-            'ATBI' =>RouteServiceProvider::ATBI_STAFF_DASHBOARD,
+            'ATBI' => RouteServiceProvider::ATBI_STAFF_DASHBOARD,
             'ABH' => RouteServiceProvider::ABH_STAFF_DASHBOARD,
-            default =>redirect( '/'),
+            default => redirect('/'),
         };
-    }
-    public function store(LoginRequest $request): RedirectResponse
-    {
-
-
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        $type=Auth::user()->component;
-
-        $route=$this->RedirectToComponent($type);
-
-
-        return redirect()->intended($route);
     }
 
     /**
@@ -67,7 +67,6 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
-
 
 
 }

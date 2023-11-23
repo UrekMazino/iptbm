@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmPrecomBusinessPlan extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'description',
         'file_type',
         'file'
@@ -16,6 +17,6 @@ class IptbmPrecomBusinessPlan extends Model
 
     function commercialization_precom()
     {
-        return $this->belongsTo(IptbmCommercializationPrecom::class,'iptbm_precoms_id','id');
+        return $this->belongsTo(IptbmCommercializationPrecom::class, 'iptbm_precoms_id', 'id');
     }
 }

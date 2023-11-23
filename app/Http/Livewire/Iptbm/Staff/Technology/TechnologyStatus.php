@@ -13,16 +13,11 @@ class TechnologyStatus extends Component
 
     public $latestData;
 
-    public $verifyDelete=false;
-
-    public function deletable($id)
-    {
-        return $this->latestData->id===$id;
-    }
+    public $verifyDelete = false;
 
     public function deleteStatus($id)
     {
-        $status=IptbmTechStatus::find($id);
+        $status = IptbmTechStatus::find($id);
         $status->delete();
         $this->emit('updateStatus');
     }
@@ -30,19 +25,25 @@ class TechnologyStatus extends Component
     public function verify($id)
     {
         $lastStatus = IptbmTechStatus::latest()->first();
-        $techStat=$this->technology->statuses()->latest()->first();
-        if($techStat->id===$id||$this->technology->statuses->count()==1)
-        {
-            $this->verifyDelete=true;
+        $techStat = $this->technology->statuses()->latest()->first();
+        if ($techStat->id === $id || $this->technology->statuses->count() == 1) {
+            $this->verifyDelete = true;
         }
     }
-    public function mount($technology,$techStatus)
+
+    public function mount($technology, $techStatus)
     {
         $this->techStatus = $techStatus;
-        $this->technology=$technology;
-        $this->latestData=$this->technology->statuses()->latest()->first();
-        $this->verifyDelete=$this->deletable($techStatus->id);
+        $this->technology = $technology;
+        $this->latestData = $this->technology->statuses()->latest()->first();
+        $this->verifyDelete = $this->deletable($techStatus->id);
     }
+
+    public function deletable($id)
+    {
+        return $this->latestData->id === $id;
+    }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.technology-status');

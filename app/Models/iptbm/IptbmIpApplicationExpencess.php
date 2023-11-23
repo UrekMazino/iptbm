@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class IptbmIpApplicationExpencess extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'description',
         'amount'
     ];
+
     public function IptbmIpAlert(): BelongsTo
     {
-        return $this->belongsTo(IptbmIpAlert::class,'iptbm_ip_alerts_id','id');
+        return $this->belongsTo(IptbmIpAlert::class, 'iptbm_ip_alerts_id', 'id');
     }
 }

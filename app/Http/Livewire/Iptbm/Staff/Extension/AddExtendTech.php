@@ -2,10 +2,8 @@
 
 namespace App\Http\Livewire\Iptbm\Staff\Extension;
 
-use App\Models\iptbm\IptbmDeploymentPathway;
 use App\Models\iptbm\IptbmExtensionPathway;
 use App\Models\iptbm\IptbmTechnologyProfile;
-use App\Rules\iptbm\ValueExistsInTable;
 use Livewire\Component;
 
 class AddExtendTech extends Component
@@ -37,6 +35,7 @@ class AddExtendTech extends Component
             'address' => 'required|min:5'
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
@@ -44,7 +43,7 @@ class AddExtendTech extends Component
 
     public function resetVal()
     {
-        $this->techId=null;
+        $this->techId = null;
         $this->resetValidation([
             'technology',
             'techId',
@@ -57,20 +56,22 @@ class AddExtendTech extends Component
             'address'
         );
     }
+
     public function saveForm()
     {
 
         $this->validate();
-        $tech=IptbmTechnologyProfile::find($this->techId);
+        $tech = IptbmTechnologyProfile::find($this->techId);
 
         $tech->deployment()->save(new IptbmExtensionPathway([
-            'adoptor_name'=>$this->adopter,
-            'address'=>$this->address
+            'adoptor_name' => $this->adopter,
+            'address' => $this->address
         ]));
 
         $this->emit('reloadPage');
 
     }
+
     public function mount($technologies)
     {
         $this->technologies = $technologies;

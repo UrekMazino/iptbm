@@ -6,17 +6,20 @@
 
 @section('content')
     <div class="w-full pb-10">
-        <nav class="bg-white border-b border-gray-200  sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav
+            class="bg-white border-b border-gray-200  sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-end mx-auto p-4">
-                    <a href="{{route("iptbm.admin.addrecord.account")}}" class="nav-link active"><i class="fa-solid fa-circle-arrow-left me-2" style="scale: 1.5"></i> Accounts</a>
+                    <a href="{{route("iptbm.admin.addrecord.account")}}" class="nav-link active"><i
+                            class="fa-solid fa-circle-arrow-left me-2" style="scale: 1.5"></i> Accounts</a>
 
                 </div>
             </nav>
         </nav>
 
-        <div class="my-4 border bg-white dark:bg-gray-800 border-blue-700 border-opacity-20 dark:border-gray-500 dark:border-opacity-20 w-1/2 mx-auto p-4 rounded-lg">
+        <div
+            class="my-4 border bg-white dark:bg-gray-800 border-blue-700 border-opacity-20 dark:border-gray-500 dark:border-opacity-20 w-1/2 mx-auto p-4 rounded-lg">
             <h1 class="text-xl text-gray-700 dark:text-white mb-5">Add new Account</h1>
             <livewire:iptbm.admin.add-account>
 
@@ -28,8 +31,8 @@
 @section('script')
 
     <script>
-        $(document).ready(function() {
-            $('#account_password').on('input', function() {
+        $(document).ready(function () {
+            $('#account_password').on('input', function () {
                 var password = $(this).val();
                 var result = zxcvbn(password);
                 var score = result.score;

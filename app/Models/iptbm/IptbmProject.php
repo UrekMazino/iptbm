@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class   IptbmProject extends Model
 {
-    use HasFactory,SoftDeletes;
-    protected $fillable=[
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
         'ip_profile_id',
         'project_name',
         'project_leader',
@@ -20,10 +21,11 @@ class   IptbmProject extends Model
 
     public function profile(): BelongsTo
     {
-        return $this->belongsTo(IptbmProfile::class,'ip_profile_id','id');
+        return $this->belongsTo(IptbmProfile::class, 'ip_profile_id', 'id');
     }
+
     public function projectDetails(): HasMany
     {
-        return $this->hasMany(IptbmProjectYearBudget::class,'iptbm_projects_id','id');
+        return $this->hasMany(IptbmProjectYearBudget::class, 'iptbm_projects_id', 'id');
     }
 }

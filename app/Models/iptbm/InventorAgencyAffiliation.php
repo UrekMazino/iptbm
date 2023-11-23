@@ -10,13 +10,13 @@ class InventorAgencyAffiliation extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'latest_agency',
         'date_affiliated'
     ];
 
     public function inventor(): BelongsTo
     {
-        return $this->belongsTo(IptbmInventor::class,'iptbm_inventors_id','id');
+        return $this->belongsTo(IptbmInventor::class, 'iptbm_inventors_id', 'id');
     }
 }

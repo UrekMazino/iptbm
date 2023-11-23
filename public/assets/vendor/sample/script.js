@@ -1,20 +1,20 @@
 ClassicEditor
-	.create( document.querySelector( '.editor' ), {
-		// Editor configuration.
-	} )
-	.then( editor => {
-		window.editor = editor;
-	} )
-	.catch( handleSampleError );
+    .create(document.querySelector('.editor'), {
+        // Editor configuration.
+    })
+    .then(editor => {
+        window.editor = editor;
+    })
+    .catch(handleSampleError);
 
-function handleSampleError( error ) {
-	const issueUrl = 'https://github.com/ckeditor/ckeditor5/issues';
+function handleSampleError(error) {
+    const issueUrl = 'https://github.com/ckeditor/ckeditor5/issues';
 
-	const message = [
-		'Oops, something went wrong!',
-		`Please, report the following error on ${ issueUrl } with the build id "pojnoujc5m6d-a9ruuufzvrb5" and the error stack trace:`
-	].join( '\n' );
+    const message = [
+        'Oops, something went wrong!',
+        `Please, report the following error on ${issueUrl} with the build id "pojnoujc5m6d-a9ruuufzvrb5" and the error stack trace:`
+    ].join('\n');
 
-	console.error( message );
-	console.error( error );
+    console.error(message);
+    console.error(error);
 }

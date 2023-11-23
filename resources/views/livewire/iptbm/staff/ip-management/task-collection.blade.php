@@ -7,7 +7,7 @@
             <ul class="list-disc">
                 @foreach($val as $task)
                     <li>
-                     {{$task->stage->stage_name}}
+                        {{$task->stage->stage_name}}
                     </li>
                 @endforeach
             </ul>

@@ -7,7 +7,6 @@ use App\Models\iptbm\IptbmCommercializationAdopter;
 use App\Models\iptbm\IptbmCommercializationPrecom;
 use App\Models\iptbm\IptbmDeploymentPathway;
 use App\Models\iptbm\IptbmExtensionPathway;
-use Illuminate\Http\Request;
 
 class IptbmTechTransController extends Controller
 {
@@ -18,20 +17,20 @@ class IptbmTechTransController extends Controller
 
     public function index()//commercialization precom
     {
-        $precoms=IptbmCommercializationPrecom::latest()->get();
-        return view('admin.iptbm.tech-trans.precom',compact('precoms'));
+        $precoms = IptbmCommercializationPrecom::latest()->get();
+        return view('admin.iptbm.tech-trans.precom', compact('precoms'));
     }
+
     public function precom_view(IptbmCommercializationPrecom $precom)
     {
         return view('admin.iptbm.tech-trans.precom-view', compact('precom'));
     }
 
 
-
     public function adopter()
     {
-        $adopters=IptbmCommercializationAdopter::latest()->get();
-        return view('admin.iptbm.tech-trans.adopter',compact('adopters'));
+        $adopters = IptbmCommercializationAdopter::latest()->get();
+        return view('admin.iptbm.tech-trans.adopter', compact('adopters'));
     }
 
     public function adopter_view(IptbmCommercializationAdopter $adopter)
@@ -42,13 +41,13 @@ class IptbmTechTransController extends Controller
 
     public function deployment()
     {
-        $deployments=IptbmDeploymentPathway::latest()->get();
-        return view('admin.iptbm.tech-trans.deployment',compact('deployments'));
+        $deployments = IptbmDeploymentPathway::latest()->get();
+        return view('admin.iptbm.tech-trans.deployment', compact('deployments'));
     }
 
     public function extension()
     {
-        $extensions=IptbmExtensionPathway::latest()->get();
-        return view('admin.iptbm.tech-trans.extension',compact('extensions'));
+        $extensions = IptbmExtensionPathway::latest()->get();
+        return view('admin.iptbm.tech-trans.extension', compact('extensions'));
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Iptbm\Staff\Deployment;
 
 use App\Models\iptbm\IptbmDeploymentPathway;
 use App\Models\iptbm\IptbmTechnologyProfile;
-use App\Rules\iptbm\ValueExistsInTable;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -22,10 +21,9 @@ class AddDeploedTechnology extends Component
 
     public function rules()
     {
-        $tech=IptbmTechnologyProfile::where("title",$this->technology)->first();
-        if($tech)
-        {
-            $this->techId=$tech->id;
+        $tech = IptbmTechnologyProfile::where("title", $this->technology)->first();
+        if ($tech) {
+            $this->techId = $tech->id;
         }
 
 
@@ -38,7 +36,7 @@ class AddDeploedTechnology extends Component
 
             'adopter' => [
                 'required',
-                Rule::unique(IptbmDeploymentPathway::class,'adoptor_name')->where('technology_id',$this->techId)
+                Rule::unique(IptbmDeploymentPathway::class, 'adoptor_name')->where('technology_id', $this->techId)
             ],
             'address' => 'required|min:5'
         ];
@@ -46,7 +44,7 @@ class AddDeploedTechnology extends Component
 
     public function resetVal()
     {
-        $this->techId=null;
+        $this->techId = null;
         $this->resetValidation([
             'technology',
             'techId',
@@ -70,11 +68,11 @@ class AddDeploedTechnology extends Component
     {
 
         $this->validate();
-        $tech=IptbmTechnologyProfile::find($this->techId);
+        $tech = IptbmTechnologyProfile::find($this->techId);
 
         $tech->deployment()->save(new IptbmDeploymentPathway([
-            'adoptor_name'=>$this->adopter,
-            'address'=>$this->address
+            'adoptor_name' => $this->adopter,
+            'address' => $this->address
         ]));
 
         $this->emit('reloadPage');

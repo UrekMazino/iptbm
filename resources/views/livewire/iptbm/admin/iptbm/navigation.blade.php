@@ -3,7 +3,7 @@
 
     <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
         <a role="button" href="{{route("iptbm.admin.iptbm_profiles.profiles-details",["id"=>$profile_id])}}"
-                class="inline-flex @if($current==="iptbm.admin.iptbm_profiles.profiles-details") bg-gray-800 @endif  flex-col transition duration-300 items-center rounded-lg justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ">
+           class="inline-flex @if($current==="iptbm.admin.iptbm_profiles.profiles-details") bg-gray-800 @endif  flex-col transition duration-300 items-center rounded-lg justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ">
             <svg
                 class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -14,7 +14,7 @@
                 class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Profile</span>
         </a>
         <a type="button" href="{{route("iptbm.admin.iptbm_profiles.profiles-details.technology",["id"=>$profile_id])}}"
-                class="inline-flex @if($current==="iptbm.admin.iptbm_profiles.profiles-details.technology" ) bg-gray-800 @endif transition duration-300 flex-col items-center rounded-lg justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+           class="inline-flex @if($current==="iptbm.admin.iptbm_profiles.profiles-details.technology" ) bg-gray-800 @endif transition duration-300 flex-col items-center rounded-lg justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
             <svg
                 class="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

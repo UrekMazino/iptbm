@@ -8,10 +8,12 @@ class DeleteTechnology extends Component
 {
 
     public $technology;
+
     public function mount($technology)
     {
         $this->technology = $technology;
     }
+
     public function deleteTechnology()
     {
         $this->technology->delete();

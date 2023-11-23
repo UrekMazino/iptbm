@@ -9,15 +9,17 @@ use Illuminate\Translation\PotentiallyTranslatedString;
 
 class DateDuration implements ValidationRule
 {
-    public  $startingDate;
+    public $startingDate;
 
     public $message;
-    public function __construct($startingDate,$message)
+
+    public function __construct($startingDate, $message)
     {
 
         $this->startingDate = Carbon::parse($startingDate);
-        $this->message=$message;
+        $this->message = $message;
     }
+
     /**
      * Run the validation rule.
      *
@@ -38,11 +40,10 @@ class DateDuration implements ValidationRule
         }
 
 
-        $val= Carbon::createFromFormat('F-d-Y',$value);
-       // $date=$val->format('Y-m-d');
+        $val = Carbon::createFromFormat('F-d-Y', $value);
+        // $date=$val->format('Y-m-d');
 
-        if($val->lt($this->startingDate))
-        {
+        if ($val->lt($this->startingDate)) {
             $fail($this->message);
         }
 

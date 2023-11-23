@@ -13,9 +13,10 @@ class NavigationAlert extends Component
      * Create a new component instance.
      */
     public $route;
+
     public function __construct()
     {
-        $this->route=Route::currentRouteName();
+        $this->route = Route::currentRouteName();
     }
 
     /**

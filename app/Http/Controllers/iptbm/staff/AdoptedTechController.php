@@ -22,79 +22,70 @@ class AdoptedTechController extends Controller
 
     public function index(IptbmCommercializationAdopter $id): Application|Factory|View|RedirectResponse
     {
-        $tech=$id->load("technology","contacts");
-        if(!$tech)
-        {
+        $tech = $id->load("technology", "contacts");
+        if (!$tech) {
             return redirect()->route("iptbm.staff.adopter.index");
         }
-        return view('iptbm.staff.adopter.adopted_tech',[
+        return view('iptbm.staff.adopter.adopted_tech', [
             'tech' => $tech
         ]);
     }
 
-    public function update_details(Request $request,$id): RedirectResponse
+    public function update_details(Request $request, $id): RedirectResponse
     {
 
 
+        $adopter = IptbmCommercializationAdopter::find($id);
 
-        $adopter=IptbmCommercializationAdopter::find($id);
-
-        if(isset($request['company_name']))
-        {
+        if (isset($request['company_name'])) {
 
             $request->validate([
-                'company_name'=>'required|min:5'
+                'company_name' => 'required|min:5'
             ]);
-            $adopter->company_name=$request['company_name'];
+            $adopter->company_name = $request['company_name'];
             $adopter->save();
         }
 
-        if(isset($request['address']))
-        {
+        if (isset($request['address'])) {
             $request->validate([
-                'address'=>'required|min:5'
+                'address' => 'required|min:5'
             ]);
-            $adopter->address=$request['address'];
+            $adopter->address = $request['address'];
             $adopter->save();
         }
-        if(isset($request['company_description']))
-        {
+        if (isset($request['company_description'])) {
             $request->validate([
-                'company_description'=>'required|min:5'
+                'company_description' => 'required|min:5'
             ]);
-            $adopter->company_description=$request['company_description'];
+            $adopter->company_description = $request['company_description'];
             $adopter->save();
         }
-        if(isset($request['business_structures']))
-        {
+        if (isset($request['business_structures'])) {
             $request->validate([
-                'business_structures'=>'required'
+                'business_structures' => 'required'
             ]);
-            $adopter->business_structures=$request['business_structures'];
+            $adopter->business_structures = $request['business_structures'];
             $adopter->save();
         }
-        if(isset($request['business_registration']))
-        {
+        if (isset($request['business_registration'])) {
             $request->validate([
-                'business_registration'=>'required'
+                'business_registration' => 'required'
             ]);
-            $adopter->business_registration=$request['business_registration'];
+            $adopter->business_registration = $request['business_registration'];
             $adopter->save();
         }
-        if(isset($request['acquisition_model']))
-        {
+        if (isset($request['acquisition_model'])) {
             $request->validate([
-                'acquisition_model'=>'required'
+                'acquisition_model' => 'required'
             ]);
-            $adopter->acquisition_model=$request['acquisition_model'];
+            $adopter->acquisition_model = $request['acquisition_model'];
             $adopter->save();
         }
-        if(isset($request['for_incubation']))
-        {
+        if (isset($request['for_incubation'])) {
             $request->validate([
-                'for_incubation'=>'required|boolean'
+                'for_incubation' => 'required|boolean'
             ]);
-            $adopter->for_incubation=$request['for_incubation'];
+            $adopter->for_incubation = $request['for_incubation'];
             $adopter->save();
         }
 
@@ -106,56 +97,52 @@ class AdoptedTechController extends Controller
     public function add_contact(Request $request, $id): RedirectResponse
     {
 
-        if($request->contact_type==="mobile")
-        {
+        if ($request->contact_type === "mobile") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'numeric',
                     'digits:11',
-                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id',$id)
+                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:mobile',
+                'contact_type' => 'required:mobile',
             ]);
         }
-        if($request->contact_type==="phone")
-        {
+        if ($request->contact_type === "phone") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'numeric',
-                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id',$id)
+                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:mobile',
+                'contact_type' => 'required:mobile',
             ]);
         }
-        if($request->contact_type==="fax")
-        {
+        if ($request->contact_type === "fax") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'numeric',
-                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id',$id)
+                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:fax',
+                'contact_type' => 'required:fax',
             ]);
         }
-        if($request->contact_type==="email")
-        {
+        if ($request->contact_type === "email") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'email',
-                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id',$id)
+                    Rule::unique(IptbmComercialAdopterContact::class, 'contact')->where('commercial_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:email',
+                'contact_type' => 'required:email',
             ]);
         }
-        $depTech=IptbmCommercializationAdopter::find($id);
+        $depTech = IptbmCommercializationAdopter::find($id);
         $depTech->contacts()->saveMany([
             new IptbmComercialAdopterContact([
                 'type' => $request->contact_type,
-                'contact'=>$request->contact
+                'contact' => $request->contact
             ])
         ]);
         return redirect()->back();
@@ -164,7 +151,7 @@ class AdoptedTechController extends Controller
     public function delete_contact(Request $request): RedirectResponse
     {
         $request->validate([
-            'adopId'=>'required'
+            'adopId' => 'required'
         ]);
 
         IptbmDeploymentAdoptorContact::find($request->adopId)->delete();

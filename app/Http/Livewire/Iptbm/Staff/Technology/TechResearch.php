@@ -9,7 +9,6 @@ use App\Models\iptbm\IptbmTechResearchProject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
-use function Symfony\Component\Translation\t;
 
 
 class TechResearch extends Component
@@ -33,68 +32,33 @@ class TechResearch extends Component
     public $newHead;
     public $newDesignation;
 
- /*
-  *    public function rules()
-    {
-        return [
-            'researchTitle'=>'required|min:5|unique:iptbm_tech_research_projects,title',
-            'fundingAgency'=>'required|min:5',
-            'amountInvested'=>'required|integer|min:1',
-        ];
-    }
-  */
-    protected function rules()
-    {
-
-        if($this->showExistingAgencies)
-        {
-            $agencyId=IptbmAgency::where('name',$this->fundingAgency)->first();
-            if($agencyId)
-            {
-                $this->fundingAgencyModel=$agencyId->id;
-            }
-            return[
-                'researchTitle'=>'required|min:5|unique:iptbm_tech_research_projects,title',
-                'fundingAgency'=>'required|min:5|exists:iptbm_agencies,name',
-                'fundingAgencyModel'=>'exists:iptbm_agencies,id',
-                'amountInvested'=>'required|integer|min:1'
-            ];
-        }else{
-            return[
-                'researchTitle'=>'required|min:5|unique:iptbm_tech_research_projects,title',
-                'newAgencyName'=>[
-                    'required',
-                    Rule::unique(IptbmAgency::class,'name')
-                ],
-                'newAddress'=>'required',
-                'newHead'=>'required',
-                'newDesignation'=>'required',
-                'amountInvested'=>'required|integer|min:1',
-            ];
-        }
-
-    }
-    public $showExistingAgencies=true;
+    /*
+     *    public function rules()
+       {
+           return [
+               'researchTitle'=>'required|min:5|unique:iptbm_tech_research_projects,title',
+               'fundingAgency'=>'required|min:5',
+               'amountInvested'=>'required|integer|min:1',
+           ];
+       }
+     */
+    public $showExistingAgencies = true;
+    public $techResearchProject;
+    public $showTechResearchProjectForm = false;
+    protected $validationAttributes = [
+        'researchTitle' => 'Research Title',
+        'fundingAgency' => 'Funding Agency',
+        'amountInvested' => 'Amount Invested'
+    ];
 
     public function toggleShowExistingAgencies()
     {
-        $this->showExistingAgencies=!$this->showExistingAgencies;
+        $this->showExistingAgencies = !$this->showExistingAgencies;
     }
 
-
-
-    public $techResearchProject;
-
-
-    protected $validationAttributes =[
-        'researchTitle'=>'Research Title',
-        'fundingAgency'=>'Funding Agency',
-        'amountInvested'=>'Amount Invested'
-    ];
-    public $showTechResearchProjectForm=false;
     public function showTechResearchProjectForm()
     {
-        $this->showTechResearchProjectForm=!$this->showTechResearchProjectForm;
+        $this->showTechResearchProjectForm = !$this->showTechResearchProjectForm;
     }
 
     public function updated($props)
@@ -105,38 +69,37 @@ class TechResearch extends Component
     public function saveResearchProject()
     {
         $this->validate();
-        if($this->showExistingAgencies)
-        {
-            $research=new IptbmTechResearchProject([
-                'title'=>$this->researchTitle,
-                'amount'=>$this->amountInvested,
+        if ($this->showExistingAgencies) {
+            $research = new IptbmTechResearchProject([
+                'title' => $this->researchTitle,
+                'amount' => $this->amountInvested,
             ]);
             $this->technology->researchprojects()->save($research);
             $research->funder()->save(new IptbmTechResearchFunder([
-                'iptbm_agencies_id'=>$this->fundingAgencyModel
+                'iptbm_agencies_id' => $this->fundingAgencyModel
             ]));
             $this->technology->save();
-            $this->techResearchProject=$this->technology->researchprojects;
+            $this->techResearchProject = $this->technology->researchprojects;
             $this->emit('reloadPage');
-        }else{
-            $region=Auth::user()->profile->region;
+        } else {
+            $region = Auth::user()->profile->region;
 
-            $agency=new IptbmAgency([
+            $agency = new IptbmAgency([
                 'name' => $this->newAgencyName,
                 'address' => $this->newAddress,
             ]);
             $region->agencies()->save($agency);
             $agency->head()->save(new AgencyHead([
-                'head'=>$this->newHead,
+                'head' => $this->newHead,
                 'designation' => $this->newDesignation,
             ]));
-            $research=new IptbmTechResearchProject([
-                'title'=>$this->researchTitle,
-                'amount'=>$this->amountInvested,
+            $research = new IptbmTechResearchProject([
+                'title' => $this->researchTitle,
+                'amount' => $this->amountInvested,
             ]);
             $this->technology->researchprojects()->save($research);
             $research->funder()->save(new IptbmTechResearchFunder([
-                'iptbm_agencies_id'=>$agency->id
+                'iptbm_agencies_id' => $agency->id
             ]));
             $this->technology->save();
             $this->emit('reloadPage');
@@ -147,15 +110,44 @@ class TechResearch extends Component
 
     public function mount($technology)
     {
-        $this->technology=$technology;
-        $this->techResearchProject=$technology->researchprojects;
-        $this->agencies=IptbmAgency::pluck('name');
+        $this->technology = $technology;
+        $this->techResearchProject = $technology->researchprojects;
+        $this->agencies = IptbmAgency::pluck('name');
 
     }
-
 
     public function render()
     {
         return view('livewire.iptbm.staff.technology.tech-research');
+    }
+
+    protected function rules()
+    {
+
+        if ($this->showExistingAgencies) {
+            $agencyId = IptbmAgency::where('name', $this->fundingAgency)->first();
+            if ($agencyId) {
+                $this->fundingAgencyModel = $agencyId->id;
+            }
+            return [
+                'researchTitle' => 'required|min:5|unique:iptbm_tech_research_projects,title',
+                'fundingAgency' => 'required|min:5|exists:iptbm_agencies,name',
+                'fundingAgencyModel' => 'exists:iptbm_agencies,id',
+                'amountInvested' => 'required|integer|min:1'
+            ];
+        } else {
+            return [
+                'researchTitle' => 'required|min:5|unique:iptbm_tech_research_projects,title',
+                'newAgencyName' => [
+                    'required',
+                    Rule::unique(IptbmAgency::class, 'name')
+                ],
+                'newAddress' => 'required',
+                'newHead' => 'required',
+                'newDesignation' => 'required',
+                'amountInvested' => 'required|integer|min:1',
+            ];
+        }
+
     }
 }

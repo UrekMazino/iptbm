@@ -2,84 +2,90 @@
     <div class="m-4 text-3xl text-gray-600 dark:text-gray-400">
         IP-TBM Dashboard
     </div>
-   <div class="space-y-4">
-       <div class="px-0 md:px-4 space-y-4">
-           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-               <div >
-                   <x-card>
-                       <livewire:iptbm.admin-dashboard.calendar />
-                   </x-card>
-               </div>
-               <div class="space-y-4">
-     {{--------
-                   <x-card class="h-full relative">
-                       <x-item-header>
-                           Recently added IP-TBMs
-                       </x-item-header>
-                       <div class="mt-2 w-full h-full overflow-y-auto ">
-                           <ul class="list-none space-y-3">
-                               @foreach($iptbmProfileNew as $profile)
-                                   <li>
-                                       <div class="text-gray-600 dark:text-gray-400">
-                                           {{$profile->agency->name}}
-                                       </div>
+    <div class="space-y-4">
+        <div class="px-0 md:px-4 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                <div>
+                    <x-card>
+                        <livewire:iptbm.admin-dashboard.calendar/>
+                    </x-card>
+                </div>
+                <div class="space-y-4">
+                    {{--------
+                                  <x-card class="h-full relative">
+                                      <x-item-header>
+                                          Recently added IP-TBMs
+                                      </x-item-header>
+                                      <div class="mt-2 w-full h-full overflow-y-auto ">
+                                          <ul class="list-none space-y-3">
+                                              @foreach($iptbmProfileNew as $profile)
+                                                  <li>
+                                                      <div class="text-gray-600 dark:text-gray-400">
+                                                          {{$profile->agency->name}}
+                                                      </div>
 
-                                   </li>
-                               @endforeach
-                           </ul>
-                       </div>
-                   </x-card>
-     -------}}
-                   <livewire:iptbm.admin-dashboard.recent-profile />
-               </div>
-           </div>
-           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <livewire:iptbm.admin-dashboard.total-iptbm />
-               <livewire:iptbm.admin-dashboard.total-tech />
-               <livewire:iptbm.admin-dashboard.total-tech-protocol />
+                                                  </li>
+                                              @endforeach
+                                          </ul>
+                                      </div>
+                                  </x-card>
+                    -------}}
+                    <livewire:iptbm.admin-dashboard.recent-profile/>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <livewire:iptbm.admin-dashboard.total-iptbm/>
+                <livewire:iptbm.admin-dashboard.total-tech/>
+                <livewire:iptbm.admin-dashboard.total-tech-protocol/>
 
-           </div>
-       </div>
-       <div class="px-0 md:px-4">
-           <x-card class="shadow-lg">
-               <div class="w-full h-75  p-4 md:p-6">
-                   <div class="flex justify-between mb-5">
-                       <div class="my-3 text-gray-600 dark:text-gray-200 text-2xl font-bold">
-                           Established IPTBMs
-                       </div>
-                   </div>
-                   <div id="line-chart"></div>
-                   <div class="my-4 text-sm font-medium text-gray-500">
-                       The quantity of ticks (Y-axis) on the line graph adjusts according to the maximum count of established IP-TBMs.
-                   </div>
-               </div>
-           </x-card>
-       </div>
-       <div class="px-0 md:px-4">
+            </div>
+        </div>
+        <div class="px-0 md:px-4">
+            <x-card class="shadow-lg">
+                <div class="w-full h-75  p-4 md:p-6">
+                    <div class="flex justify-between mb-5">
+                        <div class="my-3 text-gray-600 dark:text-gray-200 text-2xl font-bold">
+                            Established IPTBMs
+                        </div>
+                    </div>
+                    <div id="line-chart"></div>
+                    <div class="my-4 text-sm font-medium text-gray-500">
+                        The quantity of ticks (Y-axis) on the line graph adjusts according to the maximum count of
+                        established IP-TBMs.
+                    </div>
+                </div>
+            </x-card>
+        </div>
+        <div class="px-0 md:px-4">
 
-           <div wire:ignore class="w-full  flex justify-content-center items-center my-4">
-               <div class="w-full h-full  relative">
-                   <div wire:ignore id="map" class="w-auto mt-2 z-30 m-auto aspect-video rounded-none md:rounded-lg"></div>
-               </div>
+            <div wire:ignore class="w-full  flex justify-content-center items-center my-4">
+                <div class="w-full h-full  relative">
+                    <div wire:ignore id="map"
+                         class="w-auto mt-2 z-30 m-auto aspect-video rounded-none md:rounded-lg"></div>
+                </div>
 
-           </div>
-       </div>
-   </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 @push('scripts')
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script type="text/javascript">
         document.addEventListener('livewire:load', function () {
 
-            let total=@this.countPerYear.map(function (d) {
+            let total =@this.
+            countPerYear.map(function (d) {
                 return d.total
             })
 
-            let max=Math.max.apply(null, total);
-            let year=@this.countPerYear.map(function (d) {
+            let max = Math.max.apply(null, total);
+            let year =@this.
+            countPerYear.map(function (d) {
                 return d.year
             })
             let options = {
@@ -196,14 +202,14 @@
                             fontFamily: "Inter, sans-serif",
                             cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
                         },
-                        formatter: function(value) {
+                        formatter: function (value) {
                             return Math.round(value); // Rounds the label value to the nearest whole number
                         }
                     },
                     type: 'category', // Specify that the X-axis type is "category"
-                    min:0,
-                    max:max+2,
-                    tickAmount: max+2, // Number of ticks on the X-axis
+                    min: 0,
+                    max: max + 2,
+                    tickAmount: max + 2, // Number of ticks on the X-axis
                     tickPlacement: 'on', // Places ticks between the bars/columns
                 },
                 subtitle: {
@@ -214,10 +220,10 @@
                     offsetY: 0,
                     floating: false,
                     style: {
-                        fontSize:  '12px',
-                        fontWeight:  'normal',
-                        fontFamily:  undefined,
-                        color:  '#9699a2'
+                        fontSize: '12px',
+                        fontWeight: 'normal',
+                        fontFamily: undefined,
+                        color: '#9699a2'
                     },
                 }
 
@@ -250,16 +256,16 @@
                 attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            let myIcon='';
-            let  template='';
+            let myIcon = '';
+            let template = '';
             @foreach($iptbm_location as $location)
 
 
-            var latlng = [{{$location->long}},{{$location->lat}}]
+            var latlng = [{{$location->long}}, {{$location->lat}}]
 
-            myIcon=L.divIcon({
-                className:'relative w-1',
-                html:`<div class="absolute -top-7 flex justify-start items-center">
+            myIcon = L.divIcon({
+                className: 'relative w-1',
+                html: `<div class="absolute -top-7 flex justify-start items-center">
         <svg class="w-7 h-7 text-blue-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
             <path d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
         </svg>
@@ -270,8 +276,7 @@
             })
 
 
-
-            template=`<div class="w-80 aspect-square border p-3 rounded-lg space-y-4">
+            template = `<div class="w-80 aspect-square border p-3 rounded-lg space-y-4">
         <div class="w-full aspect-square shadow-lg mx-auto justify-center flex items-center">
             <img src="{{\Illuminate\Support\Facades\Storage::url($location->profile->logo)}}" class="w-auto h-auto ">
         </div>
@@ -285,8 +290,8 @@
                 <a href="{{route("iptbm.admin.iptbm_profiles.view-profile",["profile"=>$location->profile->id])}}">Go to</a
         </div>
     </div>`
-            L.marker(latlng,{
-                icon:myIcon
+            L.marker(latlng, {
+                icon: myIcon
             }).addTo(map).bindPopup(template);
             @endforeach
 
@@ -310,13 +315,14 @@
 
 
 
-            @this.iptbm_location.forEach(val=>{
+            @this.
+            iptbm_location.forEach(val => {
 
-                var latlng = [val.long,val.lat]
+                var latlng = [val.long, val.lat]
 
-                let myIcon=L.divIcon({
-                    className:'relative w-1',
-                    html:`<div class="absolute -top-7 flex justify-start items-center">
+                let myIcon = L.divIcon({
+                    className: 'relative w-1',
+                    html: `<div class="absolute -top-7 flex justify-start items-center">
         <svg class="w-7 h-7 text-blue-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
             <path d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
         </svg>
@@ -326,12 +332,12 @@ ${val.profile.agency.name}
     </div>`
                 })
 
-                let tmp=val.profile.logo.split('/');
-                let photo=tmp[tmp.length-1]
-                let profileId=val.profile.id;
+                let tmp = val.profile.logo.split('/');
+                let photo = tmp[tmp.length - 1]
+                let profileId = val.profile.id;
                 alert(val.profile.id)
 
-                let template=`<div class="w-80 aspect-square border p-3 rounded-lg space-y-4">
+                let template = `<div class="w-80 aspect-square border p-3 rounded-lg space-y-4">
         <div class="w-full aspect-square shadow-lg mx-auto justify-center flex items-center">
             <img src="/storage/profile/${photo}" class="w-auto h-auto ">
         </div>
@@ -345,8 +351,8 @@ ${val.profile.agency.name}
             <a href="{{route("iptbm.staff.viewProfile",["id"=>11])}}">Go to</a
         </div>
     </div>`
-                L.marker(latlng,{
-                    icon:myIcon
+                L.marker(latlng, {
+                    icon: myIcon
                 }).addTo(map).bindPopup(template);
             })
 
@@ -354,6 +360,5 @@ ${val.profile.agency.name}
 
 
     </script>
-
 
 @endpush

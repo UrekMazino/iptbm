@@ -7,12 +7,14 @@
             </div>
             <div>
 
-                <div id="lastDaysdropdown" class="z-10 hidden bg-gray-50 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <div id="lastDaysdropdown"
+                     class="z-10 hidden bg-gray-50 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                         @foreach($countPerYear as $year)
 
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{$year['year']}}</a>
+                                <a href="#"
+                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{$year['year']}}</a>
                             </li>
                         @endforeach
 
@@ -22,22 +24,24 @@
         </div>
         <div id="line-chart"></div>
         <div class="my-4 text-sm font-medium text-gray-500">
-            The quantity of ticks (Y-axis) on the line graph adjusts according to the maximum count of established IP-TBMs.
+            The quantity of ticks (Y-axis) on the line graph adjusts according to the maximum count of established
+            IP-TBMs.
         </div>
     </div>
-
 
 
 </div>
 @push('scripts')
     <script>
         document.addEventListener('livewire:load', function () {
-            let total=@this.countPerYear.map(function (d) {
+            let total =@this.
+            countPerYear.map(function (d) {
                 return d.total
             })
 
-            let max=Math.max.apply(null, total);
-            let year=@this.countPerYear.map(function (d) {
+            let max = Math.max.apply(null, total);
+            let year =@this.
+            countPerYear.map(function (d) {
                 return d.year
             })
             let options = {
@@ -154,14 +158,14 @@
                             fontFamily: "Inter, sans-serif",
                             cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
                         },
-                        formatter: function(value) {
+                        formatter: function (value) {
                             return Math.round(value); // Rounds the label value to the nearest whole number
                         }
                     },
                     type: 'category', // Specify that the X-axis type is "category"
-                    min:0,
-                    max:max+2,
-                    tickAmount: max+2, // Number of ticks on the X-axis
+                    min: 0,
+                    max: max + 2,
+                    tickAmount: max + 2, // Number of ticks on the X-axis
                     tickPlacement: 'on', // Places ticks between the bars/columns
                 },
                 subtitle: {
@@ -172,10 +176,10 @@
                     offsetY: 0,
                     floating: false,
                     style: {
-                        fontSize:  '12px',
-                        fontWeight:  'normal',
-                        fontFamily:  undefined,
-                        color:  '#9699a2'
+                        fontSize: '12px',
+                        fontWeight: 'normal',
+                        fontFamily: undefined,
+                        color: '#9699a2'
                     },
                 }
 

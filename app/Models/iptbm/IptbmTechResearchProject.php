@@ -9,19 +9,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class IptbmTechResearchProject extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'iptbm_technology_id',
         'title',
         'agency_name',
         'amount'
     ];
 
-     function researchpartners(): HasMany
+    function researchpartners(): HasMany
     {
-        return $this->hasMany(IptbmResearchIndustryPartner::class,"iptbm_tech_project_id","id");
+        return $this->hasMany(IptbmResearchIndustryPartner::class, "iptbm_tech_project_id", "id");
     }
+
     public function funder(): HasMany
     {
-        return $this->hasMany(IptbmTechResearchFunder::class,'iptbm_tech_research_id','id');
+        return $this->hasMany(IptbmTechResearchFunder::class, 'iptbm_tech_research_id', 'id');
     }
 }

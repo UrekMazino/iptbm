@@ -7,7 +7,7 @@
                 <div class="modal-header bg-dark">
                     <div class="modal-title text-light" id="indusLab">
                         <div>
-                           Industry/Sector: {{$sector}}
+                            Industry/Sector: {{$sector}}
                         </div>
                         Select Commodity
                     </div>

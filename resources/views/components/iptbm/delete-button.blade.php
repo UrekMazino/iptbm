@@ -46,6 +46,6 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn  btn-sm p-0 bot-icon text-primary" data-bs-target="#{{$modId}}" data-bs-toggle="modal" >
+<button type="button" class="btn  btn-sm p-0 bot-icon text-primary" data-bs-target="#{{$modId}}" data-bs-toggle="modal">
     <span class="{{$botClass}}"></span>
 </button>

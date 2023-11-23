@@ -27,54 +27,51 @@ class Contact extends Component
     public $emailInput;
 
 
-    public  $showMobileForm=false;
-    public $showPhoneForm=false;
-    public $showEmailForm=false;
-    public $showFaxForm=false;
-
-
+    public $showMobileForm = false;
+    public $showPhoneForm = false;
+    public $showEmailForm = false;
+    public $showFaxForm = false;
 
 
     public function showMobileForm()
     {
-        $this->showMobileForm=!$this->showMobileForm;
+        $this->showMobileForm = !$this->showMobileForm;
     }
 
     public function showPhoneForm()
     {
-        $this->showPhoneForm=!$this->showPhoneForm;
+        $this->showPhoneForm = !$this->showPhoneForm;
     }
 
     public function showEmailForm()
     {
-        $this->showEmailForm=!$this->showEmailForm;
+        $this->showEmailForm = !$this->showEmailForm;
     }
 
     public function showFaxForm()
     {
-        $this->showFaxForm=!$this->showFaxForm;
+        $this->showFaxForm = !$this->showFaxForm;
     }
-
 
 
     public function mount($profile): void
     {
         $this->profile = IptbmProfile::with('contact')->find($profile);
-        $this->mobile=$this->profile->contact->where('contact_type','mobile');
-        $this->phone=$this->profile->contact->where('contact_type','phone');
-        $this->fax=$this->profile->contact->where('contact_type','fax');
-        $this->email=$this->profile->contact->where('contact_type','email');
+        $this->mobile = $this->profile->contact->where('contact_type', 'mobile');
+        $this->phone = $this->profile->contact->where('contact_type', 'phone');
+        $this->fax = $this->profile->contact->where('contact_type', 'fax');
+        $this->email = $this->profile->contact->where('contact_type', 'email');
 
     }
 
     public function rules()
     {
         return [
-            'mobileInput'=>[
+            'mobileInput' => [
                 'required',
-                Rule::unique('iptbm_profile_contacts','contact')
-                    ->where('contact_type','mobie'),
-                    //->where('iptbm_profiles_id',$this->profile->id),
+                Rule::unique('iptbm_profile_contacts', 'contact')
+                    ->where('contact_type', 'mobie'),
+                //->where('iptbm_profiles_id',$this->profile->id),
                 'numeric',
                 'digits:11',
                 new ContactCounter(
@@ -86,11 +83,11 @@ class Contact extends Component
                     'Mobile phone number was already reached its maximum limit.'
                 )
             ],
-            'phoneInput'=>[
+            'phoneInput' => [
                 'required',
-                Rule::unique('iptbm_profile_contacts','contact')
-                ->where('contact_type','phone'),
-               // ->where('iptbm_profiles_id',$this->profile->id),
+                Rule::unique('iptbm_profile_contacts', 'contact')
+                    ->where('contact_type', 'phone'),
+                // ->where('iptbm_profiles_id',$this->profile->id),
                 'numeric',
                 'max_digits:10',
                 'min_digits:7',
@@ -103,10 +100,10 @@ class Contact extends Component
                     'Telephone number was already reached its maximum limit.'
                 )
             ],
-            'faxInput'=>[
+            'faxInput' => [
                 'required',
-                Rule::unique('iptbm_profile_contacts','contact')
-                    ->where('contact_type','fax'),
+                Rule::unique('iptbm_profile_contacts', 'contact')
+                    ->where('contact_type', 'fax'),
                 // ->where('iptbm_profiles_id',$this->profile->id),
                 'numeric',
                 'max_digits:10',
@@ -120,16 +117,17 @@ class Contact extends Component
                     'Fax number was already reached its maximum limit.'
                 )
             ],
-            'emailInput'=>[
+            'emailInput' => [
                 'required',
                 'email',
                 'max:40',
-                 Rule::unique('iptbm_profile_contacts','contact')
-                    ->where('contact_type','email'),
+                Rule::unique('iptbm_profile_contacts', 'contact')
+                    ->where('contact_type', 'email'),
                 // ->where('iptbm_profiles_id',$this->profile->id),
             ]
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
@@ -141,7 +139,7 @@ class Contact extends Component
         $this->validateOnly('mobileInput');
         $this->profile->contact()->save(new IptbmProfileContact([
             'contact_type' => 'mobile',
-            'contact'=>$this->mobileInput,
+            'contact' => $this->mobileInput,
         ]));
         return redirect()->route("iptbm.staff.ipProfile");
     }
@@ -152,16 +150,17 @@ class Contact extends Component
         $this->validateOnly('phoneInput');
         $this->profile->contact()->save(new IptbmProfileContact([
             'contact_type' => 'phone',
-            'contact'=>$this->phoneInput,
+            'contact' => $this->phoneInput,
         ]));
         return redirect()->route("iptbm.staff.ipProfile");
     }
+
     public function saveFax()
     {
         $this->validateOnly('faxInput');
         $this->profile->contact()->save(new IptbmProfileContact([
             'contact_type' => 'fax',
-            'contact'=>$this->faxInput,
+            'contact' => $this->faxInput,
         ]));
         return redirect()->route("iptbm.staff.ipProfile");
     }
@@ -172,31 +171,31 @@ class Contact extends Component
 
         $this->profile->contact()->save(new IptbmProfileContact([
             'contact_type' => 'email',
-            'contact'=>$this->emailInput,
+            'contact' => $this->emailInput,
         ]));
         return redirect()->route("iptbm.staff.ipProfile");
     }
 
 
-
-
-
     public function deleteMobile($id)
     {
-       $this->profile->contact->find($id)->delete();
+        $this->profile->contact->find($id)->delete();
         return redirect()->route("iptbm.staff.ipProfile");
 
     }
+
     public function deletePhone($id)
     {
         $this->profile->contact->find($id)->delete();
         return redirect()->route("iptbm.staff.ipProfile");
     }
+
     public function deleteFax($id)
     {
         $this->profile->contact->find($id)->delete();
         return redirect()->route("iptbm.staff.ipProfile");
     }
+
     public function deleteEmail($id)
     {
         $this->profile->contact->find($id)->delete();

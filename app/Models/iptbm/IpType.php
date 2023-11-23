@@ -10,10 +10,10 @@ class IpType extends Model
 {
     use HasFactory;
 
-    protected $fillable=['name'];
+    protected $fillable = ['name'];
 
     function tasks(): HasMany
     {
-        return $this->hasMany(IptbmIpTask::class,"ip_type_id","id");
+        return $this->hasMany(IptbmIpTask::class, "ip_type_id", "id");
     }
 }

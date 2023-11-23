@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmIndusPartner extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'industry_partners_id',
         'type',
         'contact'

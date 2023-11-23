@@ -9,8 +9,6 @@ use App\Models\iptbm\IptbmCommercializationPrecom;
 use App\Models\iptbm\IptbmCommodity;
 use App\Models\iptbm\IptbmDeploymentPathway;
 use App\Models\iptbm\IptbmExtensionPathway;
-use App\Models\iptbm\IptbmFullTechDescription;
-use App\Models\iptbm\IptbmIndusPartner;
 use App\Models\iptbm\IptbmIndustry;
 use App\Models\iptbm\IptbmInventor;
 use App\Models\iptbm\IptbmIpAlert;
@@ -27,15 +25,12 @@ use App\Models\iptbm\IptbmTechnologyProfile;
 use App\Models\iptbm\IptbmTechResearchProject;
 use App\Models\iptbm\IptbmTechStatus;
 use App\Models\iptbm\IptbmTechTransPathway;
-use App\Rules\Sample;
-use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -61,14 +56,13 @@ class Technology extends Controller
     {
         $profile = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
 
-        if(!$profile)
-        {
+        if (!$profile) {
             return redirect()->route("iptbm.staff.addProfile");
         }
         $industry = IptbmIndustry::with('commodities', 'techcategory')->get();
 
-     //   $technology = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
-        $technology=IptbmTechnologyProfile::with(
+        //   $technology = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
+        $technology = IptbmTechnologyProfile::with(
             'statuses.technology_profile',
             'techgenerators.inventor',
             'industries.industry',
@@ -86,7 +80,7 @@ class Technology extends Controller
     public function iptbmtech()
     {
         //  $technology=IptbmTechnologyProfile::with("industry","commodities","category")->get();
-        $profile = IptbmProfile::with("technologies.owner","technologies.owner.agency")->where("region_id", Auth::user()->profile->agency->region->id)->get();
+        $profile = IptbmProfile::with("technologies.owner", "technologies.owner.agency")->where("region_id", Auth::user()->profile->agency->region->id)->get();
         foreach ($profile as $key => $value) {
             $value->agency = IptbmAgency::find($value->region_id);
             $value->region = IptbmRegion::find($value->agency_id);
@@ -95,17 +89,18 @@ class Technology extends Controller
             'profile' => $profile,
         ]);
     }
+
     public function publicView($id)
     {
-        $technology=IptbmTechnologyProfile::with("iptbmprofiles","techgenerators.inventor")->find($id);
-        $techOwner=IptbmAgency::find($technology->tech_owner);
-        return view('iptbm.staff.technologies.tech-public-view',compact('technology','techOwner'));
+        $technology = IptbmTechnologyProfile::with("iptbmprofiles", "techgenerators.inventor")->find($id);
+        $techOwner = IptbmAgency::find($technology->tech_owner);
+        return view('iptbm.staff.technologies.tech-public-view', compact('technology', 'techOwner'));
     }
 
-    public function  delete_tech(Request $request): RedirectResponse
+    public function delete_tech(Request $request): RedirectResponse
     {
         $request->validate([
-            'delTech' =>'required'
+            'delTech' => 'required'
         ]);
 
         IptbmTechnologyProfile::find($request->delTech)->delete();
@@ -113,26 +108,12 @@ class Technology extends Controller
 
     }
 
-
-    public function industries(Request $request): JsonResponse
-    {
-        $request->validate([
-            'id' => 'required|integer',
-        ]);
-
-        $commodity = IptbmIndustry::with("commodities", "techcategory")->find($request->id);
-        return response()->json([
-            'data' => $commodity
-        ]);
-    }
-
-
     public function techdetails(): Factory|View|Application|RedirectResponse
     {
         $industry = IptbmIndustry::with('commodities', 'techcategory')->get();
 
-        $check=IptbmProfile::where('agency_id',Auth::user()->profile->agency->id)
-            ->where('region_id',Auth::user()->profile->agency->region->id)
+        $check = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)
+            ->where('region_id', Auth::user()->profile->agency->region->id)
             ->exists();
 
         if (!$check) {
@@ -175,11 +156,10 @@ class Technology extends Controller
             ])
         ]);
 
-        $tech=IptbmTechnologyProfile::where('title', $request->title)->first();
-        return redirect()->route('iptbm.staff.technology.show',['id' => $tech->id]);
-       // return redirect()->route("iptbm.staff.technology")->with('tech.success', 'Technology added successfully..!');
+        $tech = IptbmTechnologyProfile::where('title', $request->title)->first();
+        return redirect()->route('iptbm.staff.technology.show', ['id' => $tech->id]);
+        // return redirect()->route("iptbm.staff.technology")->with('tech.success', 'Technology added successfully..!');
     }
-
 
     /**
      * Display the specified resource.
@@ -187,7 +167,7 @@ class Technology extends Controller
     public function show(IptbmTechnologyProfile $id): Factory|View|Application|RedirectResponse
     {
 
-        $technology = $id->load('industries.commodities',"owner.agency",'ip_applications','ip_applications.ip_type','pre_commercialization','commercial_adopters','deployment','extension' ,'full_description','industries.categories', 'statuses.technology_profile','techgenerators','techgenerators.inventor','techgenerators.inventor.agency_name','researchprojects.funder.agency','researchprojects.researchpartners');
+        $technology = $id->load('industries.commodities', "owner.agency", 'ip_applications', 'ip_applications.ip_type', 'pre_commercialization', 'commercial_adopters', 'deployment', 'extension', 'full_description', 'industries.categories', 'statuses.technology_profile', 'techgenerators', 'techgenerators.inventor', 'techgenerators.inventor.agency_name', 'researchprojects.funder.agency', 'researchprojects.researchpartners');
 
 
         $IptbmIndustries = IptbmIndustry::all();
@@ -201,94 +181,89 @@ class Technology extends Controller
                 $vv->categoryName = IptbmTechCategory::select("name")->where("id", $vv->iptbm_category_id)->first();
             }
         }
-        foreach ($technology->techgenerators as $val)
-        {
-            $val->inventorsName=IptbmInventor::find($val->iptbm_inventors_id)->name;
+        foreach ($technology->techgenerators as $val) {
+            $val->inventorsName = IptbmInventor::find($val->iptbm_inventors_id)->name;
         }
 
-        if(sizeof($technology->ip_applications)>0)
-        {
-            $technology->pathway='ip_applications';
+        if (sizeof($technology->ip_applications) > 0) {
+            $technology->pathway = 'ip_applications';
         }
-        if($technology->pre_commercialization)
-        {
-            $technology->pathway='precom';
+        if ($technology->pre_commercialization) {
+            $technology->pathway = 'precom';
         }
-        if($technology->deployment)
-        {
-            $technology->pathway='deployment';
+        if ($technology->deployment) {
+            $technology->pathway = 'deployment';
         }
-        if($technology->extension)
-        {
-            $technology->pathway='extension';
+        if ($technology->extension) {
+            $technology->pathway = 'extension';
         }
 
 
-
-        $pathway=IptbmTechTransPathway::all();
+        $pathway = IptbmTechTransPathway::all();
         return view('iptbm.staff.technologies.tech-view', [
             'technology' => $technology,
             'industries' => $IptbmIndustries,
             'inventors' => IptbmInventor::all(),
-            'agencies'=>IptbmAgency::with("region")->get(),
-            'pathway'=>$pathway
+            'agencies' => IptbmAgency::with("region")->get(),
+            'pathway' => $pathway
         ]);
     }
 
-    public function update_pathway(Request $request,$id): RedirectResponse
+    public function update_pathway(Request $request, $id): RedirectResponse
     {
 
         $request->validate([
             'pathway' => 'required',
         ]);
-        if(IptbmExtensionPathway::where('technology_id',$id)->exists())
-        {
-            return redirect()->back()->with('data_static','You currently unable to change this technology to another pathway.');
+        if (IptbmExtensionPathway::where('technology_id', $id)->exists()) {
+            return redirect()->back()->with('data_static', 'You currently unable to change this technology to another pathway.');
         }
-        if(IptbmDeploymentPathway::where('technology_id',$id)->exists())
-        {
-            return redirect()->back()->with('data_static','You currently unable to change this technology to another pathway.');
+        if (IptbmDeploymentPathway::where('technology_id', $id)->exists()) {
+            return redirect()->back()->with('data_static', 'You currently unable to change this technology to another pathway.');
         }
-        if(IptbmIpAlert::where('technology_id',$id)->exists())
-        {
-            return redirect()->back()->with('data_static','You currently unable to change this technology to another pathway.');
+        if (IptbmIpAlert::where('technology_id', $id)->exists()) {
+            return redirect()->back()->with('data_static', 'You currently unable to change this technology to another pathway.');
         }
-        if(IptbmCommercializationPathway::where('technology_id',$id)->exists())
-        {
-            return redirect()->back()->with('data_static','You currently unable to change this technology to another pathway.');
+        if (IptbmCommercializationPathway::where('technology_id', $id)->exists()) {
+            return redirect()->back()->with('data_static', 'You currently unable to change this technology to another pathway.');
         }
-        if(IptbmCommercializationPrecom::where('technology_id',$id)->exists())
-        {
-            return redirect()->back()->with('data_static','You currently unable to change this technology to another pathway.');
+        if (IptbmCommercializationPrecom::where('technology_id', $id)->exists()) {
+            return redirect()->back()->with('data_static', 'You currently unable to change this technology to another pathway.');
         }
 
-        $technology=IptbmTechnologyProfile::find($id);
-        $technology->tech_trans_plan='';
+        $technology = IptbmTechnologyProfile::find($id);
+        $technology->tech_trans_plan = '';
 
         return redirect()->back();
     }
 
-
-
-    public function update_title(Request $request,$id): RedirectResponse
+    public function update_title(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'tech_title'=>'required|unique:iptbm_technology_profiles,title',
-        ],[
-            'tech_title.unique'=>'Technology Title already exists'
+            'tech_title' => 'required|unique:iptbm_technology_profiles,title',
+        ], [
+            'tech_title.unique' => 'Technology Title already exists'
         ]);
-         IptbmTechnologyProfile::find($id)->update([
-             'title' => $request->tech_title
-         ]);
+        IptbmTechnologyProfile::find($id)->update([
+            'title' => $request->tech_title
+        ]);
         return redirect()->back()->with("title-success", "Technology updated successfully..!");
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
     }
 
     public function updateindustry(Request $request, string $id): RedirectResponse
     {
         $request->validate([
-            'industry' =>[
+            'industry' => [
                 'required',
-                Rule::unique(IptbmTechIndustry::class,'iptbm_industry_id')->where('iptbm_technology_id',$id)
+                Rule::unique(IptbmTechIndustry::class, 'iptbm_industry_id')->where('iptbm_technology_id', $id)
             ],
 
         ]);
@@ -300,10 +275,23 @@ class Technology extends Controller
         ]);
         return redirect()->back()->with('industry-success', 'Technology updated successfully..!');
     }
-    public  function  delete_industry(Request $request)
+
+    public function industries(Request $request): JsonResponse
     {
         $request->validate([
-            'industry_id' =>'required',
+            'id' => 'required|integer',
+        ]);
+
+        $commodity = IptbmIndustry::with("commodities", "techcategory")->find($request->id);
+        return response()->json([
+            'data' => $commodity
+        ]);
+    }
+
+    public function delete_industry(Request $request)
+    {
+        $request->validate([
+            'industry_id' => 'required',
         ]);
         IptbmTechIndustry::find($request->industry_id)->delete();
         return redirect()->back();
@@ -389,111 +377,110 @@ class Technology extends Controller
         $request->validate([
             'inventor_id' => [
                 'required',
-                Rule::unique("iptbm_tech_inventors","iptbm_inventors_id")
+                Rule::unique("iptbm_tech_inventors", "iptbm_inventors_id")
                     ->where("iptbm_technology_id", $id)
             ],
-        ],[
-            'inventor_id.unique'=>'Inventors name is already been taken..!'
+        ], [
+            'inventor_id.unique' => 'Inventors name is already been taken..!'
         ]);
 
-        $techProfile=IptbmTechnologyProfile::find($id);
+        $techProfile = IptbmTechnologyProfile::find($id);
 
         $techProfile->techgenerators()->saveMany([
             new IptbmTechInventor([
-                'iptbm_inventors_id'=>$request->inventor_id
+                'iptbm_inventors_id' => $request->inventor_id
             ])
         ]);
 
         return redirect()->back()->with('inventor-up-success', 'Technology updated successfully..!');
     }
 
-    function researchconducted(Request $request,$id)
+    function researchconducted(Request $request, $id)
     {
         $request->validate([
-            'research_title'=>[
+            'research_title' => [
                 'required',
-                Rule::unique("iptbm_tech_research_projects","title")
-                    ->where("iptbm_technology_id",$id),
+                Rule::unique("iptbm_tech_research_projects", "title")
+                    ->where("iptbm_technology_id", $id),
                 'string',
                 'max:255'
             ],
-            'funding_agency'=>'required',
-            'amount_invested'=>'required:numeric',
-        ],[
-            'research_title.unique'=>'Research Title exist..!'
+            'funding_agency' => 'required',
+            'amount_invested' => 'required:numeric',
+        ], [
+            'research_title.unique' => 'Research Title exist..!'
         ]);
-        $prof=IptbmTechnologyProfile::find($id);
+        $prof = IptbmTechnologyProfile::find($id);
         $prof->researchprojects()->saveMany([
             new IptbmTechResearchProject([
-                'title'=>$request->research_title,
-                'agency_name'=>$request->funding_agency,
-                'amount'=>$request->amount_invested
+                'title' => $request->research_title,
+                'agency_name' => $request->funding_agency,
+                'amount' => $request->amount_invested
             ])
         ]);
-        return redirect()->back()->with("research-add-success","Research project added successfully");
+        return redirect()->back()->with("research-add-success", "Research project added successfully");
     }
 
-    public function industrypartners(Request $request,$id)
+    public function industrypartners(Request $request, $id)
     {
         $request->validate([
-            'industry_partner'=>[
+            'industry_partner' => [
                 'required',
-                Rule::unique('iptbm_research_industry_partners','industry_name')
-                ->where('iptbm_tech_project_id',$id)
+                Rule::unique('iptbm_research_industry_partners', 'industry_name')
+                    ->where('iptbm_tech_project_id', $id)
             ],
-            'industry_address'=>'required',
+            'industry_address' => 'required',
         ]);
 
-        if($request->industry_phone){
+        if ($request->industry_phone) {
             $request->validate([
-                'industry_phone'=>'numeric',
+                'industry_phone' => 'numeric',
             ]);
         }
-        if($request->industry_mobile){
+        if ($request->industry_mobile) {
             $request->validate([
-                'industry_mobile'=>'numeric',
+                'industry_mobile' => 'numeric',
             ]);
         }
-        if($request->industry_fax){
+        if ($request->industry_fax) {
             $request->validate([
-                'industry_fax'=>'numeric',
+                'industry_fax' => 'numeric',
             ]);
         }
-        if($request->industry_email){
+        if ($request->industry_email) {
             $request->validate([
-                'industry_email'=>'email'
+                'industry_email' => 'email'
             ]);
         }
 
-        $research=IptbmTechResearchProject::find($id);
+        $research = IptbmTechResearchProject::find($id);
         $research->researchpartners()->saveMany([
             new IptbmResearchIndustryPartner([
-                'industry_name'=>$request->industry_partner,
-                'address'=>$request->industry_address,
-                'phone'=>$request->industry_phone,
-                'mobile'=>$request->industry_mobile,
-                'fax'=>$request->industry_fax,
-                'email'=>$request->industry_email,
+                'industry_name' => $request->industry_partner,
+                'address' => $request->industry_address,
+                'phone' => $request->industry_phone,
+                'mobile' => $request->industry_mobile,
+                'fax' => $request->industry_fax,
+                'email' => $request->industry_email,
             ])
         ]);
 
-        return redirect()->back()->with("partner-add-success","Industry partner added successfully");
+        return redirect()->back()->with("partner-add-success", "Industry partner added successfully");
     }
-
 
     function delindustrypartners(Request $request)
     {
         $request->validate([
-            'partner_id'=>'required',
+            'partner_id' => 'required',
         ]);
         IptbmResearchIndustryPartner::find($request->partner_id)->delete();
-        return redirect()->back()->with("partner-del-success","Industry partner deleted successfully");
+        return redirect()->back()->with("partner-del-success", "Industry partner deleted successfully");
     }
 
     public function deleteresearch(Request $request)
     {
         $request->validate([
-            'researchr_id' =>'required',
+            'researchr_id' => 'required',
         ]);
         IptbmTechResearchProject::find($request->researchr_id)->delete();
         return redirect()->back()->with('research-del-success', 'Technology deleted successfully..!');
@@ -502,12 +489,11 @@ class Technology extends Controller
     public function deleteinventor(Request $request)
     {
         $request->validate([
-            'inventor_id' =>'required',
+            'inventor_id' => 'required',
         ]);
         IptbmTechInventor::find($request->inventor_id)->delete();
         return redirect()->back()->with('inventor-del-success', 'Technology deleted successfully..!');
     }
-
 
     public function deletestatus(Request $request)
     {
@@ -542,14 +528,6 @@ class Technology extends Controller
     public function edit(string $id)
     {
 
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

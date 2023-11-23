@@ -11,7 +11,7 @@ class IndustrialDesign extends Component
 
     public function mount()
     {
-        $this->ipAlert=IptbmIpAlert::with(
+        $this->ipAlert = IptbmIpAlert::with(
             [
 
                 'technology',
@@ -20,11 +20,12 @@ class IndustrialDesign extends Component
                 'ip_task',
                 'ip_type',
             ])
-            ->whereHas('ip_type',function($query){
-                $query->where('name','Industrial Design');
+            ->whereHas('ip_type', function ($query) {
+                $query->where('name', 'Industrial Design');
             })
             ->get();
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.industrial.industrial-design')

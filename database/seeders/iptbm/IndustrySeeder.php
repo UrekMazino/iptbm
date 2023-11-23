@@ -3,7 +3,6 @@
 namespace Database\Seeders\iptbm;
 
 use App\Models\iptbm\IptbmIndustry;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class IndustrySeeder extends Seeder
@@ -13,7 +12,7 @@ class IndustrySeeder extends Seeder
      */
     public function run(): void
     {
-        $data=[
+        $data = [
             [
                 'name' => 'CROPS'
             ],
@@ -34,7 +33,7 @@ class IndustrySeeder extends Seeder
             ],
         ];
 
-        foreach ($data as $key => $val){
+        foreach ($data as $key => $val) {
             IptbmIndustry::create($val);
         }
     }

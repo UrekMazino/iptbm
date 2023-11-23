@@ -9,7 +9,8 @@
             {{$category->category}}
         </div>
         <div>
-            <button wire:ignore.self wire:click.prevent="deleteCategory({{$category->id}})" class="text-red-400 hover:text-red-700 transition duration-300">
+            <button wire:ignore.self wire:click.prevent="deleteCategory({{$category->id}})"
+                    class="text-red-400 hover:text-red-700 transition duration-300">
                 <span class="fa-solid fa-trash-can"></span>
             </button>
         </div>

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AbhRegion extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'name',
         'rrdcc_chair',
         'consortium',
@@ -17,6 +18,6 @@ class AbhRegion extends Model
 
     function agencies(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(AbhAgency::class,'abh_regions_id','id');
+        return $this->hasMany(AbhAgency::class, 'abh_regions_id', 'id');
     }
 }

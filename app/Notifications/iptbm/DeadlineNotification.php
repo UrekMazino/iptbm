@@ -3,7 +3,6 @@
 namespace App\Notifications\iptbm;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -22,7 +21,8 @@ class DeadlineNotification extends Notification
     private $stage;
     private $technology;
     private $applicationnumber;
-    public function __construct($technology,$iptype,$applicationnumber,$task,$stage, $deadline,$url)
+
+    public function __construct($technology, $iptype, $applicationnumber, $task, $stage, $deadline, $url)
     {
         $this->technology = $technology;
         $this->applicationnumber = $applicationnumber;
@@ -30,7 +30,7 @@ class DeadlineNotification extends Notification
         $this->stage = $stage;
         $this->task = $task;
         $this->deadline = $deadline;
-        $this->url=$url;
+        $this->url = $url;
     }
 
     /**
@@ -50,13 +50,13 @@ class DeadlineNotification extends Notification
     {
         return (new MailMessage)
             ->markdown('iptbm.mail.deadline-notification',
-                [ 'technologyname'=>$this->technology,
-                'applicationnumber'=>$this->applicationnumber,
-                'iptype'=>$this->iptype,
-                'task' => $this->task,
-                'stage' => $this->stage,
-                'deadline' => $this->deadline,
-                    'url'=>$this->url
+                ['technologyname' => $this->technology,
+                    'applicationnumber' => $this->applicationnumber,
+                    'iptype' => $this->iptype,
+                    'task' => $this->task,
+                    'stage' => $this->stage,
+                    'deadline' => $this->deadline,
+                    'url' => $this->url
                 ]);
     }
 

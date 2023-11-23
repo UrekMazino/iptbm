@@ -18,6 +18,7 @@ class Contact extends Component
     {
         $this->contact = $contact;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.adopter.contact');

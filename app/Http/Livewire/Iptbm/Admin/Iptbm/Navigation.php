@@ -10,10 +10,10 @@ class Navigation extends Component
     public $current;
     public $profile_id;
 
-    public function mount($current,$profile_id): void
+    public function mount($current, $profile_id): void
     {
-        $this->current=$current;
-        $this->profile_id=$profile_id;
+        $this->current = $current;
+        $this->profile_id = $profile_id;
     }
 
     public function render()

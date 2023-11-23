@@ -1,5 +1,6 @@
 <div class="px-4 mt-10 font-sans">
-    <div wire:ignore.self id="techPhoto" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden shadow-lg overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div wire:ignore.self id="techPhoto"
+         class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden shadow-lg overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-4xl max-h-full">
             <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
                 <button type="button"
@@ -64,16 +65,19 @@
                                             @else
                                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                         fill="none"
                                                          viewBox="0 0 20 16">
                                                         <path stroke="currentColor" stroke-linecap="round"
                                                               stroke-linejoin="round" stroke-width="2"
                                                               d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                                                     </svg>
                                                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                            class="font-semibold">Click to upload</span> or drag and drop
+                                                            class="font-semibold">Click to upload</span> or drag and
+                                                        drop
                                                     </p>
-                                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF
+                                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or
+                                                        GIF
                                                         (MAX. 800x400px)</p>
                                                 </div>
 
@@ -93,7 +97,8 @@
                                              class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
                                              role="alert">
                                             <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                 viewBox="0 0 20 20">
                                                 <path
                                                     d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                                             </svg>
@@ -207,7 +212,8 @@
                             </p>
                             <div>
 
-                                <x-secondary-button wire:click="toggleTechTitle" class="text-sky-600  dark:text-sky-600 ">
+                                <x-secondary-button wire:click="toggleTechTitle"
+                                                    class="text-sky-600  dark:text-sky-600 ">
                                     <div class="m-auto text-center flex justify-center items-center">
                                         <svg class="w-[19px] h-[19px] " aria-hidden="true"
                                              xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -238,7 +244,8 @@
                             </div>
                         </div>
                         @if($toggleDescription)
-                            <div class="p-2 border-l border-r border-t border-b rounded-lg bg-gray-200 dark:bg-gray-800">
+                            <div
+                                class="p-2 border-l border-r border-t border-b rounded-lg bg-gray-200 dark:bg-gray-800">
 
                                 <form wire:submit.prevent="saveDescription">
 
@@ -291,7 +298,8 @@
                                 " {{$description}} "
                             </p>
                             <div>
-                                <x-secondary-button wire:click="toggleDescription" class="text-sky-600  dark:text-sky-600 ">
+                                <x-secondary-button wire:click="toggleDescription"
+                                                    class="text-sky-600  dark:text-sky-600 ">
                                     <div class="m-auto text-center flex justify-center items-center">
                                         <svg class="w-[19px] h-[19px] " aria-hidden="true"
                                              xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -320,7 +328,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t pt-4 border-gray-600 dark:border-400">
             <div class="space-y-4">
-                <livewire:iptbm.staff.technology.tech-owner :technology="$technology" />
+                <livewire:iptbm.staff.technology.tech-owner :technology="$technology"/>
                 <livewire:iptbm.staff.technology.tech-inventor :technology="$technology"/>
                 <x-card class="shadow-lg bg-gray-200 dark:bg-gray-800">
                     <livewire:iptbm.staff.technology.tech-research :technology="$technology"/>
@@ -328,11 +336,11 @@
             </div>
             <div>
                 <x-card>
-                  <livewire:iptbm.staff.technology.ip-protection wire:key="ipProtection" :technology="$technology" />
+                    <livewire:iptbm.staff.technology.ip-protection wire:key="ipProtection" :technology="$technology"/>
 
                 </x-card>
                 <x-card class="my-3">
-                    <livewire:iptbm.staff.technology.tech-trans-pathway :technology="$technology" />
+                    <livewire:iptbm.staff.technology.tech-trans-pathway :technology="$technology"/>
 
                 </x-card>
                 <x-card class="my-3">
@@ -412,12 +420,12 @@
 
                     @endif
 
-                   <div class="divide-y divide-gray-400 dark:divide-gray-600">
-                       @foreach($industryList as $key=>$val)
-                           <livewire:iptbm.staff.technology.industry-details wire:key="industry-{{$val->id}}"
-                                                                             :industry="$val"/>
-                       @endforeach
-                   </div>
+                    <div class="divide-y divide-gray-400 dark:divide-gray-600">
+                        @foreach($industryList as $key=>$val)
+                            <livewire:iptbm.staff.technology.industry-details wire:key="industry-{{$val->id}}"
+                                                                              :industry="$val"/>
+                        @endforeach
+                    </div>
                 </x-card>
 
                 <x-card class="shadow-lg">
@@ -514,14 +522,17 @@
 
                             @foreach($techStatus->reverse() as $key=>$vv)
                                 <li class="mb-10 ml-6">
-                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                                    <span
+                                        class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                                         <svg class="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true"
-                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path
                                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                     </span>
-                                    <livewire:iptbm.staff.technology.technology-status wire:key="{{$key}}-stat" :technology="$technology" :techStatus="$vv"/>
+                                    <livewire:iptbm.staff.technology.technology-status wire:key="{{$key}}-stat"
+                                                                                       :technology="$technology"
+                                                                                       :techStatus="$vv"/>
                                 </li>
                             @endforeach
 

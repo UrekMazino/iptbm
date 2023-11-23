@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\iptbm\staff;
 
 use App\Http\Controllers\Controller;
-use App\Models\iptbm\IptbmDeploymentAdoptorContact;
-use App\Models\iptbm\IptbmDeploymentPathway;
 use App\Models\iptbm\IptbmExtensionAdoptorContact;
 use App\Models\iptbm\IptbmExtensionPathway;
 use Illuminate\Contracts\Foundation\Application;
@@ -23,68 +21,64 @@ class ExtensionTechController extends Controller
 
     public function index($id): Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
     {
-        $tech=IptbmExtensionPathway::with("technology","contacts")->find($id);
-        if(!$tech)
-        {
+        $tech = IptbmExtensionPathway::with("technology", "contacts")->find($id);
+        if (!$tech) {
             return redirect()->route('iptbm.staff.extension.index');
         }
-        return view('iptbm.staff.extension.extension-tech',[
-            'tech'=>$tech
+        return view('iptbm.staff.extension.extension-tech', [
+            'tech' => $tech
         ]);
     }
+
     public function add_contact(Request $request, $id): RedirectResponse
     {
 
-        if($request->contact_type==="mobile")
-        {
+        if ($request->contact_type === "mobile") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'numeric',
                     'digits:11',
-                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id',$id)
+                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:mobile',
+                'contact_type' => 'required:mobile',
             ]);
         }
-        if($request->contact_type==="phone")
-        {
+        if ($request->contact_type === "phone") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'numeric',
-                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id',$id)
+                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:mobile',
+                'contact_type' => 'required:mobile',
             ]);
         }
-        if($request->contact_type==="fax")
-        {
+        if ($request->contact_type === "fax") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'numeric',
-                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id',$id)
+                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:fax',
+                'contact_type' => 'required:fax',
             ]);
         }
-        if($request->contact_type==="email")
-        {
+        if ($request->contact_type === "email") {
             $request->validate([
-                'contact'=>[
+                'contact' => [
                     'required',
                     'email',
-                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id',$id)
+                    Rule::unique(IptbmExtensionAdoptorContact::class, 'contact')->where('extension_adoptor_id', $id)
                 ],
-                'contact_type'=>'required:email',
+                'contact_type' => 'required:email',
             ]);
         }
-        $depTech=IptbmExtensionPathway::find($id);
+        $depTech = IptbmExtensionPathway::find($id);
         $depTech->contacts()->saveMany([
             new IptbmExtensionAdoptorContact([
                 'type' => $request->contact_type,
-                'contact'=>$request->contact
+                'contact' => $request->contact
             ])
         ]);
         return redirect()->back();
@@ -93,7 +87,7 @@ class ExtensionTechController extends Controller
     public function delete_contact(Request $request): RedirectResponse
     {
         $request->validate([
-            'adopId'=>'required'
+            'adopId' => 'required'
         ]);
 
         IptbmExtensionAdoptorContact::find($request->adopId)->delete();

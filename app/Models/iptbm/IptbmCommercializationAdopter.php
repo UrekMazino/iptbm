@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class IptbmCommercializationAdopter extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'technology_id',
         'company_name',
         'address',
@@ -23,12 +24,12 @@ class IptbmCommercializationAdopter extends Model
 
     public function technology(): BelongsTo
     {
-        return $this->belongsTo(IptbmTechnologyProfile::class,'technology_id','id');
+        return $this->belongsTo(IptbmTechnologyProfile::class, 'technology_id', 'id');
     }
 
-    public function  contacts(): HasMany
+    public function contacts(): HasMany
     {
-        return $this->hasMany(IptbmComercialAdopterContact::class,'commercial_adoptor_id','id');
+        return $this->hasMany(IptbmComercialAdopterContact::class, 'commercial_adoptor_id', 'id');
     }
 
 }

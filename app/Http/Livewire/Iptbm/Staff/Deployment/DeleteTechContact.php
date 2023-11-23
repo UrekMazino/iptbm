@@ -17,8 +17,9 @@ class DeleteTechContact extends Component
 
     public function mount($contact)
     {
-        $this->contact=$contact;
+        $this->contact = $contact;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.deployment.delete-tech-contact');

@@ -19,23 +19,24 @@ class ExtensionModal extends Component
     public function saveForm()
     {
         $this->validate();
-        $extended=new IptbmExtensionPathway([
-            'adoptor_name'=>$this->adoptersName,
-            'address'=>$this->adoptersAddress
+        $extended = new IptbmExtensionPathway([
+            'adoptor_name' => $this->adoptersName,
+            'address' => $this->adoptersAddress
         ]);
         $this->technology->deployment()->save($extended);
-        redirect()->route('iptbm.staff.extension.view_tech',[
-            'id'=>$extended->id
+        redirect()->route('iptbm.staff.extension.view_tech', [
+            'id' => $extended->id
         ]);
     }
+
     public function rules()
     {
-        return[
-            'adoptersName'=>[
+        return [
+            'adoptersName' => [
                 'required',
-                Rule::unique(IptbmExtensionPathway::class,'adoptor_name')->where('technology_id',$this->techId)
+                Rule::unique(IptbmExtensionPathway::class, 'adoptor_name')->where('technology_id', $this->techId)
             ],
-            'adoptersAddress'=>'required',
+            'adoptersAddress' => 'required',
         ];
     }
 
@@ -45,18 +46,21 @@ class ExtensionModal extends Component
             'adoptersName',
             'adoptersAddress'
         ]);
-        $this->reset('adoptersName','adoptersAddress');
+        $this->reset('adoptersName', 'adoptersAddress');
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
     }
-    public function mount($modalName,$technology)
+
+    public function mount($modalName, $technology)
     {
-        $this->modalName=$modalName;
-        $this->technology=$technology;
-        $this->techId=$technology->id;
+        $this->modalName = $modalName;
+        $this->technology = $technology;
+        $this->techId = $technology->id;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.techtrans.extension-modal');

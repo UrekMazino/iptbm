@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmInventorExpertise extends Model
 {
     use HasFactory;
-    protected  $fillable=[
+
+    protected $fillable = [
         'iptbm_inventor_id',
         'field'
     ];

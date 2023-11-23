@@ -23,23 +23,24 @@ class AddNewAgency extends Component
     public function saveForm()
     {
         $this->validate();
-        $region=IptbmRegion::find($this->regionId);
-        $agency=new IptbmAgency([
+        $region = IptbmRegion::find($this->regionId);
+        $agency = new IptbmAgency([
             'name' => $this->agencyModel,
-            'address' =>$this->addressModel
+            'address' => $this->addressModel
         ]);
         $region->agencies()->save($agency);
         $agency->head()->save(new AgencyHead([
-            'head'=>$this->headModel,
+            'head' => $this->headModel,
             'designation' => $this->designationModel,
         ]));
 
         $this->emit('reloadPage');
     }
+
     public function updatedRegionModel(): void
     {
-        $data=IptbmRegion::select('id')->where('name',$this->regionModel)->first();
-        $this->regionId=$data->id;
+        $data = IptbmRegion::select('id')->where('name', $this->regionModel)->first();
+        $this->regionId = $data->id;
 
     }
 
@@ -47,21 +48,22 @@ class AddNewAgency extends Component
     {
 
         return [
-            'regionModel'=>[
+            'regionModel' => [
                 'required',
                 'exists:iptbm_regions,name',
             ],
-            'agencyModel'=>[
+            'agencyModel' => [
                 'required',
                 'unique:iptbm_agencies,name'
             ],
-            'addressModel'=>'required',
-            'headModel'=>[
+            'addressModel' => 'required',
+            'headModel' => [
                 'required',
             ],
-            'designationModel'=>'required'
+            'designationModel' => 'required'
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
@@ -69,8 +71,9 @@ class AddNewAgency extends Component
 
     public function mount()
     {
-        $this->regions=IptbmRegion::all();
+        $this->regions = IptbmRegion::all();
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.agency.add-new-agency');

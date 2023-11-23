@@ -3,7 +3,6 @@
 namespace Database\Seeders\abh;
 
 use App\Models\abh\AbhProfile;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AbhProfileSeeder extends Seeder
@@ -26,7 +25,7 @@ class AbhProfileSeeder extends Seeder
             $table->string('tag_line')->nullable();
          */
         AbhProfile::create([
-           'rrdc_chair'=>'Sample RRDC Chair'
+            'rrdc_chair' => 'Sample RRDC Chair'
         ]);
     }
 }

@@ -8,7 +8,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class EditAccountController extends Controller
 {
@@ -19,7 +18,7 @@ class EditAccountController extends Controller
 
     public function index(User $id): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|RedirectResponse
     {
-        $user=$id->load("profile","profile.agency","profile.agency.region");
-        return view('admin.iptbm.add-record.edit-account',['user'=>$user]);
+        $user = $id->load("profile", "profile.agency", "profile.agency.region");
+        return view('admin.iptbm.add-record.edit-account', ['user' => $user]);
     }
 }

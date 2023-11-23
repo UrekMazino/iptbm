@@ -68,7 +68,8 @@
                                     <label class="text-muted fw-bold" id="desc">
                                         Event name / Notification details
                                     </label>
-                                    <textarea id="desc" class="form-control mt-1" rows="4" name="notification_description">{{$ip_task->ip_task_stage_notifications->notification_details}}</textarea>
+                                    <textarea id="desc" class="form-control mt-1" rows="4"
+                                              name="notification_description">{{$ip_task->ip_task_stage_notifications->notification_details}}</textarea>
                                 </div>
                             </div>
                             <div class="row my-3">
@@ -78,11 +79,17 @@
                                     </label>
                                     <div class="d-flex mt-1 gap-5">
                                         <div class="form-check">
-                                            <input name="frequency" @if($ip_task->ip_task_stage_notifications->frequency==='weekly') checked @endif type="radio" value="weekly" class="form-check-input" id="weekly">
+                                            <input name="frequency"
+                                                   @if($ip_task->ip_task_stage_notifications->frequency==='weekly') checked
+                                                   @endif type="radio" value="weekly" class="form-check-input"
+                                                   id="weekly">
                                             <label for="weekly" class="form-check-label">Weekly</label>
                                         </div>
                                         <div class="form-check">
-                                            <input name="frequency" @if($ip_task->ip_task_stage_notifications->frequency==='daily') checked @endif type="radio" value="daily" class="form-check-input" id="daily">
+                                            <input name="frequency"
+                                                   @if($ip_task->ip_task_stage_notifications->frequency==='daily') checked
+                                                   @endif type="radio" value="daily" class="form-check-input"
+                                                   id="daily">
                                             <label for="daily" class="form-check-label">Daily</label>
                                         </div>
 
@@ -96,7 +103,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-sm btn-primary"> Save </button>
+                            <button type="submit" class="btn btn-sm btn-primary"> Save</button>
                         </div>
                     </div>
                 </form>
@@ -114,9 +121,9 @@
 @endpush
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
 
-            $('#weekly').click(function(){
+            $('#weekly').click(function () {
                 $('#schedContainer').empty().append(
                     $('<div class="input-group my-1">').append(
                         $('<label for="selFrec" class="input-group-text">').text("Day of the week"),
@@ -132,43 +139,42 @@
                         )
                     ),
                     $('<div class="input-group my-1">').append(
-                    $('<label class="input-group-text">').text("Hour of the day"),
-                    $('<input id="inpH" name="notif_hour" type="datetime-local" class="form-control">').val("@if($ip_task->ip_task_stage_notifications->time_of_day) {{$ip_task->ip_task_stage_notifications->time_of_day}}  @endif" ),
-
+                        $('<label class="input-group-text">').text("Hour of the day"),
+                        $('<input id="inpH" name="notif_hour" type="datetime-local" class="form-control">').val("@if($ip_task->ip_task_stage_notifications->time_of_day) {{$ip_task->ip_task_stage_notifications->time_of_day}}  @endif"),
+                    )
                 )
-                )
-                flatpickr("input[type=datetime-local]",{
+                flatpickr("input[type=datetime-local]", {
                     enableTime: true,
                     disableMobile: true,
                     noCalendar: true,
                     dateFormat: "h:i K", // Format to display the selected time
                     time_24hr: false,
-                    input:true
+                    input: true
                 });
             })
-            $("#daily").click(function(){
+            $("#daily").click(function () {
                 $('#schedContainer').empty().append(
                     $('<div class="input-group my-1">').append(
                         $('<label for="inpH" class="input-group-text">').text("Hour of the day"),
                         $('<input id="inpH" name="notif_hour" type="datetime-local" class="form-control">')
                     )
                 )
-                flatpickr("input[type=datetime-local]",{
+                flatpickr("input[type=datetime-local]", {
                     enableTime: true,
                     disableMobile: true,
                     noCalendar: true,
                     dateFormat: "h:i K", // Format to display the selected time
                     time_24hr: false,
-                    input:true
+                    input: true
                 });
             })
-            flatpickr("input[type=datetime-local]",{
+            flatpickr("input[type=datetime-local]", {
                 enableTime: true,
                 disableMobile: true,
                 noCalendar: true,
                 dateFormat: "h:i K", // Format to display the selected time
                 time_24hr: false,
-                input:true
+                input: true
             });
             @if($ip_task->ip_task_stage_notifications->frequency)
             @if($ip_task->ip_task_stage_notifications->frequency==='weekly')

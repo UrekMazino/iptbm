@@ -3,7 +3,6 @@
 namespace Database\Seeders\abh;
 
 use App\Models\abh\AbhRegion;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RegionSeeder extends Seeder
@@ -14,7 +13,7 @@ class RegionSeeder extends Seeder
     public function run(): void
     {
         AbhRegion::create([
-            'id'=>'1',
+            'id' => '1',
             'name' => 'Sasmple abh Region'
         ]);
     }

@@ -1,4 +1,3 @@
-
 @extends('admin.iptbm.layout.app')
 
 @section('title')
@@ -7,13 +6,17 @@
 
 @section('content')
     <div class="w-full">
-        <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav
+            class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div class="block md:flex justify-start items-center">
                     <div class="p-4">
-                        <x-link-button :url="route('iptbm.admin.techtrans.adopter')" class="text-sky-600 dark:text-sky-600">
-                            <svg class="w-4 h-4 me-2 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                        <x-link-button :url="route('iptbm.admin.techtrans.adopter')"
+                                       class="text-sky-600 dark:text-sky-600">
+                            <svg class="w-4 h-4 me-2 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                 fill="currentColor" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                             </svg>
                             Back
                         </x-link-button>
@@ -68,62 +71,68 @@
                                 Adopter Details
                             </x-item-header>
                             <div class="mt-4 space-y-4 py-4">
-                              <div class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
-                                  <div class="w-fit divide-y divide-gray-400 dark:divide-gray-600">
-                                      <div class="font-medium text-gray-700 dark:text-gray-300">
-                                          {{$adopter->company_name}}
-                                      </div>
-                                      <div >
-                                          Company Name
-                                      </div>
-                                  </div>
+                                <div
+                                    class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
+                                    <div class="w-fit divide-y divide-gray-400 dark:divide-gray-600">
+                                        <div class="font-medium text-gray-700 dark:text-gray-300">
+                                            {{$adopter->company_name}}
+                                        </div>
+                                        <div>
+                                            Company Name
+                                        </div>
+                                    </div>
 
-                              </div>
-                                <div class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
+                                </div>
+                                <div
+                                    class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
                                     <div class="w-fit divide-y divide-gray-400 dark:divide-gray-600">
                                         <div class="font-medium text-gray-700 dark:text-gray-300">
                                             {{$adopter->company_description}}
                                         </div>
-                                        <div >
+                                        <div>
                                             Company Description
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
+                                <div
+                                    class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
                                     <div class="w-fit divide-y divide-gray-400 dark:divide-gray-600">
                                         <div class="font-medium text-gray-700 dark:text-gray-300">
                                             {{$adopter->business_structures}}
                                         </div>
-                                        <div >
+                                        <div>
                                             Business Structure
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
+                                <div
+                                    class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
                                     <div class="w-fit divide-y divide-gray-400 dark:divide-gray-600">
                                         <div class="font-medium text-gray-700 dark:text-gray-300">
                                             {{$adopter->business_registration}}
                                         </div>
-                                        <div >
+                                        <div>
                                             Business Registration
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
+                                <div
+                                    class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
                                     <div class="w-fit divide-y divide-gray-400 dark:divide-gray-600">
                                         <div class="font-medium text-gray-700 dark:text-gray-300">
                                             {{$adopter->acquisition_model}}
                                         </div>
-                                        <div >
+                                        <div>
                                             Acquisition Mode
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
+                                <div
+                                    class="border border-gray-400 dark:border-gray-600 rounded-lg p-2 px-4  flex justify-start items-center">
                                     For Incubation :
                                     <div class="font-medium text-gray-700 dark:text-gray-300 ms-2">
                                         {{$adopter->for_incubation? "YES":"NO"}}
@@ -138,7 +147,7 @@
                                 Contact Details
                             </x-item-header>
                             <div class="mt-4 space-y-3">
-                                <div >
+                                <div>
                                     {{$adopter->address}}
                                 </div>
                                 @if($adopter->contacts->where('type','mobile')->count()>0)
@@ -146,7 +155,7 @@
                                         <x-input-label value="Mobile"/>
                                         @foreach($adopter->contacts->where('type','mobile') as $data)
                                             <li>
-                                               {{$data->contact}}
+                                                {{$data->contact}}
                                             </li>
                                         @endforeach
                                     </ul>

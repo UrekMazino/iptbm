@@ -7,6 +7,7 @@ use Livewire\Component;
 class DeleteStage extends Component
 {
     public $stage;
+
     public function mount($stage)
     {
         $this->stage = $stage;

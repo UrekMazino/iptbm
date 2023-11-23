@@ -20,7 +20,8 @@
                         <span class="fa-solid fa-house me-2 h4"></span>
                     </a>
                     <a href="{{route("iptbm.staff.ip-alert.task",['id'=>$ip_alert->id])}}" class="text-decoration-none">
-                        <span class="fa-solid fa-caret-left me-2"></span><strong>{{$ip_alert->ip_type->name}} Task</strong>
+                        <span class="fa-solid fa-caret-left me-2"></span><strong>{{$ip_alert->ip_type->name}}
+                            Task</strong>
                     </a>
                 </div>
             </div>
@@ -40,7 +41,8 @@
                         @foreach($tasks as $key=>$task)
                             <li class="list-group-item ">
                                 <div class="form-check">
-                                    <input id="list{{$key}}" type="radio" name="task_id" value="{{$task->id}}" class="form-check-input listTask">
+                                    <input id="list{{$key}}" type="radio" name="task_id" value="{{$task->id}}"
+                                           class="form-check-input listTask">
                                     <label for="list{{$key}}" style="cursor: pointer">
                                         {{$task->task_name}}
                                     </label>
@@ -58,11 +60,11 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                       <div class="col-md-12 text-end">
-                           <button type="submit" class="btn btn-primary">
-                               <span class="fa-solid fa-floppy-disk me-2 fs-4"></span><strong>Submit</strong>
-                           </button>
-                       </div>
+                        <div class="col-md-12 text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="fa-solid fa-floppy-disk me-2 fs-4"></span><strong>Submit</strong>
+                            </button>
+                        </div>
                     </div>
                 </form>
 
@@ -72,35 +74,35 @@
 @endsection
 @section("script")
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('.listTask').click(function(val){
-                let option=(data)=>{
+            $('.listTask').click(function (val) {
+                let option = (data) => {
                     return $('<option>').attr({
-                        value:data.id,
+                        value: data.id,
                     }).append(data.stage_name)
                 }
-                const form= new FormData();
-                form.append('task_id',val.target.value);
-                form.append('ip_type_id',"{{$ip_alert->ip_type->id}}")
+                const form = new FormData();
+                form.append('task_id', val.target.value);
+                form.append('ip_type_id', "{{$ip_alert->ip_type->id}}")
                 $.ajax({
-                    method:'POST',
-                    data:form,
-                    url:"{{route('iptbm.staff.ip-alert.task.get_stages')}}",
-                    dataType:'json',
+                    method: 'POST',
+                    data: form,
+                    url: "{{route('iptbm.staff.ip-alert.task.get_stages')}}",
+                    dataType: 'json',
                     contentType: false,
                     cache: false,
                     processData: false,
-                    success: function(data){
+                    success: function (data) {
                         console.log(data);
 
                         $('#selStage').empty().append($('<option disabled>').text("- - Select - -").attr({
-                            disable:true,
-                            selected:true
+                            disable: true,
+                            selected: true
                         }))
                         data.stages.forEach(function (val) {
                             $('#selStage').append(option(val))
@@ -109,7 +111,6 @@
                     }
                 })
             })
-
 
 
         })

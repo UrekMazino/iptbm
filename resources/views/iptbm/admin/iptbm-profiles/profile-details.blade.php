@@ -31,17 +31,18 @@
 
 
         <livewire:iptbm.admin.iptbm.profiles :profile="$profile"/>
-        <livewire:iptbm.admin.iptbm.navigation :profile_id="$profile->id"  :current="Route::currentRouteName()"/>
-            <div class="w-full relative">
-                <div class="inline-flex items-center justify-center w-full">
-                    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700">
-                    <div class="absolute text-2xl font-medium text-gray-700 dark:text-gray-200 px-4 -translate-x-1/2  left-1/2 bg-transparent">
-                        Profile Details
-                    </div>
-                    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700">
+        <livewire:iptbm.admin.iptbm.navigation :profile_id="$profile->id" :current="Route::currentRouteName()"/>
+        <div class="w-full relative">
+            <div class="inline-flex items-center justify-center w-full">
+                <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700">
+                <div
+                    class="absolute text-2xl font-medium text-gray-700 dark:text-gray-200 px-4 -translate-x-1/2  left-1/2 bg-transparent">
+                    Profile Details
                 </div>
+                <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700">
             </div>
-            @section('sub-content')
-            @show
+        </div>
+        @section('sub-content')
+        @show
     </div>
 @endsection

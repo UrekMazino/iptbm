@@ -13,7 +13,7 @@ class ProfileDetail extends Component
 
     public function mount($profile): void
     {
-        $this->profile=$profile;
+        $this->profile = $profile;
     }
 
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application

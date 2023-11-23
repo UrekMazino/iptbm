@@ -12,7 +12,7 @@ class DeleteIpTech extends Component
     public function mount($ipAlert)
     {
 
-        $this->ipAlert=$ipAlert;
+        $this->ipAlert = $ipAlert;
     }
 
     public function deleteIp()
@@ -20,6 +20,7 @@ class DeleteIpTech extends Component
         $this->ipAlert->delete();
         $this->emit('reloadPage');
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.ip-management.delete-ip-tech');

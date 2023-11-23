@@ -14,8 +14,9 @@ class IptbmProfiles extends Component
 
     public function mount()
     {
-        $this->iptbmProfiles=IptbmProfile::where('region_id',Auth::user()->profile->agency->region->id)->get();
+        $this->iptbmProfiles = IptbmProfile::where('region_id', Auth::user()->profile->agency->region->id)->get();
     }
+
     public function render()
     {
         return view('livewire.iptbm.dashboard.iptbm-profiles');

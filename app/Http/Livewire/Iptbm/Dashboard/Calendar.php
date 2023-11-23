@@ -3,20 +3,18 @@
 namespace App\Http\Livewire\Iptbm\Dashboard;
 
 use App\Models\iptbm\IptbmIpAlertTask;
-use App\Models\iptbm\IptbmProfile;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Calendar extends Component
 {
     public $task;
+
     public function render()
     {
-       $this->task = IptbmIpAlertTask::with('stage','ip_alert.technology.iptbmprofiles')->whereHas('ip_alert.technology',function ($query){
-           $query->where('id',Auth::user()->profile->id);
-       })->get()->toArray();
-
+        $this->task = IptbmIpAlertTask::with('stage', 'ip_alert.technology.iptbmprofiles')->whereHas('ip_alert.technology', function ($query) {
+            $query->where('id', Auth::user()->profile->id);
+        })->get()->toArray();
 
 
         foreach ($this->task as &$task) {
@@ -25,7 +23,7 @@ class Calendar extends Component
 
 
         return view('livewire.iptbm.dashboard.calendar')->with([
-            'events'=>$this->task
+            'events' => $this->task
         ]);
     }
 }

@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmPrecomMode extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'commercialization_mode'
     ];
 
     function precom()
     {
-        return $this->belongsTo(IptbmCommercializationPrecom::class,'iptbm_commercialization_precoms_id','id');
+        return $this->belongsTo(IptbmCommercializationPrecom::class, 'iptbm_commercialization_precoms_id', 'id');
     }
 
 }

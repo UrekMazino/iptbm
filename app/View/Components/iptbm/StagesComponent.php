@@ -16,11 +16,11 @@ class StagesComponent extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($ipAlertId,$taskGroupName)
+    public function __construct($ipAlertId, $taskGroupName)
     {
 
-        $this->ipAlertId=$ipAlertId;
-        $this->taskGroupName=$taskGroupName;
+        $this->ipAlertId = $ipAlertId;
+        $this->taskGroupName = $taskGroupName;
     }
 
     /**
@@ -28,9 +28,9 @@ class StagesComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        $tasks=IptbmIpAlertTask::with("stage","task_deadline")
-            ->where('ip_alert_id',$this->ipAlertId)
-            ->where('task_group_name',$this->taskGroupName)->get();
-        return view('components.iptbm.stages-component',compact('tasks'));
+        $tasks = IptbmIpAlertTask::with("stage", "task_deadline")
+            ->where('ip_alert_id', $this->ipAlertId)
+            ->where('task_group_name', $this->taskGroupName)->get();
+        return view('components.iptbm.stages-component', compact('tasks'));
     }
 }

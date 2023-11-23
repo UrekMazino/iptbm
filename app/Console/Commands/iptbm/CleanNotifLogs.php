@@ -3,9 +3,6 @@
 namespace App\Console\Commands\iptbm;
 
 
-
-use App\Mail\UnfinishedTask;
-use App\Models\DeadlineEndTask;
 use App\Models\IptbmSendNotification;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

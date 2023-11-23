@@ -11,17 +11,18 @@ class IptbmPatentAgent extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'name',
         'address'
     ];
+
     function ip_alert(): BelongsTo
     {
-        return $this->belongsTo(IptbmIpAlert::class,'ip_alert_id','id');
+        return $this->belongsTo(IptbmIpAlert::class, 'ip_alert_id', 'id');
     }
 
     function agent_contact(): HasMany
     {
-        return $this->hasMany(IptbmPatentAgentContact::class,'patent_agent_id','id');
+        return $this->hasMany(IptbmPatentAgentContact::class, 'patent_agent_id', 'id');
     }
 }

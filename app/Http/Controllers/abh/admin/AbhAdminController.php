@@ -15,6 +15,7 @@ class AbhAdminController extends Controller
     {
 
     }
+
     public function index()
     {
         return view('admin.abh.dashboard');

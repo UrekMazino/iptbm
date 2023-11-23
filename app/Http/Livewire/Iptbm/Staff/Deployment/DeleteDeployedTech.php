@@ -18,6 +18,7 @@ class DeleteDeployedTech extends Component
     {
         $this->technology = $technology;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.deployment.delete-deployed-tech');

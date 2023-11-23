@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmPrecomTechVideo extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'commercialization_precoms_id',
         'thumbnail',
         'description',
@@ -18,7 +19,7 @@ class IptbmPrecomTechVideo extends Model
 
     public function precom()
     {
-        return $this->belongsTo(IptbmCommercializationPrecom::class,'commercialization_precoms_id','id');
+        return $this->belongsTo(IptbmCommercializationPrecom::class, 'commercialization_precoms_id', 'id');
     }
 
 }

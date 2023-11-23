@@ -9,7 +9,7 @@ class IptbmIpTaskPersonel extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'ip_alert_task_id',
         'name',
         'email',

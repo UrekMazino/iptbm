@@ -7,7 +7,6 @@ use App\Models\iptbm\IptbmTechnologyProfile;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
 
 class TechnologyReportController extends Controller
 {
@@ -18,8 +17,8 @@ class TechnologyReportController extends Controller
 
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $technologies=IptbmTechnologyProfile::all();
-        return view('admin.iptbm.technologies.index',compact('technologies'));
+        $technologies = IptbmTechnologyProfile::all();
+        return view('admin.iptbm.technologies.index', compact('technologies'));
     }
 
     public function view_tech(IptbmTechnologyProfile $technology)

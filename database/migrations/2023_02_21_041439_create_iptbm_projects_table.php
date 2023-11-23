@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,9 +18,9 @@ return new class extends Migration
             $table->date('implementation_period')->comment('together with ip_projects_title table')->nullable();
             $table->softDeletes();
             //  $table->date('update_implementation_period')->comment('together with ip_projects_title table')->nullable();
-        //    $table->double('total_budget')->comment('together with ip_projects_title table')->nullable();
-         //   $table->double('year_1_budget')->comment('together with ip_projects_title table')->nullable();
-         //   $table->double('year_2_budget')->comment('together with ip_projects_title table')->nullable();
+            //    $table->double('total_budget')->comment('together with ip_projects_title table')->nullable();
+            //   $table->double('year_1_budget')->comment('together with ip_projects_title table')->nullable();
+            //   $table->double('year_2_budget')->comment('together with ip_projects_title table')->nullable();
             $table->timestamps();
         });
     }

@@ -36,14 +36,14 @@ class DeleteWarning extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($modId=null,$route=null,$itemId=null,$title=null,$itemName=null,$hiddenName=null)
+    public function __construct($modId = null, $route = null, $itemId = null, $title = null, $itemName = null, $hiddenName = null)
     {
-        $this->modId=$modId;
-        $this->route=$route;
-        $this->itemId=$itemId;
-        $this->title=$title;
-        $this->itemName=$itemName;
-        $this->hiddenName=$hiddenName;
+        $this->modId = $modId;
+        $this->route = $route;
+        $this->itemId = $itemId;
+        $this->title = $title;
+        $this->itemName = $itemName;
+        $this->hiddenName = $hiddenName;
     }
 
     /**
@@ -51,13 +51,13 @@ class DeleteWarning extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.iptbm.delete-warning',[
-            'modId'=>$this->modId,
-            'route'=>$this->route,
-            'itemId'=>$this->itemId,
-            'title'=>$this->title,
-            'itemName'=>$this->itemName,
-            'hiddenName'=>$this->hiddenName
+        return view('components.iptbm.delete-warning', [
+            'modId' => $this->modId,
+            'route' => $this->route,
+            'itemId' => $this->itemId,
+            'title' => $this->title,
+            'itemName' => $this->itemName,
+            'hiddenName' => $this->hiddenName
         ]);
     }
 }

@@ -9,17 +9,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class IptbmIndustry extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'name'
     ];
 
     public function commodities(): HasMany
     {
-        return $this->hasMany(IptbmCommodity::class,'iptbm_industry_id','id');
+        return $this->hasMany(IptbmCommodity::class, 'iptbm_industry_id', 'id');
     }
 
     public function techcategory(): HasMany
     {
-        return $this->hasMany(IptbmTechCategory::class,'iptbm_industry_id','id');
+        return $this->hasMany(IptbmTechCategory::class, 'iptbm_industry_id', 'id');
     }
 }

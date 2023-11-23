@@ -3,7 +3,6 @@
 namespace App\Notifications\iptbm\admin;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -18,12 +17,13 @@ class AccountCreationNotif extends Notification
     public $password;
     public $fullName;
     public $url;
-    public function __construct($fullname,$username,$password)
+
+    public function __construct($fullname, $username, $password)
     {
-        $this->username=$username;
-        $this->password=$password;
-        $this->fullName=$fullname;
-        $this->url=config('app.url');
+        $this->username = $username;
+        $this->password = $password;
+        $this->fullName = $fullname;
+        $this->url = config('app.url');
     }
 
     /**
@@ -43,10 +43,10 @@ class AccountCreationNotif extends Notification
     {
         return (new MailMessage)
             ->markdown('iptbm.mail.account-creation',
-                [ 'username'=>$this->username,
-                    'password'=>$this->password,
-                    'url'=>$this->url,
-                    'fullName'=>$this->fullName
+                ['username' => $this->username,
+                    'password' => $this->password,
+                    'url' => $this->url,
+                    'fullName' => $this->fullName
                 ]);
     }
 

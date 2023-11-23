@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Iptbm\Staff\Technology;
 
-use App\Models\iptbm\IptbmCommercializationPrecom;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class TechTransPathway extends Component
@@ -12,7 +10,7 @@ class TechTransPathway extends Component
 
     public function mount($technology)
     {
-        $this->technology=$technology;
+        $this->technology = $technology;
 
     }
 

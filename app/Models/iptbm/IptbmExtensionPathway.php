@@ -10,7 +10,7 @@ class IptbmExtensionPathway extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'technology_id',
         'adoptor_name',
         'address',
@@ -18,10 +18,11 @@ class IptbmExtensionPathway extends Model
 
     function technology()
     {
-        return $this->belongsTo(IptbmTechnologyProfile::class,'technology_id','id');
+        return $this->belongsTo(IptbmTechnologyProfile::class, 'technology_id', 'id');
     }
+
     function contacts(): HasMany
     {
-        return $this->hasMany(IptbmExtensionAdoptorContact::class,'extension_adoptor_id','id');
+        return $this->hasMany(IptbmExtensionAdoptorContact::class, 'extension_adoptor_id', 'id');
     }
 }

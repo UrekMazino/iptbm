@@ -13,6 +13,7 @@ class DeletePersonel extends Component
         $this->personel->delete();
         $this->emit('reloadPage');
     }
+
     public function mount($personel)
     {
         $this->personel = $personel;

@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmTechStatus extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'iptbm_technology_profile_id',
         'status'
     ];
 
     public function technology_profile(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(IptbmTechnologyProfile::class,"iptbm_technology_profile_id","id");
+        return $this->belongsTo(IptbmTechnologyProfile::class, "iptbm_technology_profile_id", "id");
     }
 }

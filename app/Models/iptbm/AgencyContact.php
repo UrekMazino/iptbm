@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AgencyContact extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'contact_type',
         'contact',
     ];

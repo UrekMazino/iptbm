@@ -9,11 +9,13 @@ class IptbmProfileIcon extends Component
 {
     public $profile;
     public $user;
+
     public function mount($profile)
     {
-        $this->profile=$profile;
-        $this->user=User::all();
+        $this->profile = $profile;
+        $this->user = User::all();
     }
+
     public function render()
     {
         return view('livewire.iptbm.dashboard.iptbm-profile-icon');

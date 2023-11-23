@@ -10,10 +10,11 @@ class PrecomCoun extends Component
     public $precom;
     public $count;
     public $technology;
+
     public function mount($technologyId)
     {
 
-        $this->technology=$technologyId;
+        $this->technology = $technologyId;
         /*
          * $this->fill([
             'precom' => $precom,
@@ -21,9 +22,10 @@ class PrecomCoun extends Component
         ]);
          */
     }
+
     public function render()
     {
-        $this->precom=IptbmCommercializationPrecom::latest()->limit(5)->where('technology_id',$this->technology)->get();
+        $this->precom = IptbmCommercializationPrecom::latest()->limit(5)->where('technology_id', $this->technology)->get();
 
         return view('livewire.iptbm.staff.technology.precom-coun')->with([
             'technology' => $this->technology

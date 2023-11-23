@@ -22,9 +22,9 @@ class IptbmProfile extends Component
      */
     public function render(): View|Closure|string
     {
-        $regions=IptbmRegion::select('id','name')->get();
-        return view('components.iptbm.admin.iptbm-profile',[
-            'regions'=>$regions
+        $regions = IptbmRegion::select('id', 'name')->get();
+        return view('components.iptbm.admin.iptbm-profile', [
+            'regions' => $regions
         ]);
     }
 }

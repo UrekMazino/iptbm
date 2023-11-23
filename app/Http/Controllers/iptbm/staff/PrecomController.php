@@ -27,23 +27,19 @@ class PrecomController extends Controller
     {
         $profile = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
 
-        if(!$profile)
-        {
+        if (!$profile) {
             return redirect()->route("iptbm.staff.addProfile");
         }
-        $technologies=IptbmTechnologyProfile::where("iptbm_profile_id", Auth::user()->profile->id)->get();
-        $precoms=IptbmCommercializationPrecom::with('technology','technology.iptbmprofiles',"modes")->get();
-        foreach ($precoms as $val)
-
-        {
-            if($val->technology)
-            {
-                $val->technology->tech_owner=IptbmAgency::find($val->technology->iptbmprofiles->agency_id);
+        $technologies = IptbmTechnologyProfile::where("iptbm_profile_id", Auth::user()->profile->id)->get();
+        $precoms = IptbmCommercializationPrecom::with('technology', 'technology.iptbmprofiles', "modes")->get();
+        foreach ($precoms as $val) {
+            if ($val->technology) {
+                $val->technology->tech_owner = IptbmAgency::find($val->technology->iptbmprofiles->agency_id);
             }
 
         }
 
-        return view('iptbm.staff.precom.index',[
+        return view('iptbm.staff.precom.index', [
             'technologies' => $technologies,
             'pre_coms' => $precoms
         ]);
@@ -55,36 +51,36 @@ class PrecomController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'techno_id'=>[
+            'techno_id' => [
                 'required',
-                Rule::unique(IptbmCommercializationPrecom::class,'technology_id'),
+                Rule::unique(IptbmCommercializationPrecom::class, 'technology_id'),
                 new ValueExistsInTable([
-                    'iptbm_extension_pathways'=>'technology_id',
-                   // 'iptbm_deployment_pathways' => 'technology_id',
-                  //  'iptbm_commercialization_adopters'=>'technology_id',
+                    'iptbm_extension_pathways' => 'technology_id',
+                    // 'iptbm_deployment_pathways' => 'technology_id',
+                    //  'iptbm_commercialization_adopters'=>'technology_id',
                     //'iptbm_ip_alerts'=>'technology_id',
-                ],'Technology',"Technology is currently under in different pathways.")
+                ], 'Technology', "Technology is currently under in different pathways.")
             ],
-        ],[
-            'techno_id.unique'=>'Technology is already present in the list table.',
+        ], [
+            'techno_id.unique' => 'Technology is already present in the list table.',
         ]);
 
-        $technology=IptbmTechnologyProfile::find($request->techno_id);
-        if($request->pre_com_tech_name){
+        $technology = IptbmTechnologyProfile::find($request->techno_id);
+        if ($request->pre_com_tech_name) {
             $request->validate([
-                'pre_com_tech_name'=>[
+                'pre_com_tech_name' => [
                     'min:10',
-                    Rule::unique(IptbmCommercializationPrecom::class,"pre_com_tech_name")
+                    Rule::unique(IptbmCommercializationPrecom::class, "pre_com_tech_name")
                 ]
-            ],[
-                'pre_com_tech_name.min'=>'Technology Title must be minimum of 10 characters.',
-                'pre_com_tech_name.unique'=>'Technology Title already exist.'
+            ], [
+                'pre_com_tech_name.min' => 'Technology Title must be minimum of 10 characters.',
+                'pre_com_tech_name.unique' => 'Technology Title already exist.'
             ]);
 
             $technology->pre_commercialization()->save(new IptbmCommercializationPrecom([
-                'pre_com_tech_name'=>$request->pre_com_tech_name
+                'pre_com_tech_name' => $request->pre_com_tech_name
             ]));
-        }else{
+        } else {
             $technology->pre_commercialization()->save(new IptbmCommercializationPrecom([]));
         }
 
@@ -94,9 +90,9 @@ class PrecomController extends Controller
     public function delete_precom(Request $request): RedirectResponse
     {
         $request->validate([
-            'delPreCom'=>'required',
+            'delPreCom' => 'required',
         ]);
-        $precom=IptbmCommercializationPrecom::with('opinion_report')->find($request->delPreCom);
+        $precom = IptbmCommercializationPrecom::with('opinion_report')->find($request->delPreCom);
         if (File::exists(public_path($precom->market_study_summary))) {
             File::delete(public_path($precom->market_study_summary));
         }
@@ -122,18 +118,15 @@ class PrecomController extends Controller
             File::delete(public_path($precom->business_model));
         }
 
-        foreach ($precom->opinion_report as $file)
-        {
+        foreach ($precom->opinion_report as $file) {
             if (File::exists(public_path($file->pdf_file))) {
                 File::delete(public_path($file->pdf_file));
             }
         }
 
         IptbmCommercializationPrecom::find($request->delPreCom)->delete();
-        return redirect()->back()->with('delete-precom','Data deleted successfully');
+        return redirect()->back()->with('delete-precom', 'Data deleted successfully');
     }
-
-
 
 
     /**
@@ -143,7 +136,6 @@ class PrecomController extends Controller
     {
         //
     }
-
 
 
     /**

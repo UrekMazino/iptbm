@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,7 +18,7 @@ return new class extends Migration
             $table->foreignId('technology_id')->constrained('iptbm_technology_profiles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('application_number')->nullable();
             $table->date('date_of_filing')->nullable();
-        //    $table->foreignId('protection_status')->nullable()->constrained('iptbm_tech_protection_statuses')->nullOnDelete();
+            //    $table->foreignId('protection_status')->nullable()->constrained('iptbm_tech_protection_statuses')->nullOnDelete();
             $table->text('abstract')->nullable();
             $table->string('agent_name')->nullable();
             $table->string('address')->nullable();

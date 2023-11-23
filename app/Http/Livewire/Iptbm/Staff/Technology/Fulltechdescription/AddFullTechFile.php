@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 class AddFullTechFile extends Component
 {
     use WithFileUploads;
+
     public $title;
     public $model;
     public $data;
@@ -18,43 +19,45 @@ class AddFullTechFile extends Component
     public function rules()
     {
         return [
-            'model' =>[
+            'model' => [
                 'required',
                 'mimes:pdf'
             ]
         ];
     }
+
     public function saveForm($data)
     {
 
         $this->validate();
-        if($this->fullTechDescription[$data])
-        {
-            if(Storage::exists($this->fullTechDescription[$data]))
-            {
+        if ($this->fullTechDescription[$data]) {
+            if (Storage::exists($this->fullTechDescription[$data])) {
                 Storage::delete($this->fullTechDescription[$data]);
             }
         }
 
 
-        $path=$this->model->store('public/tech-attachments');
-        $this->fullTechDescription[$data]=$path;
+        $path = $this->model->store('public/tech-attachments');
+        $this->fullTechDescription[$data] = $path;
         $this->fullTechDescription->save();
         $this->emit('reloadPage');
 
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
     }
-    public function mount($title,$data,$fullTechDescription,$univKey)
+
+    public function mount($title, $data, $fullTechDescription, $univKey)
     {
-        $this->title=$title;
-        $this->fullTechDescription=$fullTechDescription;
-        $this->data=$data;
-        $this->univKey=$univKey;
+        $this->title = $title;
+        $this->fullTechDescription = $fullTechDescription;
+        $this->data = $data;
+        $this->univKey = $univKey;
 
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.fulltechdescription.add-full-tech-file');

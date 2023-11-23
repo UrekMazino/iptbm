@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Iptbm\Staff\Extension;
 
 use App\Models\iptbm\IptbmExtensionAdoptorContact;
-use App\Models\iptbm\IptbmExtensionPathway;
-use App\Models\iptbm\IptbmTechnologyProfile;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -16,31 +14,37 @@ class ExtensionTechDetails extends Component
     public $adopterName;
     public $adopterAddress;
 
-    public $showAdopterNameForm=false;
-    public $showAdopterAddressForm=false;
+    public $showAdopterNameForm = false;
+    public $showAdopterAddressForm = false;
 
 
-    public $showMobileForm=false;
-    public $showPhoneForm=false;
-    public $showFaxForm=false;
-    public $showEmailForm=false;
+    public $showMobileForm = false;
+    public $showPhoneForm = false;
+    public $showFaxForm = false;
+    public $showEmailForm = false;
 
 
     public $mobileModel;
     public $phoneModel;
     public $faxModel;
     public $emailModel;
+    public $listeners = ['loadData'];
+    protected $validationAttributes = [
+        'mobileModel' => 'Mobile number'
+    ];
+
     public function toggleShowMobileForm()
     {
-        $this->showMobileForm=!$this->showMobileForm;
+        $this->showMobileForm = !$this->showMobileForm;
         $this->reset('mobileModel');
         $this->resetValidation([
             'mobileModel'
         ]);
     }
+
     public function toggleShowPhoneForm()
     {
-        $this->showPhoneForm=!$this->showPhoneForm;
+        $this->showPhoneForm = !$this->showPhoneForm;
         $this->reset('phoneModel');
         $this->resetValidation([
             'phoneModel'
@@ -49,7 +53,7 @@ class ExtensionTechDetails extends Component
 
     public function toggleShowFaxForm()
     {
-        $this->showFaxForm=!$this->showFaxForm;
+        $this->showFaxForm = !$this->showFaxForm;
         $this->reset('faxModel');
         $this->resetValidation([
             'faxModel'
@@ -58,7 +62,7 @@ class ExtensionTechDetails extends Component
 
     public function toggleShowEmailForm()
     {
-        $this->showEmailForm=!$this->showEmailForm;
+        $this->showEmailForm = !$this->showEmailForm;
         $this->reset('emailModel');
         $this->resetValidation([
             'emailModel'
@@ -70,7 +74,7 @@ class ExtensionTechDetails extends Component
         $this->validateOnly('mobileModel');
         $this->extension->contacts()->save(new IptbmExtensionAdoptorContact([
             'type' => 'mobile',
-            'contact'=>$this->mobileModel
+            'contact' => $this->mobileModel
         ]));
         $this->extension->save();
         $this->reset('mobileModel');
@@ -80,12 +84,13 @@ class ExtensionTechDetails extends Component
 
         $this->emit('reloadPage');
     }
+
     public function savePhone()
     {
         $this->validateOnly('phoneModel');
         $this->extension->contacts()->save(new IptbmExtensionAdoptorContact([
             'type' => 'phone',
-            'contact'=>$this->phoneModel
+            'contact' => $this->phoneModel
         ]));
         $this->extension->save();
         $this->reset('phoneModel');
@@ -101,7 +106,7 @@ class ExtensionTechDetails extends Component
         $this->validateOnly('faxModel');
         $this->extension->contacts()->save(new IptbmExtensionAdoptorContact([
             'type' => 'fax',
-            'contact'=>$this->faxModel
+            'contact' => $this->faxModel
         ]));
         $this->extension->save();
         $this->reset('faxModel');
@@ -111,12 +116,13 @@ class ExtensionTechDetails extends Component
 
         $this->emit('reloadPage');
     }
+
     public function saveEmail()
     {
         $this->validateOnly('emailModel');
         $this->extension->contacts()->save(new IptbmExtensionAdoptorContact([
             'type' => 'email',
-            'contact'=>$this->emailModel
+            'contact' => $this->emailModel
         ]));
         $this->extension->save();
         $this->reset('emailModel');
@@ -127,83 +133,75 @@ class ExtensionTechDetails extends Component
         $this->emit('reloadPage');
     }
 
-
-
     public function rules()
     {
-        return[
-            'adopterName'=>[
+        return [
+            'adopterName' => [
                 'required',
             ],
-            'adopterAddress'=>[
+            'adopterAddress' => [
                 'required',
             ],
-            'mobileModel'=>[
+            'mobileModel' => [
                 'required',
                 'numeric',
                 'digits:11',
-                Rule::unique('iptbm_extension_adoptor_contacts','contact')
-                    ->where('extension_adoptor_id',$this->extension->id)
+                Rule::unique('iptbm_extension_adoptor_contacts', 'contact')
+                    ->where('extension_adoptor_id', $this->extension->id)
             ],
-            'phoneModel'=>[
+            'phoneModel' => [
                 'required',
                 'numeric',
                 'min_digits:6',
                 'max_digits:8',
-                Rule::unique('iptbm_extension_adoptor_contacts','contact')
-                    ->where('extension_adoptor_id',$this->extension->id)
+                Rule::unique('iptbm_extension_adoptor_contacts', 'contact')
+                    ->where('extension_adoptor_id', $this->extension->id)
             ],
-            'faxModel'=>[
+            'faxModel' => [
                 'required',
                 'numeric',
                 'min_digits:6',
                 'max_digits:8',
-                Rule::unique('iptbm_extension_adoptor_contacts','contact')
-                    ->where('extension_adoptor_id',$this->extension->id)
+                Rule::unique('iptbm_extension_adoptor_contacts', 'contact')
+                    ->where('extension_adoptor_id', $this->extension->id)
             ],
-            'emailModel'=>[
+            'emailModel' => [
                 'required',
                 'email',
-                Rule::unique('iptbm_extension_adoptor_contacts','contact')
-                    ->where('extension_adoptor_id',$this->extension->id)
+                Rule::unique('iptbm_extension_adoptor_contacts', 'contact')
+                    ->where('extension_adoptor_id', $this->extension->id)
             ],
         ];
     }
-
-protected $validationAttributes =[
-    'mobileModel'=>'Mobile number'
-];
 
     public function updated($props)
     {
         $this->validateOnly($props);
     }
 
-    public $listeners=['loadData'];
-
     public function loadData()
     {
         $this->extension->refresh();
-        $this->extensionContact=$this->extension->contacts;
+        $this->extensionContact = $this->extension->contacts;
     }
 
 
     public function toggleAdopterNameForm()
     {
-        $this->showAdopterNameForm=!$this->showAdopterNameForm;
+        $this->showAdopterNameForm = !$this->showAdopterNameForm;
 
         $this->resetValidation('adopterName');
         $this->reset('adopterName');
-        $this->adopterName=$this->extension->adoptor_name;
+        $this->adopterName = $this->extension->adoptor_name;
     }
 
     public function toggleAdopterAddressForm()
     {
-        $this->showAdopterAddressForm=!$this->showAdopterAddressForm;
+        $this->showAdopterAddressForm = !$this->showAdopterAddressForm;
 
         $this->resetValidation('adopterAddress');
         $this->reset('adopterAddress');
-        $this->adopterAddress=$this->extension->address;
+        $this->adopterAddress = $this->extension->address;
 
     }
 
@@ -211,7 +209,7 @@ protected $validationAttributes =[
     public function saveAdopterName()
     {
         $this->validateOnly('adopterName');
-        $this->extension->adoptor_name=$this->adopterName;
+        $this->extension->adoptor_name = $this->adopterName;
         $this->extension->save();
         session()->flash('adopterName', 'Technology Adopter updated successfully');
     }
@@ -220,7 +218,7 @@ protected $validationAttributes =[
     public function saveAdopterAddress()
     {
         $this->validateOnly('adopterAddress');
-        $this->extension->address=$this->adopterAddress;
+        $this->extension->address = $this->adopterAddress;
         $this->extension->save();
         session()->flash('adopterAddress', 'Technology Adopter updated successfully');
 
@@ -228,10 +226,10 @@ protected $validationAttributes =[
 
     public function mount($extension)
     {
-        $this->extension=$extension;
-        $this->adopterName=$extension->adoptor_name;
-        $this->adopterAddress=$extension->address;
-        $this->extensionContact=$extension->contacts;
+        $this->extension = $extension;
+        $this->adopterName = $extension->adoptor_name;
+        $this->adopterAddress = $extension->address;
+        $this->extensionContact = $extension->contacts;
 
     }
 

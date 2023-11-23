@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmDeploymentAdoptorContact extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'deployment_adopters_id',
         'type',
         'contact'
@@ -16,7 +17,7 @@ class IptbmDeploymentAdoptorContact extends Model
 
     public function deployment_adopter()
     {
-        return $this->belongsTo(IptbmDeploymentPathway::class,'deployment_adopters_id','id');
+        return $this->belongsTo(IptbmDeploymentPathway::class, 'deployment_adopters_id', 'id');
     }
 
 }

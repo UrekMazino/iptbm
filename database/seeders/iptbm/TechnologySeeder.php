@@ -3,7 +3,6 @@
 namespace Database\Seeders\iptbm;
 
 use App\Models\iptbm\IptbmTechnologyProfile;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TechnologySeeder extends Seeder
@@ -65,8 +64,7 @@ Cassava Grates', 'year_developed' => '2021', 'tech_desc' => 'Yuca puffs are comp
             array('id' => '40', 'iptbm_profile_id' => '22', 'title' => 'Pili Nut Cracker ', 'year_developed' => '2022', 'tech_desc' => 'Pili Nut Cracker With Multiple Adjustable Blade Assembly', 'tech_photo' => 'public/technology_profiles/KpmqhsYmYcFGEeg3FNAaaOOwBEUVhSLmA4guvwFa.png', 'tech_owner' => '1', 'tech_research_proj' => NULL, 'tech_agency_res_donor' => NULL, 'tech_res_amount' => NULL, 'tech_trans_plan' => NULL, 'created_at' => '2023-08-30 06:15:37', 'updated_at' => '2023-08-30 06:15:37')
         );
 
-        foreach ($iptbm_technology_profiles as $tech)
-        {
+        foreach ($iptbm_technology_profiles as $tech) {
             IptbmTechnologyProfile::create($tech);
         }
 

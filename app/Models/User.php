@@ -48,12 +48,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
     public function profile(): BelongsTo
     {
-        return $this->belongsTo(IptbmProfile::class,'profile_id','id');
+        return $this->belongsTo(IptbmProfile::class, 'profile_id', 'id');
     }
+
     public function abh_profile(): BelongsTo
     {
-        return $this->belongsTo(AbhProfile::class,'abh_profiles_id','id');
+        return $this->belongsTo(AbhProfile::class, 'abh_profiles_id', 'id');
     }
 }

@@ -12,16 +12,15 @@ class ApplicationCost extends Component
     public $descriptionModel;
     public $costModel;
 
-    public $rules=[
-        'descriptionModel'=>'required',
-        'costModel'=>'required|numeric|min_digits:1'
+    public $rules = [
+        'descriptionModel' => 'required',
+        'costModel' => 'required|numeric|min_digits:1'
     ];
 
     public function updated($props)
     {
         $this->validateOnly($props);
     }
-
 
 
     public function mount($ipalert)

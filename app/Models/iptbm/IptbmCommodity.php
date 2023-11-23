@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class IptbmCommodity extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'name'
     ];
 
     public function industry(): BelongsTo
     {
-        return $this->belongsTo(IptbmIndustry::class,'iptbm_industry_id','id');
+        return $this->belongsTo(IptbmIndustry::class, 'iptbm_industry_id', 'id');
     }
 }

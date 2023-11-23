@@ -12,9 +12,10 @@ class TechnologyControl extends Component
     {
         $this->technology->delete();
     }
+
     public function mount($technology)
     {
-        $this->technology=$technology;
+        $this->technology = $technology;
     }
 
     public function render()

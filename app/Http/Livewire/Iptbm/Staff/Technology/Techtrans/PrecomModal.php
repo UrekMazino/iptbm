@@ -19,31 +19,32 @@ class PrecomModal extends Component
     public $techId;
     public $technology;
     public $modalName;
+    protected $messages = [
+        'techId.unique' => 'Technology duplication found. Please provide a unique Technology name to prevent duplication.',
+    ];
+
     public function savePrecom()
     {
-        if(!$this->newTechName)
-        {
+        if (!$this->newTechName) {
             $this->validate([
-                'techId'=>'unique:iptbm_commercialization_precoms,technology_id'
+                'techId' => 'unique:iptbm_commercialization_precoms,technology_id'
             ]);
         }
         $this->validate();
 
-        $precom=new IptbmCommercializationPrecom([
-            'technology_id'=>$this->technology->id,
-            'pre_com_tech_name'=>$this->newTechName,
-            'starting_capital'=>$this->startingCapital,
-            'return_of_investment'=>$this->returnOfInvestment,
-            'breakeven'=>$this->breakEven,
-            'estimated_acquisition_cost'=>$this->cost,
-            'income_gen_trans'=>$this->income
+        $precom = new IptbmCommercializationPrecom([
+            'technology_id' => $this->technology->id,
+            'pre_com_tech_name' => $this->newTechName,
+            'starting_capital' => $this->startingCapital,
+            'return_of_investment' => $this->returnOfInvestment,
+            'breakeven' => $this->breakEven,
+            'estimated_acquisition_cost' => $this->cost,
+            'income_gen_trans' => $this->income
         ]);
         $this->technology->pre_commercialization()->save($precom);
-        return redirect()->route('iptbm.staff.precom.details',['id'=>$precom->id]);
+        return redirect()->route('iptbm.staff.precom.details', ['id' => $precom->id]);
     }
-    protected $messages = [
-        'techId.unique'=> 'Technology duplication found. Please provide a unique Technology name to prevent duplication.',
-    ];
+
     public function resetForm()
     {
         $this->resetValidation();
@@ -59,56 +60,59 @@ class PrecomModal extends Component
 
     public function rules()
     {
-        return[
-            'newTechName'=>[
+        return [
+            'newTechName' => [
                 'nullable',
-                Rule::unique(IptbmCommercializationPrecom::class,'pre_com_tech_name')
+                Rule::unique(IptbmCommercializationPrecom::class, 'pre_com_tech_name')
             ],
-            'startingCapital'=>[
-                'nullable',
-                'numeric',
-                'min:1'
-            ],
-            'cost'=>[
+            'startingCapital' => [
                 'nullable',
                 'numeric',
                 'min:1'
             ],
-            'income'=>[
+            'cost' => [
                 'nullable',
                 'numeric',
                 'min:1'
             ],
-            'returnOfInvestment'=>[
+            'income' => [
+                'nullable',
+                'numeric',
+                'min:1'
+            ],
+            'returnOfInvestment' => [
                 'nullable',
                 'integer'
             ],
-            'breakEven'=>[
+            'breakEven' => [
                 'nullable',
                 'numeric',
             ],
-            'techId'=>[
+            'techId' => [
                 new ValueExistsInTable([
-                    'iptbm_extension_pathways'=>'technology_id',
-                     'iptbm_deployment_pathways' => 'technology_id',
+                    'iptbm_extension_pathways' => 'technology_id',
+                    'iptbm_deployment_pathways' => 'technology_id',
                     //  'iptbm_commercialization_adopters'=>'technology_id',
                     //'iptbm_ip_alerts'=>'technology_id',
-                ],'Technology',"Unable to add technologies that are already in deployment and extension pathways.")
+                ], 'Technology', "Unable to add technologies that are already in deployment and extension pathways.")
             ]
 
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
     }
-    public function mount($modalName,$technology)
+
+    public function mount($modalName, $technology)
     {
-        $this->modalName=$modalName;
-        $this->technology=$technology;
-        $this->techId=$technology->id;
+        $this->modalName = $modalName;
+        $this->technology = $technology;
+        $this->techId = $technology->id;
 
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.techtrans.precom-modal');

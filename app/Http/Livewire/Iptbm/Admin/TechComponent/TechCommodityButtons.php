@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Iptbm\Admin\TechComponent;
 
-use App\Models\iptbm\IptbmCommodity;
 use App\Models\iptbm\IptbmTechCommodity;
 use Livewire\Component;
 
@@ -15,15 +14,16 @@ class TechCommodityButtons extends Component
     public function saveEditForm()
     {
         $this->validate();
-        $this->commodity->name=$this->commodityModel;
+        $this->commodity->name = $this->commodityModel;
         $this->commodity->save();
         $this->emit('reloadPage');
     }
+
     public function saveForm()
     {
         $this->validate();
         $this->commodity->load('industry');
-        $industry=$this->commodity->industry;
+        $industry = $this->commodity->industry;
         $industry->commodity()->save(new IptbmTechCommodity([
 
         ]));
@@ -32,8 +32,8 @@ class TechCommodityButtons extends Component
 
     public function rules()
     {
-        return[
-            'commodityModel' =>'required|unique:iptbm_commodities,name'
+        return [
+            'commodityModel' => 'required|unique:iptbm_commodities,name'
         ];
     }
 
@@ -47,10 +47,12 @@ class TechCommodityButtons extends Component
         $this->commodity->delete();
         $this->emit('reloadPage');
     }
+
     public function mount($commodity)
     {
-        $this->commodity=$commodity;
+        $this->commodity = $commodity;
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.tech-component.tech-commodity-buttons');

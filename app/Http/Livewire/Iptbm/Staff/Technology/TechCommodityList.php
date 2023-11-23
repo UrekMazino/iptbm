@@ -11,7 +11,7 @@ class TechCommodityList extends Component
 
     public function deleteCommodity($id)
     {
-        $commodity=IptbmTechCommodity::find($id);
+        $commodity = IptbmTechCommodity::find($id);
         $commodity->delete();
         $this->emit('updateParentCommodity');
 
@@ -21,6 +21,7 @@ class TechCommodityList extends Component
     {
         $this->commodity = $commodity;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.tech-commodity-list');

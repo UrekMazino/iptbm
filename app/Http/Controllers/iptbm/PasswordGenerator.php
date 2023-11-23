@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\iptbm;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class PasswordGenerator extends Controller
 {
@@ -16,19 +15,21 @@ class PasswordGenerator extends Controller
 
     public function __construct($min, $max)
     {
-        $this->min=$min;
-        $this->max=$max;
-        $this->tempPassArray=[];
+        $this->min = $min;
+        $this->max = $max;
+        $this->tempPassArray = [];
     }
 
     public function withNumbers()
     {
 
     }
+
     public function withLetters()
     {
 
     }
+
     public function withSymbols()
     {
 

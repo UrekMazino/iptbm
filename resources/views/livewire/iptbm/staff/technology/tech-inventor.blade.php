@@ -1,21 +1,24 @@
 <x-card class="shadow-lg">
     <div class="text-gray-600 dark:text-gray-300 font-medium text-base flex justify-between">
         <div>
-            <span class="fa-solid fa-user-tie text-blue-900 dark:text-blue-300 rounded-full bg-blue-200 dark:bg-gray-900 p-1 px-2 text-sm"></span>
+            <span
+                class="fa-solid fa-user-tie text-blue-900 dark:text-blue-300 rounded-full bg-blue-200 dark:bg-gray-900 p-1 px-2 text-sm"></span>
             Technology Generator
         </div>
         <div>
-            <x-pop-modal  static="true" name="updateTechInventor" class="max-w-2xl" >
+            <x-pop-modal static="true" name="updateTechInventor" class="max-w-2xl">
                 <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                     Update Technology Inventor
                 </h3>
                 <form wire:submit.prevent="saveInventor">
                     <div class="mb-6">
                         <label for="search" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Inventor</label>
-                        <x-text-input class="w-full" wire:model.lazy="techInventor" list="inventorList" type="search" placeholder="type to search" />
+                        <x-text-input class="w-full" wire:model.lazy="techInventor" list="inventorList" type="search"
+                                      placeholder="type to search"/>
                         <datalist id="inventorList">
                             @foreach($inventors as $inventor)
-                                <option value="{{$inventor->id.") ".$inventor->name." ".(($inventor->middle_name)? $inventor->middle_name.".":" ")." ".$inventor->last_name." ".$inventor->suffixes }}">
+                                <option
+                                    value="{{$inventor->id.") ".$inventor->name." ".(($inventor->middle_name)? $inventor->middle_name.".":" ")." ".$inventor->last_name." ".$inventor->suffixes }}">
 
                                 </option>
                             @endforeach
@@ -55,14 +58,17 @@
                             </div>
                             <div class="relative max-w-sm ">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <x-text-input id="datedAff"  autocomplete="off" wire:model.lazy="dateAffiliated" type="text" class="pl-10 p-2.5" datepicker datepicker-format="MM-dd-yyyy" placeholder="select date" />
+                                <x-text-input id="datedAff" autocomplete="off" wire:model.lazy="dateAffiliated"
+                                              type="text" class="pl-10 p-2.5" datepicker datepicker-format="MM-dd-yyyy"
+                                              placeholder="select date"/>
                             </div>
                         </x-input-label>
-
 
 
                     </div>
@@ -75,9 +81,14 @@
                         </div>
                     @endif
                     <div class="mb-6">
-                        <a href="{{route("iptbm.staff.inventor")}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> <span class="fa-solid fa-plus-circle"></span>  Add new Technology Generator?</a>
+                        <a href="{{route("iptbm.staff.inventor")}}"
+                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline"> <span
+                                class="fa-solid fa-plus-circle"></span> Add new Technology Generator?</a>
                     </div>
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    <button type="submit"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Submit
+                    </button>
                 </form>
 
             </x-pop-modal>
@@ -94,10 +105,12 @@
             </div>
             <dl class="w-full text-gray-900 divide-y divide-gray-200 dark:text-gray-50 dark:divide-gray-600">
                 @foreach($technologyInventors as $generator)
-                    <div class="flex justify-between hover:bg-gray-500 dark:hover:bg-gray-800 hover:bg-opacity-25 px-4 transition duration-300">
+                    <div
+                        class="flex justify-between hover:bg-gray-500 dark:hover:bg-gray-800 hover:bg-opacity-25 px-4 transition duration-300">
                         <div class="flex flex-col py-2">
                             <dt class=" text-gray-500 md:text-lg dark:text-gray-300">
-                                <a href="{{route("iptbm.inventor.show.profile",['id'=>$generator->inventor->id])}}" class=" text-blue-500 dark:text-blue-400 hover:underline">
+                                <a href="{{route("iptbm.inventor.show.profile",['id'=>$generator->inventor->id])}}"
+                                   class=" text-blue-500 dark:text-blue-400 hover:underline">
                                     {{$generator->inventor->name." ".(($generator->inventor->middle_name)? $generator->inventor->middle_name.".":" ")." ".$generator->inventor->last_name." ".$generator->inventor->suffixes }}
                                 </a>
                             </dt>
@@ -122,7 +135,8 @@
 
             document.getElementById('datedAff').addEventListener('changeDate', (event) => {
 
-                @this.dateAffiliated=event.target.value;
+                @this.
+                dateAffiliated = event.target.value;
 
             });
 

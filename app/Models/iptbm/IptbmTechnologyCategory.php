@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmTechnologyCategory extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         "category"
     ];
 }

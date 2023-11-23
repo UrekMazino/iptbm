@@ -11,7 +11,7 @@ class IptbmResearchIndustryPartner extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'iptbm_tech_project_id',
         'industry_name',
         'address',
@@ -23,11 +23,12 @@ class IptbmResearchIndustryPartner extends Model
 
     function research_project(): BelongsTo
     {
-        return $this->belongsTo(IptbmTechResearchProject::class,"iptbm_tech_project_id","id");
+        return $this->belongsTo(IptbmTechResearchProject::class, "iptbm_tech_project_id", "id");
     }
+
     function research_partners(): HasMany
     {
-        return $this->hasMany(IptbmIndusPartner::class,"industry_partners_id","id");
+        return $this->hasMany(IptbmIndusPartner::class, "industry_partners_id", "id");
     }
 
 }

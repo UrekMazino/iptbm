@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmComercialAdopterContact extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'commercial_adoptor_id',
         'type',
         'contact'

@@ -11,15 +11,17 @@ class TechCategoryList extends Component
 
     public function deleteCategory($id)
     {
-        $category=IptbmTechnologyCategory::find($id);
+        $category = IptbmTechnologyCategory::find($id);
         $category->delete();
         $this->emit('updateParentCategory');
 
     }
+
     public function mount($category)
     {
-        $this->category=$category;
+        $this->category = $category;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.tech-category-list');

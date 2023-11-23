@@ -6,10 +6,8 @@ use App\Http\Controllers\abh\staff\AbhProfileController;
 use App\Http\Controllers\iptbm\admin\AccountsController;
 use App\Http\Controllers\iptbm\admin\AdminDashboard;
 use App\Http\Controllers\iptbm\admin\AgenciesController;
-
 use App\Http\Controllers\iptbm\admin\EditAccountController;
 use App\Http\Controllers\iptbm\admin\EditRegionController;
-
 use App\Http\Controllers\iptbm\admin\IpApplicationController;
 use App\Http\Controllers\iptbm\admin\IptbmProfileController;
 use App\Http\Controllers\iptbm\admin\RegionsController;
@@ -34,7 +32,6 @@ use App\Http\Controllers\iptbm\staff\IpProfile;
 use App\Http\Controllers\iptbm\staff\IpTaskView;
 use App\Http\Controllers\iptbm\staff\PrecomController;
 use App\Http\Controllers\iptbm\staff\PrecomDetailsController;
-use App\Http\Controllers\iptbm\staff\PrecomFiles;
 use App\Http\Controllers\iptbm\staff\ProjectController;
 use App\Http\Controllers\iptbm\staff\Technology;
 use App\Http\Controllers\iptbm\staff\TechnologyDescription;
@@ -63,8 +60,7 @@ use Illuminate\Support\Facades\Route;
  *
  */
 Route::get('/', function () {
-    if(Auth::guard('admin')->check())
-    {
+    if (Auth::guard('admin')->check()) {
         return Redirect::to('admin/login');
     }
     return Redirect::to('login');
@@ -76,7 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['component:IPTBM','auth','verified'])->prefix('/iptbm')->group(function () {
+Route::middleware(['component:IPTBM', 'auth', 'verified'])->prefix('/iptbm')->group(function () {
 
 
     Route::get('/dashboard', [DashBoard::class, 'index'])->name('iptbm.staff.dashboard');
@@ -93,12 +89,11 @@ Route::middleware(['component:IPTBM','auth','verified'])->prefix('/iptbm')->grou
         Route::post('/tagline', 'tagline')->name('iptbm.staff.profile.tagline');
 
 
-
         Route::controller(ProjectController::class)->prefix('/projects')->group(function () {
             Route::get('/{id}', 'index')->name('iptbm.staff.project');
             Route::get('/edit/{id}', 'edit')->name('iptbm.staff.project.edit');
             Route::post('/store', 'store')->name('iptbm.staff.project.store');
-            Route::post('/update/{id}/{name}', 'update')->name ('iptbm.staff.project.update');
+            Route::post('/update/{id}/{name}', 'update')->name('iptbm.staff.project.update');
             Route::post('/delete/{id}', 'delete')->name('iptbm.staff.project.delete');
         });
     });
@@ -110,7 +105,7 @@ Route::middleware(['component:IPTBM','auth','verified'])->prefix('/iptbm')->grou
         Route::get('/add-details', 'techdetails')->name('addd.technology.details');
         Route::post('/delete-tech', 'delete_tech')->name('iptbm.staff.technology.delete');
         Route::post('/delete-industry', 'delete_industry')->name('iptbm.staff.delete_industry');
-        Route::get('/tech-public/{id}','publicView')->name('iptbm.staff.tech.public-view');
+        Route::get('/tech-public/{id}', 'publicView')->name('iptbm.staff.tech.public-view');
         Route::controller(TechnologyDescription::class)->prefix('/technology-description')->group(function () {
             Route::get('/{id:iptbm_technology_profile_id}', 'index')->name('iptbm.staff.technology.description');
             Route::post('/create', 'create')->name('iptbm.staff.technology.create.description');
@@ -244,7 +239,6 @@ Route::middleware(['component:IPTBM','auth','verified'])->prefix('/iptbm')->grou
             Route::get('/{id}', 'index')->name('iptbm.staff.precom.details');
 
 
-
             Route::post('/update-market-summary/{id}', 'update_market_summary')->name('iptbm.staff.precom.details.update_summary');
             Route::post('/update-capital/{id}', 'update_capital')->name('iptbm.staff.precom.update_capital');
             Route::post('/update-return_investment/{id}', 'return_investment')->name('iptbm.staff.precom.return_investment');
@@ -277,23 +271,22 @@ Route::middleware(['component:IPTBM','auth','verified'])->prefix('/iptbm')->grou
 
 });
 
-Route::middleware(['component:ABH','auth','verified'])->prefix('/abh')->group(function () {
+Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(function () {
     Route::controller(AbhController::class)->group(function () {
-        Route::get('/{dashboard?}','dashboard')->where(['dashboard'=>'dashboard']);
+        Route::get('/{dashboard?}', 'dashboard')->where(['dashboard' => 'dashboard']);
     });
-    Route::controller(AbhProfileController::class)->prefix('/profile')->group(function (){
-        Route::get('/','index')->name('abh.staff.profile');
+    Route::controller(AbhProfileController::class)->prefix('/profile')->group(function () {
+        Route::get('/', 'index')->name('abh.staff.profile');
     });
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
-
-Route::middleware(['component:IPTBM','auth:admin', 'verified'])->prefix('/admin/iptbm')->group(function (){
-    Route::get('/', [AdminDashboard::class,'index'])->name('admin.iptbm.dashboard');
-    Route::get('/dashboard', [AdminDashboard::class,'index'])->name('admin.iptbm.dashboard');
+Route::middleware(['component:IPTBM', 'auth:admin', 'verified'])->prefix('/admin/iptbm')->group(function () {
+    Route::get('/', [AdminDashboard::class, 'index'])->name('admin.iptbm.dashboard');
+    Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('admin.iptbm.dashboard');
     Route::prefix('/add-record')->group(function () {
 
         Route::controller(RegionsController::class)->prefix('/region')->group(function () {
@@ -324,16 +317,16 @@ Route::middleware(['component:IPTBM','auth:admin', 'verified'])->prefix('/admin/
             });
 
         });
-        Route::prefix('/tech-component')->group(function (){
+        Route::prefix('/tech-component')->group(function () {
             Route::controller(TechCompIndustryController::class)->prefix('/tech-industry')->group(function () {
                 Route::get('/', 'index')->name('iptbm.addrecord.tech-comp.industry');
             });
             Route::controller(TechCommodityController::class)->prefix('/tech-commodities')->group(function () {
 
-                Route::get('/{industry}','index')->name('iptbm.addrecord.techCommodities');
+                Route::get('/{industry}', 'index')->name('iptbm.addrecord.techCommodities');
             });
             Route::controller(TechcompCategoryController::class)->prefix('/tech-category')->group(function () {
-                Route::get('/{industry}','index')->name('iptbm.addrecord.techCategories');
+                Route::get('/{industry}', 'index')->name('iptbm.addrecord.techCategories');
             });
             Route::controller(TechCompAdopterController::class)->prefix('/tech-adopter')->group(function () {
                 Route::get('/', 'index')->name('iptbm.addrecord.tech-adopter');
@@ -341,17 +334,14 @@ Route::middleware(['component:IPTBM','auth:admin', 'verified'])->prefix('/admin/
         });
 
 
-
-
-
         Route::prefix('/iptbm-prof')->group(function () {
             Route::get('/', [IptbmProfileController::class, 'index'])->name('iptbm.admin.iptbm_profiles.index');
             Route::controller(IptbmProfileController::class)->prefix('/profiles')->group(function () {
                 Route::get('/', 'index')->name('iptbm.admin.iptbm_profiles.profiles');
                 // Route::get('/profile-list/{id}', 'profileList')->name('iptbm.admin.iptbm_profiles.profiles-list');
-                Route::get('/view-profile/{profile}','profile')->name('iptbm.admin.iptbm_profiles.view-profile');
-                Route::get('/profile-projects','profile_projects')->name('iptbm.admin.iptbm_profiles.profile-projects');
-                Route::get('/project-view/{project}','project_view')->name('iptbm.admin.iptbm_profiles.profile-projects.view');
+                Route::get('/view-profile/{profile}', 'profile')->name('iptbm.admin.iptbm_profiles.view-profile');
+                Route::get('/profile-projects', 'profile_projects')->name('iptbm.admin.iptbm_profiles.profile-projects');
+                Route::get('/project-view/{project}', 'project_view')->name('iptbm.admin.iptbm_profiles.profile-projects.view');
 
 
                 Route::get('/profile-details/{id}', 'profileDetails')->name('iptbm.admin.iptbm_profiles.profiles-details');
@@ -360,28 +350,28 @@ Route::middleware(['component:IPTBM','auth:admin', 'verified'])->prefix('/admin/
                 Route::get('/iptbm-prof-request', 'listAjax')->name('iptbm.admin.iptbm-profile.get-list');
             });
         });
-        Route::controller(TechnologyReportController::class)->prefix('/technologies')->group(function (){
-            Route::get('/','index')->name('iptbm.admin.technologies-report');
-            Route::get('/view-techology/{technology}','view_tech')->name('iptbm.admin.technology.view-tech');
+        Route::controller(TechnologyReportController::class)->prefix('/technologies')->group(function () {
+            Route::get('/', 'index')->name('iptbm.admin.technologies-report');
+            Route::get('/view-techology/{technology}', 'view_tech')->name('iptbm.admin.technology.view-tech');
         });
-        Route::controller(IpApplicationController::class)->prefix('/ip-application-report')->group(function (){
-            Route::get('/{iptype}','index')->name('iptbm.admin.ip-application-report')->where('id', '[0-9]+');
-            Route::get('/{task:ip_type_id}/task','ip_task')->name('iptbm.admin.ip-application-report.task');
-            Route::get('/{task}/task/details','task_details')->name('iptbm.admin.ip-application-report.task-details');
-        });
-
-        Route::controller(\App\Http\Controllers\iptbm\admin\IptbmTechTransController::class)->prefix('/tech-trans')->group(function (){
-            Route::get('/{precom?}','index')->name('iptbm.admin.techtrans.precom')->where(['precom'=>'precom']);
-            Route::get('/precom/{precom}','precom_view')->name('iptbm.admin.techtrans.precom.view');
-            Route::get('/adopter','adopter')->name('iptbm.admin.techtrans.adopter');
-            Route::get('/adopter/{adopter}','adopter_view')->name('iptbm.admin.techtrans.adopter.view');
-            Route::get('/deployment','deployment')->name('iptbm.admin.techtrans.deployment');
-            Route::get('/extension','extension')->name('iptbm.admin.techtrans.extension');
+        Route::controller(IpApplicationController::class)->prefix('/ip-application-report')->group(function () {
+            Route::get('/{iptype}', 'index')->name('iptbm.admin.ip-application-report')->where('id', '[0-9]+');
+            Route::get('/{task:ip_type_id}/task', 'ip_task')->name('iptbm.admin.ip-application-report.task');
+            Route::get('/{task}/task/details', 'task_details')->name('iptbm.admin.ip-application-report.task-details');
         });
 
+        Route::controller(\App\Http\Controllers\iptbm\admin\IptbmTechTransController::class)->prefix('/tech-trans')->group(function () {
+            Route::get('/{precom?}', 'index')->name('iptbm.admin.techtrans.precom')->where(['precom' => 'precom']);
+            Route::get('/precom/{precom}', 'precom_view')->name('iptbm.admin.techtrans.precom.view');
+            Route::get('/adopter', 'adopter')->name('iptbm.admin.techtrans.adopter');
+            Route::get('/adopter/{adopter}', 'adopter_view')->name('iptbm.admin.techtrans.adopter.view');
+            Route::get('/deployment', 'deployment')->name('iptbm.admin.techtrans.deployment');
+            Route::get('/extension', 'extension')->name('iptbm.admin.techtrans.extension');
+        });
 
-        Route::prefix('/ip-alerts')->group(function(){
-            Route::get('/',IpAlert::class)->name('iptbm.admin.ipalerts');
+
+        Route::prefix('/ip-alerts')->group(function () {
+            Route::get('/', IpAlert::class)->name('iptbm.admin.ipalerts');
             Route::get('/utility-model', UtilityModel::class)->name('iptbm.admin.utilityModel');
             Route::get('/trademark', TradeMark::class)->name('iptbm.admin.trademark');
             Route::get('/industrial-design', IndustrialDesign::class)->name('iptbm.admin.industrialDesign');
@@ -391,13 +381,13 @@ Route::middleware(['component:IPTBM','auth:admin', 'verified'])->prefix('/admin/
     });
 });
 
-Route::middleware(['component:ABH','auth:admin', 'verified'])->group(function (){
-    Route::controller(AbhAdminController::class)->prefix('/admin/abh')->group(function (){
-        Route::get('/{dashboard?}','index')->name('abh.admin.dashboard');
+Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function () {
+    Route::controller(AbhAdminController::class)->prefix('/admin/abh')->group(function () {
+        Route::get('/{dashboard?}', 'index')->name('abh.admin.dashboard');
 
     });
 
 });
 
-require __DIR__.'/IptbmAdminAuth.php';
+require __DIR__ . '/IptbmAdminAuth.php';
 

@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class IptbmDeploymentPathway extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'technology_id',
         'adoptor_name',
         'address'
@@ -18,12 +19,12 @@ class IptbmDeploymentPathway extends Model
 
     function Technology(): BelongsTo
     {
-        return $this->belongsTo(IptbmTechnologyProfile::class,'technology_id','id');
+        return $this->belongsTo(IptbmTechnologyProfile::class, 'technology_id', 'id');
     }
 
     function contacts(): HasMany
     {
-        return $this->hasMany(IptbmDeploymentAdoptorContact::class,'deployment_adopters_id','id');
+        return $this->hasMany(IptbmDeploymentAdoptorContact::class, 'deployment_adopters_id', 'id');
     }
 
 }

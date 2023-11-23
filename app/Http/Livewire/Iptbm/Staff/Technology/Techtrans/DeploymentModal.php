@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Iptbm\Staff\Technology\Techtrans;
 
 use App\Models\iptbm\IptbmDeploymentPathway;
-use App\Rules\iptbm\ValueExistsInTable;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -20,23 +19,24 @@ class DeploymentModal extends Component
     public function saveForm()
     {
         $this->validate();
-        $deployed=new IptbmDeploymentPathway([
-            'adoptor_name'=>$this->adoptersName,
-            'address'=>$this->adoptersAddress
+        $deployed = new IptbmDeploymentPathway([
+            'adoptor_name' => $this->adoptersName,
+            'address' => $this->adoptersAddress
         ]);
         $this->technology->deployment()->save($deployed);
-        redirect()->route('iptbm.staff.deployment.deployed_tech',[
-            'id'=>$deployed->id
+        redirect()->route('iptbm.staff.deployment.deployed_tech', [
+            'id' => $deployed->id
         ]);
     }
+
     public function rules()
     {
-        return[
-            'adoptersName'=>[
+        return [
+            'adoptersName' => [
                 'required',
-                Rule::unique(IptbmDeploymentPathway::class,'adoptor_name')->where('technology_id',$this->techId)
+                Rule::unique(IptbmDeploymentPathway::class, 'adoptor_name')->where('technology_id', $this->techId)
             ],
-            'adoptersAddress'=>'required',
+            'adoptersAddress' => 'required',
         ];
     }
 
@@ -46,18 +46,21 @@ class DeploymentModal extends Component
             'adoptersName',
             'adoptersAddress'
         ]);
-        $this->reset('adoptersName','adoptersAddress');
+        $this->reset('adoptersName', 'adoptersAddress');
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
     }
-    public function mount($modalName,$technology)
+
+    public function mount($modalName, $technology)
     {
-        $this->modalName=$modalName;
-        $this->technology=$technology;
-        $this->techId=$technology->id;
+        $this->modalName = $modalName;
+        $this->technology = $technology;
+        $this->techId = $technology->id;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.techtrans.deployment-modal');

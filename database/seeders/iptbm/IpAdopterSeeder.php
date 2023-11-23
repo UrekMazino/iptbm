@@ -3,7 +3,6 @@
 namespace Database\Seeders\iptbm;
 
 use App\Models\iptbm\IptbmAdoptor;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class IpAdopterSeeder extends Seeder
@@ -13,46 +12,45 @@ class IpAdopterSeeder extends Seeder
      */
     public function run(): void
     {
-        $data=[
+        $data = [
             [
-                'name'=>'Farmers',
+                'name' => 'Farmers',
             ],
             [
-                'name'=>'Fisherfolks',
+                'name' => 'Fisherfolks',
             ],
             [
-                'name'=>'Manufacturers',
+                'name' => 'Manufacturers',
             ],
             [
-                'name'=>'Seed companies',
+                'name' => 'Seed companies',
             ],
             [
-                'name'=>'Feed producers',
+                'name' => 'Feed producers',
             ],
             [
-                'name'=>'Machine fabricators',
+                'name' => 'Machine fabricators',
             ],
             [
-                'name'=>'National Government',
+                'name' => 'National Government',
             ],
             [
-                'name'=>'Regulatory bodies',
+                'name' => 'Regulatory bodies',
             ],
             [
-                'name'=>'Local Government Units',
+                'name' => 'Local Government Units',
             ],
             [
-                'name'=>'Policy Makers',
+                'name' => 'Policy Makers',
             ],
             [
-                'name'=>'Students',
+                'name' => 'Students',
             ],
             [
-                'name'=>'Other',
+                'name' => 'Other',
             ],
         ];
-        foreach ($data as $val)
-        {
+        foreach ($data as $val) {
             IptbmAdoptor::create($val);
         }
 

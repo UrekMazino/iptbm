@@ -1,4 +1,3 @@
-
 @extends('admin.iptbm.layout.app')
 
 @section('title')
@@ -8,14 +7,17 @@
 @section('content')
     <div class="w-full">
 
-        <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav
+            class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div class="flex justify-between items-center">
-                    <div  class="me-4 p-4">
+                    <div class="me-4 p-4">
                         <a href="{{route("iptbm.admin.technologies-report")}}">
                             <x-secondary-button class="text-sky-600 dark:text-sky-600">
-                                <svg class="w-4 h-4 me-2 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                                <svg class="w-4 h-4 me-2 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                                 </svg>
                                 technologies
                             </x-secondary-button>
@@ -30,34 +32,36 @@
         </nav>
         <div class="px-0 md:px-4 w-full mt-5 ">
             <x-card class="shadow-lg">
-              <div class="grid grid-cols-1 md:grid-cols-3">
-                  <div>
-                      <x-card class="aspect-square border border-gray-300 dark:border-gray-600 flex justify-center items-center">
-                          <img  class="w-full h-auto" src="{{\Illuminate\Support\Facades\Storage::url($technology->tech_photo)}}"  alt=""/>
-                      </x-card>
-                  </div>
-                  <div class="col-span-2 flex justify-items-center items-center">
-                      <div class="m-auto divide-y divide-gray-400 dark:divide-gray-600 w-full  p-0 md:p-4">
-                          <div class="py-4 space-y-4">
-                             <x-item-header>
-                                 Technology Title
-                             </x-item-header>
-                              <div >
-                                  {{$technology->title}}
-                              </div>
-                          </div>
-                          <div class="py-4 space-y-4">
-                              <x-item-header>
-                                  Technology Description
-                              </x-item-header>
-                              <div>
-                                  {{$technology->tech_desc}}
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </x-card>
+                <div class="grid grid-cols-1 md:grid-cols-3">
+                    <div>
+                        <x-card
+                            class="aspect-square border border-gray-300 dark:border-gray-600 flex justify-center items-center">
+                            <img class="w-full h-auto"
+                                 src="{{\Illuminate\Support\Facades\Storage::url($technology->tech_photo)}}" alt=""/>
+                        </x-card>
+                    </div>
+                    <div class="col-span-2 flex justify-items-center items-center">
+                        <div class="m-auto divide-y divide-gray-400 dark:divide-gray-600 w-full  p-0 md:p-4">
+                            <div class="py-4 space-y-4">
+                                <x-item-header>
+                                    Technology Title
+                                </x-item-header>
+                                <div>
+                                    {{$technology->title}}
+                                </div>
+                            </div>
+                            <div class="py-4 space-y-4">
+                                <x-item-header>
+                                    Technology Description
+                                </x-item-header>
+                                <div>
+                                    {{$technology->tech_desc}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </x-card>
             <x-header-label class="mt-10 mb-4">
                 Technology Details
             </x-header-label>
@@ -163,7 +167,8 @@
                             <ul class="mt-2">
                                 @foreach($technology->ip_applications as $application)
                                     <li>
-                                        <a href="{{route("iptbm.admin.ip-application-report.task",['task'=>$application->ip_type->id])}}" class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
+                                        <a href="{{route("iptbm.admin.ip-application-report.task",['task'=>$application->ip_type->id])}}"
+                                           class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
                                             {{$application->ip_type->name}}
                                         </a>
                                     </li>
@@ -175,20 +180,20 @@
                                 Technology Transfer Plan
                             </x-item-header>
                             <ul class="space-y-4 mt-2">
-                              <li>
-                                  <x-input-label value="Pre Commercialization" />
-                                  <ul class="list-disc">
-                                      @forelse($technology->pre_commercialization as $precom)
-                                          <li class="ms-4">
-                                              {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
-                                          </li>
-                                      @empty
-                                          No data available
-                                      @endforelse
-                                  </ul>
-                              </li>
                                 <li>
-                                    <x-input-label value="Commercialization Adopter" />
+                                    <x-input-label value="Pre Commercialization"/>
+                                    <ul class="list-disc">
+                                        @forelse($technology->pre_commercialization as $precom)
+                                            <li class="ms-4">
+                                                {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                            </li>
+                                        @empty
+                                            No data available
+                                        @endforelse
+                                    </ul>
+                                </li>
+                                <li>
+                                    <x-input-label value="Commercialization Adopter"/>
                                     <ul class="list-disc">
                                         @forelse($technology->commercial_adopters as $precom)
                                             <li class="ms-4">
@@ -200,7 +205,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <x-input-label value="Deployment" />
+                                    <x-input-label value="Deployment"/>
                                     <ul class="list-disc">
                                         @forelse( $technology->deployment as $precom)
                                             <li class="ms-4">
@@ -213,7 +218,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <x-input-label value="Deployment" />
+                                    <x-input-label value="Deployment"/>
                                     <ul class="list-disc">
                                         @forelse( $technology->extension as $precom)
                                             <li class="ms-4">
@@ -246,30 +251,43 @@
                         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                             @foreach($technology->full_description->technology_photos as $tech_photos)
                                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                    <img src="{{\Illuminate\Support\Facades\Storage::url($tech_photos->file)}}" class="absolute block w-auto max-w-fit h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                                    <img src="{{\Illuminate\Support\Facades\Storage::url($tech_photos->file)}}"
+                                         class="absolute block w-auto max-w-fit h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                         alt="...">
                                 </div>
                             @endforeach
                         </div>
                         <!-- Slider indicators -->
                         <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
                             @foreach($technology->full_description->technology_photos as $key=>$tech_photos)
-                                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide {{$key+1}}" data-carousel-slide-to="{{$key}}"></button>
+                                <button type="button" class="w-3 h-3 rounded-full" aria-current="true"
+                                        aria-label="Slide {{$key+1}}" data-carousel-slide-to="{{$key}}"></button>
                             @endforeach
 
                         </div>
                         <!-- Slider controls -->
-                        <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                        <button type="button"
+                                class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-carousel-prev>
+        <span
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M5 1 1 5l4 4"/>
             </svg>
             <span class="sr-only">Previous</span>
         </span>
                         </button>
-                        <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                        <button type="button"
+                                class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-carousel-next>
+        <span
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m1 9 4-4-4-4"/>
             </svg>
             <span class="sr-only">Next</span>
         </span>
@@ -289,9 +307,11 @@
                                 <div>
                                     @if($technology->full_description->narrative)
                                         <x-pop-modal class="max-w-6xl" name="openFile-narrative">
-                                            <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->narrative)}}"></iframe>
+                                            <iframe class="w-full aspect-video"
+                                                    src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->narrative)}}"></iframe>
                                         </x-pop-modal>
-                                        <button data-modal-toggle="openFile-narrative" class="hover:text-sky-600 duration-300 transition">
+                                        <button data-modal-toggle="openFile-narrative"
+                                                class="hover:text-sky-600 duration-300 transition">
                                             Technology narratives attachment
                                         </button>
                                     @else
@@ -307,9 +327,11 @@
                                 <div>
                                     @if($technology->full_description->process_flow)
                                         <x-pop-modal class="max-w-6xl" name="openFile-process-flow">
-                                            <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->process_flow)}}"></iframe>
+                                            <iframe class="w-full aspect-video"
+                                                    src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->process_flow)}}"></iframe>
                                         </x-pop-modal>
-                                        <button data-modal-toggle="openFile-process-flow" class="hover:text-sky-600 duration-300 transition">
+                                        <button data-modal-toggle="openFile-process-flow"
+                                                class="hover:text-sky-600 duration-300 transition">
                                             Technology process flow attachment
                                         </button>
                                     @else
@@ -325,9 +347,11 @@
                                 <div>
                                     @if($technology->full_description->requirements)
                                         <x-pop-modal class="max-w-6xl" name="openFile-requirements">
-                                            <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->requirements)}}"></iframe>
+                                            <iframe class="w-full aspect-video"
+                                                    src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->requirements)}}"></iframe>
                                         </x-pop-modal>
-                                        <button data-modal-toggle="openFile-requirements" class="hover:text-sky-600 duration-300 transition">
+                                        <button data-modal-toggle="openFile-requirements"
+                                                class="hover:text-sky-600 duration-300 transition">
                                             Technology requirements attachment
                                         </button>
                                     @else
@@ -343,10 +367,12 @@
                                 <div>
                                     @if($technology->full_description->significance_of_technology)
                                         <x-pop-modal class="max-w-6xl" name="openFile-significance_of_technology">
-                                            <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->significance_of_technology)}}"></iframe>
+                                            <iframe class="w-full aspect-video"
+                                                    src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->significance_of_technology)}}"></iframe>
                                         </x-pop-modal>
-                                        <button data-modal-toggle="openFile-significance_of_technology" class="hover:text-sky-600 duration-300 transition">
-                                            Significance of Technology  attachment
+                                        <button data-modal-toggle="openFile-significance_of_technology"
+                                                class="hover:text-sky-600 duration-300 transition">
+                                            Significance of Technology attachment
                                         </button>
                                     @else
                                         No data available
@@ -361,10 +387,12 @@
                                 <div>
                                     @if($technology->full_description->limitation_of_technology)
                                         <x-pop-modal class="max-w-6xl" name="openFile-limitation_of_technology">
-                                            <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->limitation_of_technology)}}"></iframe>
+                                            <iframe class="w-full aspect-video"
+                                                    src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->limitation_of_technology)}}"></iframe>
                                         </x-pop-modal>
-                                        <button data-modal-toggle="openFile-limitation_of_technology" class="hover:text-sky-600 duration-300 transition">
-                                           Limitation  attachment
+                                        <button data-modal-toggle="openFile-limitation_of_technology"
+                                                class="hover:text-sky-600 duration-300 transition">
+                                            Limitation attachment
                                         </button>
                                     @else
                                         No data available
@@ -379,10 +407,12 @@
                                 <div>
                                     @if($technology->full_description->application_of_technology)
                                         <x-pop-modal class="max-w-6xl" name="openFile-application_of_technology">
-                                            <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->application_of_technology)}}"></iframe>
+                                            <iframe class="w-full aspect-video"
+                                                    src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->application_of_technology)}}"></iframe>
                                         </x-pop-modal>
-                                        <button data-modal-toggle="openFile-application_of_technology" class="hover:text-sky-600 duration-300 transition">
-                                            Limitation  attachment
+                                        <button data-modal-toggle="openFile-application_of_technology"
+                                                class="hover:text-sky-600 duration-300 transition">
+                                            Limitation attachment
                                         </button>
                                     @else
                                         No data available
@@ -397,10 +427,12 @@
                                 <div>
                                     @if($technology->full_description->other_application)
                                         <x-pop-modal class="max-w-6xl" name="openFile-other_application">
-                                            <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->other_application)}}"></iframe>
+                                            <iframe class="w-full aspect-video"
+                                                    src="{{\Illuminate\Support\Facades\Storage::url($technology->full_description->other_application)}}"></iframe>
                                         </x-pop-modal>
-                                        <button data-modal-toggle="openFile-other_application" class="hover:text-sky-600 duration-300 transition">
-                                            Other application  attachment
+                                        <button data-modal-toggle="openFile-other_application"
+                                                class="hover:text-sky-600 duration-300 transition">
+                                            Other application attachment
                                         </button>
                                     @else
                                         No data available
@@ -434,9 +466,11 @@
                             @foreach($technology->full_description->other_documents as $document)
                                 <li class="py-2">
                                     <x-pop-modal class="max-w-6xl" name="openFile-{{$document->id}}">
-                                        <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($document->file)}}"></iframe>
+                                        <iframe class="w-full aspect-video"
+                                                src="{{\Illuminate\Support\Facades\Storage::url($document->file)}}"></iframe>
                                     </x-pop-modal>
-                                    <button data-modal-toggle="openFile-{{$document->id}}" class="hover:text-sky-600 transition hover:underline duration-300">
+                                    <button data-modal-toggle="openFile-{{$document->id}}"
+                                            class="hover:text-sky-600 transition hover:underline duration-300">
                                         {{$document->file_description}}
                                     </button>
                                 </li>
@@ -451,9 +485,11 @@
                             @foreach($technology->full_description->other_documents as $document)
                                 <li class="py-2">
                                     <x-pop-modal class="max-w-6xl" name="openFile-{{$document->id}}">
-                                        <iframe class="w-full aspect-video" src="{{\Illuminate\Support\Facades\Storage::url($document->file)}}"></iframe>
+                                        <iframe class="w-full aspect-video"
+                                                src="{{\Illuminate\Support\Facades\Storage::url($document->file)}}"></iframe>
                                     </x-pop-modal>
-                                    <button data-modal-toggle="openFile-{{$document->id}}" class="hover:text-sky-600 transition hover:underline duration-300">
+                                    <button data-modal-toggle="openFile-{{$document->id}}"
+                                            class="hover:text-sky-600 transition hover:underline duration-300">
                                         {{$document->file_description}}
                                     </button>
                                 </li>

@@ -1,5 +1,5 @@
 <div class=" w-full">
-    <livewire:iptbm.admin.component.ip-alert-nav  />
+    <livewire:iptbm.admin.component.ip-alert-nav/>
     <div class="px-4 text-gray-600 dark:text-gray-400">
         <div class="text-3xl mt-4 font-medium ">
             IP Applications
@@ -9,7 +9,8 @@
         </div>
         <div class="w-full mt-4">
             <div class="relative overflow-x-auto bg-gray-50 dark:bg-gray-700 p-2 rounded-lg">
-                <table id="iptbmIpAlertTable" class="w-full rounded-lg p-4 border-l border-r border-t border-b border-gray-400 dark:border-gray-600 text-sm text-left text-gray-500 dark:text-gray-400">
+                <table id="iptbmIpAlertTable"
+                       class="w-full rounded-lg p-4 border-l border-r border-t border-b border-gray-400 dark:border-gray-600 text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -36,7 +37,8 @@
                     @foreach($ipAlert as $alert)
 
                         <tr class="bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-50">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-50">
                                 {{$alert->ip_type->name}}
                             </th>
                             <td class="px-6 py-4">
@@ -64,7 +66,6 @@
     </div>
 
 
-
 </div>
 
 @push('scripts')
@@ -76,35 +77,35 @@
             },
             stateSave: true,
             pagingType: 'full_numbers',
-            horizontalScroll:true,
+            horizontalScroll: true,
             dom: 'Bfrtip',
             buttons: [
 
                 {
-                    extend:'pageLength',
-                    text:'pageLength',
+                    extend: 'pageLength',
+                    text: 'pageLength',
                     className: 'bg-gray-200 dark:bg-gray-700 text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800'
                 },
                 {
-                    extend:'colvis',
-                    text:'Visible Column',
+                    extend: 'colvis',
+                    text: 'Visible Column',
                     className: 'bg-gray-200 dark:bg-gray-700 text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800'
                 },
                 {
-                    extend:'excel',
-                    text:'excel',
+                    extend: 'excel',
+                    text: 'excel',
                     className: 'bg-gray-200 dark:bg-gray-700 text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800'
                 },
 
                 {
-                    extend:'pdf',
-                    text:'pdf',
+                    extend: 'pdf',
+                    text: 'pdf',
                     className: 'bg-gray-200 dark:bg-gray-700 text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800'
                 },
                 {
                     text: '<span class="fa-solid fa-plus-square me-2"></span> new Record',
                     className: 'bg-gray-200 dark:bg-gray-700 text-blue-500 dark:text-gray-300 dark:hover:bg-gray-800',
-                    action: function ( e, dt, node, config ) {
+                    action: function (e, dt, node, config) {
                         modal.toggle();
                     }
                 }

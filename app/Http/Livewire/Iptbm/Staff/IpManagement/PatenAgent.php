@@ -11,17 +11,17 @@ class PatenAgent extends Component
 
     public $ipAlert;
 
-    public $showPatentAgentForm=false;
-    public $patentAgentModel="ksdhjfksdjsdj";
+    public $showPatentAgentForm = false;
+    public $patentAgentModel = "ksdhjfksdjsdj";
     public $agentAddressModel;
 
 
     public function toggleShowPatentAgentForm()
     {
-        $this->showPatentAgentForm=!$this->showPatentAgentForm;
-        $this->reset('patentAgentModel','agentAddressModel');
-        $this->resetValidation(['patentAgentModel','agentAddressModel']);
-        $this->patentAgentModel=$this->ipAlert->agent_name;
+        $this->showPatentAgentForm = !$this->showPatentAgentForm;
+        $this->reset('patentAgentModel', 'agentAddressModel');
+        $this->resetValidation(['patentAgentModel', 'agentAddressModel']);
+        $this->patentAgentModel = $this->ipAlert->agent_name;
     }
 
     public function savePatentAgent()
@@ -29,8 +29,8 @@ class PatenAgent extends Component
 
         $this->validate();
         $this->ipAlert->patent_agent()->save(new IptbmPatentAgent([
-            'name'=>$this->patentAgentModel,
-            'address'=>$this->agentAddressModel
+            'name' => $this->patentAgentModel,
+            'address' => $this->agentAddressModel
         ]));
 
         $this->ipAlert->save();
@@ -40,13 +40,13 @@ class PatenAgent extends Component
 
     public function rules()
     {
-        return[
-            'patentAgentModel'=>[
+        return [
+            'patentAgentModel' => [
                 'required',
-                Rule::unique(IptbmPatentAgent::class,"name")
-                    ->where("ip_alert_id",$this->ipAlert->id)
+                Rule::unique(IptbmPatentAgent::class, "name")
+                    ->where("ip_alert_id", $this->ipAlert->id)
             ],
-            'agentAddressModel'=>[
+            'agentAddressModel' => [
                 'required',
                 'min:5'
             ]
@@ -63,6 +63,7 @@ class PatenAgent extends Component
     {
         $this->ipAlert = $ipAlert;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.ip-management.paten-agent');

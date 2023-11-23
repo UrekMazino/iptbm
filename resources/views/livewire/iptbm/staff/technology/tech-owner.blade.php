@@ -10,13 +10,14 @@
                     <div>
                         Technology owner
                     </div>
-                    <x-text-input wire:model.lazy="ownerModel" list="agenciesList" type="search" class="w-full" placeholder="type to search.."/>
-                    <x-data-list id="agenciesList" :data="$agencies" />
+                    <x-text-input wire:model.lazy="ownerModel" list="agenciesList" type="search" class="w-full"
+                                  placeholder="type to search.."/>
+                    <x-data-list id="agenciesList" :data="$agencies"/>
                     @error('ownerModel')
-                    <x-input-error :messages="$message" />
+                    <x-input-error :messages="$message"/>
                     @enderror
                     @error('agencyId')
-                    <x-input-error :messages="$message" />
+                    <x-input-error :messages="$message"/>
                     @enderror
 
                 </x-input-label>
@@ -37,7 +38,8 @@
         <ul class="divide-y divide-gray-400 dark:divide-gray-600">
             @foreach($technology->owner as $key=>$agency)
                 <li class="py-2">
-                    <livewire:iptbm.staff.technology.tech-owner-detail wire:key="tech-owner-{{$key}}"  :techowner="$agency" />
+                    <livewire:iptbm.staff.technology.tech-owner-detail wire:key="tech-owner-{{$key}}"
+                                                                       :techowner="$agency"/>
 
                 </li>
             @endforeach

@@ -13,7 +13,7 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(Request): (Response)  $next
+     * @param \Closure(Request): (Response) $next
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
@@ -23,14 +23,14 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
 
-            if ($guard=="admin" && Auth::guard($guard)->check()) {
+            if ($guard == "admin" && Auth::guard($guard)->check()) {
 
-                $type=Auth::guard('admin')->user()->component;
+                $type = Auth::guard('admin')->user()->component;
 
                 return match ($type) {
                     'IPTBM' => redirect(RouteServiceProvider::IPTBM_ADMIN_DASHBOARD),
                     'ABH' => redirect(RouteServiceProvider::ABH_ADMIN_DASHBOARD),
-                    default =>redirect( '/admin/login'),
+                    default => redirect('/admin/login'),
                 };
 
             }
@@ -39,13 +39,13 @@ class RedirectIfAuthenticated
             if (Auth::check()) {
 
 
-                $type=Auth::user()->component;
+                $type = Auth::user()->component;
 
                 return match ($type) {
                     'IPTBM' => redirect(RouteServiceProvider::IPTBM_STAFF_DASHBOARD),
-                    'ATBI' =>redirect(RouteServiceProvider::ATBI_STAFF_DASHBOARD),
+                    'ATBI' => redirect(RouteServiceProvider::ATBI_STAFF_DASHBOARD),
                     'ABH' => redirect(RouteServiceProvider::ABH_STAFF_DASHBOARD),
-                    default =>redirect( '/'),
+                    default => redirect('/'),
                 };
 
             }

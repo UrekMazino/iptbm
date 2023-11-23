@@ -10,13 +10,14 @@ class IptbmIpTaskAttachement extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'type',
         'file',
         'description'
     ];
+
     public function ip_task(): BelongsTo
     {
-       return $this->belongsTo(IptbmIpAlertTask::class,'iptbm_ip_alert_tasks_id','id');
+        return $this->belongsTo(IptbmIpAlertTask::class, 'iptbm_ip_alert_tasks_id', 'id');
     }
 }

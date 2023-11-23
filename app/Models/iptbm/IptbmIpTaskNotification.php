@@ -9,7 +9,7 @@ class IptbmIpTaskNotification extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'ip_alert_task_id',
         'frequency',
         'notification_details',
@@ -17,8 +17,8 @@ class IptbmIpTaskNotification extends Model
         'time_of_day'
     ];
 
-    public function ip_task_stage():BelongsTo
+    public function ip_task_stage(): BelongsTo
     {
-        return $this->belongsTo(IptbmIpAlertTask::class,'ip_alert_task_id','id');
+        return $this->belongsTo(IptbmIpAlertTask::class, 'ip_alert_task_id', 'id');
     }
 }

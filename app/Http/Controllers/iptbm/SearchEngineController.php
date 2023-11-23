@@ -15,13 +15,13 @@ class SearchEngineController extends Controller
 
     public function index(Request $request)
     {
-        $users=[];
-        if($request->filled('search')){
+        $users = [];
+        if ($request->filled('search')) {
             $users = IptbmIpAlertTask::search($request->search)->get();
         }
 
-        return view('iptbm.search',[
-            'search'=>$users,
+        return view('iptbm.search', [
+            'search' => $users,
         ]);
     }
 }

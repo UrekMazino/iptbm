@@ -11,7 +11,7 @@ class UtilityModel extends Component
 
     public function mount()
     {
-        $this->ipAlert=IptbmIpAlert::with(
+        $this->ipAlert = IptbmIpAlert::with(
             [
 
                 'technology',
@@ -20,11 +20,12 @@ class UtilityModel extends Component
                 'ip_task',
                 'ip_type',
             ])
-            ->whereHas('ip_type',function($query){
-                $query->where('name','Utility Model');
+            ->whereHas('ip_type', function ($query) {
+                $query->where('name', 'Utility Model');
             })
             ->get();
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.utility-model.utility-model')

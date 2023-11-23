@@ -19,6 +19,7 @@ class DeleteExtensionTech extends Component
     {
         $this->technology = $technology;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.extension.delete-extension-tech');

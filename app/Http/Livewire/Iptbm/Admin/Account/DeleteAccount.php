@@ -11,10 +11,12 @@ class DeleteAccount extends Component
     {
 
     }
+
     public function mount(User $user)
     {
 
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.account.delete-account');

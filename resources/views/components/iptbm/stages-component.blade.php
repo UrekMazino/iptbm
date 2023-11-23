@@ -2,7 +2,7 @@
 
     <table class="table  table-hover">
         <tbody class="table-primary">
-        <tr >
+        <tr>
             <th class="text-muted">
                 Task Name
             </th>
@@ -41,10 +41,11 @@
                             </td>
                             <td class="col-md-2">
 
-                                <a href="{{route("iptbm.staff.iptask.view",['id'=>$task->id,'name'=>str_replace('/','-',$task->stage->stage_name)])}}" class="btn btn-sm btn-primary me-2 bot-icon" role="button">
+                                <a href="{{route("iptbm.staff.iptask.view",['id'=>$task->id,'name'=>str_replace('/','-',$task->stage->stage_name)])}}"
+                                   class="btn btn-sm btn-primary me-2 bot-icon" role="button">
                                     <span class="fa-solid fa-eye "></span>
                                 </a>
-                                <a class="btn btn-sm btn-primary me-2 bot-icon"  role="button">
+                                <a class="btn btn-sm btn-primary me-2 bot-icon" role="button">
                                     <span class="fa-solid fa-trash "></span>
                                 </a>
                             </td>
@@ -72,7 +73,8 @@
                     </td>
                     <td class="col-md-2">
 
-                        <a href="{{route("iptbm.staff.iptask.view",['id'=>$task->id,'name'=>str_replace('/','-',$task->stage->stage_name)])}}" class="btn btn-sm btn-primary me-2 bot-icon" role="button">
+                        <a href="{{route("iptbm.staff.iptask.view",['id'=>$task->id,'name'=>str_replace('/','-',$task->stage->stage_name)])}}"
+                           class="btn btn-sm btn-primary me-2 bot-icon" role="button">
                             <span class="fa-solid fa-eye "></span>
                         </a>
                         <a class="btn btn-sm btn-primary me-2 bot-icon" role="button">

@@ -15,27 +15,27 @@ class ContactCounter implements ValidationRule
     public $contactType;
     public $columnTypeName;
 
-    public function __construct($max,$table,$column,$columnTypeName,$contactType,$message)
+    public function __construct($max, $table, $column, $columnTypeName, $contactType, $message)
     {
         $this->max = $max;
         $this->table = $table;
         $this->column = $column;
         $this->message = $message;
         $this->contactType = $contactType;
-        $this->columnTypeName=$columnTypeName;
+        $this->columnTypeName = $columnTypeName;
     }
+
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $count = DB::table($this->table)
             ->where($this->columnTypeName, $this->contactType)
             ->count($this->column);
-        if($count==$this->max)
-        {
+        if ($count == $this->max) {
             $fail($this->message);
         }
 

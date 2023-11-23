@@ -7,19 +7,23 @@
 @section('content')
     <div class="w-full">
 
-        <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav
+            class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div class="block md:flex justify-between items-center">
-                    <div  class="me-4 p-4">
-                        <button data-modal-target="addDeployedTech" data-modal-toggle="addDeployedTech" class="bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0  hover:border-0 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                    <div class="me-4 p-4">
+                        <button data-modal-target="addDeployedTech" data-modal-toggle="addDeployedTech"
+                                class="bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0  hover:border-0 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button">
                             Add Technology
                         </button>
 
 
                     </div>
-                    <div id="searchPan" class="me-0 md:me-4 gap-4 justify-end items-center pb-4 md:pb-0 px-2 md:px-0  md:flex grid grid-cols-1 md:grid-cols-2">
-                        <div id="botNav" >
+                    <div id="searchPan"
+                         class="me-0 md:me-4 gap-4 justify-end items-center pb-4 md:pb-0 px-2 md:px-0  md:flex grid grid-cols-1 md:grid-cols-2">
+                        <div id="botNav">
 
                         </div>
                     </div>
@@ -29,8 +33,7 @@
             </nav>
 
         </nav>
-        <livewire:iptbm.staff.deployment.add-deploed-technology :technologies="$profile->technologies" />
-
+        <livewire:iptbm.staff.deployment.add-deploed-technology :technologies="$profile->technologies"/>
 
 
         <div class="px-4 mt-10">
@@ -40,39 +43,48 @@
             </x-header-label>
             <x-card>
                 <div class="relative overflow-x-auto  w-full p-2">
-                    <table id="technologies" class="w-full table-fixed text-sm cell-border stripe hover rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                    <table id="technologies"
+                           class="w-full table-fixed text-sm cell-border stripe hover rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr class="border-0">
-                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Title
                             </th>
-                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Name of Adopter
                             </th>
-                            <th scope="col" class="contact px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class="contact px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Contact Details
                             </th>
 
-                            <th scope="col" class="px-6 action  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class="px-6 action  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Actions
                             </th>
                         </tr>
                         <tr class="border-0 filters">
-                            <th scope="col" class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Title
                             </th>
-                            <th scope="col" class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Name of Adopter
                             </th>
-                            <th scope="col" class="fil  px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class="fil  px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Contact Details
                             </th>
 
-                            <th scope="col" class=" px-6 action  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <th scope="col"
+                                class=" px-6 action  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             </th>
                         </tr>
@@ -81,7 +93,7 @@
                         <tbody>
                         @foreach($deployedTechnologies as $data)
                             <tr>
-                                <td >
+                                <td>
                                     {{$data->technology->title}}
                                 </td>
                                 <td>
@@ -143,10 +155,12 @@
                                 </td>
                                 <td>
                                     <div class="h-full justify-start gap-4 flex">
-                                        <a class="link-primary text-decoration-none me-3 " href="{{route("iptbm.staff.deployment.deployed_tech",['id'=>$data->id])}}">
+                                        <a class="link-primary text-decoration-none me-3 "
+                                           href="{{route("iptbm.staff.deployment.deployed_tech",['id'=>$data->id])}}">
                                             <span class="fa-solid fa-edit " style="scale: 1.5"></span>
                                         </a>
-                                        <livewire:iptbm.staff.deployment.delete-deployed-tech wire:key="{{$data->id}}" :technology="$data" />
+                                        <livewire:iptbm.staff.deployment.delete-deployed-tech wire:key="{{$data->id}}"
+                                                                                              :technology="$data"/>
                                     </div>
 
                                 </td>
@@ -160,14 +174,12 @@
         </div>
 
 
-
-
     </div>
 @endsection
 @section('script')
     <script type="text/javascript">
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -179,13 +191,13 @@
 
                 pagingType: 'full_numbers',
 
-                horizontalScroll:true,
+                horizontalScroll: true,
                 dom: 'Bfrtip',
-                autoWidth:false,
+                autoWidth: false,
                 orderCellsTop: true,
                 search: {
                     "smart": true,
-                    className:'bg-red-600'
+                    className: 'bg-red-600'
                 },
                 initComplete: function () {
                     var api = this.api();
@@ -226,34 +238,34 @@
                 buttons: [
 
                     {
-                        extend:'pageLength',
-                        text:'<i class="fa-regular fa-file-lines"></i> Page Length',
+                        extend: 'pageLength',
+                        text: '<i class="fa-regular fa-file-lines"></i> Page Length',
                         className: 'bg-white text-blue-500  dark:bg-gray-700 dark:text-sky-500 w-full md:w-fit border-0 my-1 md:my-3  hover:border-0',
                     },
                     {
                         extend: 'columnToggle',
                         className: 'bg-white text-blue-500  dark:bg-gray-700 dark:text-sky-500 w-full md:w-fit border-0 my-1 md:my-3  hover:border-0',
                         columns: '.action',
-                        text:'Action'
+                        text: 'Action'
 
                     },
 
 
                     {
-                        extend:'colvis',
-                        text:'<i class="fa-solid fa-table-columns"></i> Visible Column',
+                        extend: 'colvis',
+                        text: '<i class="fa-solid fa-table-columns"></i> Visible Column',
                         className: 'bg-white text-blue-500  dark:bg-gray-700 dark:text-sky-500 w-full md:w-fit border-0 my-1 md:my-3  hover:border-0',
                     },
                     {
                         extend: 'collection',
                         text: '<span class="fa-solid fa-download"></span> Export',
                         className: 'bg-white text-blue-500  dark:bg-gray-700 dark:text-sky-500 w-full md:w-fit border-0 my-1 md:my-3  hover:border-0',
-                        buttons:[
+                        buttons: [
                             {
-                                extend:'excel',
-                                text:'Excel',
-                                className:'w-5',
-                                messageTop:'Technologies under Commercialization Adopter',
+                                extend: 'excel',
+                                text: 'Excel',
+                                className: 'w-5',
+                                messageTop: 'Technologies under Commercialization Adopter',
                                 //    messageTop: 'PDF created by Buttons for DataTables.',
                                 exportOptions: {
                                     columns: ':visible' // Export only visible columns
@@ -263,42 +275,42 @@
                                 extend: 'collection',
                                 text: 'PDF',
                                 className: 'w-5',
-                                buttons:[
+                                buttons: [
                                     {
                                         extend: 'pdfHtml5',
-                                        text:'Landscape',
+                                        text: 'Landscape',
                                         //   messageTop: 'PDF created by Buttons for DataTables.',
                                         exportOptions: {
-                                            width:'auto',
+                                            width: 'auto',
                                             columns: ':visible' // Export only visible columns
                                         },
                                         orientation: 'landscape',
                                         pageSize: 'LEGAL',
-                                        messageTop:'Technologies under Commercialization Adopter'
+                                        messageTop: 'Technologies under Commercialization Adopter'
                                     },
                                     {
                                         extend: 'pdfHtml5',
-                                        text:'Portrait',
+                                        text: 'Portrait',
                                         //   messageTop: 'PDF created by Buttons for DataTables.',
                                         exportOptions: {
-                                            width:'auto',
+                                            width: 'auto',
                                             columns: ':visible' // Export only visible columns
                                         },
                                         orientation: 'portrait',
                                         pageSize: 'LEGAL',
-                                        messageTop:'Technologies under Commercialization Adopter'
+                                        messageTop: 'Technologies under Commercialization Adopter'
                                     },
                                 ]
                             },
 
 
                             {
-                                extend:'print',
-                                text:'Print',
-                                messageTop:'Technologies under Commercialization Adopter',
+                                extend: 'print',
+                                text: 'Print',
+                                messageTop: 'Technologies under Commercialization Adopter',
                                 exportOptions: {
                                     stripHtml: false,
-                                    columns: ':visible' ,// Export only visible columns,
+                                    columns: ':visible',// Export only visible columns,
 
                                 },
 
@@ -316,11 +328,10 @@
             table.buttons().container().appendTo('#botNav');
             $('.dataTables_filter input')
                 .addClass("font-normal text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-950 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm ")
-                .appendTo('#searchPan').attr({placeHolder:'Search'});
+                .appendTo('#searchPan').attr({placeHolder: 'Search'});
             $('.dataTables_filter').addClass('hidden')
-            table.columns( [".contact"] ).visible( false,false );
-            table.columns.adjust().draw( false );
-
+            table.columns([".contact"]).visible(false, false);
+            table.columns.adjust().draw(false);
 
 
         })

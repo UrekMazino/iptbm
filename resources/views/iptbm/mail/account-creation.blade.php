@@ -1,4 +1,3 @@
-
 @component('mail::message')
     Welcome to IP-TBM MS!
 

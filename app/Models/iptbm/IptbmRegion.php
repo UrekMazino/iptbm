@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class IptbmRegion extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
 
         'rrdcc_chair',
         'name',
@@ -19,10 +20,11 @@ class IptbmRegion extends Model
 
     public function agencies(): HasMany
     {
-        return $this->hasMany(IptbmAgency::class,'iptbm_region_id','id');
+        return $this->hasMany(IptbmAgency::class, 'iptbm_region_id', 'id');
     }
+
     public function iptbms(): HasMany
     {
-        return $this->hasMany(IptbmProfile::class,'region_id','id');
+        return $this->hasMany(IptbmProfile::class, 'region_id', 'id');
     }
 }

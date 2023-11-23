@@ -15,51 +15,55 @@ class PrecomAccounting extends Component
     public $commercializationModeModel;
     public $costModel;
     public $incomeModel;
-    public function saveDetails($model,$sessionName,$dataProps,$set)
+    public $validationAttributes = [
+        'capitalModel' => 'Starting Capital',
+        'investmentModel' => 'Return of Investment',
+        'breakevenModel' => 'Break even',
+        'commercializationModeModel' => 'Commercialization Mode',
+        'costModel' => 'Estimated cost',
+        'incomeModel' => 'Transfer Income'
+
+    ];
+
+    public function saveCapitalModel()
+    {
+        $this->validateOnly('capitalModel');
+        $this->saveDetails($this->capitalModel, 'capitalModel', 'starting_capital', function ($data) {
+            $this->capitalModel = $data;
+        });
+    }
+
+    public function saveDetails($model, $sessionName, $dataProps, $set)
     {
         $this->validateOnly($model);
-        $this->precom[$dataProps]=$model;
+        $this->precom[$dataProps] = $model;
         $this->precom->save();
         $set($this->precom[$dataProps]);
         session()->flash($sessionName, 'Data successfully updated.');
     }
 
-
-
-    public function saveCapitalModel()
-    {
-        $this->validateOnly('capitalModel');
-        $this->saveDetails($this->capitalModel,'capitalModel','starting_capital',function($data){
-            $this->capitalModel=$data;
-        });
-    }
-
-
-
     public function saveInvestmentModel()
     {
         $this->validateOnly('investmentModel');
-        $this->saveDetails($this->investmentModel,'investmentModel','return_of_investment',function($data){
-            $this->investmentModel=$data;
+        $this->saveDetails($this->investmentModel, 'investmentModel', 'return_of_investment', function ($data) {
+            $this->investmentModel = $data;
         });
     }
-
 
     public function saveBreakevenModel()
     {
         $this->validateOnly('breakevenModel');
-        $this->saveDetails($this->breakevenModel,'breakevenModel','breakeven',function($data){
-            $this->breakevenModel=$data;
+        $this->saveDetails($this->breakevenModel, 'breakevenModel', 'breakeven', function ($data) {
+            $this->breakevenModel = $data;
         });
     }
-
 
     public function saveCommercializationModeModel()
     {
         $this->validateOnly('commercializationModeModel');
 
         $this->precom->modes()->save(new IptbmPrecomMode([
-            'commercialization_mode'=>$this->commercializationModeModel
+            'commercialization_mode' => $this->commercializationModeModel
         ]));
         $this->emit('reloadPage');
         /*
@@ -69,21 +73,19 @@ class PrecomAccounting extends Component
          */
     }
 
-
     public function saveCostModel()
     {
         $this->validateOnly('costModel');
-        $this->saveDetails($this->costModel,'costModel','estimated_acquisition_cost',function($data){
-            $this->costModel=$data;
+        $this->saveDetails($this->costModel, 'costModel', 'estimated_acquisition_cost', function ($data) {
+            $this->costModel = $data;
         });
     }
-
 
     public function saveIncomeModel()
     {
         $this->validateOnly('incomeModel');
-        $this->saveDetails($this->incomeModel,'incomeModel','income_gen_trans',function($data){
-            $this->incomeModel=$data;
+        $this->saveDetails($this->incomeModel, 'incomeModel', 'income_gen_trans', function ($data) {
+            $this->incomeModel = $data;
         });
     }
 
@@ -92,42 +94,36 @@ class PrecomAccounting extends Component
         $this->precom->modes->find($id)->delete();
         $this->emit('reloadPage');
     }
+
     public function rules()
     {
         return [
-            'capitalModel'=>'required|min:1|numeric',
-            'investmentModel'=>'required|min:1|numeric',
-            'breakevenModel'=>'required|min:1|numeric',
-            'commercializationModeModel'=>[
+            'capitalModel' => 'required|min:1|numeric',
+            'investmentModel' => 'required|min:1|numeric',
+            'breakevenModel' => 'required|min:1|numeric',
+            'commercializationModeModel' => [
                 'required',
                 'in:Licensing Agreement/s,Outright sale,Joint venture,Start-up,Spin-off',
-                Rule::unique(IptbmPrecomMode::class,'commercialization_mode')->where('iptbm_commercialization_precoms_id',$this->precom->id)
+                Rule::unique(IptbmPrecomMode::class, 'commercialization_mode')->where('iptbm_commercialization_precoms_id', $this->precom->id)
             ],
-            'costModel'=>'required|min:1|numeric',
-            'incomeModel'=>'required|min:1|numeric',
+            'costModel' => 'required|min:1|numeric',
+            'incomeModel' => 'required|min:1|numeric',
         ];
     }
-    public $validationAttributes=[
-        'capitalModel'=>'Starting Capital',
-        'investmentModel'=>'Return of Investment',
-        'breakevenModel'=>'Break even',
-        'commercializationModeModel'=>'Commercialization Mode',
-        'costModel'=>'Estimated cost',
-        'incomeModel'=>'Transfer Income'
 
-    ];
     public function mount($precom)
     {
 
         $this->precom = $precom;
-        $this->capitalModel=$this->precom->starting_capital;
-        $this->investmentModel=$this->precom->return_of_investment;
-        $this->breakevenModel=$this->precom->breakeven;
-        $this->commercializationModeModel=$this->precom->modes;
-        $this->costModel=$this->precom->estimated_acquisition_cost;
-        $this->incomeModel=$this->precom->income_gen_trans;
+        $this->capitalModel = $this->precom->starting_capital;
+        $this->investmentModel = $this->precom->return_of_investment;
+        $this->breakevenModel = $this->precom->breakeven;
+        $this->commercializationModeModel = $this->precom->modes;
+        $this->costModel = $this->precom->estimated_acquisition_cost;
+        $this->incomeModel = $this->precom->income_gen_trans;
 
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.precom.precom-accounting');

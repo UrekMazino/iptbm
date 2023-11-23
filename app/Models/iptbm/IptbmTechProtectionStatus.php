@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmTechProtectionStatus extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'protection_status'
     ];
 }

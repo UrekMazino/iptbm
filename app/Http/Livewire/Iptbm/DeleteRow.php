@@ -13,23 +13,24 @@ class DeleteRow extends Component
 
     public function deleteData()
     {
-        if($this->eventName)
-        {
+        if ($this->eventName) {
             $this->emit($this->eventName);
 
-        }else{
+        } else {
             $this->model->delete();
             $this->emit('reloadPage');
         }
 
     }
-    public function mount($model,$item,$modalName,$customFunction=null)
+
+    public function mount($model, $item, $modalName, $customFunction = null)
     {
-        $this->model=$model;
-        $this->item=$item;
-        $this->eventName=$customFunction;
-        $this->modalId=$modalName;
+        $this->model = $model;
+        $this->item = $item;
+        $this->eventName = $customFunction;
+        $this->modalId = $modalName;
     }
+
     public function render()
     {
         return view('livewire.iptbm.delete-row');

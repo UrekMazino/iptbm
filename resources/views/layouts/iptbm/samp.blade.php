@@ -23,10 +23,12 @@
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/datatables.min.css" rel="stylesheet"/>
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/r-2.4.1/datatables.min.js"></script>
     @yield('data_tables')
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css'
+          rel='stylesheet' type='text/css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js'
+            type='text/javascript'></script>
     <!-- Scripts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
@@ -48,13 +50,14 @@
         <div class="col-md-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark vh-100 sticky-md-top overflow-auto ">
             <div class="d-flex flex-column align-items-center align-items-sm-start  pt-2 text-white min-vh-100 ">
                 <div class="navbar navbar-brand my-3 w-100 bg-secondary rounded px-1 py-3">
-                    <a href="#" class="d-flex align-items-center ms-2  mb-md-0 me-md-auto text-white text-decoration-none">
+                    <a href="#"
+                       class="d-flex align-items-center ms-2  mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fa-solid fa-clock text-light me-2 ms-2" style="scale: 2"></span><span class="ms-3">IP-TBM RTMS</span>
                     </a>
                 </div>
 
                 <ul class="nav  flex-column nav-pills w-75   contin" role="tablist">
-                    <li class="nav-item pt-1 tabhome side-bot" role="presentation" >
+                    <li class="nav-item pt-1 tabhome side-bot" role="presentation">
                         <a
                             class="nav-link py-3  link-info tabsBase @if(Request::segment(2)==null) active link-light @endif"
                             id="ex1-tab-1"
@@ -64,7 +67,8 @@
                             aria-controls="ex1-tabs-1"
                             aria-selected="true"
 
-                        ><i style="scale: 1.5" class="fa-solid fa-chart-simple me-2  text-secondary @if(Request::segment(2)==null) text-light @endif"></i>Dashboard</a>
+                        ><i style="scale: 1.5"
+                            class="fa-solid fa-chart-simple me-2  text-secondary @if(Request::segment(2)==null) text-light @endif"></i>Dashboard</a>
                     </li>
                     <li class="nav-item pt-1 tabhome side-bot " role="presentation">
                         <a
@@ -75,7 +79,8 @@
                             role="tab"
                             aria-controls="ex1-tabs-2"
                             aria-selected="false"
-                        ><i style="scale: 1.5" class="fa-solid fa-briefcase text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="profile") text-light @endif"></i>Profiles</a>
+                        ><i style="scale: 1.5"
+                            class="fa-solid fa-briefcase text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="profile") text-light @endif"></i>Profiles</a>
                     </li>
                     <li class="nav-item pt-1 tabhome side-bot" role="presentation">
                         <a
@@ -86,7 +91,8 @@
                             role="tab"
                             aria-controls="ex1-tabs-3"
                             aria-selected="false"
-                        ><i style="scale: 1.5" class="fa-solid fa-users-gear text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="inventor") text-light @endif"></i>Inventor</a>
+                        ><i style="scale: 1.5"
+                            class="fa-solid fa-users-gear text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="inventor") text-light @endif"></i>Inventor</a>
                     </li>
                     <li class="nav-item pt-1 tabhome side-bot" role="presentation">
                         <a
@@ -97,7 +103,8 @@
                             role="tab"
                             aria-controls="ex1-tabs-3"
                             aria-selected="false"
-                        ><i style="scale: 1.5" class="fa-solid fa-microchip text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="technology") text-light @endif"></i>Technology</a>
+                        ><i style="scale: 1.5"
+                            class="fa-solid fa-microchip text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="technology") text-light @endif"></i>Technology</a>
                     </li>
                     <hr>
                     <div class="text-muted h6 ms-3">
@@ -129,7 +136,8 @@
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-info  align-middle tabsBase">
                             Commercialization
                         </a>
-                        <ul class="collapse @if(Request::segment(2)=="ip-management"||Request::segment(2)=="pre-commercialization" ||Request::segment(2)=="adopter") show @endif   nav ms-4" id="submenu1" data-bs-parent="#menu">
+                        <ul class="collapse @if(Request::segment(2)=="ip-management"||Request::segment(2)=="pre-commercialization" ||Request::segment(2)=="adopter") show @endif   nav ms-4"
+                            id="submenu1" data-bs-parent="#menu">
                             <li class="nav-item p-0 pt-1 w-75 tabhome side-bot" role="presentation">
                                 <a
                                     class="nav-link py-2 link-info tabsBase @if(Request::segment(2)=="ip-management") active link-light @endif"
@@ -139,7 +147,8 @@
                                     role="tab"
                                     aria-controls="ex1-tabs-3"
                                     aria-selected="false"
-                                ><i class="fa-solid fa-circle-exclamation text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="ip-management") text-light @endif"></i>IP Alert</a>
+                                ><i class="fa-solid fa-circle-exclamation text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="ip-management") text-light @endif"></i>IP
+                                    Alert</a>
                             </li>
                             <li class="nav-item w-75 pt-1 tabhome side-bot" role="presentation">
                                 <a
@@ -150,7 +159,8 @@
                                     role="tab"
                                     aria-controls="ex1-tabs-3"
                                     aria-selected="false"
-                                ><i class="fa-solid fa-shop-lock text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="pre-commercialization") text-light @endif"></i>Pre Com</a>
+                                ><i class="fa-solid fa-shop-lock text-secondary text-opacity-75 me-2  @if(Request::segment(2)=="pre-commercialization") text-light @endif"></i>Pre
+                                    Com</a>
                             </li>
                             <li class="nav-item pt-1 w-75 tabhome side-bot" role="presentation">
                                 <a
@@ -218,18 +228,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 @yield('script')
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        $('#calendar').fullCalendar({
-
-        });
-        setTimeout(function(){
+        $('#calendar').fullCalendar({});
+        setTimeout(function () {
             $('.spinner-wrapper').css({
-                opacity:0,
-                transform:'translate(0,-100%)',
+                opacity: 0,
+                transform: 'translate(0,-100%)',
                 animation: 'shake 0.5s'
             })
-        },500)
+        }, 500)
     })
 
 </script>

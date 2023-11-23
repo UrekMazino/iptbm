@@ -23,14 +23,14 @@ class EmailVerificationNotificationController extends Controller
 
         return back()->with('status', 'verification-link-sent');
     }
+
     private function routeSelect($type)
     {
-        return match ($type)
-        {
+        return match ($type) {
             'IPTBM' => RouteServiceProvider::IPTBM_STAFF_DASHBOARD,
-            'ATBI' =>RouteServiceProvider::ATBI_STAFF_DASHBOARD,
+            'ATBI' => RouteServiceProvider::ATBI_STAFF_DASHBOARD,
             'ABH' => RouteServiceProvider::ABH_STAFF_DASHBOARD,
-            default =>redirect( '/'),
+            default => redirect('/'),
         };
     }
 }

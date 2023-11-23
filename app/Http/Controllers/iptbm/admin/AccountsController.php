@@ -28,10 +28,9 @@ class AccountsController extends Controller
     public function index(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
         $users = User::with('profile', 'profile.agency', 'profile.agency.region')
-
             ->get();
 
-        return view('admin.iptbm.add-record.accounts',[
+        return view('admin.iptbm.add-record.accounts', [
             'users' => $users
         ]);
     }
@@ -57,9 +56,9 @@ class AccountsController extends Controller
 
     public function add_account(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        $regions=IptbmRegion::with('agencies')->get();
-        return view("admin.iptbm.add-record.add-account",[
-            'regions'=>$regions
+        $regions = IptbmRegion::with('agencies')->get();
+        return view("admin.iptbm.add-record.add-account", [
+            'regions' => $regions
         ]);
     }
 
@@ -70,7 +69,7 @@ class AccountsController extends Controller
      * associates it with a profile, and saves it to the database.
      * It redirects back to the previous page with a success message upon successful creation.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return RedirectResponse
      * @throws ValidationException
      */
@@ -136,7 +135,6 @@ class AccountsController extends Controller
         // Redirect back to the previous page with a success message
         return redirect()->back()->with('account_success', 'Account created successfully');
     }
-
 
 
 }

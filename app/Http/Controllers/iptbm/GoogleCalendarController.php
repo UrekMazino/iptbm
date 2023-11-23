@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\iptbm;
 
 use App\Http\Controllers\Controller;
+use Google_Client;
+use Google_Service_Calendar;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Google_Client;
-use Google_Service_Calendar;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
 
@@ -26,11 +26,19 @@ class GoogleCalendarController extends Controller
         $client->addScope(Google_Service_Calendar::CALENDAR);
 
 
-
-
         $authUrl = $client->createAuthUrl();
 
         return redirect($authUrl);
+    }
+
+    private function createGoogleClient(): Google_Client
+    {
+        $client = new Google_Client();
+        $client->setClientId(config('services.google.client_id'));
+        $client->setClientSecret(config('services.google.client_secret'));
+        $client->setRedirectUri(config('services.google.redirect_uri'));
+        $client->setScopes(config('services.google.scopes'));
+        return $client;
     }
 
     public function callback(Request $request)
@@ -53,6 +61,7 @@ class GoogleCalendarController extends Controller
             return redirect()->route('event.create');
         }
     }
+
     public function show(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
         $client = $this->createGoogleClient();
@@ -69,14 +78,5 @@ class GoogleCalendarController extends Controller
         $events = $calendarService->events->listEvents($calendarId);
 
         return view('google-calendar')->with('events', $events);
-    }
-    private function createGoogleClient(): Google_Client
-    {
-        $client = new Google_Client();
-        $client->setClientId(config('services.google.client_id'));
-        $client->setClientSecret(config('services.google.client_secret'));
-        $client->setRedirectUri(config('services.google.redirect_uri'));
-        $client->setScopes(config('services.google.scopes'));
-        return $client;
     }
 }

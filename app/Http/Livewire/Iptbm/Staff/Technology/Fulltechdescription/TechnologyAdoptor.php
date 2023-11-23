@@ -7,6 +7,7 @@ use Livewire\Component;
 class TechnologyAdoptor extends Component
 {
     public $techAdoptor;
+
     public function mount($techAdoptor)
     {
         $this->adoptor = $techAdoptor;

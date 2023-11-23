@@ -11,7 +11,7 @@ class MaxContact implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
      */
 
     public $max;
@@ -23,25 +23,25 @@ class MaxContact implements ValidationRule
     public $baseId_name;
     public $baseId_value;
 
-    public function __construct($max,$table,$column,$columnTypeName,$contactType,$baseId_name,$baseId_value,$message)
+    public function __construct($max, $table, $column, $columnTypeName, $contactType, $baseId_name, $baseId_value, $message)
     {
         $this->max = $max;
         $this->table = $table;
         $this->column = $column;
         $this->message = $message;
         $this->contactType = $contactType;
-        $this->columnTypeName=$columnTypeName;
-        $this->baseId_name=$baseId_name;
-        $this->baseId_value=$baseId_value;
+        $this->columnTypeName = $columnTypeName;
+        $this->baseId_name = $baseId_name;
+        $this->baseId_value = $baseId_value;
     }
+
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $count = DB::table($this->table)
             ->where($this->columnTypeName, $this->contactType)
-            ->where($this->baseId_name,$this->baseId_value)
+            ->where($this->baseId_name, $this->baseId_value)
             ->count($this->column);
-        if($count==$this->max)
-        {
+        if ($count == $this->max) {
             $fail($this->message);
         }
     }

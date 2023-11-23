@@ -20,10 +20,10 @@ class PdfViewer extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($file=null,$modId=null)
+    public function __construct($file = null, $modId = null)
     {
-        $this->file=$file;
-        $this->modId=$modId;
+        $this->file = $file;
+        $this->modId = $modId;
     }
 
     /**
@@ -31,9 +31,9 @@ class PdfViewer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.iptbm.pdf-viewer',[
-            'file'=>$this->file,
-            'modId'=>$this->modId
+        return view('components.iptbm.pdf-viewer', [
+            'file' => $this->file,
+            'modId' => $this->modId
         ]);
     }
 }

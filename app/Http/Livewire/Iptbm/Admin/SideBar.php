@@ -12,7 +12,7 @@ class SideBar extends Component
     public function render()
     {
         return view('livewire.iptbm.admin.side-bar')->with([
-            'nav'=>IpType::all()
+            'nav' => IpType::all()
         ]);
     }
 }

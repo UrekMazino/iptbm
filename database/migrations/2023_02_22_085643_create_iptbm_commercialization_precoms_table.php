@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -23,7 +22,7 @@ return new class extends Migration
             $table->string('freedom_operate_summary')->nullable();
             $table->string('proposed_term_sheet')->nullable();
             $table->string('fairness_opinion_report')->nullable();
-        //    $table->string('commercialization_mode')->comment('Licensing Agreement/s,Outright sale,Joint venture,Start-up,Spin-off')->nullable();
+            //    $table->string('commercialization_mode')->comment('Licensing Agreement/s,Outright sale,Joint venture,Start-up,Spin-off')->nullable();
             $table->double('estimated_acquisition_cost')->nullable();
             $table->string('video_clips')->nullable();
             $table->string('agreement_copy')->nullable();

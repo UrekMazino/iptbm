@@ -1,4 +1,3 @@
-
 @extends('iptbm.admin.add-record.index')
 
 @section('sub-content')
@@ -9,7 +8,8 @@
             @foreach($industries as $key=>$industry)
                 @if ($key < 5)
                     <li class="w-full">
-                        <a class="inline-block w-full text-xl py-2  duration-300 transition  text-gray-900 bg-gray-100    dark:bg-gray-700 dark:text-white dark:hover:bg-blue-700 hover:text-blue-500 " aria-current="page" href="#nav{{$industry->id}}">
+                        <a class="inline-block w-full text-xl py-2  duration-300 transition  text-gray-900 bg-gray-100    dark:bg-gray-700 dark:text-white dark:hover:bg-blue-700 hover:text-blue-500 "
+                           aria-current="page" href="#nav{{$industry->id}}">
                             <small>{{ Str::title(Str::lower(Str::limit($industry->name, 20, '...'))) }}</small>
                         </a>
                     </li>
@@ -18,14 +18,25 @@
             @if (count($industries) > 5)
                 <li class="w-full">
 
-                    <a id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a>
+                    <a id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                       class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                       type="button">Dropdown button
+                        <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
 
-                    <div id="dropdown" class="z-10 hidden bg-gray-50 border-gray-900 divide-y divide-gray-100 rounded-lg shadow w-auto dark:bg-gray-700 dark:border-gray-400">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <div id="dropdown"
+                         class="z-10 hidden bg-gray-50 border-gray-900 divide-y divide-gray-100 rounded-lg shadow w-auto dark:bg-gray-700 dark:border-gray-400">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
                             @foreach ($industries as $key=>$industry)
                                 @if ($key >= 5)
                                     <li>
-                                        <a  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" href="#nav{{$industry->id}}">
+                                        <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                           href="#nav{{$industry->id}}">
                                             <small>{{ Str::title(Str::lower($industry->name)) }}</small>
                                         </a>
                                     </li>
@@ -57,10 +68,14 @@
                 </h2>
                 <div id="accordion-collapse-body-{{$industry->id}}" class="hidden"
                      aria-labelledby="accordion-collapse-heading-{{$key}}">
-                    <div class="p-5 border-l border-r border-t border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                    <div
+                        class="p-5 border-l border-r border-t border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900">
 
-                        <table class="w-75 m-auto text-sm text-left text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800" id="table{{$industry->id}}">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table
+                            class="w-75 m-auto text-sm text-left text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800"
+                            id="table{{$industry->id}}">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 columns-9 py-3">
                                     Names
@@ -82,13 +97,15 @@
                                         <div class="commodity-actions">
 
                                             <a href="#">
-                                                <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2 py-2 mr-2  dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                                <button type="button"
+                                                        class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2 py-2 mr-2  dark:bg-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                             </a>
                                             <a href="#">
 
-                                                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 mr-2  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                                <button type="button"
+                                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 mr-2  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </a>
@@ -103,7 +120,8 @@
 
                         </table>
 
-                        <div class="commodity-item w-75 mt-5 m-auto bg-gray-200 dark:bg-gray-800 text-gray-700  dark:text-blue-500">
+                        <div
+                            class="commodity-item w-75 mt-5 m-auto bg-gray-200 dark:bg-gray-800 text-gray-700  dark:text-blue-500">
                             <div class="text-center m-auto">
                                 <a href="#" class="text-xl"><i class="fas fa-arrow-left"></i> Return</a>
                             </div>

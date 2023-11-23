@@ -406,7 +406,6 @@ const fin = resultString.replace(/(?:\r\n|\r|\n)/g, '').replace(' ', '')
 const Result = mainProcess(fin.split(',').map(Number).reverse(), 100)
 
 
-
 Result.perDigit.reverse().forEach(val => {
 
     console.log('Number = ' + val.n)
@@ -425,7 +424,6 @@ Result.analyze.forEach(val => {
 })
 
 
-
 function product_Range(a, b) {
     var prd = a, i = a;
 
@@ -434,7 +432,6 @@ function product_Range(a, b) {
     }
     return prd;
 }
-
 
 
 /*
@@ -453,8 +450,6 @@ function combinations(n, r)
 
 
  */
-
-
 
 
 /*

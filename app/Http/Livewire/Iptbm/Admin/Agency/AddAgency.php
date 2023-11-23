@@ -2,11 +2,9 @@
 
 namespace App\Http\Livewire\Iptbm\Admin\Agency;
 
-use App\Models\iptbm\AgencyContact;
 use App\Models\iptbm\AgencyHead;
 use App\Models\iptbm\IptbmAgency;
 use App\Models\iptbm\IptbmRegion;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class AddAgency extends Component
@@ -24,17 +22,31 @@ class AddAgency extends Component
     public $phoneModel;
     public $faxModel;
     public $emailModel;
+    public $messages = [
+        'regionModel.exists' => 'Region name does not exist. Please provide a valid region name'
+    ];
+    public $validationAttributes = [
+        'regionModel' => 'Region',
+        'agencyModel' => 'Agency',
+        'addressModel' => 'Address',
+        'agencyHeadModel' => 'Agency Head',
+        'designationModel' => 'Designation',
+        'mobileModel' => 'Mobile number',
+        'phoneModel' => 'Phone number',
+        'faxModel' => 'Fax number',
+        'emailModel' => 'Email Address'
+    ];
 
     public function saveForm()
     {
-        $region=IptbmRegion::where('name',$this->regionModel)->first();
-        $agency=new IptbmAgency([
+        $region = IptbmRegion::where('name', $this->regionModel)->first();
+        $agency = new IptbmAgency([
             'name' => $this->agencyModel,
             'address' => $this->addressModel,
         ]);
         $region->agencies()->save($agency);
         $agency->head()->save(new AgencyHead([
-            'head'=>$this->agencyHeadModel,
+            'head' => $this->agencyHeadModel,
             'designation' => $this->designationModel,
             'email' => $this->emailModel,
             'mobile' => $this->emailModel,
@@ -44,52 +56,37 @@ class AddAgency extends Component
         session()->flash('agency', 'New Agency was added successfully');
     }
 
-
     public function rules()
     {
-        return[
-            'regionModel'=>[
+        return [
+            'regionModel' => [
                 'required',
                 'exists:iptbm_regions,name',
             ],
-            'agencyModel'=>[
+            'agencyModel' => [
                 'required',
                 'unique:iptbm_agencies,name'
             ],
-            'addressModel'=>'required',
-            'agencyHeadModel'=>'required',
-            'designationModel'=>'required',
-            'mobileModel'=>'nullable|min_digits:11|unique:agency_contacts,contact',
-            'phoneModel'=>'nullable|min_digits:7|unique:agency_contacts,contact',
-            'faxModel'=>'nullable|min_digits:7|unique:agency_contacts,contact',
-            'emailModel'=>'nullable|email'
+            'addressModel' => 'required',
+            'agencyHeadModel' => 'required',
+            'designationModel' => 'required',
+            'mobileModel' => 'nullable|min_digits:11|unique:agency_contacts,contact',
+            'phoneModel' => 'nullable|min_digits:7|unique:agency_contacts,contact',
+            'faxModel' => 'nullable|min_digits:7|unique:agency_contacts,contact',
+            'emailModel' => 'nullable|email'
         ];
     }
-
-    public $messages=[
-        'regionModel.exists'=>'Region name does not exist. Please provide a valid region name'
-    ];
-
-    public $validationAttributes=[
-        'regionModel'=>'Region',
-        'agencyModel'=>'Agency',
-        'addressModel'=>'Address',
-        'agencyHeadModel'=>'Agency Head',
-        'designationModel'=>'Designation',
-        'mobileModel'=>'Mobile number',
-        'phoneModel'=>'Phone number',
-        'faxModel'=>'Fax number',
-        'emailModel'=>'Email Address'
-    ];
 
     public function updated($props)
     {
         $this->validateOnly($props);
     }
+
     public function mount()
     {
-        $this->regions=IptbmRegion::all();
+        $this->regions = IptbmRegion::all();
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.agency.add-agency');

@@ -9,7 +9,8 @@
 
 
                     <div>
-                        <a href="{{route("iptbm.staff.viewProfile",['id'=>'1'])}}" class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
+                        <a href="{{route("iptbm.staff.viewProfile",['id'=>'1'])}}"
+                           class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
                             Sample
                         </a>
                     </div>
@@ -25,7 +26,8 @@
 
 
                     <div>
-                        <a href="{{route("iptbm.staff.viewProfile",['id'=>'1'])}}" class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
+                        <a href="{{route("iptbm.staff.viewProfile",['id'=>'1'])}}"
+                           class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
                             Sample
                         </a>
                     </div>

@@ -24,24 +24,20 @@ class AddAdopterTech extends Component
     public $forIncubation;
 
 
-
-
-
     public function rules()
     {
-        $tech=IptbmTechnologyProfile::where("title",$this->techName)->first();
-        if($tech)
-        {
-            $this->techId=$tech->id;
+        $tech = IptbmTechnologyProfile::where("title", $this->techName)->first();
+        if ($tech) {
+            $this->techId = $tech->id;
         }
 
 
-        return[
-            'techName'=>[
+        return [
+            'techName' => [
                 'required',
                 'exists:iptbm_technology_profiles,title'
             ],
-            'techId'=>[
+            'techId' => [
                 //'unique:iptbm_adopter_pathways,technology_id',
                 new ValueExistsInTable([
                     'iptbm_extension_pathways' => 'technology_id',
@@ -50,28 +46,28 @@ class AddAdopterTech extends Component
                     //  'iptbm_commercialization_adopters' => 'technology_id',
                 ], 'Technology', "Technology is currently under in different pathways.")
             ],
-            'companyName'=>[
+            'companyName' => [
                 'required',
                 'min:5'
             ],
-            'companyAddress'=>[
+            'companyAddress' => [
                 'required',
                 'min:10'
             ],
-            'companyDescription'=>[
+            'companyDescription' => [
                 'required',
                 'min:10'
             ],
-            'businessStructure'=>[
+            'businessStructure' => [
                 'required'
             ],
-            'businessRegistration'=>[
+            'businessRegistration' => [
                 'required',
             ],
-            'technologyAquisition'=>[
+            'technologyAquisition' => [
                 'required'
             ],
-            'forIncubation'=>[
+            'forIncubation' => [
                 'required',
                 'boolean'
             ]
@@ -79,20 +75,19 @@ class AddAdopterTech extends Component
     }
 
 
-
     public function saveForm()
     {
         $this->validate();
-        $technology=IptbmTechnologyProfile::where('title',$this->techName)->first();
+        $technology = IptbmTechnologyProfile::where('title', $this->techName)->first();
 
         IptbmCommercializationAdopter::create([
-            'technology_id'=>$technology->id,
-            'company_name'=>$this->companyName,
-            'company_description'=>$this->companyDescription,
-            'business_structures'=>$this->businessStructure,
-            'business_registration'=>$this->businessRegistration,
-            'acquisition_model'=>$this->technologyAquisition,
-            'for_incubation'=>$this->forIncubation
+            'technology_id' => $technology->id,
+            'company_name' => $this->companyName,
+            'company_description' => $this->companyDescription,
+            'business_structures' => $this->businessStructure,
+            'business_registration' => $this->businessRegistration,
+            'acquisition_model' => $this->technologyAquisition,
+            'for_incubation' => $this->forIncubation
         ]);
         $this->emit('reloadPage');
 
@@ -107,8 +102,9 @@ class AddAdopterTech extends Component
 
     public function mount($technologies)
     {
-        $this->technologies=$technologies;
+        $this->technologies = $technologies;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.adopter.add-adopter-tech');

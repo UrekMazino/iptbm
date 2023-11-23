@@ -25,6 +25,32 @@ class DailyNotification extends Command
      */
     protected $description = 'Sending emails for daily notifications';
 
+    public function handle(): void
+    {
+        $deadlinesDaily = IptbmIpAlertTask::with(['ip_alert',
+            'stage',
+            'dailySend',
+            'dailySend.ipAlertTask',
+            'dailySend.ipAlertTask.ip_task_stage_notifications',
+            'ip_task_stage_notifications',
+            'stage.task',
+            'ip_alert.ip_type',
+            'ip_alert.technology',
+            'ip_alert.technology.iptbmprofiles',
+            'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
+                $query->where('contact_type', 'email');
+            }])
+            ->whereDoesntHave('dailySend')
+            ->where('task_status', 'ONGOING')
+            ->whereHas('ip_task_stage_notifications', function ($query) {
+                $query->where('frequency', 'daily')
+                    ->whereTime('time_of_day', '<=', now());
+            })
+            ->whereDate('deadline', '>', now())
+            ->get();
+        $this->mailer($deadlinesDaily);
+    }
+
     /**
      * Execute the console command.
      */
@@ -33,14 +59,10 @@ class DailyNotification extends Command
     {
 
 
-        foreach ($data as $profile)
+        foreach ($data as $profile) {
+            if ($profile->ip_alert->technology->iptbmprofiles->contact->count() > 0) {
 
-        {
-            if($profile->ip_alert->technology->iptbmprofiles->contact->count()>0)
-            {
-
-                foreach ($profile->ip_alert->technology->iptbmprofiles->contact as $email)
-                {
+                foreach ($profile->ip_alert->technology->iptbmprofiles->contact as $email) {
 
                     Mail::to('warzservania@gmail.com')
                         ->send(new DeadlineNotificationMail(
@@ -50,7 +72,7 @@ class DailyNotification extends Command
                             $profile->task_group_name,
                             $profile->stage->stage_name,
                             $profile->deadline,
-                            route("iptbm.staff.iptask.view",['id'=>$profile->id])
+                            route("iptbm.staff.iptask.view", ['id' => $profile->id])
                         ));
 
                 }
@@ -61,32 +83,5 @@ class DailyNotification extends Command
 
         }
 
-    }
-    public function handle(): void
-    {
-        $deadlinesDaily=IptbmIpAlertTask::with(['ip_alert',
-            'stage',
-            'dailySend',
-            'dailySend.ipAlertTask',
-            'dailySend.ipAlertTask.ip_task_stage_notifications',
-            'ip_task_stage_notifications',
-            'stage.task',
-            'ip_alert.ip_type',
-            'ip_alert.technology',
-            'ip_alert.technology.iptbmprofiles',
-            'ip_alert.technology.iptbmprofiles.contact'=>function($query){
-                $query->where('contact_type','email');
-            }])
-
-            ->whereDoesntHave('dailySend')
-            ->where('task_status','ONGOING')
-            ->whereHas('ip_task_stage_notifications',function($query){
-                $query->where('frequency','daily')
-                    ->whereTime('time_of_day','<=',now());
-            })
-            ->whereDate('deadline','>',now())
-
-            ->get();
-        $this->mailer($deadlinesDaily);
     }
 }

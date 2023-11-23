@@ -7,9 +7,10 @@ use Livewire\Component;
 class DeleteInventorPopup extends Component
 {
     public $inventor;
+
     public function mount($inventor)
     {
-        $this->inventor=$inventor;
+        $this->inventor = $inventor;
     }
 
     public function deleteRecord()
@@ -17,6 +18,7 @@ class DeleteInventorPopup extends Component
         $this->inventor->delete();
         return redirect()->route('iptbm.staff.inventor');
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.inventor.delete-inventor-popup');

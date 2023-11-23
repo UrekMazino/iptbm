@@ -1,4 +1,3 @@
-
 @extends('layouts.iptbm.admin')
 
 @section('title')
@@ -19,8 +18,8 @@
                 <table class="table table-bordered bg-amber-50 table-striped" id="Report">
                     <thead>
                     <tr>
-                       <th>
-                       </th>
+                        <th>
+                        </th>
                         <th>
                             asdasd
                         </th>
@@ -45,12 +44,12 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             var table = $('#Report').DataTable({
                 ajax: '{{route("iptbm.admin.addrecord.get_regions")}}',
                 stateSave: true,
                 pagingType: 'full_numbers',
-                horizontalScroll:true,
+                horizontalScroll: true,
                 dom: 'Bfrtip',
                 searchPanes: {
                     layout: 'columns-2'
@@ -62,9 +61,9 @@
                     'pdf',
                     {
                         text: '<span class="fa-solid fa-plus-square me-2"></span> new Record',
-                        class:'blue',
-                        action: function ( e, dt, node, config ) {
-                            window.location.href="{{ route("iptbm.admin.addrecord.add_region")}}"
+                        class: 'blue',
+                        action: function (e, dt, node, config) {
+                            window.location.href = "{{ route("iptbm.admin.addrecord.add_region")}}"
                         }
                     }
                     // Add more buttons here
@@ -77,14 +76,14 @@
                         data: null,
                         defaultContent: '',
                     },
-                    { data: 'name' },
+                    {data: 'name'},
                     {
                         data: 'consortium',
                     },
-                    { data: 'consortium_director' },
+                    {data: 'consortium_director'},
                     {
                         data: null,
-                        render:function (data){
+                        render: function (data) {
                             return $('<div>').append(
                                 $('<a href="{{route("iptbm.admin.editregion.index")}}" class="btn btn-sm btn-outline-primary me-2">').append(
                                     $('<span class="fa-solid fa-pen-square">')

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Iptbm\Staff\Technology\Techtrans;
 
 use App\Models\iptbm\IptbmCommercializationAdopter;
-use App\Models\iptbm\IptbmTechnologyProfile;
 use App\Rules\iptbm\ValueExistsInTable;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -33,20 +32,20 @@ class AdopterModal extends Component
         $this->validate();
 
 
-       $commercial=new  IptbmCommercializationAdopter([
-            'technology_id'=>$this->technology->id,
-            'address'=>$this->companyAddress,
-            'company_name'=>$this->companyName,
-            'company_description'=>$this->companyDescription,
-            'business_structures'=>$this->businessStructure,
-            'business_registration'=>$this->businessRegistration,
-            'acquisition_model'=>$this->technologyAquisition,
-            'for_incubation'=>$this->forIncubation
+        $commercial = new  IptbmCommercializationAdopter([
+            'technology_id' => $this->technology->id,
+            'address' => $this->companyAddress,
+            'company_name' => $this->companyName,
+            'company_description' => $this->companyDescription,
+            'business_structures' => $this->businessStructure,
+            'business_registration' => $this->businessRegistration,
+            'acquisition_model' => $this->technologyAquisition,
+            'for_incubation' => $this->forIncubation
         ]);
-       $this->technology->commercial_adopters()->save($commercial);
-       return redirect()->route("iptbm.staff.commercialization.adoptedTech",[
-           'id'=>$commercial->id
-       ]);
+        $this->technology->commercial_adopters()->save($commercial);
+        return redirect()->route("iptbm.staff.commercialization.adoptedTech", [
+            'id' => $commercial->id
+        ]);
     }
 
     public function updated($props)
@@ -57,47 +56,48 @@ class AdopterModal extends Component
     public function rules()
     {
         return [
-            'techId'=>[
+            'techId' => [
                 new ValueExistsInTable([
-                    'iptbm_extension_pathways'=>'technology_id',
+                    'iptbm_extension_pathways' => 'technology_id',
                     'iptbm_deployment_pathways' => 'technology_id',
-                ],'Technology',"Unable to add technologies that are already in deployment and extension pathways.")
+                ], 'Technology', "Unable to add technologies that are already in deployment and extension pathways.")
             ],
-            'companyName'=>[
+            'companyName' => [
                 'required',
                 'min:5',
-                Rule::unique(IptbmCommercializationAdopter::class,'company_name')->where('technology_id',$this->technology->id)
+                Rule::unique(IptbmCommercializationAdopter::class, 'company_name')->where('technology_id', $this->technology->id)
             ],
-            'companyAddress'=>[
+            'companyAddress' => [
                 'required',
                 'min:10'
             ],
-            'companyDescription'=>[
+            'companyDescription' => [
                 'required',
                 'min:10'
             ],
-            'businessStructure'=>[
+            'businessStructure' => [
                 'required'
             ],
-            'businessRegistration'=>[
+            'businessRegistration' => [
                 'required',
             ],
-            'technologyAquisition'=>[
+            'technologyAquisition' => [
                 'required'
             ],
-            'forIncubation'=>[
+            'forIncubation' => [
                 'required',
                 'boolean'
             ]
         ];
     }
 
-    public function mount($modalName,$technology)
+    public function mount($modalName, $technology)
     {
-        $this->modalName=$modalName;
-        $this->technology=$technology;
-        $this->techId=$technology->id;
+        $this->modalName = $modalName;
+        $this->technology = $technology;
+        $this->techId = $technology->id;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.techtrans.adopter-modal');

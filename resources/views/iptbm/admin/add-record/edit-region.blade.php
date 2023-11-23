@@ -4,7 +4,7 @@
     {{"| admin: Edit region"}}
 @endsection
 @section('content')
-<div>
+    <div>
         asdsdasdasd
     </div>
 @endsection

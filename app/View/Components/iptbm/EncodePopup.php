@@ -37,7 +37,7 @@ class EncodePopup extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct( $multiple=null,$modalId = null, $route = null, $classHead = null, $title = null, $classClose = null, $routeData = null,$classModal=null,$upload=null)
+    public function __construct($multiple = null, $modalId = null, $route = null, $classHead = null, $title = null, $classClose = null, $routeData = null, $classModal = null, $upload = null)
     {
         $this->modalId = $modalId;
         $this->route = $route;
@@ -45,9 +45,9 @@ class EncodePopup extends Component
         $this->title = $title;
         $this->classClose = $classClose;
         $this->routeData = $routeData;
-        $this->classModal=$classModal;
-        $this->upload=$upload;
-        $this->multiple=$multiple;
+        $this->classModal = $classModal;
+        $this->upload = $upload;
+        $this->multiple = $multiple;
     }
 
     /**
@@ -62,9 +62,9 @@ class EncodePopup extends Component
             'title' => $this->title,
             'classClose' => $this->classClose,
             'routeData' => $this->routeData,
-            'classModal'=>$this->classModal,
-            'upload'=>$this->upload,
-            'multiple'=>$this->multiple,
+            'classModal' => $this->classModal,
+            'upload' => $this->upload,
+            'multiple' => $this->multiple,
         ]);
     }
 }

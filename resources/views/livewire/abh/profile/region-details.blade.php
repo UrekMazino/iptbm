@@ -24,7 +24,8 @@
                             <x-input-error :messages="$errors->get('regionName')"/>
                         </div>
                         <div>
-                            <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveRegionName">
+                            <x-submit-button class="min-w-full" wire:loading.attr="disabled"
+                                             wire:target="saveRegionName">
                                 <div class="p-2 mx-auto text-center" wire:loading.remove wire:target="saveRegionName">
                                     Submit
                                 </div>
@@ -105,11 +106,7 @@
         </div>
 
 
-
-
-
-
-        </div>
+    </div>
 
 
 </x-card-panel>

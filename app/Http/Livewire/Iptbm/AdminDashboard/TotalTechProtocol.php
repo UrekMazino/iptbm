@@ -8,9 +8,10 @@ use Livewire\Component;
 class TotalTechProtocol extends Component
 {
     public $profiles;
+
     public function render()
     {
-        $this->profiles=IptbmProfile::all();
+        $this->profiles = IptbmProfile::all();
         return view('livewire.iptbm.admin-dashboard.total-tech-protocol')->with([
             'profiles' => $this->profiles
         ]);

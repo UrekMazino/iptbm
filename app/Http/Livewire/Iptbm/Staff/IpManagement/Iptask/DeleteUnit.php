@@ -8,6 +8,7 @@ class DeleteUnit extends Component
 {
 
     public $unit;
+
     public function mount($unit)
     {
         $this->unit = $unit;

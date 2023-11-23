@@ -11,7 +11,7 @@ class TradeMark extends Component
 
     public function mount()
     {
-        $this->ipAlert=IptbmIpAlert::with(
+        $this->ipAlert = IptbmIpAlert::with(
             [
 
                 'technology',
@@ -20,11 +20,12 @@ class TradeMark extends Component
                 'ip_task',
                 'ip_type',
             ])
-            ->whereHas('ip_type',function($query){
-                $query->where('name','Trademark/Service Mark');
+            ->whereHas('ip_type', function ($query) {
+                $query->where('name', 'Trademark/Service Mark');
             })
             ->get();
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.trademark.trade-mark')

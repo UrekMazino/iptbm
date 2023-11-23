@@ -28,23 +28,47 @@
             <div>
                 <x-card>
                     <div class="space-y-10">
-                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Narrative" univ-key="full-tech-mod-1" data="narrative" :full-tech-description="$technology_description" wire:key="key-mod-1"/>
+                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Narrative"
+                                                                                                univ-key="full-tech-mod-1"
+                                                                                                data="narrative"
+                                                                                                :full-tech-description="$technology_description"
+                                                                                                wire:key="key-mod-1"/>
 
-                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Process Flow" univ-key="full-tech-mod-2" data="process_flow" :full-tech-description="$technology_description" wire:key="key-mod-2"/>
+                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Process Flow"
+                                                                                                univ-key="full-tech-mod-2"
+                                                                                                data="process_flow"
+                                                                                                :full-tech-description="$technology_description"
+                                                                                                wire:key="key-mod-2"/>
 
-                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Technology Requirements" univ-key="full-tech-mod-3" data="requirements" :full-tech-description="$technology_description" wire:key="key-mod-3"/>
+                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file
+                            title="Technology Requirements" univ-key="full-tech-mod-3" data="requirements"
+                            :full-tech-description="$technology_description" wire:key="key-mod-3"/>
 
-                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Significance of the technology" univ-key="full-tech-mod-4" data="significance_of_technology" :full-tech-description="$technology_description" wire:key="key-mod-4"/>
-                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Limitation of the technology" univ-key="full-tech-mod-5" data="limitation_of_technology" :full-tech-description="$technology_description" wire:key="key-mod-5"/>
-                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Application of the technology" univ-key="full-tech-mod-6" data="application_of_technology" :full-tech-description="$technology_description" wire:key="key-mod-6"/>
-                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Other Possible Application " univ-key="full-tech-mod-7" data="other_application" :full-tech-description="$technology_description" wire:key="key-mod-7"/>
+                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file
+                            title="Significance of the technology" univ-key="full-tech-mod-4"
+                            data="significance_of_technology" :full-tech-description="$technology_description"
+                            wire:key="key-mod-4"/>
+                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file
+                            title="Limitation of the technology" univ-key="full-tech-mod-5"
+                            data="limitation_of_technology" :full-tech-description="$technology_description"
+                            wire:key="key-mod-5"/>
+                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file
+                            title="Application of the technology" univ-key="full-tech-mod-6"
+                            data="application_of_technology" :full-tech-description="$technology_description"
+                            wire:key="key-mod-6"/>
+                        <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file
+                            title="Other Possible Application " univ-key="full-tech-mod-7" data="other_application"
+                            :full-tech-description="$technology_description" wire:key="key-mod-7"/>
                     </div>
                 </x-card>
             </div>
             <div class="space-y-4">
-                <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-adopter :full-description="$technology_description" />
-                <livewire:iptbm.staff.technology.fulltechdescription.other-docs :full-description="$technology_description" />
-                <livewire:iptbm.staff.technology.fulltechdescription.full-tech-photo :full-description="$technology_description" />
+                <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-adopter
+                    :full-description="$technology_description"/>
+                <livewire:iptbm.staff.technology.fulltechdescription.other-docs
+                    :full-description="$technology_description"/>
+                <livewire:iptbm.staff.technology.fulltechdescription.full-tech-photo
+                    :full-description="$technology_description"/>
 
             </div>
         </x-grid>

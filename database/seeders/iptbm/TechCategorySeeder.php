@@ -3,7 +3,6 @@
 namespace Database\Seeders\iptbm;
 
 use App\Models\iptbm\IptbmIndustry;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TechCategorySeeder extends Seeder
@@ -13,7 +12,7 @@ class TechCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $data=[
+        $data = [
             [
                 [
                     'name' => 'Germplasm evaluation, conservation, utilization, and management '
@@ -164,14 +163,13 @@ class TechCategorySeeder extends Seeder
                     'name' => 'Development of strategies/decision management tools for climate change resilient environment (e.g. farm diversification)'
                 ],
                 [
-                    'name'=>'Enhancing sustainable development through lifescape-landscape approach'
+                    'name' => 'Enhancing sustainable development through lifescape-landscape approach'
                 ],
             ],
         ];
 
-        $industry=IptbmIndustry::all();
-        foreach ($industry as $key => $val)
-        {
+        $industry = IptbmIndustry::all();
+        foreach ($industry as $key => $val) {
             $val->techcategory()->createMany($data[$key]);
         }
     }

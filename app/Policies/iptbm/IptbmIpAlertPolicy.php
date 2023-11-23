@@ -3,9 +3,7 @@
 namespace App\Policies\iptbm;
 
 use App\Models\iptbm\IptbmIpAlert;
-
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class IptbmIpAlertPolicy
 {

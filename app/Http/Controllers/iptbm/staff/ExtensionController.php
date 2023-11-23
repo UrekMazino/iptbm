@@ -3,12 +3,7 @@
 namespace App\Http\Controllers\iptbm\staff;
 
 use App\Http\Controllers\Controller;
-use App\Models\iptbm\IptbmAdoptor;
-use App\Models\iptbm\IptbmCommercializationPathway;
-use App\Models\iptbm\IptbmCommercializationPrecom;
-use App\Models\iptbm\IptbmDeploymentPathway;
 use App\Models\iptbm\IptbmExtensionPathway;
-use App\Models\iptbm\IptbmIpAlert;
 use App\Models\iptbm\IptbmProfile;
 use App\Models\iptbm\IptbmTechnologyProfile;
 use App\Rules\iptbm\ValueExistsInTable;
@@ -30,7 +25,7 @@ class ExtensionController extends Controller
     public function index(): Factory|View|Application
     {
         $Extension = IptbmExtensionPathway::with('technology')->get();
-        $profile = IptbmProfile::with("technologies","technologies.techgenerators","technologies.techgenerators.inventor")->where("agency_id", Auth::user()->profile->agency->id)->first();
+        $profile = IptbmProfile::with("technologies", "technologies.techgenerators", "technologies.techgenerators.inventor")->where("agency_id", Auth::user()->profile->agency->id)->first();
 
 
         return view('iptbm.staff.extension.index', [
@@ -49,7 +44,7 @@ class ExtensionController extends Controller
                     'iptbm_ip_alerts' => 'technology_id',
                     'iptbm_commercialization_precoms' => 'technology_id',
                     'iptbm_deployment_pathways' => 'technology_id',
-                    'iptbm_commercialization_adopters'=>'technology_id',
+                    'iptbm_commercialization_adopters' => 'technology_id',
                 ], 'Technology', "Technology is already present in another pathways.")
             ],
             'adopter' => [

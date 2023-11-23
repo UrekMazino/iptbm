@@ -3,8 +3,8 @@
 namespace App\View\Components\iptbm\admin;
 
 use Closure;
-use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
 class AddRecordNav extends Component
 {
@@ -16,7 +16,7 @@ class AddRecordNav extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($tab=null)
+    public function __construct($tab = null)
     {
         $this->tab = $tab;
     }
@@ -26,7 +26,7 @@ class AddRecordNav extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.iptbm.admin.add-record-nav',[
+        return view('components.iptbm.admin.add-record-nav', [
             'tab' => $this->tab
         ]);
     }

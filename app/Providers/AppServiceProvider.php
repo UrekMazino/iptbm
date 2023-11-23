@@ -3,10 +3,7 @@
 namespace App\Providers;
 
 use App\Models\iptbm\IptbmIpAlert;
-use App\Policies\iptbm\IptbmIpAlertPolicy;
-
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,8 +11,8 @@ class AppServiceProvider extends ServiceProvider
      * Register any application services.
      */
 
-    protected $policies=[
-        IptbmIpAlert::class=>IptbmIpAlert::class
+    protected $policies = [
+        IptbmIpAlert::class => IptbmIpAlert::class
     ];
 
     public function register(): void

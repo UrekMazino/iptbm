@@ -15,7 +15,7 @@ class AddCommodity extends Component
     {
         $this->validate();
         $this->industry->commodities()->save(new IptbmCommodity([
-            'name'=>$this->commodityModel
+            'name' => $this->commodityModel
         ]));
         $this->emit('reloadPage');
     }
@@ -23,17 +23,20 @@ class AddCommodity extends Component
     public function rules()
     {
         return [
-            'commodityModel'=>'required|unique:iptbm_commodities,name'
+            'commodityModel' => 'required|unique:iptbm_commodities,name'
         ];
     }
+
     public function updated($props)
     {
         $this->validateOnly($props);
     }
+
     public function mount($industry)
     {
-        $this->industry=$industry;
+        $this->industry = $industry;
     }
+
     public function render()
     {
         return view('livewire.iptbm.admin.tech-component.add-commodity');

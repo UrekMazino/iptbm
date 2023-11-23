@@ -1,5 +1,6 @@
 <div class="antialiased bg-gray-50 dark:bg-gray-900">
-    <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+    <nav
+        class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
         <div class="flex flex-wrap justify-between items-center">
             <div class="flex justify-start items-center">
                 <button
@@ -81,8 +82,10 @@
                     class="p-2 mr-1 text-gray-500 rounded-lg md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 >
                     <span class="sr-only">Toggle search</span>
-                    <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path clip-rule="evenodd" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
+                    <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path clip-rule="evenodd" fill-rule="evenodd"
+                              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
                     </svg>
                 </button>
                 <!-- Notifications -->
@@ -646,7 +649,8 @@
                             <a
                                 href="#"
                                 class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            ><svg
+                            >
+                                <svg
                                     class="mr-2 w-5 h-5 text-gray-400"
                                     fill="currentColor"
                                     viewBox="0 0 20 20"
@@ -665,7 +669,8 @@
                             <a
                                 href="#"
                                 class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            ><svg
+                            >
+                                <svg
                                     class="mr-2 w-5 h-5 text-gray-400"
                                     fill="currentColor"
                                     viewBox="0 0 20 20"
@@ -1123,13 +1128,13 @@
                     xmlns:xlink="http://www.w3.org/1999/xlink"
                     viewBox="0 0 3900 3900"
                 >
-                    <path fill="#b22234" d="M0 0h7410v3900H0z" />
+                    <path fill="#b22234" d="M0 0h7410v3900H0z"/>
                     <path
                         d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
                         stroke="#fff"
                         stroke-width="300"
                     />
-                    <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
+                    <path fill="#3c3b6e" d="M0 0h2964v2100H0z"/>
                     <g fill="#fff">
                         <g id="d">
                             <g id="c">
@@ -1139,19 +1144,19 @@
                                             id="a"
                                             d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
                                         />
-                                        <use xlink:href="#a" y="420" />
-                                        <use xlink:href="#a" y="840" />
-                                        <use xlink:href="#a" y="1260" />
+                                        <use xlink:href="#a" y="420"/>
+                                        <use xlink:href="#a" y="840"/>
+                                        <use xlink:href="#a" y="1260"/>
                                     </g>
-                                    <use xlink:href="#a" y="1680" />
+                                    <use xlink:href="#a" y="1680"/>
                                 </g>
-                                <use xlink:href="#b" x="247" y="210" />
+                                <use xlink:href="#b" x="247" y="210"/>
                             </g>
-                            <use xlink:href="#c" x="494" />
+                            <use xlink:href="#c" x="494"/>
                         </g>
-                        <use xlink:href="#d" x="988" />
-                        <use xlink:href="#c" x="1976" />
-                        <use xlink:href="#e" x="2470" />
+                        <use xlink:href="#d" x="988"/>
+                        <use xlink:href="#c" x="1976"/>
+                        <use xlink:href="#e" x="2470"/>
                     </g>
                 </svg>
             </button>
@@ -1218,9 +1223,9 @@
                                     id="flag-icon-css-de"
                                     viewBox="0 0 512 512"
                                 >
-                                    <path fill="#ffce00" d="M0 341.3h512V512H0z" />
-                                    <path d="M0 0h512v170.7H0z" />
-                                    <path fill="#d00" d="M0 170.7h512v170.6H0z" />
+                                    <path fill="#ffce00" d="M0 341.3h512V512H0z"/>
+                                    <path d="M0 0h512v170.7H0z"/>
+                                    <path fill="#d00" d="M0 170.7h512v170.6H0z"/>
                                 </svg>
                                 Deutsch
                             </div>
@@ -1241,9 +1246,9 @@
                                     viewBox="0 0 512 512"
                                 >
                                     <g fill-rule="evenodd" stroke-width="1pt">
-                                        <path fill="#fff" d="M0 0h512v512H0z" />
-                                        <path fill="#009246" d="M0 0h170.7v512H0z" />
-                                        <path fill="#ce2b37" d="M341.3 0H512v512H341.3z" />
+                                        <path fill="#fff" d="M0 0h512v512H0z"/>
+                                        <path fill="#009246" d="M0 0h170.7v512H0z"/>
+                                        <path fill="#ce2b37" d="M341.3 0H512v512H341.3z"/>
                                     </g>
                                 </svg>
                                 Italiano
@@ -1272,7 +1277,7 @@
                                             d="M1-.3L-.7.8 0-1 .6.8-1-.3z"
                                         />
                                     </defs>
-                                    <path fill="#de2910" d="M0 0h512v512H0z" />
+                                    <path fill="#de2910" d="M0 0h512v512H0z"/>
                                     <use
                                         width="30"
                                         height="20"

@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Iptbm\Staff\IpManagement;
 use App\Models\iptbm\IptbmIpAlert;
 use App\Models\iptbm\IptbmTechnologyProfile;
 use App\Models\iptbm\IpType;
-use App\Rules\iptbm\ValueExistsInTable;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -20,7 +19,6 @@ class AddIpTech extends Component
     public $ipId;
 
 
-
     public $iptypeModel;
     public $technology;
     public $appDateModel;
@@ -30,15 +28,14 @@ class AddIpTech extends Component
     public function rules()
     {
         $tech = IptbmTechnologyProfile::where("title", $this->technology)->first();
-        $ip=IpType::where("name", $this->iptypeModel)->first();
-        if($ip)
-        {
-            $this->ipId=$ip->id;
+        $ip = IpType::where("name", $this->iptypeModel)->first();
+        if ($ip) {
+            $this->ipId = $ip->id;
         }
         if ($tech) {
             $this->techId = $tech->id;
         }
-        return[
+        return [
             'technology' => [
                 'required',
                 'exists:iptbm_technology_profiles,title',
@@ -46,20 +43,20 @@ class AddIpTech extends Component
             'techId' => [
                 'unique:iptbm_extension_pathways,technology_id',
             ],
-            'iptypeModel'=>[
+            'iptypeModel' => [
                 'required',
                 'exists:ip_types,name',
             ],
-            'ipId'=>[
+            'ipId' => [
                 Rule::unique('iptbm_ip_alerts', 'ip_type_id')
                     ->where("technology_id", $this->techId)
             ],
-            'appDateModel'=>[
+            'appDateModel' => [
                 'required',
                 'unique:iptbm_ip_alerts,application_number',
 
             ],
-            'dateFiledModel'=>[
+            'dateFiledModel' => [
                 'required',
                 'date',
             ]
@@ -74,11 +71,11 @@ class AddIpTech extends Component
     public function saveForm()
     {
 
-        $tech=IptbmTechnologyProfile::find($this->techId);
+        $tech = IptbmTechnologyProfile::find($this->techId);
         $tech->ip_applications()->save(new IptbmIpAlert([
-            'ip_type_id'=>$this->ipId,
-            'application_number'=>$this->appDateModel,
-            'date_of_filing'=>$this->dateFiledModel
+            'ip_type_id' => $this->ipId,
+            'application_number' => $this->appDateModel,
+            'date_of_filing' => $this->dateFiledModel
         ]));
         $this->emit('reloadPage');
     }
@@ -86,8 +83,8 @@ class AddIpTech extends Component
 
     public function mount($technologies)
     {
-        $this->technologies=$technologies;
-        $this->ipTypes=IpType::all();
+        $this->technologies = $technologies;
+        $this->ipTypes = IpType::all();
     }
 
 

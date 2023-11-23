@@ -19,7 +19,8 @@
                         <ul class="dropdown-menu" aria-labelledby="regionDropDown">
                             @foreach($regions as $region)
                                 <li>
-                                    <a class="dropdown-item" href="{{route("iptbm.admin.iptbm_profiles.profiles-list",["id"=>$region->id])}}">{{$region->name}}</a>
+                                    <a class="dropdown-item"
+                                       href="{{route("iptbm.admin.iptbm_profiles.profiles-list",["id"=>$region->id])}}">{{$region->name}}</a>
                                 </li>
 
                             @endforeach

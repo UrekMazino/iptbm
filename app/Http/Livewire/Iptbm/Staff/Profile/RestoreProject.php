@@ -15,11 +15,13 @@ class RestoreProject extends Component
         $this->project->restore();
         $this->emit('reloadPage');
     }
+
     public function mount($project)
     {
-        $this->project=$project;
-        $this->complete=Carbon::parse($project->deleted_at)->addDay(3)->format('F-d-Y');
+        $this->project = $project;
+        $this->complete = Carbon::parse($project->deleted_at)->addDay(3)->format('F-d-Y');
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.profile.restore-project');

@@ -2,17 +2,21 @@
     <x-pop-modal name="crypto-modal-techno" class="max-w-5xl max-h-screen" modal-title="Total IP-TBMs Technologies">
         <x-card>
             <div class="relative overflow-x-auto ">
-                <table id="techAllTable" style="width:100%" class="w-fit display table-auto cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                <table id="techAllTable" style="width:100%"
+                       class="w-fit display table-auto cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                     <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="border-0 ">
-                        <th scope="col" class="agenc whitespace-nowrap px-10 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="col"
+                            class="agenc whitespace-nowrap px-10 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             Agency
                         </th>
-                        <th scope="col" class="  px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="col"
+                            class="  px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             photo
                         </th>
 
-                        <th scope="col" class="w-full col-span-8 px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="col"
+                            class="w-full col-span-8 px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             Title
                         </th>
                     </tr>
@@ -25,12 +29,13 @@
                                 {{$technology->iptbmprofiles->agency->name}}
                             </td>
                             <td>
-                                <x-thumbnail-holder class="w-40 " :url="$technology->tech_photo" />
+                                <x-thumbnail-holder class="w-40 " :url="$technology->tech_photo"/>
 
                             </td>
                             <td class="w-full">
 
-                                <a href="{{route("iptbm.admin.technology.view-tech",['technology'=>$technology])}}" class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
+                                <a href="{{route("iptbm.admin.technology.view-tech",['technology'=>$technology])}}"
+                                   class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
                                     {{$technology->title}}
                                 </a>
 
@@ -94,50 +99,49 @@
 </div>
 @push('scripts')
     <script type="text/javascript">
-        $(document).ready(function (){
+        $(document).ready(function () {
             let table = $('#techAllTable').DataTable({
                 // stateSave: true,
                 pagingType: 'full_numbers',
-                horizontalScroll:true,
+                horizontalScroll: true,
                 dom: 'Bfrtip',
                 scrollY: true,
                 scroller: {
                     rowHeight: 300
                 },
                 rowGroup: {
-                    startRender: function ( rows, group ) {
-                        return group +' ( '+rows.count()+' Technologies )';
+                    startRender: function (rows, group) {
+                        return group + ' ( ' + rows.count() + ' Technologies )';
                     }
                 },
                 "columnDefs": [
                     {
-                        'width' :'10%',
-                        'target':'0'
+                        'width': '10%',
+                        'target': '0'
                     },
                     {
-                        'width' :'20%',
-                        'target':'0'
+                        'width': '20%',
+                        'target': '0'
                     },
                     {
-                        'width' :'60%',
-                        'target':'0'
+                        'width': '60%',
+                        'target': '0'
                     },
                 ],
                 buttons: [
 
                     {
-                        extend:'pageLength',
-                        text:'<i class="fa-regular fa-file-lines"></i> Page Length',
+                        extend: 'pageLength',
+                        text: '<i class="fa-regular fa-file-lines"></i> Page Length',
                         className: 'bg-white text-blue-500  dark:bg-gray-700 dark:text-sky-500 w-full md:w-fit border-0 my-1 md:my-3  hover:border-0',
                     },
-
 
 
                     // Add more buttons here
                 ],
 
             });
-            table.columns( ['.agenc'] ).visible( false,false );
+            table.columns(['.agenc']).visible(false, false);
         })
     </script>
 @endpush

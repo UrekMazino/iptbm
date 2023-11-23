@@ -3,7 +3,6 @@
 namespace Database\Seeders\iptbm;
 
 use App\Models\iptbm\IptbmTechTransPathway;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TechTRansSeeder extends Seeder
@@ -13,15 +12,15 @@ class TechTRansSeeder extends Seeder
      */
     public function run(): void
     {
-        $data=[
+        $data = [
             [
-                'name'=>'Extension'
+                'name' => 'Extension'
             ],
             [
-                'name'=>'Deployment'
+                'name' => 'Deployment'
             ],
             [
-                'name'=>'Commercialization'
+                'name' => 'Commercialization'
             ],
         ];
 

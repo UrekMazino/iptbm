@@ -1,7 +1,6 @@
 <x-mail::message>
 
 
-
     Hello,
 
     This is a reminder of an Ongoing task, with the deadline already exceeded.

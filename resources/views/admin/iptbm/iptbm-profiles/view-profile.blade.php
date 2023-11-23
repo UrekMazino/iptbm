@@ -26,14 +26,17 @@
                 </div>
             </div>
         @endif
-        <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav
+            class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div class="flex justify-between items-center">
-                    <div  class="me-4 p-4">
+                    <div class="me-4 p-4">
                         <a href="{{route("iptbm.admin.iptbm_profiles.index")}}">
-                            <x-secondary-button  class="text-sky-600 dark:text-sky-600">
-                                <svg class="w-4 me-2 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                            <x-secondary-button class="text-sky-600 dark:text-sky-600">
+                                <svg class="w-4 me-2 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                     fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                                 </svg>
                                 Back to Profiles
                             </x-secondary-button>

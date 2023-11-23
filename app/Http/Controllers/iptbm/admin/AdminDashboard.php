@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers\iptbm\admin;
 
-use App\Charts\iptbm\admin\TechTransChart;
 use App\Http\Controllers\Controller;
-use App\Models\iptbm\IptbmAgency;
-use App\Models\iptbm\IptbmCommercializationPrecom;
-use App\Models\iptbm\IptbmProfile;
 use App\Models\Sample;
-use Carbon\Carbon;
-use DateTime;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,16 +13,18 @@ use Illuminate\Http\Response;
 
 class AdminDashboard extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): Application|Factory|View
     {
 
-        return  view('admin.iptbm.dashboard');
+        return view('admin.iptbm.dashboard');
     }
 
     /**

@@ -14,7 +14,7 @@ class ValueExistsInTable implements ValidationRule
     private mixed $message;
 
 
-    public function __construct(array $tableColumnMap,$attribName,$message = null)
+    public function __construct(array $tableColumnMap, $attribName, $message = null)
     {
         $this->tableColumnMap = $tableColumnMap;
         $this->attributeName = $attribName;
@@ -37,11 +37,11 @@ class ValueExistsInTable implements ValidationRule
                 ->count();
             if ($count > 0) {
 
-                if($this->message){
+                if ($this->message) {
                     $fail($this->message);
 
-                }else{
-                    $fail('The '.$attribute.' is already exists in one of the specified tables.');
+                } else {
+                    $fail('The ' . $attribute . ' is already exists in one of the specified tables.');
                 }
 
 

@@ -10,12 +10,13 @@
 
 @section('content')
     <div class="w-full pb-5">
-        <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav
+            class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-start mx-auto p-4">
                     <div class=" w-full flex justify-between items-center " id="navbar-default">
-                        <a href="{{route("iptbm.staff.precom.index")}}" >
+                        <a href="{{route("iptbm.staff.precom.index")}}">
                             <i class="fa-solid fa-house scale-125 me-2 text-blue-500"></i><strong class="text-gray-500">Home </strong>
                         </a>
                     </div>
@@ -23,7 +24,6 @@
             </nav>
 
         </nav>
-
 
 
         <div class="px-4 mt-10">
@@ -67,18 +67,15 @@
                 <hr class="w-64 h-1  bg-gray-600 border-0 dark:bg-gray-200">
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 mt-5 gap-4">
-                <livewire:iptbm.staff.precom.precom-details :precom="$precom" />
+                <livewire:iptbm.staff.precom.precom-details :precom="$precom"/>
                 <div class="w-full">
-                    <livewire:iptbm.staff.precom.video-clip :precom="$precom" />
-                    <livewire:iptbm.staff.precom.precom-accounting :precom="$precom" />
+                    <livewire:iptbm.staff.precom.video-clip :precom="$precom"/>
+                    <livewire:iptbm.staff.precom.precom-accounting :precom="$precom"/>
                 </div>
             </div>
 
 
-
-
         </div>
-
 
 
     </div>

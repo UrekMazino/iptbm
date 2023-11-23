@@ -4,7 +4,7 @@
     {{"| Agency-Add-project"}}
 @endsection
 @section('content')
-    <div >
+    <div>
 
         <div
             class="sticky-top left-0 z-40 w-full h-16 bg-gray-50 border-t border-b drop-shadow border-gray-200 dark:bg-gray-800 dark:border-gray-600">
@@ -17,7 +17,6 @@
                 </button>
             </div>
         </div>
-
 
 
         <form method="post" action="{{route("iptbm.staff.project.store")}}">
@@ -41,12 +40,15 @@
                                     <label class="fw-bold" for="projTitle">
                                         Project Title
                                     </label>
-                                    <textarea name="project_name" required  id="projTitle"class="form-control  @error('project_name') is-invalid @enderror" style="height: 8rem" placeholder="Enter text here"></textarea>
+                                    <textarea name="project_name" required id="projTitle"
+                                              class="form-control  @error('project_name') is-invalid @enderror"
+                                              style="height: 8rem" placeholder="Enter text here"></textarea>
                                     @error('project_name')
                                     <div class="form-text">
                                         <span class="alert alert-danger alert-dismissible">
                                             {{$message}}
-                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                             <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                     aria-label="Close"></button>
                                         </span>
                                     </div>
                                     @enderror
@@ -60,7 +62,9 @@
                                     <label class="fw-bold" for="projTitle">
                                         Project Leader
                                     </label>
-                                    <input id="projTitle" required type="text" name="project_leader" class="form-control @error('leader') is-invalid @enderror"  placeholder="Enter fullname">
+                                    <input id="projTitle" required type="text" name="project_leader"
+                                           class="form-control @error('leader') is-invalid @enderror"
+                                           placeholder="Enter fullname">
                                     @error('project_leader')
                                     <div class="form-text">
                                         <small class="text-danger">Invalid input</small>
@@ -76,7 +80,9 @@
                                     <label class="fw-bold" for="datepicker">
                                         Approved Implementation Period
                                     </label>
-                                    <input type='text' name="dateperiod" class="form-control ui-datepicker @error('dateperiod') is-invalid @enderror"  data-date-language="pt" id='datepicker' required  placeholder="date">
+                                    <input type='text' name="dateperiod"
+                                           class="form-control ui-datepicker @error('dateperiod') is-invalid @enderror"
+                                           data-date-language="pt" id='datepicker' required placeholder="date">
 
                                     @error('dateperiod')
                                     <div class="form-text">
@@ -112,7 +118,7 @@
 
 @section('script')
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#datepicker').datepicker({
                 "format": "yyyy-mm-dd",
             });

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Iptbm\Admin\Agency;
 
 use App\Models\iptbm\AgencyContact;
-use App\Rules\iptbm\ContactCounter;
 use App\Rules\iptbm\MaxContact;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -35,39 +34,43 @@ class AgencyDetails extends Component
         $id->delete();
         $this->emit('reloadPage');
     }
+
     public function saveAgencyEmail()
     {
         $this->validateOnly('agencyContactEmail');
         $this->agency->contacts()->save(new AgencyContact([
-            'contact_type'=>'email',
-            'contact'=>$this->agencyContactEmail
+            'contact_type' => 'email',
+            'contact' => $this->agencyContactEmail
         ]));
         $this->emit('reloadPage');
     }
+
     public function saveAgencyPhone()
     {
         $this->validateOnly('agencyContactPhone');
         $this->agency->contacts()->save(new AgencyContact([
-            'contact_type'=>'phone',
-            'contact'=>$this->agencyContactPhone
+            'contact_type' => 'phone',
+            'contact' => $this->agencyContactPhone
         ]));
         $this->emit('reloadPage');
     }
+
     public function saveAgencyMobile()
     {
         $this->validateOnly('agencyContactMobile');
         $this->agency->contacts()->save(new AgencyContact([
-            'contact_type'=>'mobile',
-            'contact'=>$this->agencyContactMobile
+            'contact_type' => 'mobile',
+            'contact' => $this->agencyContactMobile
         ]));
         $this->emit('reloadPage');
     }
+
     public function saveAgencyFax()
     {
         $this->validateOnly('agencyContactFax');
         $this->agency->contacts()->save(new AgencyContact([
-            'contact_type'=>'fax',
-            'contact'=>$this->agencyContactFax
+            'contact_type' => 'fax',
+            'contact' => $this->agencyContactFax
         ]));
         $this->emit('reloadPage');
     }
@@ -79,6 +82,7 @@ class AgencyDetails extends Component
         $this->agency->head->save();
         $this->emit('reloadPage');
     }
+
     public function saveContactPhone()
     {
         $this->validateOnly('phone');
@@ -86,6 +90,7 @@ class AgencyDetails extends Component
         $this->agency->head->save();
         $this->emit('reloadPage');
     }
+
     public function saveContactFax()
     {
         $this->validateOnly('fax');
@@ -93,6 +98,7 @@ class AgencyDetails extends Component
         $this->agency->head->save();
         $this->emit('reloadPage');
     }
+
     public function saveContactMobile()
     {
         $this->validateOnly('mobile');
@@ -103,26 +109,28 @@ class AgencyDetails extends Component
 
     public function saveAgencyHead()
     {
-        $this->agency->head->head=$this->agencyHead;
+        $this->agency->head->head = $this->agencyHead;
         $this->agency->head->save();
         $this->emit('reloadPage');
     }
+
     public function saveDesignation()
     {
-        $this->agency->head->designation=$this->designation;
+        $this->agency->head->designation = $this->designation;
         $this->agency->head->save();
         $this->emit('reloadPage');
     }
 
     public function saveAgencyName()
     {
-        $this->agency->name=$this->agencyName;
+        $this->agency->name = $this->agencyName;
         $this->agency->save();
         $this->emit('reloadPage');
     }
+
     public function saveAgencyAddress()
     {
-        $this->agency->address=$this->agencyAddress;
+        $this->agency->address = $this->agencyAddress;
         $this->agency->save();
         $this->emit('reloadPage');
     }
@@ -130,21 +138,21 @@ class AgencyDetails extends Component
     public function rules()
     {
         return [
-            'agencyName'=>[
+            'agencyName' => [
                 'required',
                 'unique:iptbm_agencies,name'
             ],
-            'agencyAddress'=>'required',
-            'agencyHead'=>'required',
-            'designation'=>'required',
-            'phone'=>'required|min:9|max:10',
-            'mobile'=>'required|digits:11',
-            'fax'=>'required|min:9|max:10',
-            'email'=>'required|email|max:40',
-            'agencyContactEmail'=>[
+            'agencyAddress' => 'required',
+            'agencyHead' => 'required',
+            'designation' => 'required',
+            'phone' => 'required|min:9|max:10',
+            'mobile' => 'required|digits:11',
+            'fax' => 'required|min:9|max:10',
+            'email' => 'required|email|max:40',
+            'agencyContactEmail' => [
                 'required',
                 'max:40',
-                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->agency->id),
+                Rule::unique(AgencyContact::class, 'contact')->where('iptbm_agency_id', $this->agency->id),
                 new MaxContact(
                     3,
                     'agency_contacts',
@@ -156,7 +164,7 @@ class AgencyDetails extends Component
                     'Email address was already reached its maximum limit.'
                 ),
             ],
-            'agencyContactPhone'=>[
+            'agencyContactPhone' => [
                 'required',
                 'min:9',
                 'max:10',
@@ -170,13 +178,13 @@ class AgencyDetails extends Component
                     $this->agency->id,
                     'Phone number was already reached its maximum limit.'
                 ),
-                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->agency->id)
+                Rule::unique(AgencyContact::class, 'contact')->where('iptbm_agency_id', $this->agency->id)
 
             ],
-            'agencyContactMobile'=>[
+            'agencyContactMobile' => [
                 'required',
                 'digits:11',
-                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->agency->id),
+                Rule::unique(AgencyContact::class, 'contact')->where('iptbm_agency_id', $this->agency->id),
                 new MaxContact(
                     3,
                     'agency_contacts',
@@ -188,11 +196,11 @@ class AgencyDetails extends Component
                     'Mobile number was already reached its maximum limit.'
                 ),
             ],
-            'agencyContactFax'=>[
+            'agencyContactFax' => [
                 'required',
                 'min:9',
                 'max:10',
-                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->agency->id),
+                Rule::unique(AgencyContact::class, 'contact')->where('iptbm_agency_id', $this->agency->id),
                 new MaxContact(
                     3,
                     'agency_contacts',
@@ -216,7 +224,7 @@ class AgencyDetails extends Component
 
     public function mount($agency): void
     {
-        $this->agency=$agency;
+        $this->agency = $agency;
     }
 
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application

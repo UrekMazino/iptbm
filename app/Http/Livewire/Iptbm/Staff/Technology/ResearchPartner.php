@@ -18,6 +18,7 @@ class ResearchPartner extends Component
     {
         $this->partner = $partner;
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.research-partner');

@@ -42,19 +42,18 @@ class DeleteButton extends Component
      */
 
 
-
     /**
      * Create a new component instance.
      */
-    public function __construct($modId=null,$route=null,$itemId=null,$title=null,$itemName=null,$hiddenName=null,$botClass=null)
+    public function __construct($modId = null, $route = null, $itemId = null, $title = null, $itemName = null, $hiddenName = null, $botClass = null)
     {
-        $this->modId=$modId;
-        $this->route=$route;
-        $this->itemId=$itemId;
-        $this->title=$title;
-        $this->itemName=$itemName;
-        $this->hiddenName=$hiddenName;
-        $this->botClass=$botClass;
+        $this->modId = $modId;
+        $this->route = $route;
+        $this->itemId = $itemId;
+        $this->title = $title;
+        $this->itemName = $itemName;
+        $this->hiddenName = $hiddenName;
+        $this->botClass = $botClass;
     }
 
     /**
@@ -62,14 +61,14 @@ class DeleteButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.iptbm.delete-button',[
-            'modId'=>$this->modId,
-            'route'=>$this->route,
-            'itemId'=>$this->itemId,
-            'title'=>$this->title,
-            'itemName'=>$this->itemName,
-            'hiddenName'=>$this->hiddenName,
-            'botClass'=>$this->botClass
+        return view('components.iptbm.delete-button', [
+            'modId' => $this->modId,
+            'route' => $this->route,
+            'itemId' => $this->itemId,
+            'title' => $this->title,
+            'itemName' => $this->itemName,
+            'hiddenName' => $this->hiddenName,
+            'botClass' => $this->botClass
         ]);
     }
 }

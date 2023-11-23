@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 
 class PrecomDetailsController extends Controller
@@ -21,7 +20,7 @@ class PrecomDetailsController extends Controller
     public function index($id): Application|Factory|View|RedirectResponse
     {
 
-        $precom = IptbmCommercializationPrecom::with('technology','video','modes',
+        $precom = IptbmCommercializationPrecom::with('technology', 'video', 'modes',
             'market_study_files',
             'valuation_summary_files',
             'freedom_summary_files',
@@ -211,45 +210,44 @@ class PrecomDetailsController extends Controller
     }
 
 
-
-
-    public function update_mode(Request $request,$id): RedirectResponse
+    public function update_mode(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'com_mode'=>'required',
-        ],[
-            'com_mode.required'=>'Invalid input.'
+            'com_mode' => 'required',
+        ], [
+            'com_mode.required' => 'Invalid input.'
         ]);
-        $precom=IptbmCommercializationPrecom::find($id);
-        $precom->commercialization_mode=$request->com_mode;
-        $precom->save();
-        return redirect()->back();
-    }
-    public function update_cost_amount(Request $request,$id)
-    {
-        $request->validate([
-            'cost_amount'=>'required',
-        ],[
-            'cost_amount.required'=>'Please enter a valid amount.'
-        ]);
-        $precom=IptbmCommercializationPrecom::find($id);
-        $precom->estimated_acquisition_cost=$request->cost_amount;
+        $precom = IptbmCommercializationPrecom::find($id);
+        $precom->commercialization_mode = $request->com_mode;
         $precom->save();
         return redirect()->back();
     }
 
-    public function update_clip(Request $request,$id): RedirectResponse
+    public function update_cost_amount(Request $request, $id)
     {
         $request->validate([
-            'video_url'=>'required',
+            'cost_amount' => 'required',
+        ], [
+            'cost_amount.required' => 'Please enter a valid amount.'
         ]);
-        $precom=IptbmCommercializationPrecom::find($id);
-        $precom->video_clips=$request->video_url;
+        $precom = IptbmCommercializationPrecom::find($id);
+        $precom->estimated_acquisition_cost = $request->cost_amount;
         $precom->save();
         return redirect()->back();
     }
 
-    public function upload_license_copy(Request $request,$id): RedirectResponse
+    public function update_clip(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'video_url' => 'required',
+        ]);
+        $precom = IptbmCommercializationPrecom::find($id);
+        $precom->video_clips = $request->video_url;
+        $precom->save();
+        return redirect()->back();
+    }
+
+    public function upload_license_copy(Request $request, $id): RedirectResponse
     {
         $request->validate([
             'license_file' => 'required|mimes:pdf|max:2048',
@@ -271,7 +269,7 @@ class PrecomDetailsController extends Controller
         return redirect()->back();
     }
 
-    public function upload_finance_copy(Request $request,$id): RedirectResponse
+    public function upload_finance_copy(Request $request, $id): RedirectResponse
     {
         $request->validate([
             'finance_file' => 'required|mimes:pdf|max:2048',
@@ -292,7 +290,8 @@ class PrecomDetailsController extends Controller
         $precom->save();
         return redirect()->back();
     }
-    public function upload_machine_cert_copy(Request $request,$id): RedirectResponse
+
+    public function upload_machine_cert_copy(Request $request, $id): RedirectResponse
     {
         $request->validate([
             'machine_cert' => 'required|mimes:pdf|max:2048',
@@ -313,7 +312,8 @@ class PrecomDetailsController extends Controller
         $precom->save();
         return redirect()->back();
     }
-    public function upload_feasibility_study(Request $request,$id): RedirectResponse
+
+    public function upload_feasibility_study(Request $request, $id): RedirectResponse
     {
         $request->validate([
             'feasibility_file' => 'required|mimes:pdf|max:2048',
@@ -334,7 +334,8 @@ class PrecomDetailsController extends Controller
         $precom->save();
         return redirect()->back();
     }
-    public function upload_business_model(Request $request,$id): RedirectResponse
+
+    public function upload_business_model(Request $request, $id): RedirectResponse
     {
         $request->validate([
             'business_model' => 'required|mimes:pdf|max:2048',
@@ -355,15 +356,16 @@ class PrecomDetailsController extends Controller
         $precom->save();
         return redirect()->back();
     }
-    public function update_income_gen(Request $request,$id): RedirectResponse
+
+    public function update_income_gen(Request $request, $id): RedirectResponse
     {
         $request->validate([
-            'income_gen'=>'required',
-        ],[
-            'income_gen.required'=>'Please enter a valid amount.'
+            'income_gen' => 'required',
+        ], [
+            'income_gen.required' => 'Please enter a valid amount.'
         ]);
-        $precom=IptbmCommercializationPrecom::find($id);
-        $precom->income_gen_trans=$request->income_gen;
+        $precom = IptbmCommercializationPrecom::find($id);
+        $precom->income_gen_trans = $request->income_gen;
         $precom->save();
         return redirect()->back();
     }

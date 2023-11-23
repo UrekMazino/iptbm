@@ -11,7 +11,7 @@ class AbhProject extends Model
 {
     use HasFactory;
 
-    protected  $fillable=[
+    protected $fillable = [
         'project_name',
         'project_leader',
         'implementation_period'
@@ -19,12 +19,12 @@ class AbhProject extends Model
 
     public function abh_profile(): BelongsTo
     {
-        return $this->belongsTo(AbhProfile::class,'abh_profile_id','id');
+        return $this->belongsTo(AbhProfile::class, 'abh_profile_id', 'id');
     }
 
     public function year_implemented(): HasMany
     {
-        return $this->hasMany(AbhProjectImplementation::class,'abh_projects_id','id');
+        return $this->hasMany(AbhProjectImplementation::class, 'abh_projects_id', 'id');
     }
 
 

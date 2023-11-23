@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmMapLocation extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'lat',
         'long'
     ];
 
     function profile(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(IptbmProfile::class,'iptbm_profiles_id','id');
+        return $this->belongsTo(IptbmProfile::class, 'iptbm_profiles_id', 'id');
     }
 }

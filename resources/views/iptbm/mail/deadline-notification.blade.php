@@ -1,4 +1,3 @@
-
 @component('mail::message')
     # Deadline Notification
 
@@ -23,5 +22,5 @@
 
     If you're having trouble with the button above, copy and paste the URL below into your web browser:
 
-   ({{ $url }})
+    ({{ $url }})
 @endcomponent

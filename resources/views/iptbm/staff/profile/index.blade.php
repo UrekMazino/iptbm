@@ -56,7 +56,8 @@
                                 <a data-modal-target="authentication-modal" data-modal-toggle="profile" role="button">
                                     <img
                                         class="hover:scale-110 transition duration-300 max-w-lg rounded-lg object-contain w-full h-full"
-                                        src="{{\Illuminate\Support\Facades\Storage::url($profile->logo)}}" alt="image description">
+                                        src="{{\Illuminate\Support\Facades\Storage::url($profile->logo)}}"
+                                        alt="image description">
                                 </a>
                             @endif
                         </div>
@@ -142,17 +143,20 @@
 
 
                         <x-card-panel title=" Profile Details">
-                            <livewire:iptbm.staff.profile.details :profile="$profile"></livewire:iptbm.staff.profile.details>
+                            <livewire:iptbm.staff.profile.details
+                                :profile="$profile"></livewire:iptbm.staff.profile.details>
                         </x-card-panel>
 
                     </div>
                     <div class="space-y-4">
-                        <livewire:iptbm.staff.profile.projects :profile="$profile"></livewire:iptbm.staff.profile.projects>
-                       <x-card>
-                           <livewire:iptbm.staff.profile.ip-policy :profile="$profile"/>
-                       </x-card>
+                        <livewire:iptbm.staff.profile.projects
+                            :profile="$profile"></livewire:iptbm.staff.profile.projects>
+                        <x-card>
+                            <livewire:iptbm.staff.profile.ip-policy :profile="$profile"/>
+                        </x-card>
                         <x-card-panel title="Contact Details">
-                            <livewire:iptbm.staff.profile.contact :profile="$profile->id"></livewire:iptbm.staff.profile.contact>
+                            <livewire:iptbm.staff.profile.contact
+                                :profile="$profile->id"></livewire:iptbm.staff.profile.contact>
                         </x-card-panel>
 
                     </div>
@@ -160,9 +164,6 @@
 
             </div>
         </div>
-
-
-
 
 
     </div>

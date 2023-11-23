@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\abh;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class AbhController extends Controller
 {
@@ -11,6 +10,7 @@ class AbhController extends Controller
     {
 
     }
+
     public function dashboard()
     {
         return view('abh.dashboard');

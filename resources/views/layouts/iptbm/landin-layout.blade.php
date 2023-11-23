@@ -44,22 +44,27 @@
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{route("welcome-page")}}">Home</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav fs-5 nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link @if(Route::currentRouteName()==="about-us") active @endif" href="{{route("about-us")}}">About Us</a>
+                                <a class="nav-link @if(Route::currentRouteName()==="about-us") active @endif"
+                                   href="{{route("about-us")}}">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  @if(Route::currentRouteName()==="rtms-page") active @endif" href="{{route("rtms-page")}}">RTMS</a>
+                                <a class="nav-link  @if(Route::currentRouteName()==="rtms-page") active @endif"
+                                   href="{{route("rtms-page")}}">RTMS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if(Route::currentRouteName()==="trechnologies-page") active @endif" href="{{route("trechnologies-page")}}">Technologies</a>
+                                <a class="nav-link @if(Route::currentRouteName()==="trechnologies-page") active @endif"
+                                   href="{{route("trechnologies-page")}}">Technologies</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if(Route::currentRouteName()==="contact-us.page") active @endif" href="{{route("contact-us.page")}}">Contact Us</a>
+                                <a class="nav-link @if(Route::currentRouteName()==="contact-us.page") active @endif"
+                                   href="{{route("contact-us.page")}}">Contact Us</a>
                             </li>
                         </ul>
                     </div>
@@ -71,19 +76,22 @@
                 @auth
                     @if(Auth::user()->role==='admin')
 
-                        <a href="{{ route('iptbm.admin.dashboard') }}" role="button" class="btn btn-sm btn-primary" style="scale: 1.2; border-radius: 45rem">
+                        <a href="{{ route('iptbm.admin.dashboard') }}" role="button" class="btn btn-sm btn-primary"
+                           style="scale: 1.2; border-radius: 45rem">
                             <span class="fa-solid fa-house"></span>
                             Home
                         </a>
                     @elseif(Auth::user()->role==='staff')
 
-                        <a href="{{ route('iptbm.staff.dashboard') }}" role="button" class="btn btn-sm btn-primary" style="scale: 1.2; border-radius: 45rem">
+                        <a href="{{ route('iptbm.staff.dashboard') }}" role="button" class="btn btn-sm btn-primary"
+                           style="scale: 1.2; border-radius: 45rem">
                             <span class="fa-solid fa-house"></span>
                             Home
                         </a>
                     @endif
                 @else
-                    <a href="{{ route('login') }}" role="button" class="btn btn-sm btn-primary" style="scale: 1.2; border-radius: 45rem">
+                    <a href="{{ route('login') }}" role="button" class="btn btn-sm btn-primary"
+                       style="scale: 1.2; border-radius: 45rem">
                         <span class="fa-solid fa-power-off"></span>
                         Log in
                     </a>

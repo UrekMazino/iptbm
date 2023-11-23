@@ -20,14 +20,14 @@ class IpProtection extends Component
     public function saveForm()
     {
         $this->validate();
-        $ipAlert=new IptbmIpAlert([
-            'ip_type_id'=>$this->ipTypeModel,
-            'application_number'=>$this->applicationNumberModel,
-            'date_of_filing'=>Carbon::parse($this->dateFiledModel)->format('Y-m-d')
+        $ipAlert = new IptbmIpAlert([
+            'ip_type_id' => $this->ipTypeModel,
+            'application_number' => $this->applicationNumberModel,
+            'date_of_filing' => Carbon::parse($this->dateFiledModel)->format('Y-m-d')
         ]);
         $this->technology->ip_applications()->save($ipAlert);
-        return redirect()->route('iptbm.staff.ip-management.application.index',[
-            'id'=>$ipAlert->id
+        return redirect()->route('iptbm.staff.ip-management.application.index', [
+            'id' => $ipAlert->id
         ]);
 
     }
@@ -36,19 +36,20 @@ class IpProtection extends Component
     {
         $this->validateOnly($props);
     }
+
     public function rules()
     {
         return [
-            'ipTypeModel'=>[
+            'ipTypeModel' => [
                 'required',
                 'exists:ip_types,id',
-                Rule::unique(IptbmIpAlert::class,'ip_type_id')->where('technology_id',$this->technology->id)
+                Rule::unique(IptbmIpAlert::class, 'ip_type_id')->where('technology_id', $this->technology->id)
             ],
-            'applicationNumberModel'=>[
+            'applicationNumberModel' => [
                 'required',
-                Rule::unique(IptbmIpAlert::class,'application_number'),
+                Rule::unique(IptbmIpAlert::class, 'application_number'),
             ],
-            'dateFiledModel'=>[
+            'dateFiledModel' => [
                 'required',
                 'date_format:F-d-Y'
             ]
@@ -58,9 +59,10 @@ class IpProtection extends Component
 
     public function mount($technology)
     {
-        $this->technology=$technology;
-        $this->ipType=IpType::all();
+        $this->technology = $technology;
+        $this->ipType = IpType::all();
     }
+
     public function render()
     {
         return view('livewire.iptbm.staff.technology.ip-protection');

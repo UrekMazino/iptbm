@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class IptbmProfileContact extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'iptbm_profiles_id',
         'contact_type',
         'contact'
@@ -16,6 +17,6 @@ class IptbmProfileContact extends Model
 
     public function profile()
     {
-        return $this->belongsTo(IptbmProfile::class,'iptbm_profiles_id','id');
+        return $this->belongsTo(IptbmProfile::class, 'iptbm_profiles_id', 'id');
     }
 }

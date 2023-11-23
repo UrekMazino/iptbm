@@ -2,12 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\DeadlineNotificationMail;
-use App\Models\iptbm\IptbmIpAlertTask;
-use App\Models\IptbmSendNotification;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Mail;
 use function Clue\StreamFilter\fun;
 
 class NotificationCommand extends Command
@@ -33,9 +28,6 @@ class NotificationCommand extends Command
 
     public function handle(): void
     {
-
-
-
 
 
     }

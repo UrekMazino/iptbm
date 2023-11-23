@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class IptbmIpAlertTaskStage extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'ip_alert_task_id',
         'ip_task_stage_id'
     ];
@@ -17,6 +18,6 @@ class IptbmIpAlertTaskStage extends Model
 
     function ip_alert_task(): BelongsTo
     {
-        return $this->belongsTo(IptbmIpAlertTask::class,'ip_alert_id','id');
+        return $this->belongsTo(IptbmIpAlertTask::class, 'ip_alert_id', 'id');
     }
 }

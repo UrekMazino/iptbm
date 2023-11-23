@@ -25,6 +25,7 @@ class IpManagement extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -33,15 +34,14 @@ class IpManagement extends Controller
 
         $profile = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
 
-        if(!$profile)
-        {
+        if (!$profile) {
             return redirect()->route("iptbm.staff.addProfile");
         }
 
         $ip_type = IpType::all();
 
 
-        $tech=IptbmTechnologyProfile::with(
+        $tech = IptbmTechnologyProfile::with(
             "ip_applications",
             "ip_applications.ip_type",
             "ip_applications.expenses",
@@ -51,7 +51,7 @@ class IpManagement extends Controller
             "industries",
             "ip_applications.patent_agent",
         )
-            ->where("iptbm_profile_id",$profile->id)->get();
+            ->where("iptbm_profile_id", $profile->id)->get();
 
 
         return view('iptbm.staff.ipmanagement.index', [
@@ -73,30 +73,30 @@ class IpManagement extends Controller
                 Rule::unique(IptbmIpAlert::class, 'ip_type_id')
                     ->where("technology_id", $request->tech_id)
             ],
-            'app_num'=>[
+            'app_num' => [
                 'required',
                 Rule::unique(IptbmIpAlert::class, 'application_number')
                     ->where("technology_id", $request->tech_id)
             ],
-            'date_file'=>[
+            'date_file' => [
                 'required',
                 Rule::unique(IptbmIpAlert::class, 'date_of_filing')
                     ->where("technology_id", $request->tech_id)
             ]
-        ],[
-            'tech_id.required'=>'Technology is missing.',
-            'tech_id.unique'=>'Technology is already been taken.',
-            'app_num.required'=>'Application number is missing.',
-            'app_num.unique'=>'Duplicate application number.'
+        ], [
+            'tech_id.required' => 'Technology is missing.',
+            'tech_id.unique' => 'Technology is already been taken.',
+            'app_num.required' => 'Application number is missing.',
+            'app_num.unique' => 'Duplicate application number.'
         ]);
         $prof = IptbmTechnologyProfile::find($request->tech_id);
 
 
         $prof->ip_applications()->saveMany([
             new IptbmIpAlert([
-                'ip_type_id'=>$request->ip_type,
-                'application_number'=>$request->app_num,
-                'date_of_filing'=>$request->date_file
+                'ip_type_id' => $request->ip_type,
+                'application_number' => $request->app_num,
+                'date_of_filing' => $request->date_file
             ])
         ]);
 

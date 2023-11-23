@@ -13,20 +13,19 @@ class ProfileTechnologies extends Component
     public $profileId;
     public $baseData;
 
-    public function mount($technologies,$profileId): void
+    public function mount($technologies, $profileId): void
     {
-        $this->technologies=$technologies;
-        $this->profileId=$profileId;
-        $this->baseData=$technologies;
+        $this->technologies = $technologies;
+        $this->profileId = $profileId;
+        $this->baseData = $technologies;
     }
 
     public function updated(): void
     {
-        if($this->search==='')
-        {
-            $this->technologies=$this->baseData;
-        }else{
-            $this->technologies=IptbmTechnologyProfile::search($this->search)->where('iptbm_profile_id',$this->profileId)->get();
+        if ($this->search === '') {
+            $this->technologies = $this->baseData;
+        } else {
+            $this->technologies = IptbmTechnologyProfile::search($this->search)->where('iptbm_profile_id', $this->profileId)->get();
         }
 
 

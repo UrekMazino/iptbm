@@ -2,8 +2,6 @@
 
 namespace App\View\Components\iptbm;
 
-use App\Models\iptbm\IptbmCommodity;
-use App\Models\iptbm\IptbmIndustry;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -25,7 +23,7 @@ class AddCommodity extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.iptbm.add-commodity',[
+        return view('components.iptbm.add-commodity', [
             'industry_id' => $this->id
         ]);
     }
