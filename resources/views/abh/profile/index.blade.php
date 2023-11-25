@@ -21,9 +21,7 @@
 
                 </div>
                 <div class="space-y-4">
-                    <x-card>
-                        asdmnb
-                    </x-card>
+                   <livewire:abh.profile.abh-profile-project />
                 </div>
             </x-grid>
         </div>
