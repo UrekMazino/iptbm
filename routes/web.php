@@ -277,6 +277,7 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
     });
     Route::controller(AbhProfileController::class)->prefix('/profile')->group(function () {
         Route::get('/', 'index')->name('abh.staff.profile');
+        Route::get('project/{project}','view_project')->name('abh.staff.profile.project');
     });
 });
 

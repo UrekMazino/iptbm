@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileTagNLogo extends Component
 {
@@ -38,9 +38,13 @@ class ProfileTagNLogo extends Component
     {
         $this->validateOnly('photo');
         $path = $this->photo->store('/public/abh/profile-logo');
-        if (Storage::exists($this->profile->logo)) {
-            Storage::delete($this->profile->logo);
+        if($this->profile->logo)
+        {
+            if (Storage::exists($this->profile->logo)) {
+                Storage::delete($this->profile->logo);
+            }
         }
+
         $this->profile->logo = $path;
 
         $this->profile->save();

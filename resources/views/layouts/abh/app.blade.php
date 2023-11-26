@@ -540,6 +540,12 @@
                 </div>
             </div>
         </nav>
+        @if(isset($stickyNavigation))
+            <div class="sticky top-0 left-0 p-4 w-full bg-gray-100 dark:bg-gray-900 shadow shadow-gray-400 dark:shadow-gray-950 text-gray-600 dark:text-gray-400">
+                {{$stickyNavigation}}
+            </div>
+
+        @endif
         {{$slot}}
     </main>
 

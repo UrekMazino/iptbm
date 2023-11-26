@@ -14,12 +14,13 @@ class AbhProject extends Model
     protected $fillable = [
         'project_name',
         'project_leader',
-        'implementation_period'
+        'implementation_period',
+        'change_in_implementation'
     ];
 
     public function abh_profile(): BelongsTo
     {
-        return $this->belongsTo(AbhProfile::class, 'abh_profile_id', 'id');
+        return $this->belongsTo(AbhProfile::class, 'abh_profiles_id', 'id');
     }
 
     public function year_implemented(): HasMany

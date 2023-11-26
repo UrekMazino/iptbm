@@ -233,23 +233,11 @@
 @push('scripts')
     <script type="text/javascript">
         document.addEventListener('livewire:load', function () {
-            function convertDateFormat(inputDate) {
-                // Create a Date object from the input date string
-                const dateObj = new Date(inputDate);
 
-                // Extract the month, day, and year components
-                const month = dateObj.getMonth() + 1; // Months are zero-indexed, so add 1
-                const day = dateObj.getDate();
-                const year = dateObj.getFullYear();
-
-                // Format the components as "M-d-YYYY" (e.g., "9-20-2023")
-                return `${year}-${month}-${day}`;
-            }
 
             document.getElementById('DateApprove').addEventListener('changeDate', (event) => {
 
-                @this.
-                implementationStart = event.target.value;
+                @this.implementationStart = event.target.value;
             });
             document.getElementById('fromDate').addEventListener('changeDate', (event) => {
                 // @this.implementationStart=convertDateFormat(event.target.value);

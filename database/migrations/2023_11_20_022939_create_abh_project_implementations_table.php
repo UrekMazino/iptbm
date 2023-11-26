@@ -14,10 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('abh_projects_id')->constrained('abh_projects')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('date_started')->comment('get value from implementation period')->nullable();
-            $table->date('change_in_implementation')->nullable();
             $table->integer('duration');
             $table->integer('extended_duration')->nullable();
-            $table->float('budget');
+            $table->double('budget');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

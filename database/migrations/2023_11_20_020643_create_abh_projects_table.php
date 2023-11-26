@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('project_name')->comment('save and get list of title to other table (multiple entries)')->nullable();
             $table->string('project_leader')->comment('together with ip_projects_title table')->nullable();
             $table->date('implementation_period')->comment('together with ip_projects_title table')->nullable();
+            $table->date('change_in_implementation')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

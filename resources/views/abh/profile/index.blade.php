@@ -21,7 +21,7 @@
 
                 </div>
                 <div class="space-y-4">
-                   <livewire:abh.profile.abh-profile-project />
+                   <livewire:abh.profile.abh-profile-project :profile="$profile" />
                 </div>
             </x-grid>
         </div>
