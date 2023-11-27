@@ -23,18 +23,18 @@ class AbhProfileProject extends Component
     {
 
         $this->validate();
-
+        $date=Carbon::createFromFormat('F-d-Y', $this->approvedDate);
 
         $project=new AbhProject([
             'project_name'=>$this->title,
             'project_leader'=>$this->leader,
-            'implementation_period'=>Carbon::parse($this->approvedDate)->format('Y-n-j'),
+            'implementation_period'=>$date->format('Y-n-d'),
         ]);
 
         $this->profile->projects()->save($project);
 
         $project->year_implemented()->save(new AbhProjectImplementation([
-            'date_started'=>Carbon::parse($this->approvedDate)->format('Y-n-j'),
+            'date_started'=>$date->format('Y-n-d'),
             'duration'=>$this->duration,
             'budget'=>$this->budget,
         ]));
@@ -51,8 +51,8 @@ class AbhProfileProject extends Component
     {
 
         $this->validateOnly('duration');
+        $date=Carbon::createFromFormat('F-d-Y', $this->approvedDate);
 
-        $date =  Carbon::parse( $this->approvedDate)->format('F-d-Y');
         if ($this->approvedDate) {
             $this->endDate= Carbon::parse($date)->addMonths($this->duration)->setDay(Carbon::parse($date)->day - 1)->format('F-d-Y');
         }
@@ -63,7 +63,7 @@ class AbhProfileProject extends Component
 
         $this->validateOnly('approvedDate');
 
-        $date = Carbon::parse( $this->approvedDate)->format('F-d-Y');
+        $date=Carbon::createFromFormat('F-d-Y', $this->approvedDate);
         if ($this->duration) {
             $this->endDate= Carbon::parse($date)->addMonths($this->duration)->setDay(Carbon::parse($date)->day - 1)->format('F-d-Y');
         }
