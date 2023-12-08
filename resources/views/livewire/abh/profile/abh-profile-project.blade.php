@@ -71,12 +71,11 @@
         </x-secondary-button>
     </x-slot:button>
     <div>
-        <ul>
+        <ul class="list-disc px-4 space-y-4">
             @forelse($profile->projects as $project)
                 <li>
-                    <a href="{{route("abh.staff.profile.project",['project'=>$project->id])}}">
-                        {{$project->project_name}}
-                    </a>
+
+                    <a href="{{route("abh.staff.profile.project",['project'=>$project->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{$project->project_name}}</a>
 
                 </li>
             @empty

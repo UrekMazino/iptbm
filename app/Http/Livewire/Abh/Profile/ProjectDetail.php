@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Profile;
 
+use App\Models\abh\AbhProjectImplementation;
 use Carbon\Carbon;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -23,6 +24,9 @@ class ProjectDetail extends Component
         $date=Carbon::createFromFormat('F-d-Y', $this->changeDate);
 
         $this->project->change_in_implementation=$date->format('Y-n-j');
+        $yearImp=AbhProjectImplementation::where('id',$this->project->id)->first();
+        $yearImp->date_started=$date->format('Y-n-j');
+        $yearImp->save();
         $this->project->save();
 
         return redirect(route("abh.staff.profile.project",['project'=>$this->project]));

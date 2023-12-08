@@ -26,4 +26,12 @@ class AbhProfileController extends Controller
         return view('abh.profile.profile-project',compact('project'));
 
     }
+
+    public function delete(AbhProject $project)
+    {
+
+        $project->delete();
+        return redirect()->route("abh.staff.profile");
+    }
+
 }

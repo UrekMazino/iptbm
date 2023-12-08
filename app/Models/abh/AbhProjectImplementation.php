@@ -4,6 +4,7 @@ namespace App\Models\abh;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AbhProjectImplementation extends Model
 {
@@ -14,4 +15,9 @@ class AbhProjectImplementation extends Model
         'extended_duration',
         'budget'
     ];
+
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(AbhProject::class,'abh_projects_id','id');
+    }
 }

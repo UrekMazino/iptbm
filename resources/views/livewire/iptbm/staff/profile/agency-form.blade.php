@@ -1,4 +1,45 @@
-<div>
+<div class="space-y-4">
+    <div class="border border-gray-400 dark:border-gray-600 rounded p-2 gap-2 flex justify-between items-center">
+        <div class="divide-y w-full divide-gray-300 dark:divide-gray-700 ">
+            @if($profile->agency->name)
+               <div class="text-gray-600 dark:text-white font-medium">
+                   {{$profile->agency->name}}
+               </div>
+            @else
+                <div class="text-gray-400 dark:text-gray-500 text-base font-normal">
+                    No data available
+                </div>
+            @endif
+            <div>
+                Agency
+            </div>
+        </div>
+        <div>
+            <x-pop-modal class="max-w-xl" name="editName" static="true" modal-title="Update Agency Name">
+                <form class="space-y-4" wire:submit.prevent="agencyName">
+                    <div>
+                        <x-input-label value="Agency"/>
+                        <x-text-input wire:model.lazy="agency_name" class="w-full" placeholder="Enter text here.."/>
+                        <x-input-error :messages="$errors->get('agency_name')"/>
+                    </div>
+                    <div>
+                        <x-submit-button class="min-w-full" wire:loading.attr="disabled"
+                                         wire:target="agencyName">
+                            <div class="p-2 mx-auto text-center" wire:loading.remove wire:target="agencyName">
+                                Submit
+                            </div>
+                            <div class="p-2 mx-auto text-center" wire:loading wire:target="agencyName">
+                                Processing...
+                            </div>
+                        </x-submit-button>
+                    </div>
+                </form>
+            </x-pop-modal>
+            <x-secondary-button data-modal-toggle="editName">
+                Edit
+            </x-secondary-button>
+        </div>
+    </div>
     @if($showAgencyHeadForm)
         <div class="rounded-lg bg-gray-50 shadow-lg dark:bg-gray-800 p-4">
             <form wire:submit.prevent="save">
@@ -52,3 +93,4 @@
     </div>
 
 </div>
+
