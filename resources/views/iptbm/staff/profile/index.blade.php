@@ -14,7 +14,7 @@
                 {{Session::get('status')}}
             </div>
         @endif
-        <div class="px-4 md:px-2 mt-10 w-full space-y-4">
+        <div class="px-0 md:px-2 mt-10 w-full space-y-4">
             <x-header-label>
                IP-TBM Profile Details
             </x-header-label>
@@ -28,13 +28,17 @@
                 </div>
             </x-grid>
         </div>
-        <div class="px-4 md:px-2 mt-10 w-full">
+        <div class="px-0 md:px-2 mt-10 w-full">
 
 
             <hr class="w-full h-1 mx-auto my-4 bg-gray-400 border-0 rounded md:my-10 dark:bg-gray-500">
             <div class="my-3 mx-lg-5">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="space-y-4">
+                        <x-card-panel title=" Profile Details">
+                            <livewire:iptbm.staff.profile.details
+                                :profile="$profile"></livewire:iptbm.staff.profile.details>
+                        </x-card-panel>
                         <x-card-panel title="Region">
                             <div class="space-y-4">
                                 <div class="border border-gray-400 dark:border-gray-600 rounded p-2 gap-2 flex justify-between items-center">
@@ -106,23 +110,7 @@
 
                                 </div>
 
-                                <div class="border border-gray-400 dark:border-gray-600 rounded p-2 gap-2 flex justify-between items-center">
-                                    <div class="divide-y w-full divide-gray-300 dark:divide-gray-700 ">
-                                        <x-item-header>
-                                            @if($profile->year_established)
-                                                {{$profile->year_established}}
-                                            @else
-                                                <div class="text-gray-400 dark:text-gray-500 text-base font-normal">
-                                                    No data available
-                                                </div>
-                                            @endif
-                                        </x-item-header>
-                                        <div>
-                                            Year Established
-                                        </div>
-                                    </div>
 
-                                </div>
 
                             </div>
 
@@ -137,10 +125,7 @@
                         </x-card-panel>
 
 
-                        <x-card-panel title=" Profile Details">
-                            <livewire:iptbm.staff.profile.details
-                                :profile="$profile"></livewire:iptbm.staff.profile.details>
-                        </x-card-panel>
+
 
                     </div>
                     <div class="space-y-4">
@@ -159,7 +144,6 @@
 
             </div>
         </div>
-
 
     </div>
 @endsection

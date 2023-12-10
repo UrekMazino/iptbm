@@ -17,6 +17,8 @@ class IptbmAgency extends Model
         'iptbm_region_id',
         'name',
         'address',
+        'head',
+        'designation',
         'verified_at'
     ];
 
@@ -25,10 +27,6 @@ class IptbmAgency extends Model
         return $this->belongsTo(IptbmRegion::class, "iptbm_region_id", "id");
     }
 
-    public function head(): HasOne
-    {
-        return $this->hasOne(AgencyHead::class, 'iptbm_agency_id', 'id');
-    }
 
     public function Users(): HasMany
     {
@@ -39,6 +37,26 @@ class IptbmAgency extends Model
     {
         return $this->hasMany(AgencyContact::class, 'iptbm_agency_id', 'id');
     }
+
+    public function contact_mobile(): HasMany
+    {
+        return $this->hasMany(AgencyContact::class)->where('contact_type','mobile');
+    }
+    public function contact_phone(): HasMany
+    {
+        return $this->hasMany(AgencyContact::class)->where('contact_type','phone');
+    }
+    public function contact_fax(): HasMany
+    {
+        return $this->hasMany(AgencyContact::class)->where('contact_type','fax');
+    }
+    public function contact_email(): HasMany
+    {
+        return $this->hasMany(AgencyContact::class)->where('contact_type','email');
+    }
+
+
+
 
     public function profiles(): HasOne
     {

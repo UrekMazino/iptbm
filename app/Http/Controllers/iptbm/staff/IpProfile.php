@@ -23,19 +23,7 @@ class IpProfile extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $deadlines = IptbmIpAlertTask::with(['ip_alert',
-            'stage',
-            'ip_task_stage_notifications',
-            'stage.task',
-            'ip_alert.ip_type',
-            'task_deadline',
-            'ip_alert.technology',
-            'ip_alert.technology.iptbmprofiles',
-            'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
-                $query->where('contact_type', 'email');
-            }])
-            ->whereDate('deadline', '>', now())
-            ->get();
+
 
     }
 
@@ -53,7 +41,7 @@ class IpProfile extends Controller
         if (!$check) {
             return redirect()->route('iptbm.staff.addProfile');
         }
-        $profile = IptbmProfile::with('contact', 'projects', 'projects.projectDetails', 'agency', 'agency.head', 'agency.region')->where('agency_id', Auth::user()->profile->agency->id)->first();
+        $profile = IptbmProfile::with('contact', 'projects', 'projects.projectDetails', 'agency',  'agency.region')->where('agency_id', Auth::user()->profile->agency->id)->first();
 
 
         return view('iptbm.staff.profile.index', [

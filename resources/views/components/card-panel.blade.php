@@ -25,11 +25,11 @@
 
 
         </div>
-        <div class="p-0 md:p-4 mt-auto">
+        <div class="p-0 px-2 pt-4 md:p-4 mt-auto pb-6">
             {{$slot}}
         </div>
     @else
-        <div class="p-0 md:p-4 mt-auto">
+        <div class="p-0 px-2 pt-4 md:p-4 mt-auto pb-6">
             {{$slot}}
         </div>
     @endif

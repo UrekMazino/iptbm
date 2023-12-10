@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->foreignId('iptbm_region_id')->constrained('iptbm_regions')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name')->nullable();
             $table->string('address')->nullable();
+            $table->string('head')->nullable();
+            $table->string('designation')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->timestamps();
         });
