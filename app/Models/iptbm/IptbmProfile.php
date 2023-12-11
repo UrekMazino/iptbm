@@ -54,6 +54,26 @@ class IptbmProfile extends Model
         return $this->hasMany(IptbmProfileContact::class, 'iptbm_profiles_id', 'id');
     }
 
+    function contact_mobile(): HasMany
+    {
+        return $this->hasMany(IptbmProfileContact::class, 'iptbm_profiles_id', 'id')
+            ->where('contact_type','mobile');
+    }
+    function contact_phone(): HasMany
+    {
+        return $this->hasMany(IptbmProfileContact::class, 'iptbm_profiles_id', 'id')
+            ->where('contact_type','phone');
+    }
+    function contact_fax(): HasMany
+    {
+        return $this->hasMany(IptbmProfileContact::class, 'iptbm_profiles_id', 'id')
+            ->where('contact_type','fax');
+    }
+    function contact_email(): HasMany
+    {
+        return $this->hasMany(IptbmProfileContact::class, 'iptbm_profiles_id', 'id')
+            ->where('contact_type','email');
+    }
     function projects(): HasMany
     {
         return $this->hasMany(IptbmProject::class, 'ip_profile_id', 'id');

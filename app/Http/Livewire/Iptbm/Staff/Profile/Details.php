@@ -6,6 +6,11 @@ use Livewire\Component;
 
 class Details extends Component
 {
+
+    public function resetStatus($attrib)
+    {
+        $this->resetValidation([$attrib]);
+    }
     public $showAddressForm = false;
     public $showProjectLeaderForm = false;
     public $showManagerForm = false;
@@ -18,14 +23,22 @@ class Details extends Component
     public $project_leader;
     public $manager;
     public $year_established;
+    public $yearData=[];
 
 
     public function mount($profile): void
     {
+
         $this->profile = $profile;
         $this->office_address = $profile->office_address;
         $this->project_leader = $profile->project_leader;
         $this->manager = $this->profile->manager;
+        $dat=[];
+        for($x=2019;$x<now()->year+5;$x++)
+        {
+            $dat[]=$x;
+        }
+        $this->yearData=$dat;
     }
 
     public function saveAddress(): void
@@ -82,7 +95,7 @@ class Details extends Component
     public function saveYearEstablished(): void
     {
         $this->validate([
-            'year_established' => 'required|integer|digits:4|min:1900|max:2099',
+            'year_established' => 'required|integer|digits:4|min:2019|max:2099',
         ]);
         $this->profile->year_established = $this->year_established;
         $this->profile->save();

@@ -56,8 +56,22 @@ class AgencyForm extends Component
                 ]));
                 $this->emit('reloadPage');
                 break;
+            case 'fax':
 
+                $this->prof->agency->contacts()->save(new AgencyContact([
+                    'contact_type' => $type,
+                    'contact' => $this->fax
+                ]));
+                $this->emit('reloadPage');
+                break;
+            case 'email':
 
+                $this->prof->agency->contacts()->save(new AgencyContact([
+                    'contact_type' => $type,
+                    'contact' => $this->email
+                ]));
+                $this->emit('reloadPage');
+                break;
         }
 
     }
@@ -171,6 +185,38 @@ class AgencyForm extends Component
                     $this->prof->agency->id,
                     'Phone number was already reached its maximum limit.'
                 ),
+            ],
+            'fax' =>[
+                'required',
+                'min:9',
+                'max:10',
+                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->prof->agency->id)->where('contact_type','fax'),
+                new MaxContact(
+                    3,
+                    'agency_contacts',
+                    'contact',
+                    'contact_type',
+                    'fax',
+                    'iptbm_agency_id',
+                    $this->prof->agency->id,
+                    'Fax number was already reached its maximum limit.'
+                ),
+            ],
+            'email' =>[
+                'required',
+                'email',
+                'max:50',
+                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->prof->agency->id)->where('contact_type','email'),
+                new MaxContact(
+                    3,
+                    'agency_contacts',
+                    'contact',
+                    'contact_type',
+                    'email',
+                    'iptbm_agency_id',
+                    $this->prof->agency->id,
+                    'Email address was already reached its maximum limit.'
+                ),
             ]
         ];
     }
@@ -204,6 +250,8 @@ class AgencyForm extends Component
             'profile' => $this->prof,
             'contact_mobile'=>$this->prof->agency->contact_mobile,
             'contact_phone'=>$this->prof->agency->contact_phone,
+            'contact_fax'=>$this->prof->agency->contact_fax,
+            'contact_email'=>$this->prof->agency->contact_email,
         ]);
     }
 }

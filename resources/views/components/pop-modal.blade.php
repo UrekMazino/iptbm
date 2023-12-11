@@ -1,5 +1,5 @@
 @props([
-    'name',
+    'name'=>null,
     'static'=>false,
     'modalTitle'=>null,
     'closeAction'
@@ -11,7 +11,7 @@
     'class'=>"relative w-full max-h-full"
 ])}}>
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg  border border-gray-200 dark:border-gray-600 shadow dark:bg-gray-800 ">
+        <div class="relative bg-gray-100  rounded-lg  border border-gray-200 dark:border-gray-600 shadow dark:bg-gray-800 ">
             <button @if(isset($closeAction)) wire:click.prevent="{{$closeAction}}" @endif type="button"
                     class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                     data-modal-hide="{{$name}}">

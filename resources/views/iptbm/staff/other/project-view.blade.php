@@ -14,10 +14,11 @@
                 <div class="flex justify-between items-center">
                     <div class="me-4 p-4">
                         <!-- Modal toggle -->
-                        <a href="{{route("iptbm.staff.ipProfile")}}" class="text-blue-500">
+                        <a href="{{route("iptbm.staff.ipProfile")}}" class="inline-flex items-center justify-center p-2 px-6 text-base font-medium text-sky-500 rounded-lg bg-gray-50 hover:text-sky-900 hover:bg-gray-100 dark:text-sky-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-sky-300">
                             <span class="fa-solid fa-home"></span>
                             Profile
                         </a>
+
 
                     </div>
 
@@ -29,8 +30,7 @@
         </nav>
 
 
-        <livewire:iptbm.staff.profile.edit-project-detail
-            :project="$project"></livewire:iptbm.staff.profile.edit-project-detail>
+        <livewire:iptbm.staff.profile.edit-project-detail :project="$project"></livewire:iptbm.staff.profile.edit-project-detail>
 
     </div>
 

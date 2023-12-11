@@ -1,5 +1,5 @@
 
-<x-card class="md:col-span-2 h-full flex justify-center items-center relative group overflow-hidden">
+<x-card class="py-24 md:py-0 md:col-span-2 h-full flex justify-center items-center relative group overflow-hidden">
     <x-pop-modal  name="upload_tagname" modal-title="Update Profile Tag line"
                  static="true" class="max-w-2xl">
         <form class="space-y-4" wire:submit.prevent="update">
@@ -41,9 +41,9 @@
     </div>
     @if($profile->tag_line)
         <div
-            class="absolute bottom-0 transition duration-300 opacity-0  group-hover:opacity-100 group-hover:block left-0 h-1/4 bg-gray-500 dark:bg-gray-950 bg-opacity-75 backdrop-blur-sm dark:bg-opacity-90 w-full">
+            class="opacity-100 md:opacity-0 absolute bottom-0 transition duration-300   group-hover:opacity-100 group-hover:block left-0 h-1/4 bg-gray-500 dark:bg-gray-950 bg-opacity-75 backdrop-blur-sm dark:bg-opacity-90 w-full">
             <div class="w-full h-full flex justify-center items-center">
-                <x-secondary-button data-modal-toggle="upload_tagname" class="gap-4">
+                <x-secondary-button  data-modal-toggle="upload_tagname" data-modal-target="upload_tagname" class="gap-4">
                     <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path

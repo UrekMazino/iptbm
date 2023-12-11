@@ -91,7 +91,7 @@
     }
 </style>
 
-<div class="min-h-screen bg-gray-100 dark:bg-gray-900 max-w-screen-2xl w-full   m-auto ">
+<div class="min-h-screen bg-gray-200 dark:bg-gray-900 max-w-screen-2xl w-full   m-auto ">
 
 
     @include('layouts.iptbm.sidebarStaff')

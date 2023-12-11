@@ -1,5 +1,27 @@
 @php use Carbon\Carbon; @endphp
-<div class="my-3 mx-lg-5 px-4 mb-10">
+<div class="w-full mb-10 p-0 md:px-4">
+    <x-header-label class="mt-10 mb-4">
+        IP-TBM Project
+    </x-header-label>
+    <div class="space-y-4">
+        <x-card-panel title="Project Details">
+            <div class="border py-4 px-1 rounded border-gray-200 dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-700">
+                <div class="text-center">
+                    <x-input-label>
+                        {{$project->project_name}}
+                    </x-input-label>
+                </div>
+                <div class="text-center">
+                    Project Title
+                </div>
+            </div>
+            <div class="">
+
+            </div>
+
+        </x-card-panel>
+    </div>
+
     <div
         class="w-full mb-3 rounded-lg border bg-white dark:bg-gray-700 p-4 shadow-lg border-gray-200 dark:border-gray-600">
 

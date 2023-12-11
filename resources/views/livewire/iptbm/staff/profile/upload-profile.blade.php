@@ -82,9 +82,9 @@
 
     </div>
     <div
-        class="absolute bottom-0 transition duration-300 opacity-0  group-hover:opacity-100 group-hover:block left-0 h-1/4 bg-gray-500 dark:bg-gray-950 bg-opacity-75 backdrop-blur-sm dark:bg-opacity-90 w-full">
+        class="absolute bottom-0 transition duration-300 opacity-100 md:opacity-0  group-hover:opacity-100 group-hover:block left-0 h-1/4 bg-gray-500 dark:bg-gray-950 bg-opacity-75 backdrop-blur-sm dark:bg-opacity-90 w-full">
         <div class="w-full h-full flex justify-center items-center">
-            <x-secondary-button data-modal-toggle="profPhoto" class="gap-4">
+            <x-secondary-button data-modal-toggle="profPhoto" data-modal-target="profPhoto" class="gap-4">
                 <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
                      xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                     <path

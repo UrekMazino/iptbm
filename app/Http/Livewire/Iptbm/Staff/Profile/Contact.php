@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Iptbm\Staff\Profile;
 use App\Models\iptbm\IptbmProfile;
 use App\Models\iptbm\IptbmProfileContact;
 use App\Rules\iptbm\ContactCounter;
+use App\Rules\iptbm\MaxContact;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -16,10 +17,10 @@ class Contact extends Component
 
     public $profile;
 
-    public $mobile;
-    public $phone;
-    public $email;
-    public $fax;
+    public $mobile=[];
+    public $phone=[];
+    public $email=[];
+    public $fax=[];
 
     public $mobileInput;
     public $phoneInput;
@@ -33,34 +34,16 @@ class Contact extends Component
     public $showFaxForm = false;
 
 
-    public function showMobileForm()
-    {
-        $this->showMobileForm = !$this->showMobileForm;
-    }
-
-    public function showPhoneForm()
-    {
-        $this->showPhoneForm = !$this->showPhoneForm;
-    }
-
-    public function showEmailForm()
-    {
-        $this->showEmailForm = !$this->showEmailForm;
-    }
-
-    public function showFaxForm()
-    {
-        $this->showFaxForm = !$this->showFaxForm;
-    }
 
 
-    public function mount($profile): void
+    public function mount(IptbmProfile $profile): void
     {
-        $this->profile = IptbmProfile::with('contact')->find($profile);
-        $this->mobile = $this->profile->contact->where('contact_type', 'mobile');
-        $this->phone = $this->profile->contact->where('contact_type', 'phone');
-        $this->fax = $this->profile->contact->where('contact_type', 'fax');
-        $this->email = $this->profile->contact->where('contact_type', 'email');
+        $this->profile =$profile->load([
+            'contact_mobile',
+            'contact_phone',
+            'contact_fax',
+            'contact_email',
+            ]);
 
     }
 
@@ -74,56 +57,67 @@ class Contact extends Component
                 //->where('iptbm_profiles_id',$this->profile->id),
                 'numeric',
                 'digits:11',
-                new ContactCounter(
+                new MaxContact(
                     3,
                     'iptbm_profile_contacts',
                     'contact',
                     'contact_type',
                     'mobile',
-                    'Mobile phone number was already reached its maximum limit.'
-                )
+                    'iptbm_profiles_id',
+                    $this->profile->id,
+                    'Mobile number was already reached its maximum limit.'
+                ),
             ],
             'phoneInput' => [
                 'required',
                 Rule::unique('iptbm_profile_contacts', 'contact')
                     ->where('contact_type', 'phone'),
-                // ->where('iptbm_profiles_id',$this->profile->id),
                 'numeric',
                 'max_digits:10',
                 'min_digits:7',
-                new ContactCounter(
+                new MaxContact(
                     3,
                     'iptbm_profile_contacts',
                     'contact',
                     'contact_type',
                     'phone',
-                    'Telephone number was already reached its maximum limit.'
-                )
+                    'iptbm_profiles_id',
+                    $this->profile->id,
+                    'Phone number was already reached its maximum limit.'
+                ),
             ],
             'faxInput' => [
                 'required',
                 Rule::unique('iptbm_profile_contacts', 'contact')
                     ->where('contact_type', 'fax'),
-                // ->where('iptbm_profiles_id',$this->profile->id),
                 'numeric',
                 'max_digits:10',
                 'min_digits:7',
-                new ContactCounter(
+                new MaxContact(
                     3,
                     'iptbm_profile_contacts',
                     'contact',
                     'contact_type',
                     'fax',
+                    'iptbm_profiles_id',
+                    $this->profile->id,
                     'Fax number was already reached its maximum limit.'
-                )
+                ),
             ],
             'emailInput' => [
                 'required',
                 'email',
                 'max:40',
-                Rule::unique('iptbm_profile_contacts', 'contact')
-                    ->where('contact_type', 'email'),
-                // ->where('iptbm_profiles_id',$this->profile->id),
+                new MaxContact(
+                    3,
+                    'iptbm_profile_contacts',
+                    'contact',
+                    'contact_type',
+                    'email',
+                    'iptbm_profiles_id',
+                    $this->profile->id,
+                    'Email address was already reached its maximum limit.'
+                ),
             ]
         ];
     }
@@ -176,6 +170,12 @@ class Contact extends Component
         return redirect()->route("iptbm.staff.ipProfile");
     }
 
+    public function deleteContact(IptbmProfileContact $contact)
+    {
+        $contact->delete();
+        $this->emit('reloadPage');
+    }
+
 
     public function deleteMobile($id)
     {
@@ -204,6 +204,11 @@ class Contact extends Component
 
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('livewire.iptbm.staff.profile.contact');
+        return view('livewire.iptbm.staff.profile.contact')->with([
+            'contact_mobile'=>$this->profile->contact_mobile,
+            'contact_phone'=>$this->profile->contact_phone,
+            'contact_fax'=>$this->profile->contact_fax,
+            'contact_email'=>$this->profile->contact_email,
+        ]);
     }
 }

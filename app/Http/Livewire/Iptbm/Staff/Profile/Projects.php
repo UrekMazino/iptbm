@@ -32,7 +32,7 @@ class Projects extends Component
         // 'year2Budget'=>'Year 2 Budget',
     ];
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'projectName' => 'required|unique:iptbm_projects,project_name|min:5',
@@ -40,11 +40,11 @@ class Projects extends Component
             'implementationStart' => 'required|date_format:F-d-Y',
             //'implementationEnd'=>'required|after:implementationStart',
             //  new DateDuration($this->implementationStart,'Invalid time duration'),
-            'year1Budget' => 'required|numeric|min:0',
+            'year1Budget' => 'required|numeric|min:0|max:999999999',
         ];
     }
 
-    public function updatedImplementationStart()
+    public function updatedImplementationStart(): void
     {
 
         $this->validateOnly('implementationStart');
@@ -56,7 +56,7 @@ class Projects extends Component
 
     }
 
-    public function updatedDuration()
+    public function updatedDuration(): void
     {
         $this->validateOnly('duration');
 

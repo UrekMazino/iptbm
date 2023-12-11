@@ -6,7 +6,7 @@
 
 
 @section('content')
-    <div class="w-full mb-10">
+    <div class="w-full mb-10 p-0 md:px-4">
 
 
         @if(Session::has('status'))
@@ -14,7 +14,7 @@
                 {{Session::get('status')}}
             </div>
         @endif
-        <div class="px-0 md:px-2 mt-10 w-full space-y-4">
+        <div class=" mt-10 w-full space-y-4">
             <x-header-label>
                IP-TBM Profile Details
             </x-header-label>
@@ -28,16 +28,15 @@
                 </div>
             </x-grid>
         </div>
-        <div class="px-0 md:px-2 mt-10 w-full">
+        <div class=" mt-10 w-full">
 
 
-            <hr class="w-full h-1 mx-auto my-4 bg-gray-400 border-0 rounded md:my-10 dark:bg-gray-500">
+
             <div class="my-3 mx-lg-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 gap-x-10">
+                    <div class="space-y-10 md:space-y-4">
                         <x-card-panel title=" Profile Details">
-                            <livewire:iptbm.staff.profile.details
-                                :profile="$profile"></livewire:iptbm.staff.profile.details>
+                            <livewire:iptbm.staff.profile.details :profile="$profile"></livewire:iptbm.staff.profile.details>
                         </x-card-panel>
                         <x-card-panel title="Region">
                             <div class="space-y-4">
@@ -128,16 +127,10 @@
 
 
                     </div>
-                    <div class="space-y-4">
-                        <livewire:iptbm.staff.profile.projects
-                            :profile="$profile"></livewire:iptbm.staff.profile.projects>
-                        <x-card>
-                            <livewire:iptbm.staff.profile.ip-policy :profile="$profile"/>
-                        </x-card>
-                        <x-card-panel title="Contact Details">
-                            <livewire:iptbm.staff.profile.contact
-                                :profile="$profile->id"></livewire:iptbm.staff.profile.contact>
-                        </x-card-panel>
+                    <div class="space-y-10 md:space-y-4">
+                        <livewire:iptbm.staff.profile.projects :profile="$profile"/>
+                        <livewire:iptbm.staff.profile.ip-policy :profile="$profile"/>
+                        <livewire:iptbm.staff.profile.contact :profile="$profile->id"></livewire:iptbm.staff.profile.contact>
 
                     </div>
                 </div>
