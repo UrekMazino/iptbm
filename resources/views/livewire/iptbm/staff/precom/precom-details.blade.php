@@ -1,4 +1,4 @@
-<div class="w-full space-y-6 col-span-2">
+<div class="w-full space-y-6 md:col-span-2">
     <x-card class="shadow-lg">
         <div class="flex justify-between items-center">
             <x-input-label class="font-medium text-xl">

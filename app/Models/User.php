@@ -27,6 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
         'email',
         'password',
+        'abh_profiles_id',
+        'profile_id'
     ];
 
     /**
@@ -53,6 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(IptbmProfile::class, 'profile_id', 'id');
     }
+
 
     public function abh_profile(): BelongsTo
     {

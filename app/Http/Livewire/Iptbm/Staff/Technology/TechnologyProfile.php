@@ -95,7 +95,7 @@ class TechnologyProfile extends Component
                 'exists:iptbm_industries,id',
                 Rule::unique(IptbmTechIndustry::class, 'iptbm_industry_id')->where('iptbm_technology_id', $this->technology->id)
             ],
-            'description' => 'required|min:10|max:100',
+            'description' => 'required|min:10',
             'techTitle' => 'required|min:5|unique:iptbm_technology_profiles,title',
         ];
     }

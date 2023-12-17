@@ -60,15 +60,12 @@
                 </div>
             </x-card>
             <div class="inline-flex items-center justify-center w-full">
-                <hr class="w-64 h-1  bg-gray-600 border-0 dark:bg-gray-200">
-                <span class="px-3 font-medium text-gray-900  bg-gray-50  dark:text-white dark:bg-gray-900">
-                    Details
-                </span>
-                <hr class="w-64 h-1  bg-gray-600 border-0 dark:bg-gray-200">
+                <hr class="w-full h-0.5 my-10  bg-gray-400 border-0 dark:bg-gray-700">
+
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 mt-5 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 mt-5 gap-x-10">
                 <livewire:iptbm.staff.precom.precom-details :precom="$precom"/>
-                <div class="w-full">
+                <div>
                     <livewire:iptbm.staff.precom.video-clip :precom="$precom"/>
                     <livewire:iptbm.staff.precom.precom-accounting :precom="$precom"/>
                 </div>

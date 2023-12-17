@@ -77,6 +77,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <x-slot:footer>
                             <div class="text-end pe-10">
 
