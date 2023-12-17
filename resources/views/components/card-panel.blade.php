@@ -3,7 +3,7 @@
 ])
 
 <div {!!  $attributes->merge([
-    'class' => 'w-full pb-5 md:pb-10 md:pt-2 bg-white shadow-lg text-sm text-gray-500 dark:text-gray-400 dark:bg-gray-800  md:rounded '
+    'class' => 'w-full pb-5 md:pb-10 md:pt-2 bg-white shadow-lg text-sm text-gray-500 dark:text-gray-400 dark:bg-gray-800  md:rounded relative'
 ]) !!} >
     @if($title)
         <div class="  border-b w-full border-gray-300 dark:border-gray-700 px-2 py-3">
@@ -33,5 +33,9 @@
             {{$slot}}
         </div>
     @endif
-
+        @if(isset($footer))
+            <div class="absolute left-0 p-2 bottom-0 w-full">
+                {{$footer}}
+            </div>
+        @endif
 </div>

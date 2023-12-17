@@ -15,11 +15,18 @@ class AddExtension extends Component
     public $extensionDuration;
     public $extendedEndDate;
 
+    public function reseter()
+    {
+        $this->reset('extensionDuration');
+        $this->resetValidation(['extensionDuration']);
+    }
+
 
     public function updatedExtensionDuration(): void
     {
+
         $this->validateOnly('extensionDuration');
-        $date = Carbon::parse($this->projectYear->date_implemented_end)->addMonths($this->extensionDuration)->subDay();
+        $date = Carbon::parse($this->projectYear->date_start)->addMonths($this->projectYear->duration+$this->extensionDuration)->subDay();
 
         $this->extendedEndDate = $date->format('F-d-Y');
     }
@@ -35,7 +42,7 @@ class AddExtension extends Component
     public function rules(): array
     {
         return [
-            'extensionDuration' => 'required|integer|min:1'
+            'extensionDuration' => 'required|integer|min:1|max:60'
         ];
     }
 

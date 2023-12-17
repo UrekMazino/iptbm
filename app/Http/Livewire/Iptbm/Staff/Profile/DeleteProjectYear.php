@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Iptbm\Staff\Profile;
 
+use App\Models\iptbm\IptbmProjectYearBudget;
 use Livewire\Component;
 
 class DeleteProjectYear extends Component
@@ -10,13 +11,10 @@ class DeleteProjectYear extends Component
     public $projectYear;
     public $project;
 
-    public function deleteData()
+    public function deleteData(IptbmProjectYearBudget $project)
     {
 
-        $proj = $this->project->projectDetails()->latest()->skip(1)->take(1)->first();
-        $proj->extendable = true;
-        $proj->save();
-        $this->projectYear->delete();
+        $project->delete();
         $this->emit('reloadPage');
 
     }

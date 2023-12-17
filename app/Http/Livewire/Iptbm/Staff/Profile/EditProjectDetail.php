@@ -12,8 +12,7 @@ class EditProjectDetail extends Component
     public $project;
     public $projectState;
 
-    public $Start;
-    public $End;
+
 
     public $projectName;
     public $projectLeader;
@@ -26,10 +25,10 @@ class EditProjectDetail extends Component
     public $showProjectImplementation = false;
     public $showUpdateImplementation = false;
     public $showTotalBudget = false;
-    //  public $updateImplementation;
-    //  public $totalBudget;
-    //   public $year1Budget;
-    //   public $year2Budget;
+      public $updateImplementation;
+      public $totalBudget;
+       public $year1Budget;
+       public $year2Budget;
     public $showYear1Budget = false;
     public $showYear2Budget = false;
     protected $validationAttributes = [
@@ -59,22 +58,18 @@ class EditProjectDetail extends Component
 
     }
 
-    public function updatedChangeEndModel()
-    {
-        $this->validateOnly('changeStartModel');
-        $this->validateOnly('changeEndModel');
-    }
 
-    public function saveChanges()
+    public function saveChanges(): void
     {
         $this->validateOnly('changeImp');
 
         $fromDate = Carbon::createFromFormat('F-d-Y', $this->changeImp);
-        $toDate = Carbon::createFromFormat('F-d-Y', $this->changeEndModel);
 
-        $details = $this->project->projectDetails()->where('date_implemented_start', $this->project->implementation_period)->first();
-        $details->change_of_implementation = $fromDate->format('Y-n-j');
-        $details->date_implemented_end = $toDate->format('Y-n-j');
+        $this->project->update_implementation_period=$fromDate->format('Y-n-j');
+        $this->project->save();
+        $details = $this->project->projectDetails()->latest()->first();
+
+        $details->date_start = $fromDate->format('Y-n-j');
         $details->save();
         $this->emit('reloadPage');
 
@@ -97,10 +92,7 @@ class EditProjectDetail extends Component
         $this->emit('reloadPage');
     }
 
-    public function showProjectImplementation()
-    {
-        $this->showProjectImplementation = !$this->showProjectImplementation;
-    }
+
 
     public function saveProjectImplementation(): void
     {
@@ -112,11 +104,6 @@ class EditProjectDetail extends Component
         $this->project->save();
 
         session()->flash('projectImplementation', 'Save successfully...');
-    }
-
-    public function showUpdateImplementation()
-    {
-        $this->showUpdateImplementation = !$this->showUpdateImplementation;
     }
 
     public function saveUpdateImplementation(): void
@@ -147,7 +134,7 @@ class EditProjectDetail extends Component
         session()->flash('totalBudget', 'Save successfully...');
     }
 
-    public function showYear1Budget()
+    public function showYear1Budget(): void
     {
         $this->showYear1Budget = !$this->showYear1Budget;
     }
@@ -158,13 +145,11 @@ class EditProjectDetail extends Component
             'year1Budget' => 'required|integer|min:0',
         ]);
         $this->project->year_1_budget = $this->year1Budget;
-
         $this->project->save();
-
         session()->flash('year1Budget', 'Save successfully...');
     }
 
-    public function showYear2Budget()
+    public function showYear2Budget(): void
     {
         $this->showYear2Budget = !$this->showYear2Budget;
     }
@@ -184,26 +169,12 @@ class EditProjectDetail extends Component
     public function mount($project)
     {
 
+
         $this->project = $project;
         $this->projectLeader = $this->project->project_leader;
         $this->projectName = $this->project->project_name;
         $this->projectImplementation = $this->project->implementation_period;
-        $this->updateImplementation = $this->project->update_implementation_period;
-        $this->totalBudget = $this->project->total_budget;
-        $this->year1Budget = $this->project->year_1_budget;
-        $this->year2Budget = $this->project->year_2_budget;
-        $this->Start = $project->implementation_period;
-        $this->End = $project->projectDetails->first();
 
-        $end = Carbon::parse($this->End->date_implemented_end);
-
-        if ($this->End->change_of_implementation) {
-            $start = Carbon::parse($this->End->change_of_implementation);
-        } else {
-            $start = Carbon::parse($project->implementation_period);
-        }
-
-        $this->duration = $end->diffInMonths($start) + 1;
         $this->projectState = ($project->projectDetails->count() > 1);
 
 
@@ -211,6 +182,7 @@ class EditProjectDetail extends Component
 
     public function updated($propertyName)
     {
+
         $this->validateOnly($propertyName);
     }
 

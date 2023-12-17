@@ -32,6 +32,7 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'project_name' => 'required|max:255|unique:iptbm_projects,project_name',
             'project_leader' => 'required|max:255',
@@ -50,16 +51,12 @@ class ProjectController extends Controller
         return redirect()->back()->with('success', 'Project added Successfully');
     }
 
-    public function edit($id = null): View|Factory|Application|RedirectResponse
+    public function edit(IptbmProject $id ): View|Factory|Application|RedirectResponse
     {
-        /**
-         * id of iptbm profile
-         */
 
-        $project = IptbmProject::with('projectDetails')->find($id);
-        if (!$project) {
-            return redirect()->route("iptbm.staff.ipProfile")->with('error', 'Project not found');
-        }
+
+        $project = $id->load(['projectDetails']);
+
 
         return view('iptbm.staff.other.project-view', [
             'project' => $project,

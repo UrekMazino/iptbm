@@ -1,11 +1,11 @@
 @extends('layouts.iptbm.staff')
 
 @section('title')
-    {{"| project"}}
+    {{"| view-profile"}}
 @endsection
 
 @section('content')
-    <div>
+    <div class="w-full">
         @if($profile->logo)
             <div id="profile" tabindex="-1"
                  class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -30,8 +30,7 @@
                 </div>
             </div>
         @endif
-        <nav
-            class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
+        <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -89,290 +88,299 @@
                     </div>
                 </div>
             </div>
-            <h1 class="text-xl text-gray-700 dark:text-gray-400 py-4">
+            <x-header-label class="mt-10 mb-4">
                 {{$profile->agency->name}} Profile
-            </h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <div
-                        class="w-full mb-3 rounded-lg border-l bg-gray-50 dark:bg-gray-700 p-4 shadow-lg border-r border-t border-b border-gray-200 dark:border-gray-600">
-                        <h1 class="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                            Region Details
-                        </h1>
-                        <div class="p-2">
-                            @if($profile->rrdc_chair)
-                                <span class="text-gray-700 dark:text-gray-200">
-                                    {{$profile->rrdc_chair}}
-                                </span>
-                                {{$profile->rrdc_chair}}
-                            @else
-                                <span class="text-gray-500 font-bold">
-                                    No Data Available
-                                </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                RRDCC Chair
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->consortium_dir)
-                                <span class="text-gray-700 dark:text-gray-200">
-                                    {{$profile->consortium_dir}}
-                                </span>
-                            @else
-                                <span class="text-gray-500 font-bold">
-                                    No Data Available
-                                </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Consortium Director
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div>
-                    <div
-                        class="w-full mb-3 rounded-lg border-l bg-gray-50 dark:bg-gray-700 p-4 shadow-lg border-r border-t border-b border-gray-200 dark:border-gray-600">
-                        <h1 class="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                            Agency Details
-                        </h1>
-                        <div class="p-2">
-                            @if($profile->agency)
-                                <span class="text-gray-700 dark:text-gray-200">
-                                    {{$profile->agency->name}}
-                                </span>
-                            @else
-                                <span class="text-gray-500 font-bold">
-                                    No Data Available
-                                </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Agency
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->agency_head)
-                                <span class="text-gray-700 dark:text-gray-200">
-                                    {{$profile->agency_head->head}}
-                                </span>
-                            @else
-                                <span class="text-gray-500 font-bold">
-                                    No Data Available
-                                </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Agency head
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <div
-                        class="w-full mb-3 rounded-lg border-l bg-gray-50 dark:bg-gray-700 p-4 shadow-lg border-r border-t border-b border-gray-200 dark:border-gray-600">
-                        <h1 class="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                            Profile Information
-                        </h1>
-                        <div class="p-2">
-                            @if($profile->office_address)
-                                <span class="text-gray-700 dark:text-gray-200">
+            </x-header-label>
+            <div class="space-y-4">
+                <x-grid col="2" gap="10">
+                    <div class="space-y-4">
+                        <x-card-panel title="Profile Information">
+                            <div class="space-y-4">
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->office_address)
+                                        <span class="text-gray-700 dark:text-gray-200">
                                     {{$profile->office_address}}
                                 </span>
 
-                            @else
-                                <span class="text-gray-500 font-bold">
+                                    @else
+                                        <span class="text-gray-500 font-bold">
                                     No Data Available
                                 </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Office Address
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->project_leader)
-                                <span class="text-gray-700 dark:text-gray-200">
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Office Address
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->project_leader)
+                                        <span class="text-gray-700 dark:text-gray-200">
                                     {{$profile->project_leader}}
                                 </span>
-                            @else
-                                <span class="text-gray-500 font-bold">
+                                    @else
+                                        <span class="text-gray-500 font-bold">
                                     No Data Available
                                 </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Project Leader
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->manager)
-                                <span class="text-gray-700 dark:text-gray-200">
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Project Leader
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->manager)
+                                        <span class="text-gray-700 dark:text-gray-200">
                                     {{$profile->manager}}
                                 </span>
-                            @else
-                                <span class="text-gray-500 font-bold">
+                                    @else
+                                        <span class="text-gray-500 font-bold">
                                     No Data Available
                                 </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Project Manager
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->manager)
-                                <span class="text-gray-700 dark:text-gray-200">
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Project Manager
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->manager)
+                                        <span class="text-gray-700 dark:text-gray-200">
                                     {{$profile->manager}}
                                 </span>
-                            @else
-                                <span class="text-gray-500 font-bold">
+                                    @else
+                                        <span class="text-gray-500 font-bold">
                                     No Data Available
                                 </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                IP-TBM Manager
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->year_established)
-                                <span class="text-gray-700 dark:text-gray-200">
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        IP-TBM Manager
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->year_established)
+                                        <span class="text-gray-700 dark:text-gray-200">
                                     {{$profile->year_established}}
                                 </span>
-                            @else
-                                <span class="text-gray-500 font-bold">
+                                    @else
+                                        <span class="text-gray-500 font-bold">
                                     No Data Available
                                 </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Year Established
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->ip_policy)
-                                <span class="text-gray-700 dark:text-gray-200">
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Year Established
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->ip_policy)
+                                        <span class="text-gray-700 dark:text-gray-200">
                                    YES
                                 </span>
-                            @else
-                                <span class="text-red-700">
+                                    @else
+                                        <span class="text-red-700">
                                    NO
                                 </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Availability of IP Policy
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            @if($profile->techno_transfer)
-                                <span class="text-gray-700 dark:text-gray-200">
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Availability of IP Policy
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->techno_transfer)
+                                        <span class="text-gray-700 dark:text-gray-200">
                                    YES
                                 </span>
-                            @else
-                                <span class="text-red-500">
+                                    @else
+                                        <span class="text-red-500">
                                    NO
                                 </span>
-                            @endif
-                            <div class="text-gray-500 border-t border-gray-500">
-                                Availability of Technology Transfer Protocol
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Availability of Technology Transfer Protocol
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                    </div>
+                        </x-card-panel>
+                        <x-card-panel title="IP-TBM Contact Details">
+                            <div class="divide-y divide-200 dark:divide-gray-700">
+                                @if($profile->contact_mobile->count()>0)
+                                    <div class="mt-2">
+                                        <h1 class="font-bold text-gray-600 dark:text-gray-500">
+                                            <span class="fa-solid fa-mobile-retro me-2"></span> Mobile Number
+                                        </h1>
+                                        <ul class="ms-4 list-disc ps-4">
+                                            @foreach($profile->contact_mobile as $contact)
+                                                <li >
+                                                    {{$contact->contact}}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
 
-                </div>
-                <div>
-                    <div
-                        class="w-full mb-3 bg-gray-50 dark:bg-gray-700 rounded-lg border-l p-4 shadow-lg border-r border-t border-b border-gray-200 dark:border-gray-600">
-                        <h1 class="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                            Contact Details
-                        </h1>
-                        <div class="p-2">
-                            @if($profile->contact->where('contact_type','mobile')->count()>0)
-                                <div class="mt-2">
-                                    <h1 class="font-bold text-gray-600 dark:text-gray-500">
-                                        <span class="fa-solid fa-mobile-retro me-2"></span> Mobile Number
-                                    </h1>
-                                    <ul class="ms-4">
-                                        @foreach($profile->contact->where('contact_type','mobile') as $contact)
-                                            <li class="text-gray-700 dark:text-gray-300">
-                                                {{$contact->contact}}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                @endif
+                                @if($profile->contact_phone->count()>0)
+                                    <div class="mt-2">
+                                        <h1 class="font-bold text-gray-600 dark:text-gray-500">
+                                            <span class="fa-solid fa-phone-square me-2"></span> Phone Number
+                                        </h1>
+                                        <ul class="ms-4 list-disc ps-4">
+                                            @foreach($profile->contact_phone as $contact)
+                                                <li class="text-gray-700 dark:text-gray-300">
+                                                    {{$contact->contact}}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
 
-                            @endif
-                            @if($profile->contact->where('contact_type','phone')->count()>0)
-                                <div class="mt-2">
-                                    <h1 class="font-bold text-gray-600 dark:text-gray-500">
-                                        <span class="fa-solid fa-phone-square me-2"></span> Mobile Number
-                                    </h1>
-                                    <ul class="ms-4">
-                                        @foreach($profile->contact->where('contact_type','phone') as $contact)
-                                            <li class="text-gray-700 dark:text-gray-300">
-                                                {{$contact->contact}}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                @endif
+                                @if($profile->contact_fax->count()>0)
+                                    <div class="mt-2">
+                                        <h1 class="font-bold text-gray-600 dark:text-gray-500">
+                                            <span class="fa-solid fa-fax me-2"></span> Fax Number
+                                        </h1>
+                                        <ul class="ms-4 list-disc ps-4">
+                                            @foreach($profile->contact_fax as $contact)
+                                                <li class="text-gray-700 dark:text-gray-300">
+                                                    {{$contact->contact}}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
 
-                            @endif
-                            @if($profile->contact->where('contact_type','fax')->count()>0)
-                                <div class="mt-2">
-                                    <h1 class="font-bold text-gray-600 dark:text-gray-500">
-                                        <span class="fa-solid fa-fax me-2"></span> Mobile Number
-                                    </h1>
-                                    <ul class="ms-4">
-                                        @foreach($profile->contact->where('contact_type','fax') as $contact)
-                                            <li class="text-gray-700 dark:text-gray-300">
-                                                {{$contact->contact}}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                @endif
+                                @if($profile->contact_email->count()>0)
+                                    <div class="mt-2">
+                                        <h1 class="font-bold text-gray-600 dark:text-gray-500">
+                                            <span class="fa-solid fa-at me-2"></span> Email Address
+                                        </h1>
+                                        <ul class="ms-4 list-disc ps-4">
+                                            @foreach($profile->contact_email as $contact)
+                                                <li class="text-gray-700 dark:text-gray-300">
+                                                    {{$contact->contact}}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
 
-                            @endif
-                            @if($profile->contact->where('contact_type','email')->count()>0)
-                                <div class="mt-2">
-                                    <h1 class="font-bold text-gray-600 dark:text-gray-500">
-                                        <span class="fa-solid fa-at me-2"></span> Mobile Number
-                                    </h1>
-                                    <ul class="ms-4">
-                                        @foreach($profile->contact->where('contact_type','email') as $contact)
-                                            <li class="text-gray-700 dark:text-gray-300">
-                                                {{$contact->contact}}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-1  gap-4">
-                <div>
-                    <div
-                        class="w-full mb-3 rounded-lg border-l bg-gray-50 dark:bg-gray-700 p-4 shadow-lg border-r border-t border-b border-gray-200 dark:border-gray-600">
-                        <h1 class="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                            RAISE/IP-TBM Project Title
-                        </h1>
-                        @if($profile->projects->count()>0)
-                            <ul>
-                                @foreach($profile->projects as $project)
-                                    <li class="text-gray-700 dark:text-gray-400">
-                                        <span
-                                            class="fa-solid fa-asterisk me-2 text-gray-700 dark:text-gray-200"></span>{{$project->project_name}}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <div class="font-bold text-gray-500">
-                                No Data Available
+                                @endif
                             </div>
-                        @endif
+
+                        </x-card-panel>
                     </div>
-                </div>
+                    <div class="space-y-4">
+                        <x-card-panel title="IP-TBM Projects">
+                            @if($profile->projects->count()>0)
+                                <ul class="space-y-4">
+                                    @foreach($profile->projects->take(5) as $project)
+                                        <li class="text-gray-700 dark:text-gray-400">
+                                            <div class="border border-200 dark:border-gray-700 rounded p-2">
+                                                {{$project->project_name}}
+                                                <div class="divide-y mt-2 divide-gray-200 dark:divide-gray-700 w-fit">
+                                                    <div class="font-medium">
+                                                        {{$project->project_leader}}
+                                                    </div>
+                                                    <div >
+                                                        Project Leader
+                                                    </div>
+                                                </div>
+                                                <div class="divide-y mt-2 divide-gray-200 dark:divide-gray-700 w-fit">
+                                                    <div class="font-medium">
+                                                        <i class="fa-solid fa-peso-sign"></i>
+                                                        {{number_format($project->projectDetails->sum('year_budget'),2)}}
+                                                    </div>
+                                                    <div >
+                                                        Total Budget
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <div class="font-bold text-gray-500">
+                                    No Data Available
+                                </div>
+                            @endif
+                            <x-slot:footer>
+                                <x-pop-modal>
+
+                                </x-pop-modal>
+
+                                <a href="{{route("iptbm.staff.viewProfile.projects",['profile'=>$profile])}}" class="inline-flex items-center justify-center p-1 text-base font-medium text-sky-500 rounded-lg bg-gray-50 hover:text-sky-900 hover:bg-gray-100 dark:text-sky-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    <span class="w-full">View all projects</span>
+                                    <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>
+                            </x-slot:footer>
+                        </x-card-panel>
+                        <x-card-panel title="Region Details">
+                            <div class="space-y-4">
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->rrdc_chair)
+                                        <span class="text-gray-700 dark:text-gray-200">
+                                    {{$profile->rrdc_chair}}
+                                </span>
+                                        {{$profile->rrdc_chair}}
+                                    @else
+                                        <span class="text-gray-500 font-bold">
+                                    No Data Available
+                                </span>
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        RRDCC Chair
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->consortium_dir)
+                                        <span class="text-gray-700 dark:text-gray-200">
+                                    {{$profile->consortium_dir}}
+                                </span>
+                                    @else
+                                        <span class="text-gray-500 font-bold">
+                                    No Data Available
+                                </span>
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Consortium Director
+                                    </div>
+                                </div>
+                            </div>
+                        </x-card-panel>
+                        <x-card-panel title="Agency Details">
+                            <div class="space-y-4">
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->agency)
+                                        <span class="text-gray-700 dark:text-gray-200">
+                                    {{$profile->agency->name}}
+                                </span>
+                                    @else
+                                        <span class="text-gray-500 font-bold">
+                                    No Data Available
+                                </span>
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Agency
+                                    </div>
+                                </div>
+                                <div class="divide-y divide-200 dark:divide-gray-700">
+                                    @if($profile->agency_head)
+                                        <span class="text-gray-700 dark:text-gray-200">
+                                    {{$profile->agency_head->head}}
+                                </span>
+                                    @else
+                                        <span class="text-gray-500 font-bold">
+                                    No Data Available
+                                </span>
+                                    @endif
+                                    <div class="text-gray-500 border-t border-gray-500">
+                                        Agency head
+                                    </div>
+                                </div>
+                            </div>
+                        </x-card-panel>
+                    </div>
+                </x-grid>
+
             </div>
+
 
         </div>
 

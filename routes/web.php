@@ -80,6 +80,7 @@ Route::middleware(['component:IPTBM', 'auth', 'verified'])->prefix('/iptbm')->gr
         Route::get('/', 'index')->name('iptbm.staff.ipProfile');
         Route::get('/all-profile', 'allProfile')->name('iptbm.staff.allProfile');
         Route::get('/viewprofile/{id}', 'viewProfile')->name('iptbm.staff.viewProfile');
+        Route::get('/view-profile-project/{profile}','all_profile_projects')->name('iptbm.staff.viewProfile.projects');
         Route::post('/update-profile/{name}', 'update')->name('iptbm.staff.profile.update');
         Route::post('/add-contact/{type}', 'addcontact')->name('iptbm.staff.profile.addContact');
         Route::post('/delete-contact/{id}', 'deletecontact')->name('iptbm.staff.profile.deleteContact');

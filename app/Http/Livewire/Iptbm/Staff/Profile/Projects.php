@@ -19,7 +19,6 @@ class Projects extends Component
     public $implementationStart;
     public $implementationEnd;
     public $duration;
-    public $projectEndDate;
     public $year1Budget;
 
     public $showProjectForm = false;
@@ -27,7 +26,6 @@ class Projects extends Component
         'projectName' => 'Project Name',
         'projectLeader' => 'Project Leader',
         'implementationStart' => 'Approved Implementation date',
-        'implementationEnd' => 'End of project',
         'year1Budget' => 'Year 1 Budget',
         // 'year2Budget'=>'Year 2 Budget',
     ];
@@ -37,15 +35,16 @@ class Projects extends Component
         return [
             'projectName' => 'required|unique:iptbm_projects,project_name|min:5',
             'projectLeader' => 'required|min:5',
-            'implementationStart' => 'required|date_format:F-d-Y',
-            //'implementationEnd'=>'required|after:implementationStart',
-            //  new DateDuration($this->implementationStart,'Invalid time duration'),
+            'implementationStart' => 'required',
+            'duration'=>'required|min:1|max:60',
             'year1Budget' => 'required|numeric|min:0|max:999999999',
         ];
     }
 
     public function updatedImplementationStart(): void
     {
+
+
 
         $this->validateOnly('implementationStart');
 
@@ -75,36 +74,30 @@ class Projects extends Component
 
     public function updated($propertyName)
     {
-
         $this->validateOnly($propertyName);
     }
 
-    public function showProjectForm()
-    {
-        $this->reset('projectName');
-        $this->showProjectForm = !$this->showProjectForm;
-    }
+
 
 
     public function saveProject()
     {
 
+
         $this->validate();
         $fromDate = Carbon::createFromFormat('F-d-Y', $this->implementationStart);
-        $toDate = Carbon::createFromFormat('F-d-Y', $this->implementationEnd);
+
         $project = new IptbmProject([
             'project_name' => $this->projectName,
             'project_leader' => $this->projectLeader,
-            'implementation_period' => $fromDate->format('Y-n-j')
+            'implementation_period' =>$fromDate->format('Y-n-j')
         ]);
-
 
         $this->profile->projects()->save($project);
 
-
         $project->projectDetails()->save(new IptbmProjectYearBudget([
-            'date_implemented_start' => $fromDate->format('Y-n-j'),
-            'date_implemented_end' => $toDate->format('Y-n-j'),
+            'date_start' =>$fromDate->format('Y-n-j'),
+            'duration' => $this->duration,
             'year_budget' => $this->year1Budget,
         ]));
         return redirect()->route("iptbm.staff.ipProfile");

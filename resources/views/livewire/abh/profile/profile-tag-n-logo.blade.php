@@ -3,8 +3,12 @@
         <x-card class=" aspect-square relative group overflow-hidden ">
             <x-pop-modal static="true" class="max-w-4xl" name="showProf">
                 <div class="p-10 text-center m-auto aspect-square">
-                    <img class="  rounded-lg m-auto object-contain w-full h-full"
-                         src="{{Storage::url($profile->logo)}}" alt="image description">
+
+                    @if($profile->logo)
+                        <img class="  rounded-lg m-auto object-contain w-full h-full"
+                             src="{{Storage::url($profile->logo)}}" alt="image description">
+                    @endif
+
 
                 </div>
             </x-pop-modal>

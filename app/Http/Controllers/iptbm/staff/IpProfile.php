@@ -9,7 +9,7 @@ use App\Models\iptbm\IptbmIpAlertTask;
 use App\Models\iptbm\IptbmProfile;
 use App\Models\iptbm\IptbmProfileContact;
 use App\Models\iptbm\IptbmRegion;
-use App\Models\Sample;
+
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -71,7 +71,7 @@ class IpProfile extends Controller
 
     public function viewProfile(IptbmProfile $id): View|Factory|Application
     {
-        $profile = $id->load('contact', 'projects');
+        $profile = $id->load('contact', 'projects.projectDetails','contact_mobile','contact_phone','contact_fax','contact_email');
 
         $profile->agency = IptbmAgency::find($profile->agency_id);
         $profile->agency_head = AgencyHead::find($profile->agency->id);
@@ -80,6 +80,14 @@ class IpProfile extends Controller
         return view('iptbm.staff.profile.public-view', [
             'profile' => $profile,
         ]);
+    }
+
+    public function all_profile_projects(IptbmProfile $profile)
+    {
+        $profile->load('projects');
+
+
+        return view('iptbm.staff.profile.profile-all-project',compact('profile'));
     }
 
     public function update_ip_policy(Request $request, $id): RedirectResponse
@@ -226,6 +234,7 @@ class IpProfile extends Controller
                         'contact.unique' => 'Phone number details has already been taken.'
                     ]
                 );
+                break;
             case "mobile":
                 $request->validate([
                     'contact' => 'required|unique:iptbm_profile_contacts|numeric'
@@ -234,6 +243,7 @@ class IpProfile extends Controller
                         'contact.unique' => 'Mobile number  has already been taken.'
                     ]
                 );
+                break;
             case "fax":
                 $request->validate([
                     'contact' => 'required|unique:iptbm_profile_contacts|numeric'

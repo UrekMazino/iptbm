@@ -13,11 +13,9 @@ return new class extends Migration {
         Schema::create('iptbm_project_year_budgets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('iptbm_projects_id')->constrained('iptbm_projects')->cascadeOnDelete()->cascadeOnDelete();
-            $table->date('date_implemented_start')->nullable();
-            $table->date('date_implemented_end')->nullable();
-            $table->date('change_of_implementation')->nullable();
+            $table->date('date_start');
+            $table->integer('duration');
             $table->integer('extended_duration')->nullable();
-            $table->boolean('extendable')->default(true);
             $table->double('year_budget')->nullable();
             $table->timestamps();
         });

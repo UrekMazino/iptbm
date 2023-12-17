@@ -11,11 +11,9 @@ class IptbmProjectYearBudget extends Model
 
     protected $fillable = [
         'iptbm_projects_id',
-        'date_implemented_start',
-        'date_implemented_end',
-        'change_of_implementation',
+        'date_start',
+        'duration',
         'extended_duration',
-        'extendable',
         'year_budget'
     ];
 

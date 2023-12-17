@@ -16,7 +16,8 @@ class   IptbmProject extends Model
         'ip_profile_id',
         'project_name',
         'project_leader',
-        'implementation_period'
+        'implementation_period',
+        'update_implementation_period'
     ];
 
     public function profile(): BelongsTo

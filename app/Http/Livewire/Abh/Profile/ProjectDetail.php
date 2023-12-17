@@ -24,7 +24,7 @@ class ProjectDetail extends Component
         $date=Carbon::createFromFormat('F-d-Y', $this->changeDate);
 
         $this->project->change_in_implementation=$date->format('Y-n-j');
-        $yearImp=AbhProjectImplementation::where('id',$this->project->id)->first();
+        $yearImp=AbhProjectImplementation::where('abh_projects_id',$this->project->id)->first();
         $yearImp->date_started=$date->format('Y-n-j');
         $yearImp->save();
         $this->project->save();
@@ -49,6 +49,7 @@ class ProjectDetail extends Component
     }
     public function mount($project)
     {
+
         $this->project=$project;
         $this->leader=$project->project_leader;
 
