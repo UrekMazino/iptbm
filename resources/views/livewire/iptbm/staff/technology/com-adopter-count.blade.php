@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div class="border border-gray-200 dark:border-gray-600 rounded p-2">
 
     <x-item-header>
         Commercialization Adopte

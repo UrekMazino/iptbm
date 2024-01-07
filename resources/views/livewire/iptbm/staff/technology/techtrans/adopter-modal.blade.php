@@ -65,16 +65,18 @@
 
         </div>
         <div class="flex justify-start space-x-4">
-            <x-submit-button wire:loading wire:target="saveAdopterForm" class="mt-4">
-                Processing
+
+            <x-submit-button wire:loading.attr="disabled" wire:target="saveAdopterForm">
+                <div class="p-2 text-center" wire:loading wire:target="saveAdopterForm">
+                    Processing...
+                </div>
+                <div class="p-2 text-center" wire:loading.remove wire:target="saveAdopterForm">
+                    Submit
+                </div>
             </x-submit-button>
-            <x-submit-button wire:loading.remove wire:target="saveAdopterForm" class="mt-4">
-                Submit
-            </x-submit-button>
-            <x-submit-button wire:click.prevent="saveAdopterForm" type="reset"
-                             class="mt-4 bg-gray-700 dark:bg-gray-200 text-gray-white dark:text-gray-800 font-medium">
+            <x-secondary-button wire:loading.attr="disabled"  type="reset" class="text-center">
                 Reset Fields
-            </x-submit-button>
+            </x-secondary-button>
         </div>
 
     </form>

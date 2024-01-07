@@ -24,9 +24,8 @@ class VideoClip extends Component
     public function saveLocalVideo()
     {
         $this->validateOnly('localVideo');
+        $this->validateOnly('description');
         $path = $this->localVideo->store("public/precom");
-        //   $this->generateThumbnail($path);
-        //  $this->deleteFile($this->precom->video->url);
         $this->precom->video()->save(new IptbmPrecomTechVideo([
             'type' => 'local',
             'description' => $this->description,

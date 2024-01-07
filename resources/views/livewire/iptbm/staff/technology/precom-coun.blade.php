@@ -1,4 +1,4 @@
-<div>
+<div class="border border-gray-200 dark:border-gray-600 rounded p-2">
     <x-item-header>
         Pre Commercialization
     </x-item-header>

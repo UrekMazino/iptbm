@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Iptbm\Staff\IpManagement;
 
 use App\Models\iptbm\IptbmPatentAgent;
 use App\Models\iptbm\IptbmPatentAgentContact;
+use App\Rules\iptbm\ContactCounter;
+use App\Rules\iptbm\MaxContact;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -34,6 +36,7 @@ class AgentDetails extends Component
 
     public function saveMobile()
     {
+
         $this->validateOnly('mobileModel');
 
         $this->agent->agent_contact()->save(new IptbmPatentAgentContact([
@@ -98,22 +101,69 @@ class AgentDetails extends Component
                 'required',
                 'numeric',
                 'digits:11',
-                Rule::unique('iptbm_ip_agent_contacts', 'contact')->where('ip_application_id', $this->agent->ip_alert_id)
+                new MaxContact(
+                    3,
+                    'iptbm_patent_agent_contacts',
+                    'contact',
+                    'type',
+                    'mobile',
+                    'patent_agent_id',
+                    $this->agent->id,
+                    'Mobile phone number was already reached its maximum limit.'
+                ),
+                Rule::unique('iptbm_patent_agent_contacts', 'contact')->where('patent_agent_id', $this->agent->id)
             ],
             'phoneModel' => [
                 'required',
                 'numeric',
-                Rule::unique('iptbm_ip_agent_contacts', 'contact')->where('ip_application_id', $this->agent->ip_alert_id)
+                'min_digits:9',
+                'max_digits:10',
+                new MaxContact(
+                    3,
+                    'iptbm_patent_agent_contacts',
+                    'contact',
+                    'type',
+                    'fax',
+                    'patent_agent_id',
+                    $this->agent->id,
+                    'Telephone number was already reached its maximum limit.'
+                ),
+                Rule::unique('iptbm_patent_agent_contacts', 'contact')->where('patent_agent_id', $this->agent->id)
             ],
             'faxModel' => [
                 'required',
                 'numeric',
-                Rule::unique('iptbm_ip_agent_contacts', 'contact')->where('ip_application_id', $this->agent->ip_alert_id)
+                'min_digits:9',
+                'max_digits:10',
+
+                new MaxContact(
+                    3,
+                    'iptbm_patent_agent_contacts',
+                    'contact',
+                    'type',
+                    'fax',
+                    'patent_agent_id',
+                    $this->agent->id,
+                    'Fax number was already reached its maximum limit.'
+                ),
+                Rule::unique('iptbm_patent_agent_contacts', 'contact')->where('patent_agent_id', $this->agent->id)
             ],
             'emailModel' => [
                 'required',
                 'email',
-                Rule::unique('iptbm_ip_agent_contacts', 'contact')->where('ip_application_id', $this->agent->ip_alert_id)
+                'max:60',
+                new MaxContact(
+                    3,
+                    'iptbm_patent_agent_contacts',
+                    'contact',
+                    'type',
+                    'email',
+                    'patent_agent_id',
+                    $this->agent->id,
+                    'Email was already reached its maximum limit.'
+                ),
+
+                Rule::unique('iptbm_patent_agent_contacts', 'contact')->where('patent_agent_id', $this->agent->id)
             ],
         ];
     }

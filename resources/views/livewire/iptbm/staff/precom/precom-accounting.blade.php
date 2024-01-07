@@ -1,77 +1,28 @@
 <x-card class="shadow-lg mt-5">
     <div class="divide-y divide-gray-200 space-y-2 dark:divide-gray-600">
         <div class="py-2">
-            <div wire:ignore.self id="authentication-modal-capital" tabindex="-1" aria-hidden="true"
-                 class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative w-full max-w-md max-h-full">
-                    <!-- Modal content -->
-                    <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-                        <button type="button"
-                                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="authentication-modal-capital">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                        <div class="px-6 py-6 lg:px-8">
-                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Starting Capital</h3>
-                            <form class="space-y-6" wire:submit.prevent="saveCapitalModel">
-                                <div>
 
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                           for="file_input"></label>
-                                    <input step="any" wire:model.lazy="capitalModel" placeholder="enter amount"
-                                           class="block w-full py-3 text-sm text-gray-900 border-l border-r border-t border-b border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                           aria-describedby="file_input_help" id="file_input" type="number">
-                                    <div wire:loading wire:target="capitalModel"
-                                         wire:loading.class="text-blue-500 font-medium">
-                                        Loading...
-                                    </div>
+            <x-pop-modal modal-title="Update Starting Capital" name="authentication-modal-capital" class="max-w-md" static="true" >
+                <form class="space-y-6" wire:submit.prevent="saveCapitalModel">
+                    <div class="space-y-4">
+                        <x-input-label value="Amount" for="file_input"/>
+                        <x-text-input class="w-full" wire:model.lazy="capitalModel" type="number" step="any" placeholder="0.00"/>
+                        <x-input-error :messages="$errors->get('capitalModel')"/>
+                        <x-alert-success :message="session('capitalModel')"/>
 
-                                    @error('capitalModel')
-                                    <div id="alert-border-2"
-                                         class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                         role="alert">
-                                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                        </svg>
-                                        <div class="ml-3 text-sm font-medium">
-                                            {{$message}}
-                                        </div>
-                                    </div>
-                                    @enderror
-                                    @if(session()->has('capitalModel'))
-                                        <div
-                                            class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                            role="alert">
-                                            <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <span class="sr-only">Info</span>
-                                            <div>
-                                                <span class="font-medium">{{session('capitalModel')}}</span>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                                <button type="submit"
-                                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Save Update
-                                </button>
-
-                            </form>
-                        </div>
                     </div>
-                </div>
-            </div>
+                    <div>
+                        <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveCapitalModel">
+                            <div class="w-full text-center p-2" wire:loading.remove wire:target="saveCapitalModel">
+                                Submit
+                            </div>
+                            <div class="w-full text-center p-2" wire:loading wire:target="saveCapitalModel">
+                                Processing...
+                            </div>
+                        </x-submit-button>
+                    </div>
+                </form>
+            </x-pop-modal>
             <div class="justify-between flex items-center">
                 <x-item-header value="Starting Capital"/>
                 <x-secondary-button class="text-sky-600 dark:text-sky-600"
@@ -108,79 +59,29 @@
         <div class="py-2">
             <div class="justify-between flex items-center">
                 <!-- Main modal -->
-                <div wire:ignore.self id="authentication-modal-cost" tabindex="-1" aria-hidden="true"
-                     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-md max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-                            <button type="button"
-                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-hide="authentication-modal-cost">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="px-6 py-6 lg:px-8">
-                                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white"> Estimated cost of
-                                    ownership/acquisition</h3>
-                                <form class="space-y-6" wire:submit.prevent="saveCostModel">
-                                    <div>
-
-                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                               for="file_input"></label>
-                                        <input step="any" wire:model.lazy="costModel" placeholder="enter amount"
-                                               class="block w-full py-3 text-sm text-gray-900 border-l border-r border-t border-b border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                               aria-describedby="file_input_help" id="file_input" type="number">
-                                        <div wire:loading wire:target="costModel"
-                                             wire:loading.class="text-blue-500 font-medium">
-                                            Loading...
-                                        </div>
-
-                                        @error('costModel')
-                                        <div id="alert-border-2"
-                                             class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                             role="alert">
-                                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <div class="ml-3 text-sm font-medium">
-                                                {{$message}}
-                                            </div>
-                                        </div>
-                                        @enderror
-                                        @if(session()->has('costModel'))
-                                            <div
-                                                class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                                role="alert">
-                                                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                     viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                                </svg>
-                                                <span class="sr-only">Info</span>
-                                                <div>
-                                                    <span class="font-medium">{{session('costModel')}}</span>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <button type="submit"
-                                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Save Update
-                                    </button>
-
-                                </form>
-                            </div>
+                <x-pop-modal modal-title="Update cost of ownership" name="authentication-modal-cost" class="max-w-md" static="true" >
+                    <form class="space-y-6" wire:submit.prevent="saveCostModel">
+                        <div class="space-y-4">
+                            <x-input-label value="Estimated Cost" />
+                            <x-text-input wire:model.lazy="costModel" required class="w-full" placeholder="0.00"/>
+                            <x-input-error :messages="$errors->get('costModel')"/>
+                            <x-alert-success :message="session('costModel')"/>
                         </div>
-                    </div>
-                </div>
+                        <div>
+                            <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveCostModel">
+                                <div class="w-full text-center p-2" wire:loading.remove wire:target="saveCostModel">
+                                    Submit
+                                </div>
+                                <div class="w-full text-center p-2" wire:loading wire:target="saveCostModel">
+                                    Processing...
+                                </div>
+                            </x-submit-button>
+                        </div>
+
+
+                    </form>
+                </x-pop-modal>
+
                 <x-item-header value="Estimated cost of ownership"/>
                 <x-secondary-button class="text-sky-600 dark:text-sky-600" data-modal-target="authentication-modal-cost"
                                     data-modal-toggle="authentication-modal-cost">
@@ -214,78 +115,29 @@
 
         <div class="py-2">
             <div class="justify-between flex items-center">
-                <div wire:ignore.self id="authentication-modal-income" tabindex="-1" aria-hidden="true"
-                     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-md max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-                            <button type="button"
-                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-hide="authentication-modal-income">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="px-6 py-6 lg:px-8">
-                                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Transfer Income</h3>
-                                <form class="space-y-6" wire:submit.prevent="saveIncomeModel">
-                                    <div>
 
-                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                               for="file_input"></label>
-                                        <input step="any" wire:model.lazy="incomeModel" placeholder="enter amount"
-                                               class="block w-full py-3 text-sm text-gray-900 border-l border-r border-t border-b border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                               aria-describedby="file_input_help" id="file_input" type="number">
-                                        <div wire:loading wire:target="incomeModel"
-                                             wire:loading.class="text-blue-500 font-medium">
-                                            Loading...
-                                        </div>
-
-                                        @error('incomeModel')
-                                        <div id="alert-border-2"
-                                             class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                             role="alert">
-                                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <div class="ml-3 text-sm font-medium">
-                                                {{$message}}
-                                            </div>
-                                        </div>
-                                        @enderror
-                                        @if(session()->has('incomeModel'))
-                                            <div
-                                                class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                                role="alert">
-                                                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                     viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                                </svg>
-                                                <span class="sr-only">Info</span>
-                                                <div>
-                                                    <span class="font-medium">{{session('incomeModel')}}</span>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <button type="submit"
-                                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Save Update
-                                    </button>
-
-                                </form>
-                            </div>
+                <x-pop-modal modal-title="Update income generated" name="authentication-modal-income" class="max-w-md" static="true" >
+                    <form class="space-y-6" wire:submit.prevent="saveIncomeModel">
+                        <div class="space-y-4">
+                            <x-input-label value="Income" />
+                            <x-text-input wire:model.lazy="incomeModel" required class="w-full" placeholder="0.00"/>
+                            <x-input-error :messages="$errors->get('incomeModel')"/>
+                            <x-alert-success :message="session('incomeModel')"/>
                         </div>
-                    </div>
-                </div>
+                        <div>
+                            <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveIncomeModel">
+                                <div class="w-full text-center p-2" wire:loading.remove wire:target="saveIncomeModel">
+                                    Submit
+                                </div>
+                                <div class="w-full text-center p-2" wire:loading wire:target="saveIncomeModel">
+                                    Processing...
+                                </div>
+                            </x-submit-button>
+                        </div>
+
+
+                    </form>
+                </x-pop-modal>
 
                 <x-item-header value="Incom Generated"/>
                 <x-secondary-button class="text-sky-600 dark:text-sky-600"
@@ -321,79 +173,29 @@
 
         <div class="py-2">
             <div class="justify-between flex items-center">
-                <div wire:ignore.self id="authentication-modal-investment" tabindex="-1" aria-hidden="true"
-                     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-md max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-                            <button type="button"
-                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-hide="authentication-modal-investment">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="px-6 py-6 lg:px-8">
-                                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Return of
-                                    Investment</h3>
-                                <form class="space-y-6" wire:submit.prevent="saveInvestmentModel">
-                                    <div>
 
-                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                               for="file_input"></label>
-                                        <input step="any" wire:model.lazy="investmentModel" placeholder="enter amount"
-                                               class="block w-full py-3 text-sm text-gray-900 border-l border-r border-t border-b border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                               aria-describedby="file_input_help" id="file_input" type="number">
-                                        <div wire:loading wire:target="investmentModel"
-                                             wire:loading.class="text-blue-500 font-medium">
-                                            Loading...
-                                        </div>
-
-                                        @error('investmentModel')
-                                        <div id="alert-border-2"
-                                             class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                             role="alert">
-                                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <div class="ml-3 text-sm font-medium">
-                                                {{$message}}
-                                            </div>
-                                        </div>
-                                        @enderror
-                                        @if(session()->has('investmentModel'))
-                                            <div
-                                                class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                                role="alert">
-                                                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                     viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                                </svg>
-                                                <span class="sr-only">Info</span>
-                                                <div>
-                                                    <span class="font-medium">{{session('investmentModel')}}</span>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <button type="submit"
-                                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Save Update
-                                    </button>
-
-                                </form>
-                            </div>
+                <x-pop-modal modal-title="Return of Investment" name="authentication-modal-investment" class="max-w-md" static="true" >
+                    <form class="space-y-6" wire:submit.prevent="saveInvestmentModel">
+                        <div class="space-y-4">
+                            <x-input-label value="Amount" />
+                            <x-text-input wire:model.lazy="investmentModel" required class="w-full" placeholder="0.00"/>
+                            <x-input-error :messages="$errors->get('investmentModel')"/>
+                            <x-alert-success :message="session('investmentModel')"/>
                         </div>
-                    </div>
-                </div>
+                        <div>
+                            <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveInvestmentModel">
+                                <div class="w-full text-center p-2" wire:loading.remove wire:target="saveInvestmentModel">
+                                    Submit
+                                </div>
+                                <div class="w-full text-center p-2" wire:loading wire:target="saveInvestmentModel">
+                                    Processing...
+                                </div>
+                            </x-submit-button>
+                        </div>
+
+
+                    </form>
+                </x-pop-modal>
 
                 <x-item-header value="Return of Investment "/>
                 <x-secondary-button class="text-sky-600 dark:text-sky-600"
@@ -428,78 +230,30 @@
         </div>
         <div class="py-2">
             <div class="justify-between flex items-center">
-                <div wire:ignore.self id="authentication-modal-breakeven" tabindex="-1" aria-hidden="true"
-                     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-md max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-                            <button type="button"
-                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-hide="authentication-modal-breakeven">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="px-6 py-6 lg:px-8">
-                                <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Break Even</h3>
-                                <form class="space-y-6" wire:submit.prevent="saveBreakevenModel">
-                                    <div>
 
-                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                               for="file_input"></label>
-                                        <input step="any" wire:model.lazy="breakevenModel" placeholder="enter amount"
-                                               class="block w-full py-3 text-sm text-gray-900 border-l border-r border-t border-b border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                               aria-describedby="file_input_help" id="file_input" type="number">
-                                        <div wire:loading wire:target="breakevenModel"
-                                             wire:loading.class="text-blue-500 font-medium">
-                                            Loading...
-                                        </div>
+                <x-pop-modal modal-title="break Even" name="authentication-modal-breakeven" class="max-w-md" static="true" >
 
-                                        @error('breakevenModel')
-                                        <div id="alert-border-2"
-                                             class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                             role="alert">
-                                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <div class="ml-3 text-sm font-medium">
-                                                {{$message}}
-                                            </div>
-                                        </div>
-                                        @enderror
-                                        @if(session()->has('breakevenModel'))
-                                            <div
-                                                class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                                role="alert">
-                                                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                     viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                                </svg>
-                                                <span class="sr-only">Info</span>
-                                                <div>
-                                                    <span class="font-medium">{{session('breakevenModel')}}</span>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <button type="submit"
-                                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Save Update
-                                    </button>
-
-                                </form>
-                            </div>
+                    <form class="space-y-6" wire:submit.prevent="saveBreakevenModel">
+                        <div class="space-y-4">
+                            <x-input-label value="Amount" />
+                            <x-text-input wire:model.lazy="breakevenModel" required class="w-full" placeholder="0.00"/>
+                            <x-input-error :messages="$errors->get('breakevenModel')"/>
+                            <x-alert-success :message="session('breakevenModel')"/>
                         </div>
-                    </div>
-                </div>
+                        <div>
+                            <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveBreakevenModel">
+                                <div class="w-full text-center p-2" wire:loading.remove wire:target="saveBreakevenModel">
+                                    Submit
+                                </div>
+                                <div class="w-full text-center p-2" wire:loading wire:target="saveBreakevenModel">
+                                    Processing...
+                                </div>
+                            </x-submit-button>
+                        </div>
+
+
+                    </form>
+                </x-pop-modal>
 
                 <x-item-header value="Break Even"/>
                 <x-secondary-button class="text-sky-600 dark:text-sky-600"
@@ -540,86 +294,38 @@
         <h1 class="text-gray-600 my-auto text-base md:text-lg dark:text-gray-400 font-medium">
             Mode Applicable :
         </h1>
-        <div wire:ignore.self id="authentication-modal-comMode" tabindex="-1" aria-hidden="true"
-             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-                    <button type="button"
-                            class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-hide="authentication-modal-comMode">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                             viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Commercialization Mode
-                            Applicable</h3>
-                        <form class="space-y-6" wire:submit.prevent="saveCommercializationModeModel">
-                            <div>
 
-                                <label for="countries"
-                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
-                                    option</label>
-                                <select wire:model="commercializationModeModel" id="countries"
-                                        class="bg-gray-50 border-l border-r border-t border-b border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" selected>Select Mode</option>
-                                    <option value="Licensing Agreement/s">Licensing Agreement/s</option>
-                                    <option value="Outright sale">Outright sale</option>
-                                    <option value="Joint venture">Joint venture</option>
-                                    <option value="Start-up">Start-up</option>
-                                    <option value="Spin-off">Spin-off</option>
-                                </select>
+        <x-pop-modal modal-title="break Even" name="authentication-modal-comMode" class="max-w-md" static="true" >
 
+            <form class="space-y-6" wire:submit.prevent="saveCommercializationModeModel">
+                <div class="space-y-4">
+                    <x-input-label value="Select Mode" />
+                    <x-input-select  wire:model="commercializationModeModel" >
+                        <option value="" selected>Select Mode</option>
+                        <option value="Licensing Agreement/s">Licensing Agreement/s</option>
+                        <option value="Outright sale">Outright sale</option>
+                        <option value="Joint venture">Joint venture</option>
+                        <option value="Start-up">Start-up</option>
+                        <option value="Spin-off">Spin-off</option>
+                    </x-input-select>
 
-                                <div wire:loading wire:target="commercializationModeModel"
-                                     wire:loading.class="text-blue-500 font-medium">
-                                    Loading...
-                                </div>
-
-                                @error('commercializationModeModel')
-                                <div id="alert-border-2"
-                                     class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                     role="alert">
-                                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                    </svg>
-                                    <div class="ml-3 text-sm font-medium">
-                                        {{$message}}
-                                    </div>
-                                </div>
-                                @enderror
-                                @if(session()->has('commercializationModeModel'))
-                                    <div
-                                        class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                        role="alert">
-                                        <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                        </svg>
-                                        <span class="sr-only">Info</span>
-                                        <div>
-                                            <span class="font-medium">{{session('commercializationModeModel')}}</span>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                            <button type="submit"
-                                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Save Update
-                            </button>
-
-                        </form>
-                    </div>
+                    <x-input-error :messages="$errors->get('commercializationModeModel')"/>
+                    <x-alert-success :message="session('commercializationModeModel')"/>
                 </div>
-            </div>
-        </div>
+                <div>
+                    <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveCommercializationModeModel">
+                        <div class="w-full text-center p-2" wire:loading.remove wire:target="saveCommercializationModeModel">
+                            Submit
+                        </div>
+                        <div class="w-full text-center p-2" wire:loading wire:target="saveCommercializationModeModel">
+                            Processing...
+                        </div>
+                    </x-submit-button>
+                </div>
+
+
+            </form>
+        </x-pop-modal>
 
         <x-secondary-button class="text-sky-600 dark:text-sky-600" data-modal-target="authentication-modal-comMode"
                             data-modal-toggle="authentication-modal-comMode">

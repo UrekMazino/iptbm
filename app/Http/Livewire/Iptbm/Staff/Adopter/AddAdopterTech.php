@@ -83,6 +83,7 @@ class AddAdopterTech extends Component
         IptbmCommercializationAdopter::create([
             'technology_id' => $technology->id,
             'company_name' => $this->companyName,
+            'address'=>$this->companyAddress,
             'company_description' => $this->companyDescription,
             'business_structures' => $this->businessStructure,
             'business_registration' => $this->businessRegistration,

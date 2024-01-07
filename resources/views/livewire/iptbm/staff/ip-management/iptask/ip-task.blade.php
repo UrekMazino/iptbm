@@ -1,11 +1,6 @@
 <div class="w-full mb-20">
-    <x-card class="shadow-lg">
-        <div class="flex justify-between">
-            <x-item-header>
-                {{$task->task_name}}
-            </x-item-header>
-
-
+    <x-card-panel title="{{$task->task_name}}">
+        <x-slot:button>
             <!-- Main modal -->
             <x-pop-modal name="modal{{$task->id}}" class="max-w-4xl" static="true"
                          modal-title="{{$task->task_name}} Task">
@@ -148,7 +143,7 @@
             </x-secondary-button>
 
 
-        </div>
+        </x-slot:button>
         <div class=" border-b border-t border-gray-300 dark:border-gray-600 py-1 mt-2 shadow-lg">
             <div class="grid grid-cols-7 text-gray-600 dark:text-gray-400 gap-2 ">
                 <div class="col-span-3">
@@ -208,7 +203,8 @@
 
             </ul>
         </div>
-    </x-card>
+    </x-card-panel>
+
 </div>
 @push('scripts')
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">

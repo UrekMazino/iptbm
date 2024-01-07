@@ -39,108 +39,92 @@
                                         Commodities
                                     </x-item-header>
                                 </div>
-                                @if($showCommodity)
-                                    <x-secondary-button wire:click.prevent="toggleShowCommodity"
-                                                        class="text-red-500 dark:text-red-500">
-                                        <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                             fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-width="2"
-                                                  d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-                                        Close
-                                    </x-secondary-button>
-                                @else
-                                    <x-secondary-button wire:click.prevent="toggleShowCommodity"
-                                                        class="text-sky-600 dark:text-sky-600">
-                                        <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                             fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-width="2"
-                                                  d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-                                        Update
-                                    </x-secondary-button>
-                                @endif
 
-                            </div>
-                            @if($showCommodity)
-                                <div
-                                    class=" rounded-lg border-gray-400 dark:border-gray-600 p-4 bg-gray-200 dark:bg-gray-900">
+                                <x-secondary-button class="text-sky-500 dark:text-sky-500" data-modal-toggle="commodity-{{$industry->id}}">
+                                    Update
+                                </x-secondary-button>
+                                <x-pop-modal class="max-w-lg" name="commodity-{{$industry->id}}" modal-title="Update Commodities">
+                                    <form class="space-y-6" wire:submit.prevent="saveCommodity">
 
-                                    <form wire:submit.prevent="saveCommodity">
-                                        <div class="mb-6">
+                                        <div class="space-y-4">
                                             @if($showOtherCommodity)
-                                                <label for="otherCom"
-                                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter
-                                                    Commodities</label>
-                                                <input wire:model="techCommodity" type="text" id="otherCom"
-                                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                       placeholder="enter text here" required>
-                                                <button wire:click.prevent="toggleShowOtherCommodity" class="mt-2 ">
-                                            <span class="text-blue-700 font-bold hover:text-blue-600">
-                                            Select from existing
-                                        </span>
-                                                </button>
+                                               <div>
+                                                   <x-input-label value="{{ucwords(strtolower($industry->industry->name))}} Commodities" for="otherCom-{{$industry->id}}"/>
+                                                   <x-text-input id="otherCom-{{$industry->id}}" wire:model.lazy="techCommodity" class="w-full" placeholder="enter text here" required />
+                                               </div>
+                                            <x-link-button wire:loading.attr="disabled" wire:target="toggleShowOtherCommodity" wire:click.prevent="toggleShowOtherCommodity">
+                                                <div wire:loading wire:target="toggleShowOtherCommodity">
+
+                                                    <div role="status">
+                                                        <svg aria-hidden="true" class="w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                        </svg>
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="gap-4 flex justify-start" wire:target="toggleShowOtherCommodity" wire:loading.remove>
+                                                    Select from existing
+                                                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                                        <path d="m19.822 7.431-4.846-7A1 1 0 0 0 14.153 0H1a1 1 0 0 0-.822 1.569L4.63 8 .178 14.431A1 1 0 0 0 1 16h13.153a1.001 1.001 0 0 0 .823-.431l4.846-7a1 1 0 0 0 0-1.138Z"/>
+                                                    </svg>
+
+                                                </div>
+                                            </x-link-button>
+
                                             @else
-                                                <label for="countries"
-                                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Commodities</label>
-                                                <select wire:model="techCommodity" id="countries"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    <option value="" selected>Choose a Commodity</option>
-                                                    @foreach($commodities as $commodity)
-                                                        <option
-                                                            value="{{$commodity->name}}">{{$commodity->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <button wire:click.prevent="toggleShowOtherCommodity" class="mt-2">
-                                    <span class="text-blue-700 font-bold hover:text-blue-600">
-                                            Other
-                                        </span>
-                                                </button>
+                                               <div>
+
+                                                   <x-input-label value="{{ucwords(strtolower($industry->industry->name))}} Commodities" for="Com-{{$industry->id}}"/>
+                                                   <x-input-select wire:model="techCommodity" id="Com-{{$industry->id}}">
+                                                       <option value="" selected>Choose a Commodity</option>
+                                                       @foreach($commodities as $commodity)
+                                                           <option
+                                                               value="{{$commodity->name}}">{{$commodity->name}}</option>
+                                                       @endforeach
+                                                   </x-input-select>
+                                               </div>
+
+                                                <x-link-button wire:loading.attr="disabled" wire:target="toggleShowOtherCommodity" wire:click.prevent="toggleShowOtherCommodity">
+                                                    <div wire:loading wire:target="toggleShowOtherCommodity">
+                                                        <div role="status">
+                                                            <svg aria-hidden="true" class="w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                            </svg>
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="gap-4 flex justify-start" wire:target="toggleShowOtherCommodity" wire:loading.remove>
+                                                        Other Commodity
+                                                        <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                                            <path d="m19.822 7.431-4.846-7A1 1 0 0 0 14.153 0H1a1 1 0 0 0-.822 1.569L4.63 8 .178 14.431A1 1 0 0 0 1 16h13.153a1.001 1.001 0 0 0 .823-.431l4.846-7a1 1 0 0 0 0-1.138Z"/>
+                                                        </svg>
+                                                    </div>
+                                                </x-link-button>
+
                                             @endif
                                             @if(session()->has('techCommodity'))
-                                                <div
-                                                    class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                                    role="alert">
-                                                    <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                         viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                                    </svg>
-                                                    <span class="sr-only">Info</span>
-                                                    <div>
-                                                        <span class="font-medium">{{session('techCommodity')}}</span>
-                                                    </div>
-                                                </div>
+                                                <x-alert-success :message="session('techCommodity')"/>
                                             @endif
-
-                                            @error('techCommodity')
-
-                                            <div id="alert-border-2"
-                                                 class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                                 role="alert">
-                                                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                     viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                                </svg>
-                                                <div class="ml-3 text-sm font-medium">
-                                                    {{$message}}
-                                                </div>
-                                            </div>
-                                            @enderror
+                                                <x-input-error :messages="$errors->get('techCommodity')"/>
                                         </div>
-                                        <button type="submit"
-                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            Submit
-                                        </button>
-                                    </form>
+                                        <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveCommodity">
+                                            <div wire:loading wire:target="saveCommodity" class="p-2 w-full text-center">
+                                                Processing...
+                                            </div>
+                                            <div wire:loading.remove wire:target="saveCommodity" class="p-2 w-full text-center">
+                                                Submit
+                                            </div>
+                                        </x-submit-button>
 
-                                </div>
-                            @endif
+                                    </form>
+                                </x-pop-modal>
+
+
+                            </div>
+
                             <ul class="divide-y divide-gray-400 divide-gray-600">
                                 @foreach($techCommodityList as $list)
                                     <li>
@@ -159,50 +143,48 @@
                                         Categories
                                     </x-item-header>
                                 </div>
-                                @if($showCategory)
-                                    <x-secondary-button wire:click.prevent="toggleShowCategory"
-                                                        class="text-red-600 dark:text-red-600">
-                                        <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                             fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-width="2"
-                                                  d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-                                        Close
-                                    </x-secondary-button>
-                                @else
-                                    <x-secondary-button wire:click.prevent="toggleShowCategory"
-                                                        class="text-sky-600 dark:text-sky-600">
-                                        <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                             fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-width="2"
-                                                  d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-                                        Update
-                                    </x-secondary-button>
-                                @endif
-
-
-                            </div>
-                            @if($showCategory)
-                                <div class=" rounded-lg p-4 bg-gray-400 dark:bg-gray-800">
-
-                                    <form wire:submit.prevent="saveCategory">
-                                        <div class="mb-6">
+                                <x-secondary-button class="text-sky-500 dark:text-sky-500" data-modal-toggle="category-{{$industry->id}}">
+                                    Update
+                                </x-secondary-button>
+                                <x-pop-modal class="max-w-lg" name="category-{{$industry->id}}">
+                                    <form class="space-y-6" wire:submit.prevent="saveCategory">
+                                        <div class="space-y-4">
                                             @if($showOtherCategory)
+                                                <div>
+                                                    <x-input-label value="{{ucwords(strtolower($industry->industry->name))}} Categories" for="otherCom-{{$industry->id}}"/>
+                                                </div>
                                                 <label for="othercat"
                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter
                                                     Category</label>
                                                 <input wire:model="techCategory" type="text" id="othercat"
                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                        placeholder="enter text here" required>
-                                                <button wire:click.prevent="toggleShowOtherCategory" class="mt-2 ">
-                                        <span class="text-blue-700 font-bold hover:text-blue-600">
-                                            Select from existing
-                                        </span>
-                                                </button>
+
+                                                <x-link-button wire:loading.attr="disabled" wire:target="toggleShowOtherCategory" wire:click.prevent="toggleShowOtherCategory">
+                                                    <div wire:loading wire:target="toggleShowOtherCategory">
+
+                                                        <div role="status">
+                                                            <svg aria-hidden="true" class="w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                            </svg>
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="gap-4 flex justify-start" wire:target="toggleShowOtherCategory" wire:loading.remove>
+                                                        Select from existing Category
+                                                        <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                                            <path d="m19.822 7.431-4.846-7A1 1 0 0 0 14.153 0H1a1 1 0 0 0-.822 1.569L4.63 8 .178 14.431A1 1 0 0 0 1 16h13.153a1.001 1.001 0 0 0 .823-.431l4.846-7a1 1 0 0 0 0-1.138Z"/>
+                                                        </svg>
+
+                                                    </div>
+                                                </x-link-button>
+
                                             @else
+                                                <div>
+                                                    <x-input-label value="{{ucwords(strtolower($industry->industry->name))}} Categories" for="otherCom-{{$industry->id}}"/>
+                                                </div>
                                                 <label for="cat"
                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                                                 <select wire:model="techCategory" id="cat"
@@ -212,11 +194,27 @@
                                                         <option value="{{$category->name}}">{{$category->name}}</option>
                                                     @endforeach
                                                 </select>
-                                                <button wire:click.prevent="toggleShowOtherCategory" class="mt-2">
-                                         <span class="text-blue-700 font-bold hover:text-blue-600">
-                                            Other
-                                        </span>
-                                                </button>
+
+                                                <x-link-button wire:loading.attr="disabled" wire:target="toggleShowOtherCategory" wire:click.prevent="toggleShowOtherCategory">
+                                                    <div wire:loading wire:target="toggleShowOtherCategory">
+
+                                                        <div role="status">
+                                                            <svg aria-hidden="true" class="w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                            </svg>
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="gap-4 flex justify-start" wire:target="toggleShowOtherCategory" wire:loading.remove>
+                                                        Other Category
+                                                        <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                                            <path d="m19.822 7.431-4.846-7A1 1 0 0 0 14.153 0H1a1 1 0 0 0-.822 1.569L4.63 8 .178 14.431A1 1 0 0 0 1 16h13.153a1.001 1.001 0 0 0 .823-.431l4.846-7a1 1 0 0 0 0-1.138Z"/>
+                                                        </svg>
+
+                                                    </div>
+                                                </x-link-button>
                                             @endif
                                             @if(session()->has('techCategory'))
                                                 <div
@@ -252,17 +250,23 @@
                                             </div>
                                             @enderror
                                         </div>
-                                        <button type="submit"
-                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            Submit
-                                        </button>
+                                       <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveCategory">
+                                           <div class="p-2 w-full text-center" wire:loading.remove wire:target="saveCategory">
+                                               Submit
+                                           </div>
+                                           <div class="p-2 w-full text-center" wire:loading wire:target="saveCategory">
+                                               Processing...
+                                           </div>
+                                       </x-submit-button>
                                     </form>
+                                </x-pop-modal>
 
-                                </div>
-                            @endif
+
+                            </div>
+
                             <ul>
                                 @foreach($techCategoryList as $list)
-                                    <li class="p-1 bg-gray-50 dark:bg-gray-700 hover:bg-gray-400 transition duration-300 dark:hover:bg-gray-800">
+                                    <li class="p-1 bg-gray-50 dark:bg-gray-800 hover:bg-gray-200 transition duration-300 dark:hover:bg-gray-700">
                                         <livewire:iptbm.staff.technology.tech-category-list
                                             wire:key="category-{{$list->id}}" :category="$list"/>
                                     </li>

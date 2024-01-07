@@ -8,6 +8,12 @@ class AgentContact extends Component
 {
     public $contact;
 
+    public function deleteAgentContact()
+    {
+        $this->contact->delete();
+        $this->emit('reloadPage');
+    }
+
     public function mount($contact)
     {
 

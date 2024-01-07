@@ -1,8 +1,5 @@
-<x-card>
-    <div class="flex justify-between items-center ">
-        <x-item-header>
-            Adopter
-        </x-item-header>
+<x-card-panel title=" Adopter">
+    <x-slot:button>
         <x-pop-modal name="updateMod-adopter" modal-title="Updated Technology Adopter" class="max-w-xl" static="true">
             <form class="space-y-4" wire:submit.prevent="saveForm">
                 <div>
@@ -21,11 +18,11 @@
         <x-secondary-button data-modal-toggle="updateMod-adopter">
             Update
         </x-secondary-button>
-    </div>
+    </x-slot:button>
     <div class="p-1 md:p-4 text-gray-400 dark:text-gray-400">
         <ul class="divide-y divide-gray-300 dark:divide-gray-600">
             @forelse($fulltechdescription->adoptors as $adopter)
-                <li class="py-2 justify-between flex items-center">
+                <li class="py-2 justify-between flex items-center  hover:bg-gray-200 dark:hover:bg-gray-900 transition duration-300 px-2">
                     <div class="text-gray-500 dark:text-gray-400">
                         {{$adopter->adoptor_name}}
                     </div>
@@ -61,5 +58,5 @@
             @endforelse
         </ul>
     </div>
+</x-card-panel>
 
-</x-card>

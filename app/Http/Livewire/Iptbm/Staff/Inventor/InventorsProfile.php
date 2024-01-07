@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Iptbm\Staff\Inventor;
 use App\Models\iptbm\IptbmInventor;
 use App\Models\iptbm\IptbmInventorExpertise;
 use App\Rules\FullNameValidation;
+use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 
 class InventorsProfile extends Component
@@ -74,11 +75,11 @@ class InventorsProfile extends Component
 
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'address' => 'required|max:100',
-            'expertise' => 'required|unique:iptbm_inventor_expertises,field|min:5',
+            'expertise' => 'required|unique:iptbm_inventor_expertises,field|min:5|max:60',
             'statusModel' => 'required|in:ACTIVE,RETIRED,DECEASED',
             'fname' => 'required|max:20',
             'mname' => 'nullable|max:1',
@@ -117,7 +118,7 @@ class InventorsProfile extends Component
 
     public function addExpertise()
     {
-        $this->validate();
+        $this->validateOnly('expertise');
         $this->inventor->expertise()->save(new IptbmInventorExpertise([
             'field' => $this->expertise
         ]));
@@ -127,7 +128,7 @@ class InventorsProfile extends Component
     }
 
 
-    public function mount($inventor)
+    public function mount($inventor): void
     {
 
         $this->inventor = $inventor;

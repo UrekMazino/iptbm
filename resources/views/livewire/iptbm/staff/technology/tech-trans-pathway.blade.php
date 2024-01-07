@@ -1,17 +1,15 @@
-<div>
-    <div class="flex justify-between items-center">
-        <x-item-header class="justify-start items-center">
-            <div
-                class="rounded-full hidden md:block me-2 border-gray-200  dark:border-gray-900 p-2 overflow-hidden border-8 bg-blue-300 dark:bg-blue-900">
-                <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                     fill="none" viewBox="0 0 16 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M11 10H1m0 0 3-3m-3 3 3 3m1-9h10m0 0-3 3m3-3-3-3"/>
-                </svg>
-            </div>
-
-            Technology Transfer Plan
-        </x-item-header>
+<x-card-panel title="Technology Transfer Plan">
+    <x-slot:icon>
+        <div
+            class="rounded-full hidden md:block me-2 border-gray-200  dark:border-gray-900 p-2 overflow-hidden border-8 bg-blue-300 dark:bg-blue-900">
+            <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="none" viewBox="0 0 16 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11 10H1m0 0 3-3m-3 3 3 3m1-9h10m0 0-3 3m3-3-3-3"/>
+            </svg>
+        </div>
+    </x-slot:icon>
+    <x-slot:button>
         <livewire:iptbm.staff.technology.techtrans.precom-modal modal-name="precomModal" :technology="$technology"/>
         <livewire:iptbm.staff.technology.techtrans.adopter-modal modal-name="adopterModal" :technology="$technology"/>
         <livewire:iptbm.staff.technology.techtrans.deployment-modal modal-name="deploymentModal"
@@ -110,8 +108,9 @@
             </svg>
             Update
         </x-secondary-button>
-    </div>
-    <div class="mt-4">
+    </x-slot:button>
+
+    <div class="mt-4 space-y-4">
         <livewire:iptbm.staff.technology.precom-coun :technology-id="$technology->id"/>
         <livewire:iptbm.staff.technology.com-adopter-count :technology-id="$technology->id"/>
         <livewire:iptbm.staff.technology.deployment-count :technology-id="$technology->id"/>
@@ -174,4 +173,4 @@
 
     </div>
     --}}
-</div>
+</x-card-panel>

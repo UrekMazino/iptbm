@@ -63,7 +63,7 @@
                 <hr class="w-full h-0.5 my-10  bg-gray-400 border-0 dark:bg-gray-700">
 
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 mt-5 gap-x-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 mt-5 gap-x-14">
                 <livewire:iptbm.staff.precom.precom-details :precom="$precom"/>
                 <div>
                     <livewire:iptbm.staff.precom.video-clip :precom="$precom"/>

@@ -1,9 +1,10 @@
 <div>
-    <button data-modal-target="popup-modal{{$expertise->id}}" data-modal-toggle="popup-modal{{$expertise->id}}"
-            class=" justify-center align-items-center text-red-500   font-medium rounded-lg text-sm  text-center"
-            type="button">
-        <span class="fa-solid fa-trash-can"></span>
-    </button>
+    <x-secondary-button class="gap-2 text-red-500 dark:text-red-500" data-modal-target="popup-modal{{$expertise->id}}" data-modal-toggle="popup-modal{{$expertise->id}}">
+        <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+        </svg>
+        Delete
+    </x-secondary-button>
 
     <div wire:ignore.self id="popup-modal{{$expertise->id}}" tabindex="-1"
          class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">

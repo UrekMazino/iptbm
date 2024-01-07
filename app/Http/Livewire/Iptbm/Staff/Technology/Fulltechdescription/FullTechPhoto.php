@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Iptbm\Staff\Technology\Fulltechdescription;
 
 use App\Models\iptbm\IptbmFullTechPhoto;
+use App\Rules\MaxPhoto;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -48,15 +49,27 @@ class FullTechPhoto extends Component
         $this->emit('reloadPage');
     }
 
-    public function updatedPhotoModel()
+    public function updatedPhotoModel(): void
     {
         $this->type = $this->photoModel->extension();
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            'photoModel' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'photoModel' => [
+                'required',
+                'image',
+                'mimes:png,jpg,jpeg',
+                'max:50048',
+               new MaxPhoto(
+                   'iptbm_full_tech_photos',
+                   $this->fulltechdescription->id,
+                   'iptbm_full_tech_descriptions_id',
+                   6,
+                   "Sorry, you've reached the maximum limit for uploading technology photos. You're allowed to upload a maximum of 6 photos. Please remove some existing photos.."
+               )
+            ],
             'description' => [
                 'nullable',
                 'max:100',
@@ -78,7 +91,7 @@ class FullTechPhoto extends Component
 
     public function render()
     {
-        $photos = IptbmFullTechPhoto::latest()->limit(3)->where('iptbm_full_tech_descriptions_id', $this->fulltechdescription->id)->get();
+        $photos = IptbmFullTechPhoto::latest()->where('iptbm_full_tech_descriptions_id', $this->fulltechdescription->id)->get();
         return view('livewire.iptbm.staff.technology.fulltechdescription.full-tech-photo')->with([
             'photos' => $photos
         ]);

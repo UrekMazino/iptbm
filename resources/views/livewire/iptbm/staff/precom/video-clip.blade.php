@@ -1,106 +1,59 @@
-<x-card class="shadow-lg">
-    <div class="text-gray-700 dark:text-gray-400 font-bold text-2xl mb-3">
-        Technology Video Clips
-    </div>
+<x-card-panel title="Technology Video Clips">
     <div class="mt-4  space-y-2">
         <div>
-            <div wire:ignore.self id="authentication-modal-localVid" data-modal-backdrop="static" tabindex="-1"
-                 aria-hidden="true"
-                 class="fixed top-0 backdrop-blur-sm left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative w-full max-w-lg max-h-full">
-                    <!-- Modal content -->
-                    <div class="relative bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-                        <button type="button"
-                                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="authentication-modal-localVid">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                        <div class="px-6 py-6 lg:px-8">
-                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Upload Video clip</h3>
-                            <form class="space-y-6" wire:submit.prevent="saveLocalVideo">
-                                <div>
-
-                                    <x-input-label class="mb-3">
-                                        <div>
-                                            Video Description
-                                        </div>
-                                        <textarea placeholder="enter text here" wire:model.lazy="description"
-                                                  class="border-gray-300 w-full dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"></textarea>
-                                        <p class="text-sm font-normal text-gray-500 dark:text-gray-300"
-                                           id="file_input_help">
-                                            Max of 50 characters only
-                                        </p>
-                                        @error('description')
-                                        <x-input-error :messages="$message"/>
-                                        @enderror
-                                    </x-input-label>
-
-                                    <div
-                                        x-data="{ isUploading: false, progress: 0 }"
-                                        x-on:livewire-upload-start="isUploading = true"
-                                        x-on:livewire-upload-finish="isUploading = false"
-                                        x-on:livewire-upload-error="isUploading = false"
-                                        x-on:livewire-upload-progress="progress = $event.detail.progress"
-                                    >
-                                        <!-- File Input -->
-
-                                        <x-input-label>
-                                            <div>
-                                                Upload file
-                                            </div>
-                                            <x-text-input wire:model="localVideo" type="file" class="w-full"
-                                                          accept="video/mp4,avi,mov" max="2000"/>
-                                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                                               id="file_input_help">
-                                                MP4,AVI,MOV (MAX. 20mb).</p>
-                                        </x-input-label>
+            <x-pop-modal modal-title="Upload local video clip" static="true" name="authentication-modal-localVid" class="max-w-lg">
+                <form class="space-y-6" wire:submit.prevent="saveLocalVideo">
+                    <div class="space-y-4">
+                        <div>
+                            <x-input-label value="Video description"/>
+                            <x-text-box wire:model.lazy="description" placeholder="enter text here"/>
+                            <p class="text-sm font-normal text-gray-500 dark:text-gray-300"
+                               id="file_input_help">
+                                Max of 50 characters only
+                            </p>
+                            <x-input-error :messages="$errors->get('description')"/>
+                        </div>
+                        <div>
 
 
-                                        @error('localVideo')
-                                        <div id="alert-border-2"
-                                             class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                             role="alert">
-                                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <div class="ml-3 text-sm font-medium">
-                                                {{$message}}
-                                            </div>
-                                        </div>
-
-                                        @enderror
-                                        <div wire:loading wire:target="localVideo">
-                                            <div x-show="isUploading">
-                                                <progress max="100" x-bind:value="progress"></progress>
-                                            </div>
-                                        </div>
-                                        <!-- Progress Bar -->
-
+                            <div
+                                x-data="{ isUploading: false, progress: 0 }"
+                                x-on:livewire-upload-start="isUploading = true"
+                                x-on:livewire-upload-finish="isUploading = false"
+                                x-on:livewire-upload-error="isUploading = false"
+                                x-on:livewire-upload-progress="progress = $event.detail.progress"
+                            >
+                                <!-- File Input -->
+                                <x-input-label value="Upload file"/>
+                                <x-text-input wire:model="localVideo" type="file" class="w-full"
+                                              accept="video/mp4,avi,mov" max="2000"/>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                                   id="file_input_help">
+                                    MP4,AVI,MOV (MAX. 20mb).</p>
+                                <x-input-error :messages="$errors->get('localVideo')"/>
+                                <div wire:loading wire:target="localVideo">
+                                    <div x-show="isUploading">
+                                        <progress max="100" x-bind:value="progress"></progress>
                                     </div>
-
                                 </div>
-                                <button wire:loading disabled
-                                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Processing...
-                                </button>
-                                <button wire:loading.remove type="submit"
-                                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Upload video
-                                </button>
+                                <!-- Progress Bar -->
 
-                            </form>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div>
+                        <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveLocalVideo">
+                            <div class="w-full p-2 text-center" wire:loading.remove wire:target="saveLocalVideo">
+                                Upload video
+                            </div>
+                            <div class="w-full p-2 text-center" wire:loading wire:target="saveLocalVideo">
+                                Processing...
+                            </div>
+                        </x-submit-button>
+                    </div>
+                </form>
+            </x-pop-modal>
 
             <x-secondary-button data-modal-target="authentication-modal-localVid"
                                 data-modal-toggle="authentication-modal-localVid"
@@ -282,7 +235,7 @@
 
             <!-- Main modal -->
 
-            <li class="cursor-pointer py-2 hover:bg-gray-400 dark:hover:bg-gray-800 transition duration-300">
+            <li class="cursor-pointer p-2 hover:bg-gray-400 dark:hover:bg-gray-950 transition duration-300">
                 <div data-modal-backdrop="static" id="authentication-video{{$key}}" tabindex="-1" aria-hidden="true"
                      class="fixed top-0 left-0 right-0 z-50 backdrop-blur hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative w-full max-w-5xl max-h-full">
@@ -396,7 +349,8 @@
 
         @endforeach
     </ul>
-</x-card>
+</x-card-panel>
+
 
 @push('scripts')
     <script type="text/javascript">

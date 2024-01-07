@@ -234,41 +234,27 @@
                             Filed of Expertise
                         </x-item-header>
                         <x-pop-modal name="addExpertiseMod" modal-title="Update Field of Expertise" static="true"
-                                     class="max-w-md">
-                            <form wire:submit.prevent="addExpertise" wire:ignore.self>
-                                <div class="mb-6 mt-4">
-                                    <label for="expert"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Field </label>
-                                    <input wire:model="expertise" type="text" id="expert"
-                                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                           placeholder="Enter text here..." required>
-                                    <div wire:loading wire:target="expertise" class="text-blue-500">Loading...</div>
-                                    <div wire:loading.remove wire:target="expertise">
-                                        @error('expertise')
-                                        <div id="alert-border-2"
-                                             class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                             role="alert">
-                                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <div class="ml-3 text-sm font-medium">
-                                                {{$message}}
-                                            </div>
-                                        </div>
-                                        @enderror
-                                    </div>
-
+                                     class="max-w-xl">
+                            <form wire:submit.prevent="addExpertise" wire:ignore.self class="space-y-4">
+                                <div>
+                                    <x-input-label value="Expertise"/>
+                                    <x-text-input  class="w-full" wire:model.lazy="expertise" placeholder="enter text here" />
+                                    <x-input-error :messages="$errors->get('expertise')" />
                                 </div>
-                                <button type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Submit
-                                </button>
+                                <div>
+                                    <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="addExpertise">
+                                        <div class="w-full text-center p-2" wire:target="addExpertise" wire:loading>
+                                            Processing...
+                                        </div>
+                                        <div class="w-full text-center p-2" wire:target="addExpertise" wire:loading.remove>
+                                            Submit
+                                        </div>
+                                    </x-submit-button>
+                                </div>
+
                             </form>
                         </x-pop-modal>
-                        <x-secondary-button data-modal-toggle="addExpertiseMod" class="text-sky-600 dark:text-sky-600">
+                        <x-secondary-button data-modal-toggle="addExpertiseMod" class="text-sky-600 dark:text-sky-600 gap-2">
                             <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -282,7 +268,7 @@
                     @if($inventor->expertise->count()>0)
                         <ul>
                             @foreach($inventor->expertise as $key=>$expertise)
-                                <li class="p-2 flex justify-between items-center hover:bg-gray-300 dark:hover:bg-gray-800 dark:hover:bg-opacity-25 rounded-lg transition duration-300">
+                                <li class="p-2 flex justify-between items-center hover:bg-gray-300 dark:hover:bg-gray-950 dark:hover:bg-opacity-25 rounded-lg transition duration-300">
 
                                     <div class="text-base text-gray-600 dark:text-gray-400 flex">
                                         <svg class="w-6 h-6 text-gray-800 dark:text-white me-3" aria-hidden="true"

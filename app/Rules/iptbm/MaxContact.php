@@ -41,7 +41,7 @@ class MaxContact implements ValidationRule
             ->where($this->columnTypeName, $this->contactType)
             ->where($this->baseId_name, $this->baseId_value)
             ->count($this->column);
-        if ($count == $this->max) {
+        if ($count >= $this->max-1) {
             $fail($this->message);
         }
     }

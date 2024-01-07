@@ -1,11 +1,8 @@
 <div class="px-4 mt-4">
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div class="md:col-span-3 space-y-4">
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
-                    <x-item-header>
-                        Notes/Description
-                    </x-item-header>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-x-14">
+        <div class="md:col-span-3 space-y-7">
+            <x-card-panel title="Notes / Description">
+                <x-slot:button>
                     <x-pop-modal static="true" class="max-w-4xl" name="updateDesc" modal-title="Notes/Description">
                         <form wire:submit.prevent="saveNote">
                             <div class="mb-6">
@@ -50,18 +47,23 @@
                         Update
                     </x-secondary-button>
 
-
-                </div>
+                </x-slot:button>
+                <x-slot:footer>
+                    <div class="text-xs">
+                        <i>
+                            Due to text formatting, the background will be static white.
+                        </i>
+                    </div>
+                </x-slot:footer>
                 <div class="my-4 text-gray-500 font-normal dark:text-gray-300">
-                    {!! $notesModel !!}
-                </div>
-            </x-card>
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
 
-                    <x-item-header>
-                        Personnel In-charge
-                    </x-item-header>
+                    <div class="p-2 bg-white rounded">
+                        {!! $notesModel !!}
+                    </div>
+                </div>
+            </x-card-panel>
+            <x-card-panel title="Personnel In-charge">
+                <x-slot:button>
                     <x-pop-modal static="true" class="max-w-3xl" name="updatePersonel"
                                  modal-title="Update personnel in-charge">
                         <form wire:submit.prevent="savePersonel">
@@ -134,8 +136,7 @@
                         Update
                     </x-secondary-button>
 
-
-                </div>
+                </x-slot:button>
                 @if($ip_task->personnel->count()>0)
                     <div
                         class="hidden md:my-2 border-b md:shadow-lg border-t border-gray-400 dark:border-gray-500 md:grid md:grid-cols-5 text-gray-500 dark:text-gray-400 font-medium">
@@ -176,12 +177,10 @@
                         No Data Available!
                     </div>
                 @endif
-            </x-card>
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
-                    <x-item-header>
-                        Unit In-charge
-                    </x-item-header>
+            </x-card-panel>
+
+            <x-card-panel title="Unit In-charge">
+                <x-slot:button>
                     <x-pop-modal static="true" class="max-w-3xl" name="updateUnit" modal-title="Update Unit in-charge">
                         <form wire:submit.prevent="saveUnit">
                             <div class="mb-6">
@@ -228,9 +227,7 @@
                         </svg>
                         Update
                     </x-secondary-button>
-
-
-                </div>
+                </x-slot:button>
                 @if($ip_task->units->count()>0)
                     <div
                         class="hidden md:my-2 border-b md:shadow-lg border-t border-gray-400 dark:border-gray-500 md:grid md:grid-cols-5 text-gray-500 dark:text-gray-400 font-medium">
@@ -265,16 +262,12 @@
                         No Data Available!
                     </div>
                 @endif
+            </x-card-panel>
 
-            </x-card>
         </div>
         <div class="md:col-span-2 space-y-4">
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
-                    <x-item-header>
-                        Deadline
-                    </x-item-header>
-
+            <x-card-panel title="Deadline">
+                <x-slot:button>
                     <x-pop-modal modal-title="Update Deadline" name="deadlineModal" static="true" class="max-w-md">
                         <form class="space-y-6" wire:submit.prevent="saveDeadline">
                             <div class="my-3">
@@ -295,7 +288,7 @@
                             </div>
                             <div>
                                 <x-item-header>
-                                    Date
+                                   New Deadline
                                 </x-item-header>
                                 <x-text-input class="w-full" wire:ignore wire:model="deadLineModel"
                                               type="datetime-local" name="deadline" placeholder="Enter date and time"/>
@@ -324,9 +317,8 @@
                         update
                     </x-secondary-button>
 
-
-                </div>
-                <div class="my-4 text-gray-500 font-normal dark:text-gray-300">
+                </x-slot:button>
+                <div class="text-gray-500 font-normal dark:text-gray-300">
                     <div>
                         <span
                             class="font-medium text-gray-600 dark:text-gray-200 me-3">DATE:</span> {{\Carbon\Carbon::parse($deadLineModel)->format('d-M-Y ')}}
@@ -337,15 +329,9 @@
                     </div>
                 </div>
 
-            </x-card>
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
-
-
-                    <x-item-header>
-                        IP Alert Notification
-                    </x-item-header>
-
+            </x-card-panel>
+            <x-card-panel title="IP Alert Notification">
+                <x-slot:button>
                     <x-pop-modal modal-title="Update IP Notifications" name="ipAlertMod" static="true" class="max-w-md">
                         <form class="space-y-6" wire:submit.prevent="saveNotification">
                             <div>
@@ -456,9 +442,8 @@
                         </svg>
                         update
                     </x-secondary-button>
-
-                </div>
-                <div class="my-4 text-gray-500 font-normal dark:text-gray-300">
+                </x-slot:button>
+                <div class="text-gray-500 font-normal dark:text-gray-300">
                     @if($ip_task->ip_task_stage_notifications)
                         @if ($ip_task->ip_task_stage_notifications->time_of_day)
                             @if($ip_task->ip_task_stage_notifications->frequency==='daily')
@@ -508,13 +493,10 @@
                 </div>
 
 
-            </x-card>
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
-                    <x-item-header>
-                        Priority
-                    </x-item-header>
+            </x-card-panel>
 
+            <x-card-panel title="Priority">
+                <x-slot:button>
                     <x-pop-modal modal-title="Update Priority" name="priorityMod" static="true" class="max-w-md">
                         <form wire:submit.prevent="updatePriority">
                             <div class="my-3">
@@ -554,17 +536,14 @@
                         update
                     </x-secondary-button>
 
-                </div>
-                <div class="my-4 text-gray-500 font-medium text-xl dark:text-gray-300">
+                </x-slot:button>
+                <div class="text-gray-500 font-medium text-xl dark:text-gray-300">
                     {!! $priorityModel !!}
                 </div>
+            </x-card-panel>
 
-            </x-card>
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
-                    <x-item-header>
-                        Task Status
-                    </x-item-header>
+            <x-card-panel title="Task Status">
+                <x-slot:button>
                     <x-pop-modal modal-title="Update Priority" name="statMod" static="true" class="max-w-md">
                         <form wire:submit.prevent="SaveStatus">
                             <div class="my-3">
@@ -610,24 +589,13 @@
                         update
                     </x-secondary-button>
 
-
+                </x-slot:button>
+                <div class="text-gray-500 font-medium text-xl dark:text-gray-300">
+                    {{$taskStatusModel}}
                 </div>
-                @if($showTaskStatusForm)
-                    <div class="mt-3 bg-gray-300 dark:bg-gray-800 p-2 rounded-lg">
-
-
-                    </div>
-                @else
-                    <div class="my-4 text-gray-500 font-medium text-xl dark:text-gray-300">
-                        {{$taskStatusModel}}
-                    </div>
-                @endif
-            </x-card>
-            <x-card class="shadow-lg">
-                <div class="flex justify-between">
-                    <x-item-header>
-                        Attachment
-                    </x-item-header>
+            </x-card-panel>
+            <x-card-panel title="Attachment">
+                <x-slot:button>
                     <x-pop-modal modal-title="Upload Attachment" name="attachMod" static="true" class="max-w-lg">
                         <form wire:submit.prevent="saveAttachment" class="space-y-2">
                             <div>
@@ -673,9 +641,8 @@
                         update
                     </x-secondary-button>
 
-
-                </div>
-                <div class="my-4 text-gray-500 font-normal dark:text-gray-300">
+                </x-slot:button>
+                <div class="text-gray-500 font-normal dark:text-gray-300">
 
                     <ul class="divide-y divide-gray-400 dark:divide-gray-600 space-y-2">
                         @forelse($ip_task->attachments as $file)
@@ -776,7 +743,8 @@
                     </ul>
 
                 </div>
-            </x-card>
+            </x-card-panel>
+
 
         </div>
     </div>

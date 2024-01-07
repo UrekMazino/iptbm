@@ -96,7 +96,6 @@
                 {{$ip_alert->ip_type->name}} Application Details
             </div>
 
-
         </div>
         <livewire:iptbm.staff.ip-management.ip-application-details :ipAlert="$ip_alert"/>
 

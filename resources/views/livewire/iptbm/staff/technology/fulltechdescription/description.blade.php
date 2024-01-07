@@ -23,9 +23,8 @@
     </div>
 
     <div class="p-0 mt-10 space-y-4">
-        <x-grid col="2" gap="4">
-
-            <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-x-10 border-t pt-4 border-gray-600 dark:border-400">
+            <div class="space-y-10">
                 <x-card>
                     <div class="space-y-10">
                         <livewire:iptbm.staff.technology.fulltechdescription.add-full-tech-file title="Narrative"
@@ -71,7 +70,7 @@
                     :full-description="$technology_description"/>
 
             </div>
-        </x-grid>
+        </div>
 
     </div>
 

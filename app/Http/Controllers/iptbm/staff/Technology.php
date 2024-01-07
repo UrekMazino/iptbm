@@ -92,7 +92,7 @@ class Technology extends Controller
 
     public function publicView($id)
     {
-        $technology = IptbmTechnologyProfile::with("iptbmprofiles", "techgenerators.inventor")->find($id);
+        $technology = IptbmTechnologyProfile::with("iptbmprofiles", "techgenerators.inventor","full_description.technology_photos")->find($id);
         $techOwner = IptbmAgency::find($technology->tech_owner);
         return view('iptbm.staff.technologies.tech-public-view', compact('technology', 'techOwner'));
     }

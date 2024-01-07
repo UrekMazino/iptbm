@@ -69,9 +69,7 @@ class TechInventor extends Component
     {
         $tech = IptbmTechInventor::find($id);
         $tech->delete();
-        $this->technology->refresh();
-        $this->technologyInventors = $this->technology->techgenerators;
-
+        $this->emit('reloadPage');
     }
 
 
@@ -94,7 +92,7 @@ class TechInventor extends Component
         $this->technology->save();
         $this->technology->refresh();
         $this->technologyInventors = $this->technology->techgenerators;
-        session()->flash('inventor', 'Technology Generator added successfully');
+        $this->emit('reloadPage');
 
     }
 

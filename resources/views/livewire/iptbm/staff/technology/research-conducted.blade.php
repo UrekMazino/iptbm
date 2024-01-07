@@ -1,16 +1,16 @@
-<div class="mb-4 border bg-gray-white dark:bg-gray-700  border-gray-300 dark:border-gray-600  rounded-lg p-4">
+<div class="py-10">
     <div class="w-full space-y-4 mb-4">
-        <div class="py-2">
-            <x-item-header>
-                Research Title
-            </x-item-header>
-            <div class="mt-2">
-                {{$title}}
+        <div class="rounded border border-gray-300 dark:border-gray-600 p-2 divide-y divide-gray-200 dark:divide-gray-700">
+            <div class="text-center">
+                {{__($title)}}
+            </div>
+            <div class="text-center text-xs">
+                {{__('RESEARCH TITLE')}}
             </div>
         </div>
 
 
-        <div class="divide-y divide-slate-200">
+        <div class="divide-y divide-slate-200 dark:divide-slate-600">
             <!-- Accordion item -->
             <div x-data="{ expanded: false }" class="py-2">
                 <h2>
@@ -42,10 +42,10 @@
                     :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
                 >
                     <div class="overflow-hidden">
-                        <div class="flex justify-between border-b border-t border-gray-400 dark:border-gray-600  py-2">
+                        <div class="flex justify-end  border-t border-gray-400 dark:border-gray-600  py-2">
 
 
-                            <x-secondary-button data-popover-trigger="click"
+                            <x-secondary-button class="text-sky-500 dark:text-sky-500" data-popover-trigger="click"
                                                 data-popover-target="popover-user-profile-{{$project->id}}">
                                 Add Funding Agencies
                             </x-secondary-button>
@@ -53,110 +53,84 @@
 
                             <x-pop-modal class="max-w-xl" modal-title="New Agency" static="true"
                                          name="newAgencyMod-{{$project->id}}">
-                                <form wire:submit.prevent="addNewFundeingAgency">
-                                    <x-input-label>
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                Agency Name
-                                            </div>
+                                <form class="space-y-4" wire:submit.prevent="addNewFundeingAgency">
+                                    <div>
+                                        <x-input-label value="Agency Name"/>
+                                        <x-text-input class="w-full" wire:model.lazy="newAgencyModel" type="text" required placeholder="enter text"/>
+                                        <x-input-error :messages="$errors->get('newAgencyModel')"/>
+                                    </div>
 
-                                        </div>
-                                        <x-text-input class="w-full" wire:model.lazy="newAgencyModel" type="text"
-                                                      required placeholder="enter text"/>
-                                        <x-sub-label>
-                                            <i>
-                                                This will be validated by the system administrator.
-                                            </i>
-                                        </x-sub-label>
-                                        @error('newAgencyModel')
-                                        <x-input-error :messages="$message"/>
-                                        @enderror
-                                    </x-input-label>
-                                    <x-input-label>
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                Address
-                                            </div>
-
-                                        </div>
-                                        <x-text-input class="w-full" wire:model.lazy="newAddressModel" type="text"
-                                                      required placeholder="enter text"/>
-
-                                        @error('newAddressModel')
-                                        <x-input-error :messages="$message"/>
-                                        @enderror
-                                    </x-input-label>
-                                    <x-input-label>
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                Head
-                                            </div>
-
-                                        </div>
-                                        <x-text-input class="w-full" wire:model.lazy="newHeadModel" type="text" required
-                                                      placeholder="enter text"/>
-                                        @error('newHeadModel')
-                                        <x-input-error :messages="$message"/>
-                                        @enderror
-                                    </x-input-label>
-                                    <x-input-label>
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                Designation
-                                            </div>
-
-                                        </div>
+                                    <div>
+                                        <x-input-label value="Address"/>
+                                        <x-text-input class="w-full" wire:model.lazy="newAddressModel" type="text" required placeholder="enter text"/>
+                                        <x-input-error :messages="$errors->get('newAddressModel')"/>
+                                    </div>
+                                    <div>
+                                        <x-input-label value="Head"/>
+                                        <x-text-input class="w-full" wire:model.lazy="newHeadModel" type="text" required placeholder="enter text"/>
+                                        <x-input-error :messages="$errors->get('newHeadModel')"/>
+                                    </div>
+                                    <div>
+                                        <x-input-label value=" Designation"/>
                                         <x-text-input class="w-full" wire:model.lazy="newDesignationModel" type="text"
                                                       required placeholder="enter text"/>
+                                        <x-input-error :messages="$errors->get('newDesignationModel')"/>
 
-                                        @error('newDesignationModel')
-                                        <x-input-error :messages="$message"/>
-                                        @enderror
-                                    </x-input-label>
-                                    <x-sub-label>
-                                        <i class="text-red-400 text-xs">
-                                            * This will be validated by the system administrator.
-                                        </i>
-                                    </x-sub-label>
-                                    <x-submit-button class="mt-4">
-                                        Submit
-                                    </x-submit-button>
+                                    </div>
+                                   <div>
+                                       <x-sub-label>
+                                           <i class="text-red-400 text-xs">
+                                               * This will be validated by the system administrator.
+                                           </i>
+                                       </x-sub-label>
+                                   </div>
+                                    <div>
+                                        <x-submit-button class="min-w-full" wire:target="addNewFundeingAgency" wire:loading.attr="disabled">
+                                            <div wire:target="addNewFundeingAgency" wire:loading class="text-center p-2 w-full">
+                                                Processing..
+                                            </div>
+                                            <div wire:target="addNewFundeingAgency" wire:loading.remove class="text-center p-2 w-full">
+                                                Submit
+                                            </div>
+                                        </x-submit-button>
+                                    </div>
 
                                 </form>
                             </x-pop-modal>
 
                             <x-pop-modal modal-title="Update funding agency" name="addFunder-{{$project->id}}"
                                          static="true" class="max-w-xl">
-                                <form wire:submit.prevent="addAgencyFunder">
-                                    <x-input-label>
-                                        <div>
-                                            Agencies
-                                        </div>
+                                <form wire:submit.prevent="addAgencyFunder" class="space-y-4">
+                                    <div>
+                                        <x-input-label value="Agencies"/>
                                         <x-text-input list="agencyNameList" class="w-full" placeholder="type to search"
                                                       wire:model.lazy="agencyModel"/>
                                         <x-data-list id="agencyNameList" :data="$agencies->pluck('name')"/>
-                                        @error('agencyModel')
-                                        <x-input-error :messages="$message"/>
-                                        @enderror
-                                        @error('agencyId')
-                                        <x-input-error :messages="$message"/>
-                                        @enderror
-                                    </x-input-label>
-                                    <x-submit-button class="mt-4">
-                                        Submit
-                                    </x-submit-button>
+                                        <x-input-error :messages="$errors->get('agencyModel')"/>
+                                        <x-input-error :messages="$errors->get('agencyId')"/>
+                                    </div>
+                                    <div>
+                                        <x-submit-button class="min-w-full" wire:target="addAgencyFunder" wire:loading.attr="disabled">
+                                            <div class="text-center p-2 w-full" wire:target="addAgencyFunder" wire:loading>
+                                                Processing...
+                                            </div>
+                                            <div class="text-center p-2 w-full" wire:target="addAgencyFunder" wire:loading.remove>
+                                                Submit
+                                            </div>
+                                        </x-submit-button>
+                                    </div>
                                 </form>
                             </x-pop-modal>
                             <div data-popover id="popover-user-profile-{{$project->id}}" role="tooltip"
-                                 class="absolute z-10 invisible inline-block w-64 p-2 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+                                 class="absolute z-10 invisible inline-block w-64  text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
                                 <div
-                                    class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                    class="w-full text-sm font-medium text-gray-900  rounded-lg  dark:text-white overflow-hidden">
                                     <button data-modal-toggle="newAgencyMod-{{$project->id}}" type="button"
                                             class="w-full px-4 py-2 font-medium text-left border-b text-gray-400 border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
                                         Add new Agency
                                     </button>
                                     <button data-modal-toggle="addFunder-{{$project->id}}" type="button"
-                                            class="w-full px-4 py-2 font-medium text-left border-b text-gray-400 border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                            class="w-full px-4 py-2 font-medium text-left text-gray-400 border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
                                         Select from existing agencies
                                     </button>
                                 </div>
@@ -167,35 +141,42 @@
 
                         </div>
 
-                        <div class="mt-10">
-                            <ul class="divide-y">
-                                @foreach($funders as $key=>$funder)
-                                    <li class="indent-5 hover:bg-gray-200 py-2 text-gray-700 dark:text-gray-200 hover:dark:bg-gray-600 transition duration-300 hover:text-gray-900 dark:hover:text-white">
-                                        <div class="justify-between flex items-center">
-                                            <div>
-                                                {{$funder->agency->name}}
+                        @if($funders->count()===0)
+                            <div class="text-lg font-medium text-gray-400 dark:text-gray-600">
+                                No Funding agencies available
+                            </div>
+                        @else
+                            <div class="mt-10 p-2 border rounded border-gray-200 dark:border-gray-600">
+                                <ul class="divide-y divide-gray-200 dark:divide-gray-600">
+                                    @foreach($funders as $key=>$funder)
+                                        <li class="indent-5 hover:bg-gray-200 py-2 text-gray-700 dark:text-gray-200 hover:dark:bg-gray-600 transition duration-300 hover:text-gray-900 dark:hover:text-white">
+                                            <div class="justify-between flex items-center">
+                                                <div>
+                                                    {{$funder->agency->name}}
+                                                </div>
+                                                <x-secondary-button data-modal-toggle="deleteFunder-{{$funder->id}}"
+                                                                    class="text-red-600 dark:text-red-600">
+                                                    <svg class="w-4 h-4" aria-hidden="true"
+                                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                              stroke-linejoin="round" stroke-width="2"
+                                                              d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+                                                    </svg>
+                                                </x-secondary-button>
+
+                                                <livewire:iptbm.delete-row wire:key="{{$key}}" :item="$funder->agency->name"
+                                                                           :model="$funder"
+                                                                           modal-name="deleteFunder-{{$funder->id}}"/>
                                             </div>
-                                            <x-secondary-button data-modal-toggle="deleteFunder-{{$funder->id}}"
-                                                                class="text-red-600 dark:text-red-600">
-                                                <svg class="w-4 h-4" aria-hidden="true"
-                                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                          stroke-linejoin="round" stroke-width="2"
-                                                          d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
-                                                </svg>
-                                            </x-secondary-button>
-
-                                            <livewire:iptbm.delete-row wire:key="{{$key}}" :item="$funder->agency->name"
-                                                                       :model="$funder"
-                                                                       modal-name="deleteFunder-{{$funder->id}}"/>
-                                        </div>
 
 
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="mt-10 mb-10">
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <div class="mt-5 mb-10">
                             <x-item-header>
                                 Amount Invested
                             </x-item-header>
@@ -238,101 +219,109 @@
                     <div class="overflow-hidden">
                         <div class="py-5 border-b border-gray-200 dark:border-gray-700">
                             <div
-                                class="flex justify-between border-b border-t border-gray-400 dark:border-gray-600  py-2">
+                                class="flex justify-end border-t border-gray-400 dark:border-gray-600  py-2">
 
                                 <x-pop-modal static="true" name="industryPartner-{{$project->id}}"
                                              modal-title="Update Industry Partners" class="max-w-md">
-                                    <form wire:submit.prevent="savePartner" wire:ignore.self class="space-y-2.5">
-                                        <div>
-                                            <x-input-label>
-                                                <div>
-                                                    Industry/Agency
-                                                </div>
-                                                <x-text-input wire:model.lazy="partner" class="w-full"/>
-                                                @error('partner')
-                                                <x-input-error :messages="$message"/>
-                                                @enderror
-                                            </x-input-label>
-                                        </div>
-                                        <div class="mb-6">
-                                            <x-input-label>
-                                                <div>
-                                                    Address
-                                                </div>
-                                                <x-text-input wire:model.lazy="address" class="w-full"/>
-                                                @error('address')
-                                                <x-input-error :messages="$message"/>
-                                                @enderror
-                                            </x-input-label>
+                                    <form wire:submit.prevent="savePartner" wire:ignore.self class="space-y-6">
+                                       <div class="space-y-4">
+                                           <div>
+                                               <x-input-label>
+                                                   <div>
+                                                       Industry/Agency
+                                                   </div>
+                                                   <x-text-input wire:model.lazy="partner" class="w-full"/>
+                                                   @error('partner')
+                                                   <x-input-error :messages="$message"/>
+                                                   @enderror
+                                               </x-input-label>
+                                           </div>
+                                           <div class="mb-6">
+                                               <x-input-label>
+                                                   <div>
+                                                       Address
+                                                   </div>
+                                                   <x-text-input wire:model.lazy="address" class="w-full"/>
+                                                   @error('address')
+                                                   <x-input-error :messages="$message"/>
+                                                   @enderror
+                                               </x-input-label>
 
-                                        </div>
-                                        <div class="mb-6">
-                                            <x-input-label>
-                                                <div>
-                                                    Mobile number
-                                                    <i class="text-sm font-normal text-blue-500">
-                                                        Optional
-                                                    </i>
-                                                </div>
-                                                <x-text-input wire:model.lazy="partnerMobile" class="w-full" max="7"/>
-                                                @error('partnerMobile')
-                                                <x-input-error :messages="$message"/>
-                                                @enderror
-                                            </x-input-label>
+                                           </div>
+                                           <div class="mb-6">
+                                               <x-input-label>
+                                                   <div>
+                                                       Mobile number
+                                                       <i class="text-sm font-normal text-blue-500">
+                                                           Optional
+                                                       </i>
+                                                   </div>
+                                                   <x-text-input wire:model.lazy="partnerMobile" class="w-full" max="7"/>
+                                                   @error('partnerMobile')
+                                                   <x-input-error :messages="$message"/>
+                                                   @enderror
+                                               </x-input-label>
 
-                                        </div>
-                                        <div class="mb-6">
-                                            <x-input-label>
-                                                <div>
-                                                    Telephone Number
-                                                    <i class="text-sm font-normal text-blue-500">
-                                                        Optional
-                                                    </i>
-                                                </div>
-                                                <x-text-input wire:model.lazy="partnerPhone" class="w-full" max="7"/>
-                                                @error('partnerPhone')
-                                                <x-input-error :messages="$message"/>
-                                                @enderror
-                                            </x-input-label>
+                                           </div>
+                                           <div class="mb-6">
+                                               <x-input-label>
+                                                   <div>
+                                                       Telephone Number
+                                                       <i class="text-sm font-normal text-blue-500">
+                                                           Optional
+                                                       </i>
+                                                   </div>
+                                                   <x-text-input wire:model.lazy="partnerPhone" class="w-full" max="7"/>
+                                                   @error('partnerPhone')
+                                                   <x-input-error :messages="$message"/>
+                                                   @enderror
+                                               </x-input-label>
 
 
-                                        </div>
-                                        <div class="mb-6">
-                                            <x-input-label>
-                                                <div>
-                                                    Fax Number
-                                                    <i class="text-sm font-normal text-blue-500">
-                                                        Optional
-                                                    </i>
-                                                </div>
-                                                <x-text-input wire:model.lazy="partnerFax" class="w-full" type="number"
-                                                              max="7"/>
-                                                @error('partnerFax')
-                                                <x-input-error :messages="$message"/>
-                                                @enderror
-                                            </x-input-label>
+                                           </div>
+                                           <div class="mb-6">
+                                               <x-input-label>
+                                                   <div>
+                                                       Fax Number
+                                                       <i class="text-sm font-normal text-blue-500">
+                                                           Optional
+                                                       </i>
+                                                   </div>
+                                                   <x-text-input wire:model.lazy="partnerFax" class="w-full" type="number"
+                                                                 max="7"/>
+                                                   @error('partnerFax')
+                                                   <x-input-error :messages="$message"/>
+                                                   @enderror
+                                               </x-input-label>
 
-                                        </div>
-                                        <div class="mb-6">
-                                            <x-input-label>
-                                                <div>
-                                                    Email Address
-                                                    <i class="text-sm font-normal text-blue-500">
-                                                        Optional
-                                                    </i>
-                                                </div>
-                                                <x-text-input wire:model.lazy="partnerEmail" class="w-full" type="email"
-                                                              max="7"/>
-                                                @error('partnerEmail')
-                                                <x-input-error :messages="$message"/>
-                                                @enderror
-                                            </x-input-label>
+                                           </div>
+                                           <div class="mb-6">
+                                               <x-input-label>
+                                                   <div>
+                                                       Email Address
+                                                       <i class="text-sm font-normal text-blue-500">
+                                                           Optional
+                                                       </i>
+                                                   </div>
+                                                   <x-text-input wire:model.lazy="partnerEmail" class="w-full" type="email"
+                                                                 max="7"/>
+                                                   @error('partnerEmail')
+                                                   <x-input-error :messages="$message"/>
+                                                   @enderror
+                                               </x-input-label>
 
-                                        </div>
-                                        <button type="submit"
-                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            Submit
-                                        </button>
+                                           </div>
+                                       </div>
+                                       <div>
+                                           <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="savePartner">
+                                               <div class="w-full text-center p-2" wire:loading.remove wire:target="savePartner">
+                                                   Submit
+                                               </div>
+                                               <div class="w-full text-center p-2" wire:loading wire:target="savePartner">
+                                                   Processing...
+                                               </div>
+                                           </x-submit-button>
+                                       </div>
                                     </form>
                                 </x-pop-modal>
                                 <x-secondary-button data-modal-toggle="industryPartner-{{$project->id}}"
@@ -347,10 +336,18 @@
 
                                     @if($researchPartner->count()>0)
                                         @foreach($researchPartner as $partner)
+
+                                        @endforeach
+
+                                    @endif
+                                    @forelse($researchPartner as $partner)
                                             <livewire:iptbm.staff.technology.research-partner
                                                 wire:key="{{$partner->id}}" :partner="$partner"/>
-                                        @endforeach
-                                    @endif
+                                        @empty
+                                            <div class="text-lg font-medium text-gray-400 dark:text-gray-600">
+                                                No Industry partners available
+                                            </div>
+                                    @endforelse
                                 </div>
                             </div>
 
@@ -408,5 +405,4 @@
     <x-danger-button data-modal-toggle="deleteResearch-{{$project->id}}">
         <i class="fa-solid fa-trash-can"></i> Delete Research
     </x-danger-button>
-
 </div>

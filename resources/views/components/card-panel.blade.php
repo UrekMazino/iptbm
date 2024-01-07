@@ -9,17 +9,36 @@
         <div class="  border-b w-full border-gray-300 dark:border-gray-700 px-2 py-3">
             @if(isset($button))
                 <div class="justify-between flex items-center">
-                    <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
-                        {{$title}}
-                    </label>
+                    @if(isset($icon))
+                        <div class="gap-2 flex justify-start items-center ms-0 w-fit">
+                            {{$icon}}
+                            <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                                {{$title}}
+                            </label>
+                        </div>
+                    @else
+                        <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                            {{$title}}
+                        </label>
+                    @endif
+
                     <div>
                         {{$button}}
                     </div>
                 </div>
             @else
-                <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
-                    {{$title}}
-                </label>
+                @if(isset($icon))
+                    <div class="gap-2 flex justify-start items-center ms-0 w-fit">
+                        {{$icon}}
+                        <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                            {{$title}}
+                        </label>
+                    </div>
+                @else
+                    <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                        {{$title}}
+                    </label>
+                @endif
             @endif
 
 

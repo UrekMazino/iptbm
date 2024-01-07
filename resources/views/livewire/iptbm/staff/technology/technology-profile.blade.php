@@ -345,189 +345,98 @@
                 <livewire:iptbm.staff.technology.tech-research :technology="$technology"/>
             </div>
 
-            <div class="md:col-span-2">
-                <x-card>
-                    <livewire:iptbm.staff.technology.ip-protection wire:key="ipProtection" :technology="$technology"/>
-
-                </x-card>
-                <x-card class="my-3">
-                    <livewire:iptbm.staff.technology.tech-trans-pathway :technology="$technology"/>
-
-                </x-card>
-                <x-card class="my-3">
-                    <div class="flex justify-between">
-                        <div class="text-gray-600 dark:text-gray-300 font-bold text-lg">
-                            Industry / Sector
-                        </div>
-                        @if($showIndustry)
-                            <button wire:click.prevent="toggleShowIndustry"
-                                    class="font-medium text-red-600 dark:text-red-500">
-                                <i class="fa-solid fa-circle-minus"></i> Close
-                            </button>
-                        @else
-                            <button wire:click.prevent="toggleShowIndustry"
-                                    class="font-medium text-blue-600 dark:text-blue-500">
-                                <i class="fa-solid fa-circle-plus"></i> Update
-                            </button>
-                        @endif
-                    </div>
-                    @if($showIndustry)
-                        <div class="mb-4">
-                            <div wire:ignore.self class="rounded-lg bg-gray-200 dark:bg-gray-800 p-4">
-
-                                <form wire:submit.prevent="saveIndustry" wire:ignore.self>
-                                    <div class="mb-6">
-                                        <label for="indus"
-                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Technology
-                                            Industries</label>
-                                        <select wire:model="industryModel" id="indus"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option selected>Choose an Industry</option>
-                                            @foreach($techIndustry as $indus)
-                                                <option value="{{$indus->id}}">{{$indus->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @if(session()->has('industryModel'))
-                                            <div
-                                                class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                                role="alert">
-                                                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                     viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                                </svg>
-                                                <span class="sr-only">Info</span>
-                                                <div>
-                                                    <span class="font-medium">{{session('industryModel')}}</span>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @error('industryModel')
-
-                                        <div id="alert-border-2"
-                                             class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                             role="alert">
-                                            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <div class="ml-3 text-sm font-medium">
-                                                {{$message}}
-                                            </div>
+            <div class="md:col-span-2 space-y-4">
+                <livewire:iptbm.staff.technology.ip-protection wire:key="ipProtection" :technology="$technology"/>
+                <livewire:iptbm.staff.technology.tech-trans-pathway :technology="$technology"/>
+                <x-card-panel title="Industry / Sector">
+                    <x-slot:button>
+                        <x-pop-modal name="updateModal" class="max-w-lg" modal-title="Update Industry/Sector">
+                            <form wire:submit.prevent="saveIndustry" wire:ignore.self class="space-y-6">
+                                <div>
+                                    <x-input-label value="Technology Industries"/>
+                                    <x-input-select wire:model.lazy="industryModel">
+                                        <option selected>Choose an Industry</option>
+                                        @foreach($techIndustry as $indus)
+                                            <option value="{{$indus->id}}">{{$indus->name}}</option>
+                                        @endforeach
+                                    </x-input-select>
+                                    <x-input-error :messages="$errors->get('industryModel')"/>
+                                </div>
+                                <div>
+                                    <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveIndustry">
+                                        <div class="p-2 w-full text-center" wire:target="saveIndustry" wire:loading>
+                                            Processing...
                                         </div>
-                                        @enderror
-                                    </div>
-                                    <button type="submit"
-                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Submit
-                                    </button>
-                                </form>
+                                        <div class="p-2 w-full text-center" wire:target="saveIndustry" wire:loading.remove>
+                                            Submit
+                                        </div>
+                                    </x-submit-button>
+                                </div>
 
-                            </div>
-                        </div>
+                            </form>
+                        </x-pop-modal>
+                        <x-secondary-button class="text-sky-500 dark:text-sky-500" data-modal-toggle="updateModal">
 
-                    @endif
-
+                            Add
+                        </x-secondary-button>
+                    </x-slot:button>
                     <div class="divide-y divide-gray-400 dark:divide-gray-600">
                         @foreach($industryList as $key=>$val)
                             <livewire:iptbm.staff.technology.industry-details wire:key="industry-{{$val->id}}"
                                                                               :industry="$val"/>
                         @endforeach
                     </div>
-                </x-card>
+                </x-card-panel>
+                <x-card-panel title="Technology Status">
+                    <x-slot:button>
+                        <x-secondary-button class="text-sky-500 dark:text-sky-500" data-modal-toggle="updateTechStat" data-modal-target="updateTechStat">
+                            Update
+                        </x-secondary-button>
+                       <x-pop-modal class="max-w-xl" static="true" name="updateTechStat" modal-title="Update Technology Status">
+                           <form wire:submit.prevent="saveStatusUpdate" class="space-y-6">
+                               <div>
+                                   <x-input-label for="selectStat" value=" Select an Option" />
+                                   <x-input-select wire:model="statusModel" id="selectStat">
 
-                <x-card class="shadow-lg">
-                    <div wire:ignore.self class="flex justify-between mb-3 ">
-                        <h1 class="font-medium text-lg text-gray-700 dark:text-gray-400">
-                            Technology Status
-                        </h1>
-                        @if($showStatusForm)
-                            <button wire:ignore.self wire:click.prevent="toggleShowStatusForm"
-                                    class=" font-medium text-red-600 dark:text-blue-500">
-                                <i class="fa-solid fa-circle-minus"></i> Close
-                            </button>
-                        @else
-                            <button wire:ignore.self wire:click.prevent="toggleShowStatusForm"
-                                    class=" font-medium text-blue-600 dark:text-blue-500">
-                                <i class="fa-solid fa-circle-plus"></i> Update
-                            </button>
-                        @endif
+                                       <option>
+                                           Laboratory experiment stage / Lab testing / Greenhouse testing
+                                       </option>
+                                       <option>
+                                           Pilot Testing stage
+                                       </option>
+                                       <option>
+                                           Upscaled Testing stage
+                                       </option>
+                                       <option>
+                                           Commercial scale testing stage
+                                       </option>
+                                       <option>
+                                           Technology ready for commercialization
+                                       </option>
+                                       <option>
+                                           Commercialized technology
+                                       </option>
+                                   </x-input-select>
+                                   <x-input-error :messages="$errors->get('statusModel')"/>
+                                   @if(session()->has('statusModel'))
+                                       <x-alert-success :message="session('statusModel')"/>
+                                   @endif
+                               </div>
+                               <div>
+                                   <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="saveStatusUpdate">
+                                       <div class="w-full text-center p-2" wire:loading wire:target="saveStatusUpdate">
+                                           Processing...
+                                       </div>
+                                       <div class="w-full text-center p-2" wire:loading.remove wire:target="saveStatusUpdate">
+                                           Submit
+                                       </div>
+                                   </x-submit-button>
+                               </div>
 
-                    </div>
-                    @if($showStatusForm)
-                        <div
-                            class="border-l bg-gray-200 dark:bg-gray-800 border-r border-t border-b border-opacity-25 border-gray-500 py-2 px-4 mb-4 rounded-lg">
-                            <form wire:submit.prevent="saveStatusUpdate">
-                                <div class="mb-6">
-                                    <label for="countries"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                                        an option</label>
-                                    <select wire:model="statusModel" id="countries"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="" selected>- - Select - -</option>
-                                        <option>
-                                            Laboratory experiment stage / Lab testing / Greenhouse testing
-                                        </option>
-                                        <option>
-                                            Pilot Testing stage
-                                        </option>
-                                        <option>
-                                            Upscaled Testing stage
-                                        </option>
-                                        <option>
-                                            Commercial scale testing stage
-                                        </option>
-                                        <option>
-                                            Technology ready for commercialization
-                                        </option>
-                                        <option>
-                                            Commercialized technology
-                                        </option>
-                                    </select>
-                                    @if(session()->has('statusModel'))
-                                        <div
-                                            class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-                                            role="alert">
-                                            <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path
-                                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                            </svg>
-                                            <span class="sr-only">Info</span>
-                                            <div>
-                                                <span class="font-medium">{{session('statusModel')}}</span>
-                                            </div>
-                                        </div>
-                                    @endif
-                                    @error('statusModel')
 
-                                    <div id="alert-border-2"
-                                         class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                         role="alert">
-                                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                        </svg>
-                                        <div class="ml-3 text-sm font-medium">
-                                            {{$message}}
-                                        </div>
-                                    </div>
-                                    @enderror
-                                </div>
-                                <button type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Submit
-                                </button>
-
-                            </form>
-                        </div>
-                    @endif
-
+                           </form>
+                       </x-pop-modal>
+                    </x-slot:button>
                     <div class="w-full">
                         <ol class="relative border-l  border-gray-500 dark:border-gray-400">
 
@@ -550,7 +459,9 @@
 
                         </ol>
                     </div>
-                </x-card>
+                </x-card-panel>
+
+
 
 
             </div>

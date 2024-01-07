@@ -12,7 +12,7 @@ class PatenAgent extends Component
     public $ipAlert;
 
     public $showPatentAgentForm = false;
-    public $patentAgentModel = "ksdhjfksdjsdj";
+    public $patentAgentModel ;
     public $agentAddressModel;
 
 

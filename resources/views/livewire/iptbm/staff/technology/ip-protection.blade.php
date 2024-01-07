@@ -1,17 +1,15 @@
-<div>
-    <div class="flex justify-between items-center">
-        <x-item-header class="justify-start items-center">
-            <div
-                class="rounded-full hidden md:block me-2 border-gray-200  dark:border-gray-900 p-2 overflow-hidden border-8 bg-blue-300 dark:bg-blue-900">
-                <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                     fill="none" viewBox="0 0 18 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="m6 9 2 3 5-5M9 19A18.55 18.55 0 0 1 1 4l8-3 8 3a18.549 18.549 0 0 1-8 15Z"/>
-                </svg>
-            </div>
-
-            IP protection application
-        </x-item-header>
+<x-card-panel title="IP protection application">
+    <x-slot:icon>
+        <div
+            class="rounded-full hidden md:block me-2 border-gray-200  dark:border-gray-900 p-2 overflow-hidden border-8 bg-blue-300 dark:bg-blue-900">
+            <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="none" viewBox="0 0 18 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m6 9 2 3 5-5M9 19A18.55 18.55 0 0 1 1 4l8-3 8 3a18.549 18.549 0 0 1-8 15Z"/>
+            </svg>
+        </div>
+    </x-slot:icon>
+    <x-slot:button>
         <x-pop-modal static="true" class="max-w-xl " name="applicationModal" modal-title="IP Protection Application">
             <form class="mt-3" wire:submit.prevent="saveForm">
                 <x-input-label>
@@ -77,7 +75,8 @@
             </svg>
             Update
         </x-secondary-button>
-    </div>
+    </x-slot:button>
+
 
     @if($technology->ip_applications->count()>0)
         <ul class="space-y-2 indent-0  mt-5">
@@ -108,7 +107,7 @@
         </div>
 
     @endif
-</div>
+</x-card-panel>
 @push('scripts')
     <script type="text/javascript">
         document.addEventListener('livewire:load', function () {

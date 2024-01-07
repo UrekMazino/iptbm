@@ -156,7 +156,7 @@ class EditDetails extends Component
             ],
             'businessRegistration' => [
                 'required',
-                'in:Sole Not yet registered,SEC-registered,DTI-registered'
+                'in:Not yet registered,SEC-registered,DTI-registered'
             ],
             'commercialForIncubation' => [
                 'required',
