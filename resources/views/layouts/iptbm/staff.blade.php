@@ -548,8 +548,10 @@
         @yield('content')
     </main>
 
-</div>
 
+
+</div>
+<x-dev-footer/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 @yield('script')

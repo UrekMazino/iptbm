@@ -23,9 +23,7 @@
         </nav>
         <div class="px-4 mt-10">
 
-            <div class="text-gray-700 dark:text-gray-400 font-bold text-2xl mb-3">
-                Technology Deployment Details
-            </div>
+
             <div
                 class="border shadow-lg rounded-lg border-gray-300 dark:border-gray-600  mb-4 text-gray-300 bg-gray-300 dark:text-gray-400 dark:bg-gray-800 relative overflow-hidden">
                 <div class="grid grid-cols-1 relative overflow-hidden rounded-lg py-24">
@@ -53,13 +51,9 @@
                 </div>
             </div>
 
-            <div class="inline-flex items-center justify-center mt-10 w-full">
-                <hr class="w-64 h-1  bg-gray-600 border-0 dark:bg-gray-200">
-                <span class="px-3 font-medium text-gray-900  bg-gray-200  dark:text-white dark:bg-gray-900">
-                    Details
-                </span>
-                <hr class="w-64 h-1  bg-gray-600 border-0 dark:bg-gray-200">
-            </div>
+            <x-header-label class="mt-10">
+                Technology Deployment Details
+            </x-header-label>
             <livewire:iptbm.staff.deployment.deployment-tech-details :deployment="$tech"/>
 
         </div>

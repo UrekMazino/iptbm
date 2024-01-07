@@ -44,7 +44,6 @@
                                               stroke-width="2"
                                               d="M3.656 12.115a3 3 0 0 1 5.682-.015M13 5h3m-3 3h3m-3 3h3M2 1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm6.5 4.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/>
                                     </svg>
-                                    All
                                     Profiles
                                 </div>
 
@@ -70,12 +69,12 @@
 
                                     <li>
                                         <a href="{{route("iptbm.staff.ipProfile")}}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()=="iptbm.staff.ipProfile") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">My
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()=="iptbm.staff.ipProfile" || Route::currentRouteName()=="iptbm.staff.project.edit") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">My
                                             Profile</a>
                                     </li>
                                     <li>
                                         <a href="{{route("iptbm.staff.allProfile")}}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="iptbm.staff.allProfile") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="iptbm.staff.allProfile" || Route::currentRouteName()=="iptbm.staff.viewProfile") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All
                                             Profiles</a>
                                     </li>
 
@@ -127,7 +126,7 @@
                                         <path
                                             d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64c-35.3 0-64 28.7-64 64H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64v56H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64v56H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64c0 35.3 28.7 64 64 64v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448h56v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448h56v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448c35.3 0 64-28.7 64-64h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448V280h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448V176h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448c0-35.3-28.7-64-64-64V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H280V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H176V24zM160 128H352c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32zm192 32H160V352H352V160z"/>
                                     </svg>
-                                    Technology
+                                    Technologies
                                 </div>
 
                                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
@@ -152,12 +151,12 @@
 
                                     <li>
                                         <a href="{{route("iptbm.staff.technology")}}"
-                                           class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  dark:hover:bg-gray-600 hover:bg-gray-200  @if(Route::currentRouteName()=="iptbm.staff.technology") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">My
+                                           class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  dark:hover:bg-gray-600 hover:bg-gray-200  @if(Route::currentRouteName()=="iptbm.staff.technology" || Route::currentRouteName()=="iptbm.staff.technology.show" || Route::currentRouteName()=="iptbm.staff.technology.description") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">My
                                             Technologies</a>
                                     </li>
                                     <li>
                                         <a href="{{route("iptbm.staff.technology.all")}}"
-                                           class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="iptbm.staff.technology.all") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All
+                                           class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="iptbm.staff.technology.all"|| Route::currentRouteName()=="iptbm.staff.tech.public-view") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All
                                             Technologies</a>
                                     </li>
 

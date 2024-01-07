@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Iptbm\Staff\Adopter;
 
 use App\Models\iptbm\IptbmComercialAdopterContact;
+use App\Rules\iptbm\MaxContact;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -97,21 +98,65 @@ class ContactDetails extends Component
             'mobileModel' => [
                 'required',
                 'digits:11',
+
+                new MaxContact(
+                    3,
+                    'iptbm_comercial_adopter_contacts',
+                    'contact',
+                    'type',
+                    'mobile',
+                    'commercial_adoptor_id',
+                    $this->tech->id,
+                    'Mobile number was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_comercial_adopter_contacts', 'contact')->where('commercial_adoptor_id', $this->tech->id)
             ],
             'phoneModel' => [
                 'required',
                 'min_digits:7',
+                'max_digits:10',
+                new MaxContact(
+                    3,
+                    'iptbm_comercial_adopter_contacts',
+                    'contact',
+                    'type',
+                    'phone',
+                    'commercial_adoptor_id',
+                    $this->tech->id,
+                    'Phone number was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_comercial_adopter_contacts', 'contact')->where('commercial_adoptor_id', $this->tech->id)
             ],
             'faxModel' => [
                 'required',
                 'min_digits:7',
+                'max_digits:10',
+                new MaxContact(
+                    3,
+                    'iptbm_comercial_adopter_contacts',
+                    'contact',
+                    'type',
+                    'fax',
+                    'commercial_adoptor_id',
+                    $this->tech->id,
+                    'Fax number was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_comercial_adopter_contacts', 'contact')->where('commercial_adoptor_id', $this->tech->id)
             ],
             'emailModel' => [
                 'required',
                 'email',
+                'max:60',
+                new MaxContact(
+                    3,
+                    'iptbm_comercial_adopter_contacts',
+                    'contact',
+                    'type',
+                    'email',
+                    'commercial_adoptor_id',
+                    $this->tech->id,
+                    'Email was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_comercial_adopter_contacts', 'contact')->where('commercial_adoptor_id', $this->tech->id)
             ]
         ];

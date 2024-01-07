@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Iptbm\Staff\Deployment;
 
 use App\Models\iptbm\IptbmDeploymentAdoptorContact;
+use App\Rules\iptbm\MaxContact;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -147,28 +148,69 @@ class DeploymentTechDetails extends Component
                 'required',
                 'numeric',
                 'digits:11',
+                new MaxContact(
+                    3,
+                    'iptbm_deployment_adoptor_contacts',
+                    'contact',
+                    'type',
+                    'mobile',
+                    'deployment_adopters_id',
+                    $this->deployment->id,
+                    'Mobile number was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
                     ->where('deployment_adopters_id', $this->deployment->id)
             ],
             'phoneModel' => [
                 'required',
                 'numeric',
-                'min_digits:6',
-                'max_digits:8',
+                'min_digits:7',
+                'max_digits:10',
+                new MaxContact(
+                    3,
+                    'iptbm_deployment_adoptor_contacts',
+                    'contact',
+                    'type',
+                    'phone',
+                    'deployment_adopters_id',
+                    $this->deployment->id,
+                    'Phone number was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
                     ->where('deployment_adopters_id', $this->deployment->id)
             ],
             'faxModel' => [
                 'required',
                 'numeric',
-                'min_digits:6',
-                'max_digits:8',
+                'min_digits:7',
+                'max_digits:10',
+                new MaxContact(
+                    3,
+                    'iptbm_deployment_adoptor_contacts',
+                    'contact',
+                    'type',
+                    'fax',
+                    'deployment_adopters_id',
+                    $this->deployment->id,
+                    'Fax number was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
                     ->where('deployment_adopters_id', $this->deployment->id)
             ],
             'emailModel' => [
                 'required',
                 'email',
+                'max:60',
+                new MaxContact(
+                    3,
+                    'iptbm_deployment_adoptor_contacts',
+                    'contact',
+                    'type',
+                    'email',
+                    'deployment_adopters_id',
+                    $this->deployment->id,
+                    'Email was already reached its maximum limit.'
+                ),
                 Rule::unique('iptbm_deployment_adoptor_contacts', 'contact')
                     ->where('deployment_adopters_id', $this->deployment->id)
             ],
