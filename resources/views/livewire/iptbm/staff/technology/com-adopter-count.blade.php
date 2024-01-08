@@ -1,7 +1,7 @@
 <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
 
     <x-item-header>
-        Commercialization Adopte
+        Commercialization Adopter
     </x-item-header>
     <ul class="mb-2">
         @foreach($adopter->take(5) as $val)

@@ -28,6 +28,7 @@ class AccountsController extends Controller
     public function index(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
         $users = User::with('profile', 'profile.agency', 'profile.agency.region')
+            ->whereHas('profile')
             ->get();
 
         return view('admin.iptbm.add-record.accounts', [

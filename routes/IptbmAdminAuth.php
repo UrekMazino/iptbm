@@ -15,6 +15,7 @@ Route::middleware(['guest', 'guest:admin'])->group(function () {
     Route::get('admin/login', [AuthenticatedSessionController::class, 'create'])
         ->name('admin.iptbm.login');
 
+
     Route::post('admin/login', [AuthenticatedSessionController::class, 'store']);
 
     Route::get('admin/forgot-password', [PasswordResetLinkController::class, 'create'])

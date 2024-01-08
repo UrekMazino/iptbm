@@ -109,15 +109,15 @@ class AgencyDetails extends Component
 
     public function saveAgencyHead()
     {
-        $this->agency->head->head = $this->agencyHead;
-        $this->agency->head->save();
+        $this->agency->head = $this->agencyHead;
+        $this->agency->save();
         $this->emit('reloadPage');
     }
 
     public function saveDesignation()
     {
-        $this->agency->head->designation = $this->designation;
-        $this->agency->head->save();
+        $this->agency->designation = $this->designation;
+        $this->agency->save();
         $this->emit('reloadPage');
     }
 

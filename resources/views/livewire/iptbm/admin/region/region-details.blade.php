@@ -134,7 +134,7 @@
 
                 </ul>
             </x-card-panel>
-            
+
         </div>
 
     </div>
