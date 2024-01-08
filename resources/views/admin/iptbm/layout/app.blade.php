@@ -494,6 +494,7 @@
     </main>
 
 </div>
+<x-dev-footer/>
 @yield('script')
 @stack('scripts')
 @livewireScripts

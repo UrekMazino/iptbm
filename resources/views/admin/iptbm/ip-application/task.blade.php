@@ -82,16 +82,22 @@
                                 aria-controls="contacts" aria-selected="false">Status
                             </button>
                         </li>
+                        <li role="presentation">
+                            <button
+                                class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="agent-tab" data-tabs-target="#agent" type="button" role="tab"
+                                aria-controls="contacts" aria-selected="false">Agents
+                            </button>
+                        </li>
                     </ul>
                 </div>
                 <div id="default-tab-content">
                     <div class="hidden " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <x-card class="shadow-lg">
-
+                        <x-card-panel title="Application Task">
                             <div class="space-y-4">
 
                                 <ol class="relative text-gray-500 border-l border-gray-400 dark:border-gray-700 dark:text-gray-400">
-                                    @foreach($stages as $key=>$collection)
+                                    @forelse($stages as $key=>$collection)
                                         <li class="mb-10 ml-6">
                                         <span
                                             class="absolute flex items-center justify-center w-6 h-6 bg-gray-400 rounded-full -left-3 ring-4 ring-gray-200 dark:ring-gray-900 dark:bg-gray-950">
@@ -99,7 +105,7 @@
                                         </span>
                                             <h3 class="font-bold leading-tight text-gray-700 dark:text-gray-300">{{$key}}</h3>
                                             <ul class="mt-1">
-                                                @foreach($collection as $tasks)
+                                                @forelse($collection as $tasks)
                                                     <li>
                                                         <p class="text-sm">
 
@@ -126,32 +132,38 @@
 
                                                         </p>
                                                     </li>
-                                                @endforeach
+                                                @empty
+                                                    No data available
+                                                @endforelse
                                             </ul>
 
                                         </li>
-                                    @endforeach
+                                    @empty
+                                        No data available
+                                    @endforelse
+
                                 </ol>
 
 
                             </div>
-                        </x-card>
+                        </x-card-panel>
+
                     </div>
                     <div class="hidden " id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                        <x-card class="mt-5 shadow-lg">
-                            <x-item-header>
-                                Abstract
-                            </x-item-header>
+                        <x-card-panel title=" Abstract">
                             <div class="">
-                                {{$task->abstract}}
+                                @if($task->abstract)
+                                    {{$task->abstract}}
+                                @else
+                                    No data available
+                                @endif
+
                             </div>
-                        </x-card>
+                        </x-card-panel>
+
                     </div>
-                    <div class="hidden " id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                        <x-card class="shadow-lg">
-                            <x-item-header>
-                                Total Cost of IP application service
-                            </x-item-header>
+                    <div crlass="hidden " id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                        <x-card-panel title="Total Cost of IP application service">
                             <ul class="mt-2 divide-y divide-gray-400 dark:divide-gray-600">
                                 @foreach($task->expenses as $expenses)
                                     <li class="py-2">
@@ -169,39 +181,38 @@
                                     </x-input-label>
                                 </li>
                             </ul>
-                        </x-card>
+                        </x-card-panel>
+
                     </div>
                     <div class="hidden " id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-                        <x-card class="shadow-lg space-y-4">
-                            <div class="space-y-1">
-                                <x-item-header>
-                                    Status of Protection
-                                </x-item-header>
-                                <div>
-                                    @if($task->protectionStatus)
-                                        {{$task->protectionStatus->protection_status}}
-                                    @endif
-                                </div>
+                        <x-card-panel title="Status of Protection">
+                            <div>
+                                @if($task->protectionStatus)
+                                    {{$task->protectionStatus->protection_status}}
+                                @else
+                                    No data available
+                                @endif
                             </div>
-                            <div class="space-y-1">
-                                <x-item-header>
-                                    Patent Agent
-                                </x-item-header>
-                                <div>
-                                    <ul class="space-y-2">
-                                        @foreach($task->patent_agent as $agent)
-                                            <li>
-                                                <x-input-label :value="$agent->name"/>
-                                                <div class="text-xs">
-                                                    {{$agent->address}}
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                        </x-card-panel>
 
-                                </div>
-                            </div>
-                        </x-card>
+                    </div>
+                    <div crlass="hidden " id="agent" role="tabpanel" aria-labelledby="agent-tab">
+                        <x-card-panel title="Agent">
+                            <ul class="space-y-2">
+                                @forelse($task->patent_agent as $agent)
+                                    <li>
+                                        <x-input-label :value="$agent->name"/>
+                                        <div class="text-xs">
+                                            {{$agent->address}}
+                                        </div>
+                                    </li>
+                                @empty
+                                    No data available
+                                @endforelse
+
+                            </ul>
+                        </x-card-panel>
+
                     </div>
                 </div>
 

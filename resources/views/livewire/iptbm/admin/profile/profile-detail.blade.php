@@ -1,9 +1,6 @@
-<div class="grid grid-cols-1 md:grid-cols-2  mt-4 gap-4">
-    <div class="space-y-4">
-        <x-card class="shadow-lg">
-            <x-item-header>
-                Profile Details
-            </x-item-header>
+<div class="grid grid-cols-1 md:grid-cols-5  mt-4 gap-x-14">
+    <div class="space-y-8 md:col-span-3">
+        <x-card-panel title=" Profile Details">
             <div class="mt-4 space-y-4">
                 <div>
                     <div class="text-lg text-gray-700 dark:text-gray-300">
@@ -48,11 +45,9 @@
                     Year Established
                 </div>
             </div>
-        </x-card>
-        <x-card class="shadow-lg">
-            <x-item-header>
-                Region Details
-            </x-item-header>
+        </x-card-panel>
+
+        <x-card-panel title=" Region Details">
             <div class="mt-4 space-y-4">
                 <div>
                     <div class="text-lg text-gray-700 dark:text-gray-300">
@@ -85,11 +80,8 @@
                     Consortium Director
                 </div>
             </div>
-        </x-card>
-        <x-card class="shadow-lg">
-            <x-item-header>
-                Agency Details
-            </x-item-header>
+        </x-card-panel>
+        <x-card-panel title="Agency Details">
             <div class="mt-4 space-y-4">
                 <div>
                     <div class="text-lg text-gray-700 dark:text-gray-300">
@@ -111,13 +103,11 @@
                 </div>
 
             </div>
-        </x-card>
+        </x-card-panel>
+
     </div>
-    <div class="space-y-4">
-        <x-card class="shadow-lg">
-            <x-item-header>
-                IP-TBM Projects
-            </x-item-header>
+    <div class="space-y-4 md:col-span-2">
+        <x-card-panel title="IP-TBM Projects">
             <div class="mt-4 space-y-4">
                 <ul>
                     @foreach($profile->projects as $project)
@@ -158,8 +148,9 @@
                     @endforeach
                 </ul>
             </div>
-        </x-card>
-        <x-card class="shadow-lg">
+        </x-card-panel>
+
+        <x-card-panel>
             <div class="space-y-4">
                 <x-item-header>
                     IP Policy :
@@ -187,11 +178,9 @@
                     @endif
                 </x-item-header>
             </div>
-        </x-card>
-        <x-card class="shadow-lg">
-            <x-item-header>
-                Contact Details
-            </x-item-header>
+        </x-card-panel>
+
+        <x-card-panel title="Contact Details">
             <div class="space-y-2 mt-4">
                 @if($profile->contact->where('contact_type','mobile')->count()>0)
 
@@ -250,7 +239,9 @@
                     </div>
                 @endif
             </div>
-        </x-card>
+        </x-card-panel>
+
+
     </div>
 
 </div>

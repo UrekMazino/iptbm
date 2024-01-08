@@ -384,6 +384,7 @@
 
                 </div>
                 <div>
+
                     <x-pop-modal name="updateBrfDes" class="max-w-xl" static="true" modal-title="Update Company Description">
                         <form class="space-y-6" wire:submit.prevent="saveCompDescription">
                             <div class="space-y-4">
@@ -401,6 +402,7 @@
                             </x-submit-button>
                         </form>
                     </x-pop-modal>
+
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300 border border-gray-200 dark:border-gray-600 p-2 rounded">
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button  data-modal-toggle="updateBrfDes" data-modal-target="updateBrfDes" class="text-sky-500 dark:text-sky-500 gap-2" >

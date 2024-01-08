@@ -30,7 +30,7 @@
             </nav>
 
         </nav>
-        <div class="px-0 md:px-4 w-full mt-5 ">
+        <div class="px-0 md:px-4 w-full mt-5 space-y-8 ">
             <x-card class="shadow-lg">
                 <div class="grid grid-cols-1 md:grid-cols-3">
                     <div>
@@ -65,8 +65,8 @@
             <x-header-label class="mt-10 mb-4">
                 Technology Details
             </x-header-label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-x-14">
+                <div class="space-y-8 md:col-span-3">
                     <x-card class="shadow-lg space-y-10">
                         <div>
                             <x-item-header>
@@ -158,90 +158,126 @@
                         </ul>
                     </x-card>
                 </div>
-                <div>
-                    <x-card class="shadow-lg space-y-10">
-                        <div>
-                            <x-item-header>
-                                IP Protection Application
-                            </x-item-header>
-                            <ul class="mt-2">
-                                @foreach($technology->ip_applications as $application)
-                                    <li>
-                                        <a href="{{route("iptbm.admin.ip-application-report.task",['task'=>$application->ip_type->id])}}"
-                                           class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
-                                            {{$application->ip_type->name}}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div>
-                            <x-item-header>
-                                Technology Transfer Plan
-                            </x-item-header>
-                            <ul class="space-y-4 mt-2">
+                <div class="md:col-span-2 space-y-8">
+                    <x-card-panel title="IP Protection Application">
+                        <ul class="mt-2">
+                            @forelse($technology->ip_applications as $application)
                                 <li>
+                                    <a href="{{route("iptbm.admin.ip-application-report.task",['task'=>$application->ip_type->id])}}"
+                                       class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
+                                        {{$application->ip_type->name}}
+                                    </a>
+                                </li>
+                            @empty
+                                No data available
+                            @endforelse
+
+                        </ul>
+                    </x-card-panel>
+                    <x-card-panel title="Technology Transfer Plan">
+                        <ul class="space-y-4 mt-2">
+                            <li>
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
                                     <x-input-label value="Pre Commercialization"/>
-                                    <ul class="list-disc">
+                                    <ul class="list-disc space-y-4">
                                         @forelse($technology->pre_commercialization as $precom)
                                             <li class="ms-4">
-                                                {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                <div>
+                                                    <div class="font-medium">
+                                                        {{$technology->title}}
+                                                    </div>
+                                                    <div class="text-xs">
+                                                        {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                    </div>
+                                                </div>
                                             </li>
                                         @empty
                                             No data available
                                         @endforelse
                                     </ul>
-                                </li>
-                                <li>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
                                     <x-input-label value="Commercialization Adopter"/>
-                                    <ul class="list-disc">
+                                    <ul class="list-disc space-y-4">
                                         @forelse($technology->commercial_adopters as $precom)
                                             <li class="ms-4">
-                                                {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                <div>
+                                                    <div class="font-medium">
+                                                        {{$technology->title}}
+                                                    </div>
+                                                    <div class="text-xs">
+                                                        {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                    </div>
+                                                </div>
                                             </li>
                                         @empty
                                             No data available
                                         @endforelse
                                     </ul>
-                                </li>
-                                <li>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
                                     <x-input-label value="Deployment"/>
-                                    <ul class="list-disc">
+                                    <ul class="list-disc space-y-4">
                                         @forelse( $technology->deployment as $precom)
                                             <li class="ms-4">
-                                                {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                <div>
+                                                    <div class="font-medium">
+                                                        {{$technology->title}}
+                                                    </div>
+                                                    <div class="text-xs">
+                                                        {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                    </div>
+                                                </div>
+
                                             </li>
                                         @empty
                                             No data available
                                         @endforelse
 
                                     </ul>
-                                </li>
-                                <li>
-                                    <x-input-label value="Deployment"/>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                                    <x-input-label value="Extension"/>
                                     <ul class="list-disc">
                                         @forelse( $technology->extension as $precom)
                                             <li class="ms-4">
-                                                {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                <div>
+                                                    <div>
+                                                        {{$technology->title}}
+                                                    </div>
+                                                    <div class="text-xs">
+                                                        {{\Carbon\Carbon::make($precom->created_at)->format('F-d-Y')}}
+                                                    </div>
+                                                </div>
+
                                             </li>
                                         @empty
                                             No data available
                                         @endforelse
 
                                     </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
+                                </div>
 
-                        </div>
-                    </x-card>
+                            </li>
+                        </ul>
+                    </x-card-panel>
+
                 </div>
             </div>
-            <x-header-label class="mt-10 mb-4">
-                Full Technology Description
-            </x-header-label>
-            <div class="py-4">
+
+
+            <div>
+                <x-header-label class="mt-20 mb-4">
+                    Full Technology Description
+                </x-header-label>
                 <x-item-header>
                     Technology Photos
                 </x-item-header>
@@ -296,7 +332,8 @@
                 </x-card>
 
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
                 <div>
                     <x-card>
                         <div class="space-y-4">
@@ -445,57 +482,66 @@
 
                     </x-card>
                 </div>
-                <div class="space-y-4">
-                    <x-card>
-                        <x-item-header>
-                            Adopter
-                        </x-item-header>
-                        <ul class="mt-5 list-disc ps-4">
-                            @foreach($technology->full_description->adoptors as $adopter)
+                <div class="space-y-8">
+                    <x-card-panel title="Adopter">
+                        <ul class=" list-disc ps-4">
+                            @forelse($technology->full_description->adoptors as $adopter)
                                 <li class="">
                                     {{$adopter->adoptor_name}}
                                 </li>
-                            @endforeach
+                            @empty
+                                No data available
+                            @endforelse
+
                         </ul>
-                    </x-card>
-                    <x-card>
-                        <x-item-header>
-                            Other Documents
-                        </x-item-header>
-                        <ul class="mt-5 divide-y divide-gray-300 dark:divide-gray-600">
-                            @foreach($technology->full_description->other_documents as $document)
+                    </x-card-panel>
+                    <x-card-panel title="Other Documents">
+                        <ul class="divide-y divide-gray-300 dark:divide-gray-600">
+                            @forelse($technology->full_description->other_documents as $document)
                                 <li class="py-2">
                                     <x-pop-modal class="max-w-6xl" name="openFile-{{$document->id}}">
                                         <iframe class="w-full aspect-video"
                                                 src="{{\Illuminate\Support\Facades\Storage::url($document->file)}}"></iframe>
                                     </x-pop-modal>
                                     <button data-modal-toggle="openFile-{{$document->id}}"
-                                            class="hover:text-sky-600 transition hover:underline duration-300">
+                                            class="text-sky-600 transition hover:underline duration-300">
                                         {{$document->file_description}}
                                     </button>
                                 </li>
-                            @endforeach
+                            @empty
+                                No data available
+                            @endforelse
                         </ul>
-                    </x-card>
-                    <x-card>
-                        <x-item-header>
-                            Technology Photos
-                        </x-item-header>
-                        <ul class="mt-5 divide-y divide-gray-300 dark:divide-gray-600">
-                            @foreach($technology->full_description->other_documents as $document)
-                                <li class="py-2">
-                                    <x-pop-modal class="max-w-6xl" name="openFile-{{$document->id}}">
-                                        <iframe class="w-full aspect-video"
-                                                src="{{\Illuminate\Support\Facades\Storage::url($document->file)}}"></iframe>
-                                    </x-pop-modal>
-                                    <button data-modal-toggle="openFile-{{$document->id}}"
-                                            class="hover:text-sky-600 transition hover:underline duration-300">
-                                        {{$document->file_description}}
-                                    </button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </x-card>
+                    </x-card-panel>
+                    <x-card-panel title="Technology Photos">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            @forelse($technology->full_description->technology_photos as $photo)
+                                <x-pop-modal class="max-w-2xl group relative overflow-hidden" name="techPhotoView-{{$photo->id}}">
+                                    <div class=" aspect-square w-full h-full flex justify-center items-center ">
+                                        <img class="max-w-full w-auto   max-h-full h-auto" alt="technology photo" src="{{Storage::url($photo->file)}}">
+
+                                    </div>
+                                    @if($photo->file_description)
+                                        <div class="group-hover:opacity-0 transition duration-300 absolute bottom-0 rounded-b-lg left-0 w-full py-4 bg-gray-500 dark:bg-gray-900">
+                                            <div class="p-2">
+                                                {{$photo->file_description}}
+                                            </div>
+                                        </div>
+                                    @endif
+                                </x-pop-modal>
+                                <div data-modal-toggle="techPhotoView-{{$photo->id}}" data-modal-target="techPhotoView-{{$photo->id}}" class="cursor-pointer p-2 group overflow-hidden transition duration-300 hover:shadow-lg shadow-gray-900 dark:shadow-gray-950 aspect-square border rounded border-gray-200 dark:border-gray-600">
+
+                                    <div class="w-full group-hover:scale-110 h-full transition duration-300 flex justify-center items-center">
+                                        <img src="{{Storage::url($photo->file)}}" class="max-w-full  w-auto max-h-full h-auto">
+                                    </div>
+                                </div>
+                            @empty
+                                No data available
+                            @endforelse
+
+                        </div>
+                    </x-card-panel>
+
                 </div>
             </div>
         </div>

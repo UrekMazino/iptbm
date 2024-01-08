@@ -62,87 +62,100 @@
             </x-card>
 
             <div class="mt-5 space-y-4  mt-10">
-                <x-header-label class="underline underline-offset-8">
-                    {{$task->ip_alert->ip_type->name}}
-                </x-header-label>
-                <x-item-header class="indent-3">
-                    {{$task->stage->stage_name}}
-                </x-item-header>
-                <x-card class="shadow-lg">
-                    <x-item-header>
-                        Notes / Description
-                    </x-item-header>
-                    <div>
+                <div>
+                    <x-header-label class="underline underline-offset-8">
+                        {{$task->ip_alert->ip_type->name}}
+                    </x-header-label>
+                  <div class="text-gray-600 dark:text-gray-400 indent-2">
+                      {{$task->stage->stage_name}}
+                  </div>
+                </div>
+                <x-card-panel title="Notes / Description">
+                    <div class="bg-white p-4 rounded">
                         {!! $task->description !!}
                     </div>
-                </x-card>
+                    <x-slot:footer>
+                        <div class="text-xs italic">
+                            Due to font formatting, the background will be fixed to white
+                        </div>
+                    </x-slot:footer>
+                </x-card-panel>
+
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <x-card class="shadow-lg space-y-4">
-                            <div>
-                                <x-item-header>
-                                    Personnel In-charge
-                                </x-item-header>
-                                <ul>
-                                    @foreach($task->personnel as $person)
-                                        <li>
+                        <x-card-panel>
+                            <div class="space-y-8">
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                                    <x-item-header>
+                                        Personnel In-charge
+                                    </x-item-header>
+                                    <ul>
+                                        @forelse($task->personnel as $person)
                                             <x-input-label :value="$person->name"/>
                                             {{$person->email}}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div>
-                                <x-item-header>
-                                    Unit In-charge
-                                </x-item-header>
-                                <ul>
-                                    @foreach($task->units as $unit)
-                                        <li>
-                                            <x-input-label :value="$unit->name"/>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div>
-                                <x-item-header>
-                                    Priority
-                                </x-item-header>
-                                <div>
-                                    {{$task->priority}}
+                                        @empty
+                                            No data available
+                                        @endforelse
+
+                                    </ul>
+                                </div>
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                                    <x-item-header>
+                                        Unit In-charge
+                                    </x-item-header>
+                                    <ul>
+                                        @forelse($task->units as $unit)
+                                            <li>
+                                                <x-input-label :value="$unit->name"/>
+                                            </li>
+                                        @empty
+                                            No data available
+                                        @endforelse
+
+                                    </ul>
+                                </div>
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                                    <x-item-header>
+                                        Priority
+                                    </x-item-header>
+                                    <div>
+                                        @if($task->priority)
+                                            {{$task->priority}}
+                                        @else
+                                            No data available
+                                        @endif
+
+                                    </div>
+
+                                </div>
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                                    <x-item-header>
+                                        Deadline
+                                    </x-item-header>
+                                    <div>
+                                        {{\Carbon\Carbon::make($task->deadline)->format('F-d-Y h:i:s a - l')}}
+                                    </div>
                                 </div>
 
-                            </div>
-                            <div>
-                                <x-item-header>
-                                    Deadline
-                                </x-item-header>
-                                <div>
-                                    {{\Carbon\Carbon::make($task->deadline)->format('F-d-Y h:i:s a - l')}}
+                                <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                                    <x-item-header>
+                                        Deadline
+                                    </x-item-header>
+                                    <div>
+                                        {{$task->task_status}}
+                                    </div>
                                 </div>
                             </div>
+                        </x-card-panel>
 
-                            <div>
-                                <x-item-header>
-                                    Deadline
-                                </x-item-header>
-                                <div>
-                                    {{$task->task_status}}
-                                </div>
-                            </div>
-                        </x-card>
                     </div>
 
                     <div>
-                        <x-card class="shadow-lg">
-                            <x-item-header>
-                                Attachments
-                            </x-item-header>
+                        <x-card-panel title=" Attachments">
                             <ul>
-                                @foreach($task->attachments as $attachment)
+                                @forelse($task->attachments as $attachment)
                                     <li>
-
-
                                         @if($attachment->type==='pdf')
                                             <x-pop-modal name="opentaskAtt-{{$attachment->id}}" class="max-w-6xl">
                                                 <iframe class="w-full aspect-video"
@@ -156,7 +169,7 @@
                                             </x-pop-modal>
                                         @endif
                                         <button data-modal-toggle="opentaskAtt-{{$attachment->id}}"
-                                                class="inline-flex items-center justify-center p-2 text-base font-medium text-gray-500 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                                class="inline-flex items-center justify-center p-2 text-base font-medium text-sky-700 rounded-lg bg-gray-50 hover:text-gray-900 hover:bg-gray-100 dark:text-sky-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
                                             <div class="justify-start flex items-center gap-2">
                                                 <div>
                                                     @if($attachment->type==='pdf')
@@ -187,9 +200,13 @@
 
 
                                     </li>
-                                @endforeach
+                                @empty
+                                    No data available
+                                @endforelse
+
                             </ul>
-                        </x-card>
+                        </x-card-panel>
+
                     </div>
                 </div>
             </div>

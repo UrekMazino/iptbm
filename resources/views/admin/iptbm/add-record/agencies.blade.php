@@ -100,7 +100,7 @@
                                     {{$agency->region->name}}
                                 </td>
                                 <td>
-                                    {{$agency->head->head}}
+                                    {{$agency->head}}
                                 </td>
                                 <td>
                                     @if($agency->profiles)

@@ -492,7 +492,7 @@
                             <div class="px-4">
 
                                 <div class="text-lg font-medium text-700 dark:text-gray-200">
-                                    {{$agency->head->head}}
+                                    {{$agency->head}}
                                 </div>
                             </div>
                             <div class="text-lg px-4">
@@ -528,7 +528,7 @@
                         <div class="divide-y divide-gray-400 dark:divide-gray-600 p-3">
                             <div class="px-4">
                                 <div class="text-lg font-medium text-700 dark:text-gray-200">
-                                    {{$agency->head->designation}}
+                                    {{$agency->designation}}
                                 </div>
                             </div>
                             <div class="text-lg px-4">
@@ -575,7 +575,7 @@
 
                             </div>
                             <div class="ms-5 mt-1">
-                                {{$agency->head->email}}
+                                {{$agency->contact_email}}
                             </div>
                         </div>
                         <div>
@@ -611,7 +611,7 @@
 
                             </div>
                             <div class="ms-5 mt-1">
-                                {{$agency->head->tel}}
+                                {{$agency->contact_phone}}
                             </div>
                         </div>
                         <div>
@@ -647,7 +647,7 @@
 
                             </div>
                             <div class="ms-5 mt-1">
-                                {{$agency->head->fax}}
+                                {{$agency->contact_fax}}
                             </div>
                         </div>
                         <div>
@@ -684,7 +684,7 @@
 
                             </div>
                             <div class="ms-5 mt-1">
-                                {{$agency->head->mobile}}
+                                {{$agency->contact_mobile}}
                             </div>
                         </div>
                     </div>

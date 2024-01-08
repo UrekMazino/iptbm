@@ -23,7 +23,7 @@ class AgenciesController extends Controller
 
     public function index(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        $agencies = IptbmAgency::with('region', 'head', 'profiles.users')->get();
+        $agencies = IptbmAgency::with('region',  'profiles.users')->get();
         return view('admin.iptbm.add-record.agencies', compact('agencies'));
     }
 
@@ -86,7 +86,7 @@ class AgenciesController extends Controller
 
     public function view_agency(IptbmAgency $agency)
     {
-        $agency->load('head', 'region', 'contacts', 'profiles.users');
+        $agency->load( 'region', 'contacts', 'profiles.users');
         return view('admin.iptbm.add-record.view-agency', compact('agency'));
     }
 
