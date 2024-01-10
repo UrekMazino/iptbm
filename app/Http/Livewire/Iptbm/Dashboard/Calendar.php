@@ -12,7 +12,7 @@ class Calendar extends Component
 
     public function render()
     {
-        $this->task = IptbmIpAlertTask::with('stage', 'ip_alert.technology.iptbmprofiles')->whereHas('ip_alert.technology', function ($query) {
+        $this->task = IptbmIpAlertTask::with('stage', 'ip_alert.technology.iptbmprofiles')->whereHas('ip_alert.technology.iptbmprofiles', function ($query) {
             $query->where('id', Auth::user()->profile->id);
         })->get()->toArray();
 
