@@ -76,8 +76,8 @@
                                             Profile</a>
                                     </li>
                                     <li>
-                                        <a href="{{route("iptbm.staff.allProfile")}}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="iptbm.staff.allProfile") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All
+                                        <a href="{{route("abh.staff.profile.all_profile")}}"
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="abh.staff.profile.all_profile"||Route::currentRouteName()=="abh.staff.profile.public-view") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All
                                             Profiles</a>
                                     </li>
 

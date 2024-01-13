@@ -30,22 +30,26 @@ class AbhProfile extends Model
 
     public function contacts_mobiles(): HasMany
     {
-        return $this->hasMany(ProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'mobile');
+        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'mobile');
     }
 
+    public function contact(): HasMany
+    {
+        return $this->hasMany(AbhProfileContact::class,'abh_profiles_id','id');
+    }
     public function contacts_phones(): HasMany
     {
-        return $this->hasMany(ProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'phone');
+        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'phone');
     }
 
     public function contacts_faxes(): HasMany
     {
-        return $this->hasMany(ProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'fax');
+        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'fax');
     }
 
     public function contacts_emails(): HasMany
     {
-        return $this->hasMany(ProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'email');
+        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'email');
     }
 
     public function projects(): HasMany

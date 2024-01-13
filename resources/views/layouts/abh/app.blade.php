@@ -7,8 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}
-        @yield('title')
+    <title>
+
+        @if(isset($pagetitle))
+             {{$pagetitle}} |
+        @endif
+            {{ config('app.name', 'Laravel') }}
     </title>
 
     <link rel="shortcut icon" href="{{ asset('assets/logo/iptbm.ico') }}">
@@ -550,7 +554,7 @@
     </main>
 
 </div>
-
+<x-dev-footer/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 @yield('script')

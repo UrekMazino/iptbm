@@ -41,7 +41,7 @@ class AbhProfileProject extends Component
 
 
 
-        return redirect(route("abh.staff.profile"));
+        $this->emit('reloadPage');
 
     }
 

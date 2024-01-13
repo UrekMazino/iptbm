@@ -17,10 +17,10 @@ class AbhAgencyContactDetails extends Component
     public $label;
     public $type;
     public $contact;
-    public function deleteContact(AbhAgencyContact $contact): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function deleteContact(AbhAgencyContact $contact): void
     {
         $contact->delete();
-        return redirect(route("abh.staff.profile"));
+        $this->emit('reloadPage');
     }
     public $costumMesg=[
             'mobile'=>'Mobile number was already reached its maximum limit.',
@@ -92,14 +92,14 @@ class AbhAgencyContactDetails extends Component
     }
 
 
-    public function saveContact(): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function saveContact(): void
     {
         $this->validate();
         $this->agency->contacts()->save(new AbhAgencyContact([
             'type'=>$this->type,
             'contact'=>$this->contact
         ]));
-        return redirect(route("abh.staff.profile"));
+        $this->emit('reloadPage');
     }
     public function rules()
     {

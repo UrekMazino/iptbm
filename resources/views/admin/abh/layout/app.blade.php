@@ -60,7 +60,7 @@
     {{------------
     @include('admin.iptbm.layout.sidebar')
     ---------------}}
-    <livewire:iptbm.admin.side-bar/>
+    <livewire:abh.admin.side-bar/>
     <main class=" md:ml-64 h-auto pb-5">
         <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 ">
             <div class="flex flex-wrap justify-between items-center">
@@ -494,6 +494,7 @@
     </main>
 
 </div>
+<x-dev-footer/>
 @yield('script')
 @stack('scripts')
 @livewireScripts

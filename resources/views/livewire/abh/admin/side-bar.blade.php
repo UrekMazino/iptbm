@@ -9,7 +9,7 @@
 
             <li>
                 <div class="text-center font-bold text-lg mb-3 text-gray-600 dark:text-white ">
-                    IP-TBM MS
+                    ABH MS
                 </div>
                 <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                 <div
@@ -124,6 +124,7 @@
                     Technologies
                 </a>
             </li>
+           {{-------------
             <li>
                 <div class="divide-y divide-slate-200 ">
                     <div x-data="{expanded: @if(Request::segment(4)=="ip-application-report") true @else false @endif}"
@@ -189,6 +190,8 @@
                     </div>
                 </div>
             </li>
+           -----------}}
+           {{----------------
             <li>
                 <div class="mt-10 flex justify-start items-center text-gray-400 dark:text-gray-600">
                     <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -287,6 +290,7 @@
                     Extension
                 </a>
             </li>
+           ---------------}}
             <li>
                 <div class="mt-10 flex justify-start items-center text-gray-400 dark:text-gray-600">
                     <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -432,8 +436,10 @@
                                     </li>
                                     <div data-popover id="popover-category-profile" role="tooltip"
                                          class="absolute z-50 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-lg shadow-black opacity-0 w-80 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+                                       {{--
                                         <livewire:iptbm.admin.side-nav-popup-industry
                                             route="iptbm.addrecord.techCategories"/>
+                                       ---}}
                                         <div data-popper-arrow></div>
                                     </div>
                                     <li>

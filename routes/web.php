@@ -280,6 +280,9 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
         Route::get('/', 'index')->name('abh.staff.profile');
         Route::get('project/{project}','view_project')->name('abh.staff.profile.project');
         Route::post('project/delete/{project}','delete')->name('abh.staff.profile.project.delete');
+        Route::get('/all-profile','view_all_profile')->name('abh.staff.profile.all_profile');
+        Route::get('/public-view{profile}','all_profile_public_view')->name('abh.staff.profile.public-view');
+        Route::get('/profile-projects/{profile}','all_projects')->name('abh.staff.profile.projects-list');
     });
 });
 
