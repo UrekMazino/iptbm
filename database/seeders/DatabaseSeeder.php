@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\abh\AbhIndustrySeeder;
 use Database\Seeders\abh\AbhProfileSeeder;
 use Database\Seeders\iptbm\AgencySeeder;
 use Database\Seeders\iptbm\CommoditySeeder;
@@ -34,7 +35,9 @@ class DatabaseSeeder extends Seeder
         ]);
          */
         $this->call([
-            IptbmAdminSeeder::class,
+            AbhIndustrySeeder::class
+            /*
+             * IptbmAdminSeeder::class,
             RegionSeeder::class,
             AgencySeeder::class,
             InventorSeeder::class,
@@ -52,6 +55,7 @@ class DatabaseSeeder extends Seeder
             abh\RegionSeeder::class,
             AbhProfileSeeder::class,
             abh\AgencySeeder::class,
+             */
         ]);
     }
 }

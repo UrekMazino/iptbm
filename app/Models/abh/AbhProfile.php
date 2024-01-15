@@ -57,5 +57,10 @@ class AbhProfile extends Model
         return $this->hasMany(AbhProject::class, 'abh_profiles_id', 'id');
     }
 
+    public function technologies(): HasMany
+    {
+        return $this->hasMany(AbhTechnologyProfile::class,'abh_profiles_id','id');
+    }
+
 
 }

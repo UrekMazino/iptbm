@@ -8,6 +8,7 @@
             Profile Informations
         </x-header-label>
 
+
         <livewire:abh.profile.profile-tag-n-logo :profile="$profile"/>
         <div class="mt-16">
 

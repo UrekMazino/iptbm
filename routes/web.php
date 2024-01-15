@@ -3,6 +3,7 @@
 use App\Http\Controllers\abh\AbhController;
 use App\Http\Controllers\abh\admin\AbhAdminController;
 use App\Http\Controllers\abh\staff\AbhProfileController;
+use App\Http\Controllers\abh\staff\AbhTechController;
 use App\Http\Controllers\iptbm\admin\AccountsController;
 use App\Http\Controllers\iptbm\admin\AdminDashboard;
 use App\Http\Controllers\iptbm\admin\AgenciesController;
@@ -284,6 +285,10 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
         Route::get('/public-view{profile}','all_profile_public_view')->name('abh.staff.profile.public-view');
         Route::get('/profile-projects/{profile}','all_projects')->name('abh.staff.profile.projects-list');
     });
+    Route::controller(AbhTechController::class)->prefix('/technology')->group(function () {
+        Route::get('/','index')->name('abh.staff.technology');
+    });
+
 });
 
 

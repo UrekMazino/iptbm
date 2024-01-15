@@ -81,7 +81,6 @@ class AddTechnology extends Component
                             $fail('The file must be an image.');
                         }
                     }
-
                 }
             ],
             'description' => 'required|min:10|max:1000',

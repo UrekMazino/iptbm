@@ -153,7 +153,7 @@
                                     class="py-2 space-y-2 text-sm text-gray-600 dark:text-gray-400 ">
 
                                     <li>
-                                        <a href="{{route("iptbm.staff.technology")}}"
+                                        <a href="{{route("abh.staff.technology")}}"
                                            class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group  dark:hover:bg-gray-600 hover:bg-gray-200  @if(Route::currentRouteName()=="iptbm.staff.technology") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">My
                                             Technologies</a>
                                     </li>
