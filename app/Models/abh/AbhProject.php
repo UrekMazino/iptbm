@@ -20,12 +20,12 @@ class AbhProject extends Model
 
     public function abh_profile(): BelongsTo
     {
-        return $this->belongsTo(AbhProfile::class, 'abh_profiles_id', 'id');
+        return $this->belongsTo(AbhProfile::class);
     }
 
     public function year_implemented(): HasMany
     {
-        return $this->hasMany(AbhProjectImplementation::class, 'abh_projects_id', 'id');
+        return $this->hasMany(AbhProjectImplementation::class);
     }
 
 

@@ -21,6 +21,7 @@
         </nav>
 
     </nav>
+
     <x-slot name="pagetitle">
         Technologies
     </x-slot>
@@ -31,23 +32,23 @@
         </x-header-label>
         <x-card-panel class="relative overflow-x-auto w-full">
             <table id="allProf"
-                   class="w-fit display cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                   class="w-fit display cell-border stripe table-fixed  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                 <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Region
+                        Year
                     </th>
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Agency
+                        Title
                     </th>
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Project Leader
+                        Description
                     </th>
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -73,14 +74,30 @@
 
                         Project Leader
                     </th>
-                    <th scope="col"
-                        class=" px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <th scope="col" class=" px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-
+                @foreach($technologies as $technology)
+                    <tr>
+                        <td>
+                            {{$technology->year_developed}}
+                        </td>
+                        <td>
+                            {{$technology->title}}
+                        </td>
+                        <td>
+                            {{$technology->tech_desc}}
+                        </td>
+                        <td>
+                            <x-link-button :url="route('abh.staff.technology.view-technology',['technology'=>$technology->id])">
+                                Open
+                            </x-link-button>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </x-card-panel>

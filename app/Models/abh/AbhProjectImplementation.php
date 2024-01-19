@@ -18,6 +18,6 @@ class AbhProjectImplementation extends Model
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(AbhProject::class,'abh_projects_id','id');
+        return $this->belongsTo(AbhProject::class);
     }
 }

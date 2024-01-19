@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('abh_tech_commodities', function (Blueprint $table) {
+        Schema::create('abh_technology_other_coms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_tech_industry_id')->constrained('abh_tech_industries')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->text('name');
+            $table->foreignId('abh_technology_industry_id')->constrained('abh_technology_industries')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->text('other_commodity_name');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('abh_tech_commodities');
+        Schema::dropIfExists('abh_technology_other_coms');
     }
 };

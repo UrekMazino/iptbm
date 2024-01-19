@@ -13,12 +13,12 @@ class PerYearDetail extends Component
     public $extendDuration;
 
 
-    public function saveExtend(): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function saveExtend()
     {
         $this->validateOnly('extendDuration');
         $this->perYear->extended_duration=$this->extendDuration;
         $this->perYear->save();
-        return redirect(route("abh.staff.profile.project",['project'=>$this->perYear->project]));
+        $this->emit('reloadPage');
     }
 
     public function rules(): array

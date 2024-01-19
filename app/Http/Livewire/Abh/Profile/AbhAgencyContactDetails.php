@@ -44,14 +44,14 @@ class AbhAgencyContactDetails extends Component
             'mobile'=> [
                 'required',
                 'digits:11',
-                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agencies_id',$this->agency->id)->where('type',$this->type),
+                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agency_id',$this->agency->id)->where('type',$this->type),
                 new MaxContact(
                     3,
                     'abh_agency_contacts',
                     'contact',
                     'type',
                     $this->type,
-                    'abh_agencies_id',
+                    'abh_agency_id',
                     $this->agency->id,
                     $this->costumMesg[$this->type]
                 ),
@@ -60,14 +60,14 @@ class AbhAgencyContactDetails extends Component
                 'required',
                 'min:9',
                 'max:10',
-                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agencies_id',$this->agency->id)->where('type',$this->type),
+                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agency_id',$this->agency->id)->where('type',$this->type),
                 new MaxContact(
                     3,
                     'abh_agency_contacts',
                     'contact',
                     'type',
                     $this->type,
-                    'abh_agencies_id',
+                    'abh_agency_id',
                     $this->agency->id,
                     $this->costumMesg[$this->type]
                 ),
@@ -76,14 +76,14 @@ class AbhAgencyContactDetails extends Component
                 'required',
                 'email',
                 'max:40',
-                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agencies_id',$this->agency->id)->where('type',$this->type),
+                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agency_id',$this->agency->id)->where('type',$this->type),
                 new MaxContact(
                     3,
                     'abh_agency_contacts',
                     'contact',
                     'type',
                     $this->type,
-                    'abh_agencies_id',
+                    'abh_agency_id',
                     $this->agency->id,
                     $this->costumMesg[$this->type]
                 ),

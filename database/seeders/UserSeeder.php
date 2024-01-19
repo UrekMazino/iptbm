@@ -69,6 +69,7 @@ class UserSeeder extends Seeder
         }
 
         $dataAbh = [
+            'abh_profile_id'=>'1',
             'name' => 'Andy Mark Servania',
             'component' => 'ABH',
             'email' => 'rdesystem@capsu.edu.ph',

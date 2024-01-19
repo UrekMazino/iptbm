@@ -5,6 +5,7 @@ namespace App\Models\abh;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class AbhProfile extends Model
 {
@@ -23,43 +24,56 @@ class AbhProfile extends Model
         'tag_line',
     ];
 
-    public function agency(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function agency()
     {
-        return $this->hasOne(AbhAgency::class, 'abh_profiles_id', 'id');
+        return $this->hasOne(AbhAgency::class,'abh_profile_id','id');
+
+    }
+
+    public function region(): \Illuminate\Database\Eloquent\Relations\HasOneThrough
+    {
+        return $this->hasOneThrough(
+            AbhRegion::class,
+            AbhAgency::class,
+            'abh_region_id',
+            'id',
+            'id',
+            'abh_region_id',
+        );
     }
 
     public function contacts_mobiles(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'mobile');
+        return $this->hasMany(AbhProfileContact::class,'abh_profile_id','id')->where('type', 'mobile');
     }
 
     public function contact(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class,'abh_profiles_id','id');
+        return $this->hasMany(AbhProfileContact::class);
     }
     public function contacts_phones(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'phone');
+        return $this->hasMany(AbhProfileContact::class)->where('type', 'phone');
     }
 
     public function contacts_faxes(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'fax');
+        return $this->hasMany(AbhProfileContact::class)->where('type', 'fax');
     }
 
     public function contacts_emails(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class, 'abh_profiles_id', 'id')->where('type', 'email');
+        return $this->hasMany(AbhProfileContact::class)->where('type', 'email');
     }
 
     public function projects(): HasMany
     {
-        return $this->hasMany(AbhProject::class, 'abh_profiles_id', 'id');
+        return $this->hasMany(AbhProject::class);
     }
 
     public function technologies(): HasMany
     {
-        return $this->hasMany(AbhTechnologyProfile::class,'abh_profiles_id','id');
+        return $this->hasMany(AbhTechnologyProfile::class);
     }
 
 

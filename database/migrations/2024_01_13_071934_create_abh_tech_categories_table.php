@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('abh_tech_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_tech_industries_id')->constrained('abh_tech_industries')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('abh_tech_industry_id')->constrained('abh_tech_industries')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name')->nullable();
             $table->timestamps();
         });

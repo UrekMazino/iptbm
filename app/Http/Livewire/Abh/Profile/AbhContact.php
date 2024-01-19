@@ -67,11 +67,11 @@ class AbhContact extends Component
                     'contact',
                     'type',
                     'mobile',
-                    'abh_profiles_id',
+                    'abh_profile_id',
                     $this->profile->id,
                     'Mobile number was already reached its maximum limit.'
                 ),
-                Rule::unique('abh_profile_contacts','contact')->where('abh_profiles_id',$this->profile->id)
+                Rule::unique('abh_profile_contacts','contact')->where('abh_profile_id',$this->profile->id)
             ],
             'phone'=>[
                 'required',
@@ -84,11 +84,11 @@ class AbhContact extends Component
                     'contact',
                     'type',
                     'phone',
-                    'abh_profiles_id',
+                    'abh_profile_id',
                     $this->profile->id,
                     'Phone number was already reached its maximum limit.'
                 ),
-                Rule::unique('abh_profile_contacts','contact')->where('abh_profiles_id',$this->profile->id)
+                Rule::unique('abh_profile_contacts','contact')->where('abh_profile_id',$this->profile->id)
             ],
         ];
     }

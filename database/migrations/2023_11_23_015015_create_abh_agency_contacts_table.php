@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('abh_agency_contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_agencies_id')->constrained('abh_agencies')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('abh_agency_id')->constrained('abh_agencies')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('type');
             $table->string('contact');
             $table->timestamps();

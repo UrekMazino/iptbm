@@ -42,7 +42,9 @@ class RegionDetails extends Component
 
     public function mount($profile): void
     {
+
         $this->profile = $profile->load('agency.region');
+
 
     }
 

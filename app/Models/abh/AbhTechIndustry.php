@@ -12,6 +12,6 @@ class AbhTechIndustry extends Model
 
     public function commodities(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(AbhTechCommodity::class,'abh_tech_industries_id','id');
+        return $this->hasMany(AbhTechCommodity::class);
     }
 }

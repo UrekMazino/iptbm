@@ -59,6 +59,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function abh_profile(): BelongsTo
     {
-        return $this->belongsTo(AbhProfile::class, 'abh_profiles_id', 'id');
+        return $this->belongsTo(AbhProfile::class,'abh_profile_id','id');
     }
 }

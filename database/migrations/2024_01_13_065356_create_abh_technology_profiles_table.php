@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('abh_technology_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_profiles_id')->constrained('abh_profiles')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('abh_profile_id')->constrained('abh_profiles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title')->nullable();
             $table->year('year_developed')->nullable();
             $table->text('tech_desc')->nullable();

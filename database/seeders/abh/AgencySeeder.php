@@ -13,8 +13,8 @@ class AgencySeeder extends Seeder
     public function run(): void
     {
         AbhAgency::create([
-            'abh_regions_id' => '1',
-            'abh_profiles_id' => '1',
+            'abh_region_id' => '1',
+            'abh_profile_id' => '1',
             'name' => 'Abh Agency Name',
             'address' => 'Abh Agency Address'
         ]);

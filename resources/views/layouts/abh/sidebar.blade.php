@@ -5,9 +5,28 @@
 >
     <div class="overflow-y-auto py-5 pb-10 px-3 h-full bg-white dark:bg-gray-800">
         <div class="my-1 mb-4  rounded-lg bg-gray-200 dark:bg-gray-700 p-2 py-3">
-            {{----------
-             <livewire:iptbm.staff.user.user-profile />
-             -------------}}
+            <div class="divide-y divide-gray-500 dark:divide-gray-400">
+
+                <div class="w-3/4 mx-auto">
+                    <div class="aspect-square rounded-full overflow-hidden">
+                        <div class="flex justify-center items-center w-fit h-full">
+                            @if(Auth::user()->abh_profile->logo)
+                                <img class="max-w-full w-auto h-auto" src="{{Storage::url(Auth::user()->abh_profile->logo)}}">
+
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <div class="text-gray-600 dark:text-gray-200">
+                        {{Auth::user()->abh_profile->agency->name}}
+                    </div>
+
+
+                </div>
+
+            </div>
         </div>
 
         <ul class="space-y-2  text-gray-600 dark:text-gray-400">

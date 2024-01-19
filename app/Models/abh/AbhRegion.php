@@ -4,6 +4,7 @@ namespace App\Models\abh;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AbhRegion extends Model
 {
@@ -16,8 +17,10 @@ class AbhRegion extends Model
         'consortium_director',
     ];
 
-    function agencies(): \Illuminate\Database\Eloquent\Relations\HasMany
+    function agencies(): HasMany
     {
-        return $this->hasMany(AbhAgency::class, 'abh_regions_id', 'id');
+        return $this->hasMany(AbhAgency::class);
     }
+
+
 }

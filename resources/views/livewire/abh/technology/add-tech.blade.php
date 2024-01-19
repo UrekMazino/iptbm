@@ -1,4 +1,4 @@
-<x-pop-modal name="addAbhTech" static="true" class="max-w-5xl" modal-title="Add new Technology">
+<x-pop-modal name="addAbhTech" static="true" class="max-w-4xl" modal-title="Add new Technology">
     <form class="space-y-6" wire:submit.prevent="saveTechnology">
         <div class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

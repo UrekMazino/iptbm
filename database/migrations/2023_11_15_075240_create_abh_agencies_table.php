@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('abh_agencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_regions_id')->constrained('abh_regions')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('abh_profiles_id')->constrained('abh_profiles')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('abh_region_id')->constrained('abh_regions')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('abh_profile_id')->constrained('abh_profiles')->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('name');
             $table->string('address')->nullable();
             $table->text('head')->nullable();

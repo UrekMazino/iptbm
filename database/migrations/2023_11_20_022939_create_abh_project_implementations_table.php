@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('abh_project_implementations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('abh_projects_id')->constrained('abh_projects')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('abh_project_id')->constrained('abh_projects')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date('date_started')->comment('get value from implementation period')->nullable();
             $table->integer('duration');
             $table->integer('extended_duration')->nullable();

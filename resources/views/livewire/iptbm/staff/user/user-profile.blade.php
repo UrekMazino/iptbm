@@ -1,9 +1,23 @@
-<div class="text-gray-50  ">
-    <div class=" w-full py-2 border-b border-gray-400 dark:border-600 text-center gradient-text font-medium">
 
-        {{$user->name}}
+<div class="divide-y divide-gray-500 dark:divide-gray-400">
+    <div class="w-3/4 mx-auto">
+        <div class="aspect-square rounded-full overflow-hidden">
+            <div class="flex justify-center items-center w-fit h-full">
+                @if($user->profile->logo)
+                    <img class="max-w-full w-auto h-auto" src="{{Storage::url($user->profile->logo)}}">
+
+                @endif
+
+            </div>
+        </div>
     </div>
-    <div class=" text-gray-900 dark:text-white text-center text-sm font-medium">
-        {{$user->profile->agency->name}}
+    <div class="py-2">
+        <div class="flex justify-center items-center">
+            <div class="text-gray-600 dark:text-gray-200">
+                {{$user->profile->agency->name}}
+            </div>
+        </div>
+
     </div>
+
 </div>

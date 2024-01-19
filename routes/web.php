@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::middleware(['component:IPTBM', 'auth', 'verified'])->prefix('/iptbm')->group(function () {
 
 
@@ -274,6 +275,7 @@ Route::middleware(['component:IPTBM', 'auth', 'verified'])->prefix('/iptbm')->gr
 });
 
 Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(function () {
+
     Route::controller(AbhController::class)->group(function () {
         Route::get('/{dashboard?}', 'dashboard')->where(['dashboard' => 'dashboard']);
     });
@@ -287,6 +289,8 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
     });
     Route::controller(AbhTechController::class)->prefix('/technology')->group(function () {
         Route::get('/','index')->name('abh.staff.technology');
+        Route::get('/{technology}','view_tech')->name('abh.staff.technology.view-technology');
+        Route::get('view-image/{technology}','view_image')->name('abh.image-viewer');
     });
 
 });
