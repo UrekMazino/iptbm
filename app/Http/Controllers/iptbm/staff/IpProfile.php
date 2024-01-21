@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\iptbm\staff;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User;
 use App\Models\iptbm\AgencyHead;
 use App\Models\iptbm\IptbmAgency;
 use App\Models\iptbm\IptbmIpAlertTask;
@@ -22,6 +23,7 @@ class IpProfile extends Controller
 {
     public function __construct()
     {
+
         $this->middleware('auth');
 
 

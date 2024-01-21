@@ -4,6 +4,7 @@ use App\Http\Controllers\abh\AbhController;
 use App\Http\Controllers\abh\admin\AbhAdminController;
 use App\Http\Controllers\abh\staff\AbhProfileController;
 use App\Http\Controllers\abh\staff\AbhTechController;
+use App\Http\Controllers\api\AbhApi;
 use App\Http\Controllers\iptbm\admin\AccountsController;
 use App\Http\Controllers\iptbm\admin\AdminDashboard;
 use App\Http\Controllers\iptbm\admin\AgenciesController;
@@ -43,6 +44,7 @@ use App\Http\Livewire\Iptbm\Admin\IpAlert\IpAlert;
 use App\Http\Livewire\Iptbm\Admin\Plantvariety\PlantVariety;
 use App\Http\Livewire\Iptbm\Admin\Trademark\TradeMark;
 use App\Http\Livewire\Iptbm\Admin\UtilityModel\UtilityModel;
+use App\Http\Resources\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -60,11 +62,22 @@ use Illuminate\Support\Facades\Route;
 /*
  *
  */
+
+
 Route::get('/', function () {
     if (Auth::guard('admin')->check()) {
         return Redirect::to('admin/login');
     }
     return Redirect::to('login');
+});
+
+Route::prefix('/api')->group(function (){
+    Route::controller(AbhApi::class)->prefix('/abh')->group(function (){
+        Route::get('abh-profile','abh_profile');
+    });
+    Route::controller(\App\Http\Controllers\api\IptbmApi::class)->prefix('iptbm')->group(function (){
+        Route::get('/profile','iptbm_profile');
+    });
 });
 
 Route::middleware('auth')->group(function () {

@@ -73,7 +73,7 @@ class AbhProfile extends Model
 
     public function technologies(): HasMany
     {
-        return $this->hasMany(AbhTechnologyProfile::class);
+        return $this->hasMany(AbhTechnologyProfile::class,'abh_profile_id','id');
     }
 
 
