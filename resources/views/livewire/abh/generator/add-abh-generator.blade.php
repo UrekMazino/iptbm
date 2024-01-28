@@ -26,6 +26,24 @@
                 <x-text-input wire:model.lazy="address" class="w-full" placeholder="Enter text here" required/>
                 <x-input-error :messages="$errors->get('address')"/>
             </div>
+            <div>
+                <x-input-label value="Availability / Professional Status"/>
+                <x-input-select wire:model.lazy="status" placeholder="Select Status">
+                    <option value="">
+                        Select Status
+                    </option>
+                    <option value="ACTIVE">
+                        ACTIVE
+                    </option>
+                    <option value="RETIRED">
+                        RETIRED
+                    </option>
+                    <option value="DECEASED">
+                        DECEASED
+                    </option>
+                </x-input-select>
+                <x-input-error :messages="$errors->get('status')"/>
+            </div>
         </div>
 
         <div>

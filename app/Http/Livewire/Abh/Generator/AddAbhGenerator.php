@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Abh\Generator;
 
 use App\Models\abh\AbhGenerator;
+use App\Models\abh\AbhGeneratorStatus;
 use App\Rules\FullNameValidation;
 use Auth;
 use Illuminate\Contracts\View\Factory;
@@ -21,6 +22,8 @@ class AddAbhGenerator extends Component
 
     public  $address;
 
+    public $status;
+
     public function saveGenerator(): void
     {
         $this->validate();
@@ -32,7 +35,11 @@ class AddAbhGenerator extends Component
             'suffix'=>$this->suffix,
             'address'=>$this->address,
         ]);
+
         $profile->generators()->save($generator);
+        $generator->status()->save(new AbhGeneratorStatus([
+            'status'=>$this->status
+        ]));
 
         $this->redirect(route("abh.staff.generator_details",['generator'=>$generator->id]));
 
@@ -56,6 +63,10 @@ class AddAbhGenerator extends Component
             'suffix' =>[
                 'nullable',
                 'max:5',
+            ],
+            'status' =>[
+                'required',
+                'in:ACTIVE,RETIRED,DECEASED'
             ],
             'full_name' =>new FullNameValidation(
                 'abh_generators',

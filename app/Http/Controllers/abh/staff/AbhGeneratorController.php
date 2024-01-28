@@ -18,6 +18,7 @@ class AbhGeneratorController extends Controller
 
     public function generator_details(AbhGenerator $generator)
     {
+        $generator->load('contacts','expertise','status','latest_agency_affiliated');
         return view('abh.generator.details',compact('generator'));
     }
 

@@ -110,8 +110,6 @@
                     dom: 'Bfrtip',
                     initComplete: function () {
                         var api = this.api();
-
-
                         api
                             .columns()
                             .eq(0)

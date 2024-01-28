@@ -3,11 +3,11 @@
         <x-header-label class="mt-10">
             ABH Dashboard
         </x-header-label>
-        <x-grid col="5" gap="4">
-            <div class="md:col-span-3">
+        <x-grid col="2" gap="4">
+            <div >
                 <livewire:abh.dashboard.calendar/>
             </div>
-            <div class="md:col-span-2">
+            <div >
                 <livewire:abh.dashboard.recent-profile/>
             </div>
         </x-grid>
