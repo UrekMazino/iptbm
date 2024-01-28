@@ -17,7 +17,7 @@ class AbhController extends Controller
     public function dashboard()
     {
 
-        return view('abh.dashboard');
+        return view('abh.dashboard')->layout('layouts.abh.app');
     }
 
 }
