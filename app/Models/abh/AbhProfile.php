@@ -76,5 +76,9 @@ class AbhProfile extends Model
         return $this->hasMany(AbhTechnologyProfile::class,'abh_profile_id','id');
     }
 
+    public function generators(): HasMany
+    {
+        return $this->hasMany(AbhGenerator::class,'abh_profile_id','id');
+    }
 
 }

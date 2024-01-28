@@ -61,4 +61,6 @@ class AbhAgency extends Model
     {
         return $this->hasManyThrough(AbhTechnologyProfile::class,AbhTechOwner::class);
     }
+
+
 }

@@ -10,7 +10,7 @@ class TechnologyOwner extends Component
 
     public function mount($technology)
     {
-        $technology->load('profile.agency','co_owner');
+        $technology->load('profile.agency','co_owner.agency');
         $this->technology=$technology;
     }
     public function render()

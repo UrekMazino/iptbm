@@ -47,8 +47,10 @@
           <livewire:abh.technology.tech-main-detail :technology="$technology" />
         </div>
         <div class="grid grid-cols-1 md:grid-cols-5 gap-x-14">
-            <div class="col-span-3">
+            <div class="col-span-3 space-y-5">
                 <livewire:abh.technology.technology-owner :technology="$technology"/>
+                <livewire:abh.technology.technology-generator :technology="$technology" />
+                <livewire:abh.technology.tech-research-conducted :technology="$technology" />
             </div>
             <div class="col-span-2">
                 <x-card-panel>

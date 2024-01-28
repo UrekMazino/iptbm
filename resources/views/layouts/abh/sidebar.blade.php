@@ -113,8 +113,8 @@
 
             <li>
                 <a class="flex items-center  p-2 rounded-lg transition duration-300
-                     @if(Request::segment(2)=='inventor') bg-gray-300 dark:bg-gray-950 text-sky-700 @endif hover:bg-gray-200  dark:hover:bg-gray-700 group"
-                   href="{{route("iptbm.staff.inventor")}}">
+                     @if(Route::currentRouteName()==='abh.staff..generators'||Route::currentRouteName()==='abh.staff.generator_details') bg-gray-300 dark:bg-gray-950 text-sky-700 @endif hover:bg-gray-200  dark:hover:bg-gray-700 group"
+                   href="{{route("abh.staff..generators")}}">
 
                     <svg class="w-4 h-4 me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 640 512">

@@ -14,6 +14,10 @@ class AbhTechOwner extends Model
     {
         return $this->belongsTo(AbhTechnologyProfile::class);
     }
+    public function agency(): BelongsTo
+    {
+        return $this->belongsTo(AbhAgency::class,'abh_agency_id','id');
+    }
 
 
 }

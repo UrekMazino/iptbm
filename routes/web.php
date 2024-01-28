@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\abh\AbhController;
 use App\Http\Controllers\abh\admin\AbhAdminController;
+use App\Http\Controllers\abh\staff\AbhGeneratorController;
 use App\Http\Controllers\abh\staff\AbhProfileController;
 use App\Http\Controllers\abh\staff\AbhTechController;
 use App\Http\Controllers\api\AbhApi;
@@ -300,6 +301,13 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
         Route::get('/public-view{profile}','all_profile_public_view')->name('abh.staff.profile.public-view');
         Route::get('/profile-projects/{profile}','all_projects')->name('abh.staff.profile.projects-list');
     });
+
+    Route::controller(AbhGeneratorController::class)->prefix('/generator')->group(function (){
+        Route::get('/','index')->name('abh.staff..generators');
+        Route::get('/details/{generator}','generator_details')->name('abh.staff.generator_details');
+        Route::post('/delete_generator/{generator}}','delete_generator')->name('abh.staff.delete_generator');
+    });
+
     Route::controller(AbhTechController::class)->prefix('/technology')->group(function () {
         Route::get('/','index')->name('abh.staff.technology');
         Route::get('/{technology}','view_tech')->name('abh.staff.technology.view-technology');
