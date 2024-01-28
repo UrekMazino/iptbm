@@ -321,7 +321,7 @@ require __DIR__ . '/auth.php';
 
 
 Route::middleware(['component:IPTBM', 'auth:admin', 'verified'])->prefix('/admin/iptbm')->group(function () {
-    Route::get('/', [AdminDashboard::class, 'index'])->name('admin.iptbm.dashboard');
+
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('admin.iptbm.dashboard');
     Route::prefix('/add-record')->group(function () {
 
