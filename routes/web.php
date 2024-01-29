@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\abh\AbhController;
 use App\Http\Controllers\abh\admin\AbhAdminController;
 use App\Http\Controllers\abh\staff\AbhGeneratorController;
 use App\Http\Controllers\abh\staff\AbhProfileController;
@@ -39,6 +38,17 @@ use App\Http\Controllers\iptbm\staff\ProjectController;
 use App\Http\Controllers\iptbm\staff\Technology;
 use App\Http\Controllers\iptbm\staff\TechnologyDescription;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Abh\Dashboard\DashBoardPage;
+use App\Http\Livewire\Abh\Pages\Generator\AbhGeneratorDetailsPage;
+use App\Http\Livewire\Abh\Pages\Generator\GeneratorPage;
+use App\Http\Livewire\Abh\Pages\Profile\AbhAllProfilePage;
+use App\Http\Livewire\Abh\Pages\Profile\AbhAllProfileProjectPage;
+use App\Http\Livewire\Abh\Pages\Profile\AbhPublicProfileView;
+use App\Http\Livewire\Abh\Pages\Profile\Profile;
+use App\Http\Livewire\Abh\Pages\Profile\ProjectPage;
+use App\Http\Livewire\Abh\Pages\Technology\AbhTechImagePage;
+use App\Http\Livewire\Abh\Pages\Technology\AbhTechnologyDetailPage;
+use App\Http\Livewire\Abh\Pages\Technology\AbhTechnologyPage;
 use App\Http\Livewire\Iptbm\Admin\Copyright\CopyRight;
 use App\Http\Livewire\Iptbm\Admin\Industrial\IndustrialDesign;
 use App\Http\Livewire\Iptbm\Admin\IpAlert\IpAlert;
@@ -289,30 +299,62 @@ Route::middleware(['component:IPTBM', 'auth', 'verified'])->prefix('/iptbm')->gr
 });
 
 Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(function () {
+    Route::get('/',function (){
+        return Redirect::to('/dashboard');
+    });
+    Route::get('/dashboard', DashBoardPage::class);
 
-    Route::controller(AbhController::class)->group(function () {
+  /*
+   *   Route::controller(AbhController::class)->group(function () {
         Route::get('/{dashboard?}', 'dashboard')->where(['dashboard' => 'dashboard']);
     });
-    Route::controller(AbhProfileController::class)->prefix('/profile')->group(function () {
-        Route::get('/', 'index')->name('abh.staff.profile');
-        Route::get('project/{project}','view_project')->name('abh.staff.profile.project');
-        Route::post('project/delete/{project}','delete')->name('abh.staff.profile.project.delete');
-        Route::get('/all-profile','view_all_profile')->name('abh.staff.profile.all_profile');
-        Route::get('/public-view{profile}','all_profile_public_view')->name('abh.staff.profile.public-view');
-        Route::get('/profile-projects/{profile}','all_projects')->name('abh.staff.profile.projects-list');
+   */
+    Route::prefix('profile')->group(function (){
+        Route::get('/', Profile::class)->name('abh.staff.profile');
+        Route::get('project/{project}', ProjectPage::class)->name('abh.staff.profile.project');
+        Route::get('/all-profile', AbhAllProfilePage::class)->name('abh.staff.profile.all_profile');
+        Route::get('/public-view/{profile}', AbhPublicProfileView::class)->name('abh.staff.profile.public-view');
+        Route::get('/profile-projects/{profile}', AbhAllProfileProjectPage::class)->name('abh.staff.profile.projects-list');
+    });
+    Route::prefix('/generator')->group(function () {
+        Route::get('/', GeneratorPage::class)->name('abh.staff.generators');
+        Route::get('/details/{generator}', AbhGeneratorDetailsPage::class)->name('abh.staff.generator_details');
+    });
+    Route::prefix('/technology')->group(function () {
+        Route::get('/', AbhTechnologyPage::class)->name('abh.staff.technology');
+        Route::get('/{technology}', AbhTechnologyDetailPage::class)->name('abh.staff.technology.view-technology');
+        Route::get('/photo/{technology}', AbhTechImagePage::class)->name('abh.image-viewer');
     });
 
-    Route::controller(AbhGeneratorController::class)->prefix('/generator')->group(function (){
-        Route::get('/','index')->name('abh.staff..generators');
+
+   /*
+    *
+        Route::controller(AbhProfileController::class)->prefix('/profiles')->group(function () {
+        Route::get('/', 'index');
+        Route::get('project/{project}','view_project');
+        Route::post('project/delete/{project}','delete')->name('abh.staff.profile.project.delete');
+        Route::get('/all-profile','view_all_profile');
+        Route::get('/public-view{profile}','all_profile_public_view');
+        Route::get('/profile-projects/{profile}','all_projects');
+    });
+    */
+
+
+   /*
+    *  Route::controller(AbhGeneratorController::class)->prefix('/generator')->group(function (){
+        Route::get('/','index')->name('abh.staff.generators');
         Route::get('/details/{generator}','generator_details')->name('abh.staff.generator_details');
         Route::post('/delete_generator/{generator}}','delete_generator')->name('abh.staff.delete_generator');
     });
+    */
 
-    Route::controller(AbhTechController::class)->prefix('/technology')->group(function () {
-        Route::get('/','index')->name('abh.staff.technology');
-        Route::get('/{technology}','view_tech')->name('abh.staff.technology.view-technology');
-        Route::get('view-image/{technology}','view_image')->name('abh.image-viewer');
+  /*
+   *   Route::controller(AbhTechController::class)->prefix('/technologyies')->group(function () {
+        Route::get('/','index');
+        Route::get('/{technology}','view_tech');
+        Route::get('view-image/{technology}','view_image');
     });
+   */
 
 });
 

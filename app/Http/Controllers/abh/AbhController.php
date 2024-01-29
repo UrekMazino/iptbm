@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\abh\AbhAgency;
 use App\Models\abh\AbhProfile;
 use App\Models\abh\AbhRegion;
+use App\View\Components\abh\AbhLayout;
 
 class AbhController extends Controller
 {
@@ -16,8 +17,7 @@ class AbhController extends Controller
 
     public function dashboard()
     {
-
-        return view('abh.dashboard')->layout('layouts.abh.app');
+        return view('abh.dashboard');
     }
 
 }
