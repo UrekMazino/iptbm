@@ -21,6 +21,7 @@ class AbhLayout extends Component
      */
     public function render(): View|Closure|string
     {
+
         return view('layouts.abh.app');
     }
 }
