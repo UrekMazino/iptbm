@@ -1,5 +1,5 @@
 <div class="border flex justify-between items-center text-center rounded border-gray-200 dark:border-gray-600 ">
-    <div class="divide-y divide-gray-200 dark:divide-gray-600 w-full">
+    <div class="divide-y divide-gray-200 dark:divide-gray-600 w-full py-4">
         <div class="font-medium text-gray-600 dark:text-white">
             {{$generator->address}}
         </div>

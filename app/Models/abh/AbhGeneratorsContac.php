@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AbhGeneratorsContac extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'contact',
+        'type'
+    ];
 }

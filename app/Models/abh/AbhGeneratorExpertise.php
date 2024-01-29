@@ -9,4 +9,8 @@ class AbhGeneratorExpertise extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'field'
+    ];
+
 }
