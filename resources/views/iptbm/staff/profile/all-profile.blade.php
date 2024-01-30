@@ -86,7 +86,7 @@
                     @foreach($profile as $key => $val)
                         <tr>
                             <td class="px-2 py-3">
-                                {{$val->region->name}}
+                                {{$val->agency->region->name}}
                             </td>
                             <td>
                                 {{$val->agency->name}}
