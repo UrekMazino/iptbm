@@ -64,7 +64,9 @@ class IpProfile extends Controller
     {
         $profile = IptbmProfile::with(['agency'=>function ($query) {
             $query->where('iptbm_region_id',Auth::user()->profile->agency->region->id);
-        },'agency.region'])->latest()->get();
+
+        },'agency.region'])
+            ->latest()->get();
 
         /*
          *   foreach ($profile as $val) {

@@ -17,6 +17,8 @@ class IptbmProfiles extends Component
         $this->iptbmProfiles = IptbmProfile::with(['agency'=>function ($query) {
             $query->where('iptbm_region_id',Auth::user()->profile->agency->region->id);
         },'agency.region'])->get();
+
+
     }
 
     public function render()

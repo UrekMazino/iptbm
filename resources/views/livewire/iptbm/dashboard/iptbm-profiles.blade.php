@@ -25,10 +25,13 @@
                                 <x-thumbnail-holder class="w-40" :url="$profile->logo"/>
                             </td>
                             <td class="w-full">
-                                <a href="{{route("iptbm.staff.viewProfile",['id'=>$profile->id])}}"
-                                   class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
-                                    {{$profile->agency->name}}
-                                </a>
+                                @if($profile->agency)
+                                    <a href="{{route("iptbm.staff.viewProfile",['id'=>$profile->id])}}"
+                                       class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
+                                        {{$profile->agency->name}}
+                                    </a>
+                                @endif
+
 
                             </td>
                         </tr>

@@ -87,10 +87,16 @@
 
                         <tr>
                             <td class="px-2 py-3">
-                                {{$val->agency->region->name}}
+                                @if($val->agency)
+                                    {{$val->agency->region->name}}
+                                @endif
+
                             </td>
                             <td>
-                                {{$val->agency->name}}
+                                @if($val->agency)
+                                    {{$val->agency->name}}
+                                @endif
+
                             </td>
                             <td>
                                 {{$val->project_leader}}

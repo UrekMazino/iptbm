@@ -177,7 +177,7 @@
                                             Technologies</a>
                                     </li>
                                     <li>
-                                        <a href="{{route("iptbm.staff.technology.all")}}"
+                                        <a href="{{route('abh.staff.technology.allTech')}}"
                                            class="flex items-center w-full p-2  transition duration-75 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()=="iptbm.staff.technology.all") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif">All
                                             Technologies</a>
                                     </li>

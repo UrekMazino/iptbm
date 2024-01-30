@@ -46,6 +46,7 @@ use App\Http\Livewire\Abh\Pages\Profile\AbhAllProfileProjectPage;
 use App\Http\Livewire\Abh\Pages\Profile\AbhPublicProfileView;
 use App\Http\Livewire\Abh\Pages\Profile\Profile;
 use App\Http\Livewire\Abh\Pages\Profile\ProjectPage;
+use App\Http\Livewire\Abh\Pages\Technology\AbhAllTechnologyPage;
 use App\Http\Livewire\Abh\Pages\Technology\AbhTechImagePage;
 use App\Http\Livewire\Abh\Pages\Technology\AbhTechnologyDetailPage;
 use App\Http\Livewire\Abh\Pages\Technology\AbhTechnologyPage;
@@ -324,6 +325,7 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
         Route::get('/', AbhTechnologyPage::class)->name('abh.staff.technology');
         Route::get('/{technology}', AbhTechnologyDetailPage::class)->name('abh.staff.technology.view-technology');
         Route::get('/photo/{technology}', AbhTechImagePage::class)->name('abh.image-viewer');
+        Route::get('/all-tech/view', AbhAllTechnologyPage::class)->name('abh.staff.technology.allTech');
     });
 
 

@@ -31,7 +31,12 @@ class AddTech extends Component
     public function saveTechnology()
     {
         $this->validate();
-        $path=$this->tech_photo->store('public/abh/tech_photo');
+        $path=null;
+        if($this->tech_photo)
+        {
+            $path=$this->tech_photo->store('public/abh/tech_photo');
+        }
+
         $technology=new AbhTechnologyProfile([
             'title'=>$this->tech_title,
             'year_developed'=>$this->tech_year_developed,
@@ -71,7 +76,7 @@ class AddTech extends Component
                 'required',
             ],
             'tech_photo'=>[
-                'required',
+                'nullable',
                 'mimes:png,jpg,jpeg',
                 'max:2048',
             ],
