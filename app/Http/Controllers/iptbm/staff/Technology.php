@@ -54,11 +54,13 @@ class Technology extends Controller
 
     public function index(): Application|Factory|View|RedirectResponse
     {
-        $profile = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
+       /*
+        *  $profile = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
 
         if (!$profile) {
             return redirect()->route("iptbm.staff.addProfile");
         }
+        */
         $industry = IptbmIndustry::with('commodities', 'techcategory')->get();
 
         //   $technology = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
@@ -110,16 +112,18 @@ class Technology extends Controller
 
     public function techdetails(): Factory|View|Application|RedirectResponse
     {
-        $industry = IptbmIndustry::with('commodities', 'techcategory')->get();
 
-        $check = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)
+        /*
+         * $check = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)
             ->where('region_id', Auth::user()->profile->agency->region->id)
             ->exists();
 
         if (!$check) {
             return redirect()->route('iptbm.staff.addProfile');
         }
+         */
         $profile = IptbmProfile::with('technologies')->where('agency_id', Auth::user()->profile->agency->id)->first();
+        $industry = IptbmIndustry::with('commodities', 'techcategory')->get();
 
         return view('iptbm.staff.technologies.add-additional-details', [
             'profile' => $profile,
