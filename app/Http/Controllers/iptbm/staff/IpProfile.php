@@ -36,13 +36,15 @@ class IpProfile extends Controller
     {
 
 
-        $check = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)
+       /*
+        *  $check = IptbmProfile::where('agency_id', Auth::user()->profile->agency->id)
             ->where('region_id', Auth::user()->profile->agency->region->id)
             ->exists();
 
         if (!$check) {
             return redirect()->route('iptbm.staff.addProfile');
         }
+        */
         $profile = IptbmProfile::with('contact', 'projects', 'projects.projectDetails', 'agency',  'agency.region')->where('agency_id', Auth::user()->profile->agency->id)->first();
 
 
