@@ -50,7 +50,7 @@ class IpProfile extends Controller
 
         return view('iptbm.staff.profile.index', [
             'profile' => $profile,
-            //   'agency' => IptbmAgency::where('iptbm_region_id', Auth::user()->region_id)->get()
+              // 'agency' => IptbmAgency::where('iptbm_region_id', Auth::user()->region_id)->get()
         ]);
     }
 
@@ -62,12 +62,17 @@ class IpProfile extends Controller
      */
     public function allProfile(): View|Factory|Application
     {
-        $profile = IptbmProfile::all();
-        foreach ($profile as $val) {
+        $profile = IptbmProfile::with(['agency'=>function ($query) {
+            $query->where('iptbm_region_id',Auth::user()->profile->agency->region->id);
+        },'agency.region'])->latest()->get();
+
+        /*
+         *   foreach ($profile as $val) {
             $val->region = IptbmRegion::select('name')->where('id', $val->region_id)->first();
             $val->agency = IptbmAgency::select('name')->where('id', $val->agency_id)->first();
             $val->access_state = Auth::user()->agency_id == $val->agency_id && Auth::user()->profile->agency->region->id;
         }
+         */
         return view('iptbm.staff.profile.all-profile', [
             'profile' => $profile
         ]);

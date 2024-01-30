@@ -43,7 +43,7 @@
                         </a>
                         <div class="m-auto col-start-2 col-end-6">
                     <span class="text-xl text-gray-400 dark:text-gray-500">
-                        {{$profile->region->name}}
+                        {{$profile->agency->region->name}}
                     </span>
                             <span class="text-sm ms-4 text-gray-700 dark:text-gray-400 hidden md:inline">
                         {{$profile->agency->name}}

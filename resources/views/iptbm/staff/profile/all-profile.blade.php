@@ -84,6 +84,7 @@
                     <tbody>
 
                     @foreach($profile as $key => $val)
+
                         <tr>
                             <td class="px-2 py-3">
                                 {{$val->agency->region->name}}

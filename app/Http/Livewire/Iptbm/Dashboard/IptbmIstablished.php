@@ -12,7 +12,9 @@ class IptbmIstablished extends Component
     public $iptbmProfile;
     public $countPerYear;
 
-    public function mount()
+
+
+    public function render()
     {
         $this->iptbmProfile = IptbmProfile::orderBy('year_established')->get();
         $this->countPerYear = [
@@ -27,12 +29,6 @@ class IptbmIstablished extends Component
                 'total' => IptbmProfile::where('year_established', $year)->count()
             ];
         }
-
-
-    }
-
-    public function render()
-    {
         return view('livewire.iptbm.dashboard.iptbm-istablished');
     }
 }
