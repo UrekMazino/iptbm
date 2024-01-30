@@ -52,7 +52,7 @@ class AddAccount extends Component
         $user = new User([
             'name' => $this->fullname,
             'component' => 'IPTBM',
-            'role' => 'staff',
+           // 'role' => 'staff',
             'email' => $this->email,
             'password' => Hash::make($password),
         ]);
