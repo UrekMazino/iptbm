@@ -11,6 +11,7 @@ class TechnologyControl extends Component
     public function delete()
     {
         $this->technology->delete();
+        $this->emit('reloadPage');
     }
 
     public function mount($technology)

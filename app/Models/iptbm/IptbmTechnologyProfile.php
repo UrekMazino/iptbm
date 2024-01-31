@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class IptbmTechnologyProfile extends Model
 {
     use HasFactory, SoftDeletes;
-
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         'iptbm_profile_id',
         'title',

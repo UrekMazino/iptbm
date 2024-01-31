@@ -1,10 +1,11 @@
 <div>
     <div class="rounded-none md:rounded-lg bg-gradient-to-tr from-emerald-700 to-emerald-300 ">
         <x-pop-modal name="crypto-modal-techno" class="max-w-5xl max-h-screen" modal-title="Total IP-TBMs Technologies">
-            <x-card>
+            <x-card-panel>
                 <div class="relative overflow-x-auto ">
                     <table id="TechnologyDash" style="width:100%"
-                           class="w-fit display table-auto cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                           class="w-fit  cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+
                         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr class="border-0 ">
                             <th scope="col"
@@ -48,7 +49,7 @@
                         </tbody>
                     </table>
                 </div>
-            </x-card>
+            </x-card-panel>
         </x-pop-modal>
         <div class="p-2  grid grid-cols-4">
             <div class="col-span-3 text-gray-50">
@@ -110,10 +111,6 @@
                 pagingType: 'full_numbers',
                 horizontalScroll: true,
                 dom: 'Bfrtip',
-                scrollY: true,
-                scroller: {
-                    rowHeight: 300
-                },
                 rowGroup: {
                     startRender: function (rows, group) {
                         return group + ' ( ' + rows.count() + ' Technologies )';

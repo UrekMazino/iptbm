@@ -129,7 +129,7 @@ Route::middleware(['component:IPTBM', 'auth', 'verified'])->prefix('/iptbm')->gr
     Route::controller(Technology::class)->prefix('/technology')->group(function () {
         Route::get('/', 'index')->name('iptbm.staff.technology');
         Route::get('/iptbm-technology', 'iptbmtech')->name('iptbm.staff.technology.all');
-        Route::get('/show/{id}', 'show')->name('iptbm.staff.technology.show');
+        Route::get('/show/{id}', 'show')->withTrashed()->name('iptbm.staff.technology.show');
         Route::get('/add-details', 'techdetails')->name('addd.technology.details');
         Route::post('/delete-tech', 'delete_tech')->name('iptbm.staff.technology.delete');
         Route::post('/delete-industry', 'delete_industry')->name('iptbm.staff.delete_industry');

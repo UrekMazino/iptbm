@@ -4,6 +4,7 @@
             <div class="relative overflow-x-auto ">
                 <table id="techAllTable" style="width:100%"
                        class="w-fit  cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+
                     <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="border-0 ">
                         <th scope="col"

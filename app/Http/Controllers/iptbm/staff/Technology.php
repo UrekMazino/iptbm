@@ -71,7 +71,7 @@ class Technology extends Controller
             'ip_applications.ip_type',
             'pre_commercialization',
             'commercial_adopters',
-        )->where('iptbm_profile_id', Auth::user()->profile->id)->get();
+        )->withTrashed()->where('iptbm_profile_id', Auth::user()->profile->id)->get();
 
         return view('iptbm.staff.technologies.index', [
             'industries' => $industry,
@@ -178,6 +178,7 @@ class Technology extends Controller
      */
     public function show(IptbmTechnologyProfile $id): Factory|View|Application|RedirectResponse
     {
+
 
         $this->authorize('view',$id);
         $technology = $id->load('industries.commodities', "owner.agency", 'ip_applications', 'ip_applications.ip_type', 'pre_commercialization', 'commercial_adopters', 'deployment', 'extension', 'full_description', 'industries.categories', 'statuses.technology_profile', 'techgenerators', 'techgenerators.inventor', 'techgenerators.inventor.agency_name', 'researchprojects.funder.agency', 'researchprojects.researchpartners');
