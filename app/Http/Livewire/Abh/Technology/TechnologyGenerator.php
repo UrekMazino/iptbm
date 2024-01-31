@@ -19,6 +19,12 @@ class TechnologyGenerator extends Component
 
 
 
+    public $generator;
+
+    public function rules()
+    {
+        
+    }
 
     public function mount($technology): void
     {

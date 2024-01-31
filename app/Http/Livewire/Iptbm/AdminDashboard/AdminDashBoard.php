@@ -36,7 +36,7 @@ class AdminDashBoard extends Component
         $this->iptbmProfile = IptbmProfile::with('agency')->orderBy('year_established')->get();
         $this->iptbmProfileNew = IptbmProfile::with('region', 'agency')->where('year_established', '=', Carbon::now()->year)->get();
 
-        $this->technologies = IptbmTechnologyProfile::with('iptbmprofiles')->get();
+        $this->technologies = IptbmTechnologyProfile::with('iptbmprofiles','owner.agency')->get();
         foreach ($this->technologies as $technology) {
             $technology->owner = IptbmAgency::find($technology->tech_owner);
         }

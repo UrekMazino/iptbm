@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}
-
+    <title>
+        {{ config('app.name', 'Laravel') }}
         @yield('title')
     </title>
 
@@ -124,6 +124,7 @@
                         </svg>
                     </button>
                     <!-- Notifications -->
+                   {{-------
                     <button
                         type="button"
                         data-dropdown-toggle="notification-dropdown"
@@ -409,6 +410,7 @@
                             </div>
                         </a>
                     </div>
+                   -------}}
                     <!-- Apps -->
                     <div class="my-2 ">
                         <button id="theme-toggle" type="button"

@@ -87,16 +87,24 @@ class Technology extends Controller
             $value->agency = IptbmAgency::find($value->region_id);
             $value->region = IptbmRegion::find($value->agency_id);
         }
+
+        $technology=IptbmTechnologyProfile::with('iptbmprofiles','owner.agency')
+            ->whereHas('iptbmprofiles.agency.region',function ($region){
+                $region->where('id',Auth::user()->profile->agency->region->id);
+            })->latest()->get();
+
+
         return view('iptbm.staff.technologies.iptbm-tech', [
-            'profile' => $profile,
+         //   'profile' => $profile,
+            'technologies'=>$technology
         ]);
     }
 
     public function publicView($id)
     {
         $technology = IptbmTechnologyProfile::with("iptbmprofiles", "techgenerators.inventor","full_description.technology_photos")->find($id);
-        $techOwner = IptbmAgency::find($technology->tech_owner);
-        return view('iptbm.staff.technologies.tech-public-view', compact('technology', 'techOwner'));
+        //$techOwner = IptbmAgency::find($technology->tech_owner);
+        return view('iptbm.staff.technologies.tech-public-view', compact('technology'));
     }
 
     public function delete_tech(Request $request): RedirectResponse

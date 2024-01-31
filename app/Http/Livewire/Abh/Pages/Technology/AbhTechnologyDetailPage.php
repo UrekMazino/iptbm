@@ -20,6 +20,8 @@ class AbhTechnologyDetailPage extends Component
         $this->technology->load('co_owner');
         return view('livewire.abh.pages.technology.abh-technology-detail-page')
             ->with(['technology' => $this->technology])
-            ->layout(AbhLayout::class);
+            ->layout(AbhLayout::class,[
+                'pagetitle'=>'Technology'
+            ]);
     }
 }

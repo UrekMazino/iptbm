@@ -127,10 +127,12 @@
                                                 open
                                             </x-secondary-button>
                                         </a>
+                                       {{-----
                                         <livewire:iptbm.admin.agency.delete-agency/>
                                         <x-secondary-button>
                                             Delete
                                         </x-secondary-button>
+                                       -------}}
 
                                     </div>
                                 </td>

@@ -41,47 +41,72 @@
                     <x-card-panel>
                         <div class="space-y-4">
                             <div class="border rounded border-gray-300 p-2 dark:border-gray-600">
-                                <x-item-header>
+                                <div class="font-medium mb-2">
                                     Technology Title
-                                </x-item-header>
-                                <div class="m-auto w-full  font-medium text-lg text-gray-600 dark:text-white">
+                                </div>
+                                <div class="m-auto w-full  font-medium  text-gray-600 dark:text-white">
                                     {{$technology->title}}
                                 </div>
                             </div>
                             <div class="border rounded border-gray-300  p-2 dark:border-gray-600">
-                                <x-item-header>
+
+                                <div class="font-medium mb-2">
                                     Technology Owner
-                                </x-item-header>
-                                <div class="m-auto w-full  font-medium text-lg text-gray-600 dark:text-white">
-                                    {{$techOwner->name}}
+                                </div>
+                                <div class="m-auto w-full  font-medium  text-gray-600 dark:text-white">
+
+                                    {{$technology->iptbmprofiles->agency->name}}
                                 </div>
                             </div>
+                            @if($technology->owner->count()>0)
+                                <div class="border rounded border-gray-300  p-2 dark:border-gray-600">
+                                    <div class="font-medium mb-2">
+                                        Technology Co-Owner
+                                    </div>
+                                    <div class="m-auto w-full  font-medium  text-gray-600 dark:text-white">
+                                       <ul class="list-disc ps-5">
+                                           @foreach($technology->owner as $owner)
+                                               <li>
+                                                   {{$owner->agency->name}}
+                                               </li>
+                                           @endforeach
+                                       </ul>
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="border rounded border-gray-300  p-2 dark:border-gray-600">
 
-                                <x-item-header>
+                                <div class="font-medium mb-2">
                                     Technology Inventor
-                                </x-item-header>
-                                <div class="m-auto w-full  font-medium text-lg text-gray-600 dark:text-white">
+                                </div>
+                                <div class="m-auto w-full  font-medium  text-gray-600 dark:text-white">
                                     <ul>
-                                        @foreach($technology->techgenerators as $inventor)
+                                        @forelse($technology->techgenerators as $inventor)
                                             <li>
                                                 {{$inventor->inventor->name}}
                                             </li>
-                                        @endforeach
+                                        @empty
+                                            <div class="text-gray-500 dark:text-gray-400">
+                                                No data available
+                                            </div>
+                                        @endforelse
+
                                     </ul>
                                 </div>
                             </div>
                             <div class="border rounded border-gray-300  p-2 dark:border-gray-600">
 
-                                <x-item-header>
+                                <div class="font-medium mb-2">
                                     Technology Description
-                                </x-item-header>
+                                </div>
                                 <p class="text-gray-600 dark:text-gray-200">
                                     {{$technology->tech_desc}}
                                 </p>
                             </div>
                         </div>
                     </x-card-panel>
+
                 </div>
                <div class="md:col-span-2">
                    <x-card-panel title="Technology photos">

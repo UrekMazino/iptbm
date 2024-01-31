@@ -49,7 +49,6 @@ class IptbmProfileController extends Controller
         return view('admin.iptbm.iptbm-profiles.project-view', compact('project'));
     }
 
-
     public function profileTechnology($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $profile = IptbmProfile::with('users', 'agency', 'agency.head', 'agency.region', 'technologies', 'technologies.full_description')->find($id);

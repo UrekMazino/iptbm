@@ -158,6 +158,7 @@
                         </svg>
                     </button>
                     <!-- Notifications -->
+                  {{--
                     <button
                         type="button"
                         data-dropdown-toggle="notification-dropdown"
@@ -443,6 +444,7 @@
                             </div>
                         </a>
                     </div>
+                  ---}}
                     <!-- Apps -->
                     <div class="my-2 ">
                         <button id="theme-toggle" type="button"

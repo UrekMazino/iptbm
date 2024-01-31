@@ -5,7 +5,8 @@
             <div class="flex justify-center items-center w-fit h-full">
                 @if($user->profile->logo)
                     <img class="max-w-full w-auto h-auto" src="{{Storage::url($user->profile->logo)}}">
-
+                @else
+                    <img class="max-w-full w-auto h-auto" src="{{asset('assets/icon/profile-blank.png')}}">
                 @endif
 
             </div>

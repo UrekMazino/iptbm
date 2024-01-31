@@ -8,7 +8,7 @@
                     <tr class="border-0 ">
                         <th scope="col"
                             class=" whitespace-nowrap px-10 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            Region
+                            Logo
                         </th>
 
                         <th scope="col"

@@ -108,7 +108,13 @@
                     @foreach($profiles as $profile)
                         <tr>
                             <td>
-                                <x-thumbnail-holder :url="$profile->logo?? null" class="w-36 rounded-lg p-2 mx-auto"/>
+                                @if($profile->logo)
+                                    <x-thumbnail-holder :url="$profile->logo?? null" class="w-24 rounded-lg p-2 mx-auto"/>
+
+                                @else
+                                    Empty
+                                @endif
+
                             </td>
                             <td>
                                 {{$profile->agency->region->name}}
@@ -118,7 +124,7 @@
                             </td>
                             <td>
                                 <ul class="divide-y divide-gray-400 dark:divide-gray-600 ">
-                                    @foreach($profile->users as $user)
+                                    @forelse($profile->users as $user)
                                         <li class="py-2 break-words">
 
                                             <a href="{{route("iptbm.admin.addrecord.editaccount",['id'=>$user->id])}}"
@@ -130,7 +136,10 @@
                                             </a>
 
                                         </li>
-                                    @endforeach
+                                    @empty
+                                        Empty
+                                    @endforelse
+
                                 </ul>
                             </td>
                             <td>
@@ -227,7 +236,7 @@
                                 </ul>
                             </td>
                             <td>
-                                <div class="w-full h-full flex justify-start gap-4 items-center">
+                                <div class="w-full h-full flex justify-center gap-4 items-center">
                                     <a href="{{ route('iptbm.admin.iptbm_profiles.view-profile',['profile'=>$profile->id]) }}">
                                         <x-secondary-button class="text-sky-600 dark:text-sky-600">
                                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -240,6 +249,7 @@
                                         </x-secondary-button>
                                     </a>
 
+                                   {{----
                                     <x-danger-button>
                                         <svg class="w-4 h-4 text-white" aria-hidden="true"
                                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
@@ -248,6 +258,7 @@
                                                   d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
                                         </svg>
                                     </x-danger-button>
+                                   ---}}
                                 </div>
                             </td>
                         </tr>
@@ -323,11 +334,7 @@
                     text: 'Action'
 
                 },
-                {
-                    className: 'bg-white reset text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0 my-3 hover:border-0',
-                    text: '<i class="fa-solid fa-arrow-rotate-right"></i> Reset'
 
-                },
 
                 {
                     extend: 'colvis',

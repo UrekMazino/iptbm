@@ -44,7 +44,12 @@
                             <th scope="col"
                                 class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                                Agency
+                                Tech Owner
+                            </th>
+                            <th scope="col"
+                                class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                                Co Owner
                             </th>
                             <th scope="col"
                                 class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -66,6 +71,10 @@
 
                                 Agency
                             </th>
+                            <th class="fil   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                                Agency
+                            </th>
                             <th class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Title
@@ -77,40 +86,44 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($profile as $val)
+                        @foreach($technologies as $technology)
+                            <tr>
+                                <td>
+                                    {{$technology->year_developed}}
+                                </td>
+                                <td>
+                                    {{$technology->iptbmprofiles->agency->name}}
+                                </td>
+                                <td>
 
-                            @foreach($val->technologies as $techVal)
+                                    <ul class="divide-y divide-gray-400 dark:divide-gray-600">
+                                        @forelse($technology->owner as $agency)
+                                            <li>
+                                                {{$agency->agency->name}}
+                                            </li>
+                                        @empty
+                                            No data available
+                                        @endforelse
 
-                                <tr>
-                                    <td class="p-2">
-                                        {{$techVal->year_developed}}
-                                    </td>
-                                    <td>
-                                        <ul class="divide-y divide-gray-400 dark:divide-gray-600">
-                                            @foreach($techVal->owner as $agency)
-                                                <li>
-                                                    {{$agency->agency->name}}
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        {{$techVal->title}}
-                                    </td>
-                                    <td>
-                                        <x-link-button
-                                            :url="route('iptbm.staff.tech.public-view',['id'=>$techVal->id])">
-                                            <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
-                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                 viewBox="0 0 18 18">
-                                                <path
-                                                    d="M0 6v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6H0Zm13.457 6.707-2.5 2.5a1 1 0 0 1-1.414-1.414l.793-.793H5a1 1 0 0 1 0-2h5.336l-.793-.793a1 1 0 0 1 1.414-1.414l2.5 2.5a1 1 0 0 1 0 1.414ZM9.043.8a2.009 2.009 0 0 0-1.6-.8H2a2 2 0 0 0-2 2v2h11.443L9.043.8Z"/>
-                                            </svg>
-                                        </x-link-button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    </ul>
+                                </td>
+                                <td>
+                                    {{$technology->title}}
+                                </td>
+                                <td>
+                                    <x-link-button
+                                        :url="route('iptbm.staff.tech.public-view',['id'=>$technology->id])">
+                                        <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                             viewBox="0 0 18 18">
+                                            <path
+                                                d="M0 6v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6H0Zm13.457 6.707-2.5 2.5a1 1 0 0 1-1.414-1.414l.793-.793H5a1 1 0 0 1 0-2h5.336l-.793-.793a1 1 0 0 1 1.414-1.414l2.5 2.5a1 1 0 0 1 0 1.414ZM9.043.8a2.009 2.009 0 0 0-1.6-.8H2a2 2 0 0 0-2 2v2h11.443L9.043.8Z"/>
+                                        </svg>
+                                    </x-link-button>
+                                </td>
+                            </tr>
                         @endforeach
+
                         </tbody>
                     </table>
 

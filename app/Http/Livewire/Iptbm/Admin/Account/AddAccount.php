@@ -62,6 +62,8 @@ class AddAccount extends Component
 
 
         session()->flash('message', 'New Account added successfully!');
+        $this->emit('reloadPage');
+
 
     }
 

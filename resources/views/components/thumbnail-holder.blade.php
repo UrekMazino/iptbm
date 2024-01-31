@@ -3,12 +3,10 @@
 ])
 
 <div {{$attributes->merge([
-    'class'=>'aspect-square   flex justify-center item-center'
+    'class'=>'  flex justify-center item-center'
 ])}}>
     @if(isset($url))
-        <div class="m-auto">
-            <img src="{{\Illuminate\Support\Facades\Storage::url($url)}}" class="w-full h-auto" alt="profile">
-        </div>
+        <img src="{{\Illuminate\Support\Facades\Storage::url($url)}}" class="w-auto max-h-full h-auto" alt="profile">
     @endif
 
 </div>
