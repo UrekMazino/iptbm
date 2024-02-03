@@ -71,7 +71,7 @@ class Technology extends Controller
             'ip_applications.ip_type',
             'pre_commercialization',
             'commercial_adopters',
-        )->withTrashed()->where('iptbm_profile_id', Auth::user()->profile->id)->get();
+        )->withTrashed()->where('iptbm_profile_id', Auth::user()->profile->id)->orderBy('created_at')->get();
 
         return view('iptbm.staff.technologies.index', [
             'industries' => $industry,

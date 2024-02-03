@@ -39,22 +39,28 @@
                             <th scope="col"
                                 class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                                Year
+                                Date Inserted
                             </th>
+                            <th scope="col"
+                                class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                                Title
+                            </th>
+
                             <th scope="col"
                                 class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Tech Owner
                             </th>
                             <th scope="col"
-                                class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="coOwn py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Co Owner
                             </th>
                             <th scope="col"
-                                class=" py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="techYear py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                                Title
+                                Year
                             </th>
                             <th scope="col"
                                 class="action w-fit py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -67,17 +73,22 @@
 
                                 Year
                             </th>
-                            <th class="fil   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-
-                                Agency
-                            </th>
-                            <th class="fil   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-
-                                Agency
-                            </th>
                             <th class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Title
+                            </th>
+                            <th class="fil   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                                Agency
+                            </th>
+                            <th class="fil   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                                Agency
+                            </th>
+
+                            <th class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                                Year
                             </th>
                             <th class="  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -89,7 +100,11 @@
                         @foreach($technologies as $technology)
                             <tr>
                                 <td>
-                                    {{$technology->year_developed}}
+                                    {{$technology->created_at->format('F-d-Y')}}
+                                </td>
+
+                                <td>
+                                    {{$technology->title}}
                                 </td>
                                 <td>
                                     {{$technology->iptbmprofiles->agency->name}}
@@ -108,7 +123,7 @@
                                     </ul>
                                 </td>
                                 <td>
-                                    {{$technology->title}}
+                                    {{$technology->year_developed}}
                                 </td>
                                 <td>
                                     <x-link-button
@@ -211,7 +226,7 @@
                 .appendTo('#searchPan').attr({placeHolder: 'Search'});
             $('.dataTables_filter').addClass('hidden')
             table.buttons().container().appendTo('#botNav');
-
+            table.columns(['.coOwn','.techYear']).visible(false, false);
         })
 
     </script>

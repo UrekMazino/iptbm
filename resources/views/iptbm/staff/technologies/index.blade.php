@@ -48,18 +48,23 @@
                         <tr>
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Year
-                            </th>
-                            <th scope="col"
-                                class="w-1/2 industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Industry
+                                Date inserted
                             </th>
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Title
                             </th>
                             <th scope="col"
-                                class="w-1/2   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="w-1/2 industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Industry
+                            </th>
+
+                            <th scope="col"
+                                class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Year Developed
+                            </th>
+                            <th scope="col"
+                                class="w-1/2 description  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Description
                             </th>
                             <th scope="col"
@@ -84,13 +89,18 @@
                                 class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Year
                             </th>
+
+                            <th scope="col"
+                                class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Title
+                            </th>
                             <th scope="col"
                                 class="fil w-1/2 industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Industry
                             </th>
                             <th scope="col"
                                 class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Title
+                                Year
                             </th>
                             <th scope="col"
                                 class="fil w-1/2   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -110,7 +120,7 @@
                             </td>
                             <th scope="col"
                                 class=" px-6   w-20 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Action
+
                             </th>
                         </tr>
                         </thead>
@@ -120,8 +130,12 @@
                             @foreach($technologies as $key=>$val)
                                 <tr>
                                     <td>
-                                        {{$val->year_developed}}
+                                        {{$val->created_at->format('F-d-Y')}}
                                     </td>
+                                    <td>
+                                        {{$val->title}}
+                                    </td>
+
                                     <td>
                                         <ul class="list-disc ms-3">
                                             @foreach($val->industries as $industry)
@@ -132,7 +146,7 @@
                                         </ul>
                                     </td>
                                     <td>
-                                        {{$val->title}}
+                                        {{$val->year_developed}}
                                     </td>
                                     <td>
                                         {{$val->tech_desc}}
@@ -373,7 +387,7 @@
                     .addClass("font-normal text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-950 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm ")
                     .appendTo('#searchPan').attr({placeHolder: 'Search'});
                 $('.dataTables_filter').addClass('hidden')
-                table.columns(['.inventor', '.industry', '.ipapplication', '.pathway']).visible(false, false);
+                table.columns(['.inventor', '.industry', '.ipapplication', '.pathway','.description']).visible(false, false);
 
             })
 

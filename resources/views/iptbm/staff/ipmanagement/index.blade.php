@@ -74,11 +74,7 @@
                                 Abstract
                             </th>
 
-                            <th scope="col"
-                                class="py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                                Technology
-                            </th>
 
 
                             <th scope="col"
@@ -86,7 +82,11 @@
                                 Application #
                             </th>
 
+                            <th scope="col"
+                                class="py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
+                                Technology
+                            </th>
                             <th scope="col"
                                 class=" task py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Tasks
@@ -198,15 +198,16 @@
                                             {{$val->abstract}}
 
                                         </td>
+
+
+                                        <td>
+                                            {{$val->application_number}}
+                                        </td>
                                         <td>
                                             <a class="link-primary text-decoration-none"
                                                href="{{route("iptbm.staff.technology.show",["id"=>$item->id])}}">
                                                 {{$item->title}}
                                             </a>
-                                        </td>
-
-                                        <td>
-                                            {{$val->application_number}}
                                         </td>
                                         <td>
                                             <livewire:iptbm.staff.ip-management.task-collection
@@ -220,33 +221,30 @@
 
                                         </td>
                                         <td class="py-2 ">
-                                            <div class=" w-fit flex justify-evenly items-center">
-                                                <div id="applicationDetail" role="tooltip"
-                                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-800">
-                                                    View Details
-                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                            <div data-popover id="action-{{$val->id}}" role="tooltip" class="absolute z-10 invisible inline-block w-fit text-sm text-gray-500 transition-opacity duration-300 bg-gray-300 border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-900">
+                                                <div class="p-2 space-y-4">
+                                                    <div>
+                                                        <x-link-button url='{{route("iptbm.staff.ip-management.application.index",["id"=>$val->id])}}'>
+                                                            Details
+                                                        </x-link-button>
+                                                    </div>
+                                                    <div>
+                                                        <x-link-button url='{{route("iptbm.staff.ip-alert.task",["id"=>$val->id])}}'>
+                                                            IP Task
+                                                        </x-link-button>
+                                                    </div>
+                                                    <div>
+                                                        <livewire:iptbm.staff.ip-management.delete-ip-tech :ipAlert="$val"/>
+                                                    </div>
                                                 </div>
-
-
-                                                <a data-tooltip-target="applicationDetail"
-                                                   href="{{route("iptbm.staff.ip-management.application.index",["id"=>$val->id])}}"
-                                                   class="ms-4">
-                                                    <span class="fa-solid fa-eye"></span>
-                                                </a>
-
-                                                <div id="taskList" role="tooltip"
-                                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-800">
-                                                    IP Tasks
-                                                    <div class="tooltip-arrow" data-popper-arrow></div>
-                                                </div>
-
-                                                <a data-tooltip-target="taskList"
-                                                   href="{{route("iptbm.staff.ip-alert.task",['id'=>$val->id])}}"
-                                                   class="ms-4 me-4">
-                                                    <span class="fa-solid fa-list-check"></span>
-                                                </a>
-                                                <livewire:iptbm.staff.ip-management.delete-ip-tech :ipAlert="$val"/>
+                                                <div data-popper-arrow></div>
                                             </div>
+
+
+                                            <x-secondary-button data-popover-placement="left" data-popover-trigger="click" data-popover-target="action-{{$val->id}}">
+                                                Action
+                                            </x-secondary-button>
+
                                         </td>
                                     </tr>
                                 @endforeach

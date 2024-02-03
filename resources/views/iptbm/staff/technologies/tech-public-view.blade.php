@@ -30,9 +30,9 @@
             <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-x-10">
                 <div class="space-y-4 md:col-span-3">
                     <x-card-panel >
-                        <div class="aspect-square border border-gray-400 dark:border-gray-600 rounded">
+                        <div class="aspect-square border flex justify-center items-center border-gray-400 dark:border-gray-600 rounded">
                             @if($technology->tech_photo)
-                                <img class="w-auto h-full object-contain " src="{{Storage::url($technology->tech_photo)}}"
+                                <img class="w-auto max-h-full h-auto object-contain " src="{{Storage::url($technology->tech_photo)}}"
                                      alt="technlogy photo">
                             @endif
 
