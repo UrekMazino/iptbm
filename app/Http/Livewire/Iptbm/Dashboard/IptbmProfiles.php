@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Iptbm\Dashboard;
 
 use App\Models\iptbm\IptbmProfile;
+use App\Models\iptbm\IptbmRegion;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -14,9 +15,8 @@ class IptbmProfiles extends Component
 
     public function mount()
     {
-        $this->iptbmProfiles = IptbmProfile::with(['agency.region'=>function ($query) {
-            $query->where('id',Auth::user()->profile->agency->region->id);
-        }])->get();
+        $this->iptbmProfiles=IptbmRegion::with('iptbms.agency')->where(Auth::user()->profile->agency->region->id)->get();
+
 
 
 
