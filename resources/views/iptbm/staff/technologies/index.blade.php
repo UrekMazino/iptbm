@@ -88,8 +88,6 @@
                                 Actions
                             </th>
                         </tr>
-                        </thead>
-                        <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr class="border-0 filters">
                             <th scope="col"
                                 class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -132,6 +130,7 @@
                             </th>
                         </tr>
                         </thead>
+
                         <tbody>
                         @if($technologies)
 
