@@ -66,13 +66,11 @@
 @push('scripts')
     <script type="text/javascript">
         $(document).ready(function () {
-            var table = $('#patentTableDash').DataTable({
+            $('#patentTableDash').DataTable({
                 pagingType: 'full_numbers',
                 horizontalScroll: true,
                 dom: 'Bfrtip',
-                scroller: {
-                    rowHeight: 300
-                },
+
                 buttons: [
 
                     {
