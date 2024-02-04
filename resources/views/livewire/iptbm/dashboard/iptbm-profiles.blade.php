@@ -70,7 +70,6 @@
                 pagingType: 'full_numbers',
                 horizontalScroll: true,
                 dom: 'Bfrtip',
-
                 buttons: [
                     {
                         extend: 'pageLength',
