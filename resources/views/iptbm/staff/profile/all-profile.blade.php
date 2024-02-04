@@ -107,7 +107,7 @@
                                     Open
                                 </x-link-button>
                             </td>
-                            </td>
+
                         </tr>
                     @endforeach
                     </tbody>
