@@ -18,7 +18,7 @@ class TotalIptbm extends Component
 
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $this->regions = IptbmRegion::with('iptbms.agency')->latest()->get();
+        $this->regions = IptbmRegion::with('iptbms')->latest()->get();
         $this->total = IptbmProfile::with('agency')
         ->whereHas('agency')->get();
 
