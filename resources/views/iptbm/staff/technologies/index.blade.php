@@ -79,11 +79,49 @@
                                 Pathways
                             </th>
                             <th scope="col"
-                                class="px-6 action w-24 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class=" action  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Actions
                             </th>
                         </tr>
+                        <tr class="border-0 filters">
+                            <th scope="col"
+                                class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Year
+                            </th>
 
+                            <th scope="col"
+                                class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Title
+                            </th>
+                            <th scope="col"
+                                class="fil  industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Industry
+                            </th>
+                            <th scope="col"
+                                class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Year
+                            </th>
+                            <th scope="col"
+                                class="fil    py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Description
+                            </th>
+                            <th scope="col"
+                                class="fil  inventor py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Generators
+                            </th>
+                            <th scope="col"
+                                class="fil  ipapplication py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                IP Application
+                            </th>
+                            <th scope="col"
+                                class="fil  pathway py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Pathways
+                            </th>
+                            <th scope="col"
+                                class="   action w-20 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
                         @if($technologies)
