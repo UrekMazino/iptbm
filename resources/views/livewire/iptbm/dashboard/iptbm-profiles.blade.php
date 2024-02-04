@@ -36,7 +36,7 @@
     </x-pop-modal>
     <div class="p-2  grid grid-cols-4">
         <div class="col-span-3 text-gray-50">
-            <h1 class="text-3xl font-bold">
+            <h1 class="text-3xl font-bold">{{dd($iptbmProfiles->iptbms)}}
                 {{$iptbmProfiles->iptbms->count()}}
             </h1>
 
