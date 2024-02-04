@@ -19,7 +19,7 @@
                     @foreach($iptbmProfiles as $profile)
                         <tr>
                             <td class="w-full">
-                                <a href="{{route("iptbm.staff.viewProfile",['id'=>$profiles->id])}}"
+                                <a href="{{route("iptbm.staff.viewProfile",['id'=>$profile->id])}}"
                                    class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
                                     {{$profile->agency->name}}
                                 </a>
