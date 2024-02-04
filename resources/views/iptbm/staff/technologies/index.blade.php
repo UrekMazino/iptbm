@@ -42,24 +42,26 @@
             <x-card>
 
                 <div class="relative overflow-x-auto ">
-                    <table id="technologies"   class="w-fit display cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                    <table id="technologies"
+                           class="w-full display cell-border stripe table-auto md:table-fixed hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Date inserted
+                                Date Uploaded
                             </th>
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Title
                             </th>
+
                             <th scope="col"
                                 class="w-1/2 industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Industry
                             </th>
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Year Developed
+                                Year
                             </th>
                             <th scope="col"
                                 class="w-1/2 description  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -78,50 +80,46 @@
                                 Pathways
                             </th>
                             <th scope="col"
-                                class=" action  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="px-6 action w-24 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Actions
                             </th>
                         </tr>
-
-                        </thead>
-                        <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr class="border-0 filters">
                             <th scope="col"
-                                class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Year
                             </th>
-
                             <th scope="col"
-                                class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Title
+                                class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Year
                             </th>
                             <th scope="col"
-                                class="fil  industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="fil w-1/2 industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Industry
                             </th>
                             <th scope="col"
-                                class="fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Year
+                                class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Title
                             </th>
                             <th scope="col"
-                                class="fil    py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="fil w-1/2   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Description
                             </th>
                             <th scope="col"
-                                class="fil  inventor py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="fil w-1/2 inventor py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Generators
                             </th>
                             <th scope="col"
-                                class="fil  ipapplication py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="fil w-1/2 ipapplication py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 IP Application
                             </th>
-                            <th scope="col"
-                                class="fil  pathway py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <td scope="col"
+                                class="fil w-1/2 pathway py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Pathways
-                            </th>
+                            </td>
                             <th scope="col"
-                                class="   action w-20 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-
+                                class=" px-6   w-20 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Action
                             </th>
                         </tr>
                         </thead>
@@ -133,10 +131,10 @@
                                     <td>
                                         {{$val->created_at->format('F-d-Y')}}
                                     </td>
+
                                     <td>
                                         {{$val->title}}
                                     </td>
-
                                     <td>
                                         <ul class="list-disc ms-3">
                                             @foreach($val->industries as $industry)
@@ -207,8 +205,8 @@
                                         </ul>
 
                                     </td>
-                                    <td >
-                                        <div class="justify-start gap-2  flex items-center">
+                                    <td class="">
+                                        <div class="justify-evenly gap-2  flex items-center">
 
                                             <x-link-button :url="route('iptbm.staff.technology.show',['id'=>$val->id])">
                                                 <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
@@ -264,11 +262,19 @@
                     }
                 });
                 var table = $('#technologies').DataTable({
+
+
+                    //     stateSave: true,
                     pagingType: 'full_numbers',
+
                     horizontalScroll: true,
                     dom: 'Bfrtip',
-                    stateSave: true,
-
+                    autoWidth: false,
+                    orderCellsTop: true,
+                    search: {
+                        "smart": true,
+                        className: 'bg-red-600'
+                    },
                     initComplete: function () {
                         var api = this.api();
 
@@ -380,7 +386,7 @@
                     .addClass("font-normal text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-950 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm ")
                     .appendTo('#searchPan').attr({placeHolder: 'Search'});
                 $('.dataTables_filter').addClass('hidden')
-                table.columns(['.inventor', '.industry', '.ipapplication', '.pathway','.description']).visible(false, false);
+                table.columns(['.inventor', '.industry','.description', '.ipapplication', '.pathway']).visible(false, false);
 
             })
 
