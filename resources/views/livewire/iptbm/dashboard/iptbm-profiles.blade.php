@@ -16,12 +16,12 @@
 
                     </thead>
                     <tbody>
-                    @foreach($iptbmProfiles->agencies as $agency)
+                    @foreach($iptbmProfiles as $profile)
                         <tr>
                             <td class="w-full">
-                                <a href="{{route("iptbm.staff.viewProfile",['id'=>$agency->profiles->id])}}"
+                                <a href="{{route("iptbm.staff.viewProfile",['id'=>$profiles->id])}}"
                                    class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
-                                    {{$agency->name}}
+                                    {{$profile->agency->name}}
                                 </a>
                             </td>
                         </tr>

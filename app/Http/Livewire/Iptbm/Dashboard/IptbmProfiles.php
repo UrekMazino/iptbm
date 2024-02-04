@@ -26,10 +26,16 @@ class IptbmProfiles extends Component
             $agency->whereHas('profiles');
         },'agencies.profiles'])->where('id',Auth::user()->profile->agency->id)->first();
 
+        $profile=IptbmProfile::with('agency.region')
+            ->whereHas('agency.region',function ($region) {
+                $region->where('id',Auth::user()->profile->agency->region->id);
+            })->get();
+
+
 
 
         return view('livewire.iptbm.dashboard.iptbm-profiles')->with([
-            'iptbmProfiles'=>$regions
+            'iptbmProfiles'=>$profile
         ]);
     }
 }
