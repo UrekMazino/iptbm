@@ -23,7 +23,7 @@
                                 @if($profile->agency)
                                     <a href="{{route("iptbm.staff.viewProfile",['id'=>$profile->id])}}"
                                        class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
-                                        {{$profile->agency->name}}
+                                        {{$profile}}
                                     </a>
                                 @endif
                             </td>
