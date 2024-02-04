@@ -72,7 +72,6 @@
                 dom: 'Bfrtip',
 
                 buttons: [
-
                     {
                         extend: 'pageLength',
                         text: '<i class="fa-regular fa-file-lines"></i> Page Length',
