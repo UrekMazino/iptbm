@@ -23,8 +23,8 @@ class IptbmRegion extends Model
         return $this->hasMany(IptbmAgency::class, 'iptbm_region_id', 'id');
     }
 
-    public function iptbms(): HasMany
+    public function iptbms()
     {
-        return $this->hasMany(IptbmProfile::class, 'region_id', 'id');
+        return $this->hasManyThrough(IptbmProfile::class,IptbmAgency::class,'iptbm_region_id','agency_id','id','id');
     }
 }

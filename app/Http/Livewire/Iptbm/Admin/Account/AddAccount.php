@@ -38,9 +38,11 @@ class AddAccount extends Component
         $this->validate();
         $agency = IptbmAgency::find($this->agencyId);
         $profile = null;
+        dd($this->checkProfile($agency->id));
         if ($this->checkProfile($agency->id)) {
             $profile = IptbmProfile::where('agency_id', $agency->id)->first();
         } else {
+
             $profile = IptbmProfile::create([
                 // 'region_id' => $agency->region->id,
                 'agency_id' => $agency->id
@@ -65,7 +67,7 @@ class AddAccount extends Component
 
     }
 
-    public function checkProfile($agencyId)
+    public function checkProfile($agencyId): bool
     {
         return IptbmProfile::where('agency_id', $agencyId)->exists();
     }

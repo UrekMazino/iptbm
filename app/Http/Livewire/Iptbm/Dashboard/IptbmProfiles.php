@@ -21,7 +21,9 @@ class IptbmProfiles extends Component
 
     public function render()
     {
-        $regions=IptbmRegion::find(Auth::user()->profile->agency->region->id);
+        $regions=IptbmRegion::with('iptbms')->where('id',Auth::user()->profile->agency->region->id)->first();
+
+
 
         return view('livewire.iptbm.dashboard.iptbm-profiles')->with([
             'iptbmProfiles'=>$regions
