@@ -5,9 +5,10 @@ namespace App\Console\Commands\iptbm;
 use App\Mail\DeadlineNotificationMail;
 use App\Models\iptbm\IptbmIpAlertTask;
 use App\Models\IptbmSendNotification;
+use App\Notifications\iptbm\task\DeadlineNotif;
+use App\Notifications\iptbm\Task\TaskDeadlineDaily;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Mail;
-use function Clue\StreamFilter\fun;
+
 
 class DailyNotification extends Command
 {
@@ -44,9 +45,9 @@ class DailyNotification extends Command
             ->where('task_status', 'ONGOING')
             ->whereHas('ip_task_stage_notifications', function ($query) {
                 $query->where('frequency', 'daily')
-                    ->whereTime('time_of_day', '<=', now());
+                    ->whereTime('time_of_day', '>', now()->format('Y-m-d'));
             })
-            ->whereDate('deadline', '>', now())
+            ->whereDate('deadline', '>', now()->format('Y-m-d'))
             ->get();
         $this->mailer($deadlinesDaily);
     }
@@ -60,23 +61,21 @@ class DailyNotification extends Command
 
 
         foreach ($data as $profile) {
-            if ($profile->ip_alert->technology->iptbmprofiles->contact->count() > 0) {
+            foreach ($profile->ip_alert->technology->iptbmprofiles->users as $user)
+            {
 
-                foreach ($profile->ip_alert->technology->iptbmprofiles->contact as $email) {
-
-                    Mail::to('warzservania@gmail.com')
-                        ->send(new DeadlineNotificationMail(
-                            $profile->ip_alert->technology->title,
-                            $profile->ip_alert->ip_type->name,
-                            $profile->ip_alert->application_number,
-                            $profile->task_group_name,
-                            $profile->stage->stage_name,
-                            $profile->deadline,
-                            route("iptbm.staff.iptask.view", ['id' => $profile->id])
-                        ));
-
-                }
+                $user->notify(new DeadlineNotif(
+                    $profile->ip_alert->technology->title,
+                    $profile->ip_alert->ip_type->name,
+                    $profile->ip_alert->application_number,
+                    $profile->task_group_name,
+                    $profile->stage->stage_name,
+                    $profile->deadline,
+                    route("iptbm.staff.iptask.view", ['id' => $profile->id])
+                ));
             }
+
+
 
             $profile->dailySend()->save(new IptbmSendNotification([]));
 

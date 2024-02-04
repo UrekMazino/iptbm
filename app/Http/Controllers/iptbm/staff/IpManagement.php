@@ -4,6 +4,7 @@ namespace App\Http\Controllers\iptbm\staff;
 
 use App\Http\Controllers\Controller;
 use App\Models\iptbm\IptbmIpAlert;
+use App\Models\iptbm\IptbmIpAlertTask;
 use App\Models\iptbm\IptbmProfile;
 use App\Models\iptbm\IptbmTechnologyProfile;
 use App\Models\iptbm\IpType;
@@ -31,6 +32,7 @@ class IpManagement extends Controller
      */
     public function index(): Application|Factory|View|RedirectResponse
     {
+
 
         $profile = IptbmProfile::with("technologies")->where("agency_id", Auth::user()->profile->agency->id)->first();
 

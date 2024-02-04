@@ -59,8 +59,6 @@ class AddAccount extends Component
         $profile->users()->save($user);
         $profile->save();
         $user->notify(new AccountCreationNotif($this->fullname, $this->email, $password));
-
-
         session()->flash('message', 'New Account added successfully!');
         $this->emit('reloadPage');
 

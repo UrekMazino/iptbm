@@ -5,6 +5,7 @@ namespace App\Console\Commands\iptbm;
 use App\Mail\DeadlineNotificationMail;
 use App\Models\iptbm\IptbmIpAlertTask;
 use App\Models\IptbmSendNotification;
+use App\Notifications\iptbm\task\DeadlineNotif;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -63,22 +64,18 @@ class WeeklyNotification extends Command
 
 
         foreach ($data as $profile) {
-            if ($profile->ip_alert->technology->iptbmprofiles->contact->count() > 0) {
+            foreach ($profile->ip_alert->technology->iptbmprofiles->users as $user) {
 
-                foreach ($profile->ip_alert->technology->iptbmprofiles->contact as $email) {
+                $user->notify(new DeadlineNotif(
+                    $profile->ip_alert->technology->title,
+                    $profile->ip_alert->ip_type->name,
+                    $profile->ip_alert->application_number,
+                    $profile->task_group_name,
+                    $profile->stage->stage_name,
+                    $profile->deadline,
+                    route("iptbm.staff.iptask.view", ['id' => $profile->id])
+                ));
 
-                    Mail::to('warzservania@gmail.com')
-                        ->send(new DeadlineNotificationMail(
-                            $profile->ip_alert->technology->title,
-                            $profile->ip_alert->ip_type->name,
-                            $profile->ip_alert->application_number,
-                            $profile->task_group_name,
-                            $profile->stage->stage_name,
-                            $profile->deadline,
-                            config('app.url')
-                        ));
-
-                }
             }
 
             $profile->dailySend()->save(new IptbmSendNotification([]));

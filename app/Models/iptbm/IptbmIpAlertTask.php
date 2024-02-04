@@ -28,6 +28,8 @@ class IptbmIpAlertTask extends Model
     ];
 
 
+
+
     function ip_alert(): BelongsTo
     {
         return $this->belongsTo(IptbmIpAlert::class, 'ip_alert_id', 'id');

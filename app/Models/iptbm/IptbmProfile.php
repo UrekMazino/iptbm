@@ -27,7 +27,8 @@ class IptbmProfile extends Model
         // 'user_id'
     ];
     /*
-     *  public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     * public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
      {
          return $this->belongsTo(User::class,'user_id','id');
      }
@@ -39,7 +40,7 @@ class IptbmProfile extends Model
         return $this->belongsTo(IptbmRegion::class,'region_id','id');
     }
      */
-    public function users()
+    public function users(): HasMany
     {
         return $this->hasMany(User::class, 'profile_id', 'id');
     }

@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <x-secondary-button data-modal-toggle="deleteModal{{$ipAlert->id}}" >
+    <x-danger-button data-modal-toggle="deleteModal{{$ipAlert->id}}" >
         Delete
-    </x-secondary-button>
+    </x-danger-button>
 </div>

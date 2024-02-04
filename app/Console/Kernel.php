@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Jobs\Sample;
+use App\Jobs\SendIpAlerReminder;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -19,12 +21,16 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        //  $schedule->command('notify:cron')->everySecond();
+
+
+
+
         $schedule->command('app:daily-notification')->everySecond(); // daily notification
-        $schedule->command('app:weekly-notification')->everySecond(); // weekly notification
-        $schedule->command('app:high-priority-notification')->everySecond(); // sending notifications for due tasks
-        $schedule->command('app:clean-notif-logs')->daily(); // delete all sending logs
-        // $schedule->job(new SendIpAlerReminder())->everySecond();
+        $schedule->command('app:high-priority-notification')->everyFourHours();
+        $schedule->command('app:weekly-notification')->everySecond();
+      //  $schedule->command('app:clean-notif-logs')->daily();
+       // $schedule->job(new SendIpAlerReminder())->everySecond();
+
     }
 
     /**

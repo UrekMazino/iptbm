@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Notifications\iptbm;
+namespace App\Notifications\iptbm\Task;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class DeadlineNotification extends Notification
+class TaskDeadlineDaily extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
-     * Create a
-     * new notification instance.
+     * Create a new notification instance.
      */
     private $task;
     private $deadline;

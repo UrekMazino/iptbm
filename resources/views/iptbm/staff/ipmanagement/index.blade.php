@@ -233,17 +233,17 @@
                                                             IP Task
                                                         </x-link-button>
                                                     </div>
-                                                    <div>
-                                                        <livewire:iptbm.staff.ip-management.delete-ip-tech :ipAlert="$val"/>
-                                                    </div>
+
                                                 </div>
                                                 <div data-popper-arrow></div>
                                             </div>
 
-
-                                            <x-secondary-button data-popover-placement="left" data-popover-trigger="click" data-popover-target="action-{{$val->id}}">
-                                                Action
-                                            </x-secondary-button>
+                                            <div class="flex justify-start gap-2 items-center">
+                                                <livewire:iptbm.staff.ip-management.delete-ip-tech wire:key="del-ip-{{$val->id}}" :ipAlert="$val"/>
+                                                <x-secondary-button data-popover-placement="left" data-popover-trigger="click" data-popover-target="action-{{$val->id}}">
+                                                    Action
+                                                </x-secondary-button>
+                                            </div>
 
                                         </td>
                                     </tr>
