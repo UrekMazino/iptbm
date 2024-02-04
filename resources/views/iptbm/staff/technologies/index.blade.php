@@ -206,8 +206,8 @@
                                         </ul>
 
                                     </td>
-                                    <td class="">
-                                        <div class="justify-evenly gap-2  flex items-center">
+                                    <td >
+                                        <div class="justify-start gap-2  flex items-center">
 
                                             <x-link-button :url="route('iptbm.staff.technology.show',['id'=>$val->id])">
                                                 <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
