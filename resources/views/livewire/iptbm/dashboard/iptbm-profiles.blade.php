@@ -65,24 +65,6 @@
 </div>
 @push('scripts')
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#patentTableDash').DataTable({
-                pagingType: 'full_numbers',
-                horizontalScroll: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'pageLength',
-                        text: '<i class="fa-regular fa-file-lines"></i> Page Length',
-                        className: 'bg-white text-blue-500  dark:bg-gray-700 dark:text-sky-500 w-full md:w-fit border-0 my-1 md:my-3  hover:border-0',
-                    },
 
-
-                    // Add more buttons here
-                ],
-
-            });
-
-        })
     </script>
 @endpush
