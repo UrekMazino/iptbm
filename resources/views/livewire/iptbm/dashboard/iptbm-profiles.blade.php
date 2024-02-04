@@ -17,7 +17,6 @@
                     </thead>
                     <tbody>
                     @foreach($iptbmProfiles->iptbms as $profile)
-
                         <tr>
                             <td class="w-full">
 
