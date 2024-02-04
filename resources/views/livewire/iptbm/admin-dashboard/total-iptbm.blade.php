@@ -20,6 +20,7 @@
                     </thead>
                     <tbody>
                     @foreach($regions as $region)
+                        {{dd($region->iptbms)}}
                         @foreach($region->iptbms as $profile)
                             <tr>
                                 <td>

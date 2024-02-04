@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Iptbm\Staff\Profile;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -22,7 +23,7 @@ class UploadProfile extends Component
     }
 
 
-    public function upload()
+    public function upload(): RedirectResponse
     {
         $this->validate([
             'photo' => 'required|image|mimes:png,jpg,jpeg|max:20480',
