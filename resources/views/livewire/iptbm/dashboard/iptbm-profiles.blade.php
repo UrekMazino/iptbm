@@ -15,7 +15,7 @@
                     </tr>
 
                     </thead>
-                    <tbody>{{dd($iptbmProfiles)}}
+                    <tbody>
                     @foreach($iptbmProfiles->iptbms as $profile)
                         <tr>
                             <td class="w-full">
