@@ -42,8 +42,7 @@
             <x-card>
 
                 <div class="relative overflow-x-auto ">
-                    <table id="technologies"
-                           class="w-full display cell-border stripe table-auto md:table-fixed hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                    <table id="technologies"   class="w-fit display cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col"
@@ -83,7 +82,6 @@
                                 Actions
                             </th>
                         </tr>
-
 
                         </thead>
                         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
