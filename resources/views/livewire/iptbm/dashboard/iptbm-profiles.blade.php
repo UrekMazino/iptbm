@@ -2,14 +2,11 @@
     <x-pop-modal name="crypto-modal-iptbmProf" class="max-w-5xl" modal-title="Total IP-TBMs Profiles">
         <x-card>
             <div class="relative overflow-x-auto ">
-                <table id="patentTable" style="width:100%"
+                <table id="patentTableDash" style="width:100%"
                        class="w-fit display cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                     <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="border-0 ">
-                        <th scope="col"
-                            class=" whitespace-nowrap px-10 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            Logo
-                        </th>
+
 
                         <th scope="col"
                             class="  px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -21,9 +18,6 @@
                     <tbody>
                     @foreach($iptbmProfiles as $profile)
                         <tr>
-                            <td class="w-fit">
-                                <x-thumbnail-holder class="w-40" :url="$profile->logo"/>
-                            </td>
                             <td class="w-full">
                                 @if($profile->agency)
                                     <a href="{{route("iptbm.staff.viewProfile",['id'=>$profile->id])}}"
@@ -31,8 +25,6 @@
                                         {{$profile->agency->name}}
                                     </a>
                                 @endif
-
-
                             </td>
                         </tr>
                     @endforeach
@@ -74,13 +66,10 @@
 @push('scripts')
     <script type="text/javascript">
         $(document).ready(function () {
-            var table = $('#patentTable').DataTable({
-
+            var table = $('#patentTableDash').DataTable({
                 pagingType: 'full_numbers',
                 horizontalScroll: true,
                 dom: 'Bfrtip',
-
-
                 scroller: {
                     rowHeight: 300
                 },
@@ -97,7 +86,7 @@
                 ],
 
             });
-            table.columns(['.abstract']).visible(false, false);
+
         })
     </script>
 @endpush
