@@ -34,7 +34,7 @@
     <div class="p-2  grid grid-cols-4">
         <div class="col-span-3 text-gray-50">
             <h1 class="text-3xl font-bold">
-                {{$iptbmProfiles->iptbms->count()}}
+                {{$iptbmProfiles->count()}}
             </h1>
 
             <div class=" font-medium">
