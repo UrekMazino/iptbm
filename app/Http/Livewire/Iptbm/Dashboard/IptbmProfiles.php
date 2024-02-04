@@ -14,9 +14,9 @@ class IptbmProfiles extends Component
 
     public function mount()
     {
-        $this->iptbmProfiles = IptbmProfile::with(['agency'=>function ($query) {
-            $query->where('iptbm_region_id',Auth::user()->profile->agency->region->id);
-        },'agency.region'])->get();
+        $this->iptbmProfiles = IptbmProfile::with(['agency.region'=>function ($query) {
+            $query->where('id',Auth::user()->profile->agency->region->id);
+        }])->get();
 
 
 

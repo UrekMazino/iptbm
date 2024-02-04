@@ -17,7 +17,7 @@
                     </thead>
                     <tbody>
                     @foreach($iptbmProfiles as $profile)
-                        {{dd($profile)}}
+
                         <tr>
                             <td class="w-full">
                                 @if($profile->agency)
