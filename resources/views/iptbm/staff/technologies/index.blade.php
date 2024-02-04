@@ -39,31 +39,29 @@
                 My Technologies
             </x-header-label>
 
+            <x-card>
 
-
-
-
-            <x-card-panel>
                 <div class="relative overflow-x-auto ">
-                    <table id="technologies" class="w-full display cell-border stripe table-auto md:table-fixed hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                    <table id="technologies"
+                           class="w-full display cell-border stripe table-auto md:table-fixed hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Date Uploaded
+                                Date inserted
                             </th>
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Title
                             </th>
-
                             <th scope="col"
                                 class="w-1/2 industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Industry
                             </th>
+
                             <th scope="col"
                                 class="w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Year
+                                Year Developed
                             </th>
                             <th scope="col"
                                 class="w-1/2 description  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -91,9 +89,10 @@
                                 class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Year
                             </th>
+
                             <th scope="col"
                                 class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Year
+                                Title
                             </th>
                             <th scope="col"
                                 class="fil w-1/2 industry py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -101,7 +100,7 @@
                             </th>
                             <th scope="col"
                                 class="fil w-1/2 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                Title
+                                Year
                             </th>
                             <th scope="col"
                                 class="fil w-1/2   py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -125,7 +124,6 @@
                             </th>
                         </tr>
                         </thead>
-
                         <tbody>
                         @if($technologies)
 
@@ -134,10 +132,10 @@
                                     <td>
                                         {{$val->created_at->format('F-d-Y')}}
                                     </td>
-
                                     <td>
                                         {{$val->title}}
                                     </td>
+
                                     <td>
                                         <ul class="list-disc ms-3">
                                             @foreach($val->industries as $industry)
@@ -249,7 +247,7 @@
                     </table>
 
                 </div>
-            </x-card-panel>
+            </x-card>
 
         </div>
 
@@ -266,11 +264,14 @@
                 });
                 var table = $('#technologies').DataTable({
 
-                    stateSave: true,
+
+                    //     stateSave: true,
                     pagingType: 'full_numbers',
+
                     horizontalScroll: true,
                     dom: 'Bfrtip',
-
+                    autoWidth: false,
+                    orderCellsTop: true,
                     search: {
                         "smart": true,
                         className: 'bg-red-600'
@@ -386,7 +387,7 @@
                     .addClass("font-normal text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-950 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm ")
                     .appendTo('#searchPan').attr({placeHolder: 'Search'});
                 $('.dataTables_filter').addClass('hidden')
-                table.columns(['.inventor', '.industry','.description', '.ipapplication', '.pathway']).visible(false, false);
+                table.columns(['.inventor', '.industry', '.ipapplication', '.pathway','.description']).visible(false, false);
 
             })
 
