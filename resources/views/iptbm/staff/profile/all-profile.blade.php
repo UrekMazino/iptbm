@@ -123,9 +123,7 @@
     <script>
         $(function () {
             var table = $('#allProf').DataTable({
-                rowCallback: function (row, data) {
-                    $(row).addClass('bg-gray-800 border-b text-base dark:bg-gray-800 dark:border-gray-700 transition duration:300 dark:hover:text-gray-50 hover:bg-gray-200 dark:hover:bg-gray-600');
-                },
+
                 stateSave: true,
                 pagingType: 'full_numbers',
                 horizontalScroll: true,

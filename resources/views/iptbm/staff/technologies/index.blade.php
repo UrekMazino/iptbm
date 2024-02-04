@@ -262,19 +262,11 @@
                     }
                 });
                 var table = $('#technologies').DataTable({
-
-
-                    //     stateSave: true,
                     pagingType: 'full_numbers',
-
                     horizontalScroll: true,
                     dom: 'Bfrtip',
-                    autoWidth: false,
-                    orderCellsTop: true,
-                    search: {
-                        "smart": true,
-                        className: 'bg-red-600'
-                    },
+                    stateSave: true,
+
                     initComplete: function () {
                         var api = this.api();
 
