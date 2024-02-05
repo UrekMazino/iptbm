@@ -93,7 +93,7 @@
                     <div>
                         @if($profile->agency->head)
                             <div class="text-lg text-gray-700 dark:text-gray-300">
-                                {{$profile->agency->head->head}}
+                                {{$profile->agency->head}}
                             </div>
                         @else
                             No data available
