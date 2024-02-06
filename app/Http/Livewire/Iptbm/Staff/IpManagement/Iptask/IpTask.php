@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Iptbm\Staff\IpManagement\Iptask;
 
 use App\Models\iptbm\IptbmIpAlertTask;
 use App\Models\iptbm\IptbmIpTaskNotification;
+use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -48,7 +49,6 @@ class IpTask extends Component
             ],
             'deadlineModel' => [
                 'required',
-                'date_format:Y-m-d H:i',
             ],
             'noteModel' => [
                 'required',
@@ -77,7 +77,7 @@ class IpTask extends Component
             'priority' => $this->priorityModel,
             'task_status' => $this->taskStatusModel,
             'description' => $this->noteModel,
-            'deadline' => $this->deadlineModel,
+            'deadline' => Carbon::parse($this->deadlineModel)->format('Y-n-j'),
             'attachment' => $path
         ]);
 

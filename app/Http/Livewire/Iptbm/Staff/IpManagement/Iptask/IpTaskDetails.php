@@ -15,6 +15,8 @@ class IpTaskDetails extends Component
 {
     use WithFileUploads;
 
+
+
     public $ip_task;
     public $notesModel;
     public $showNoteModelForm = false;
@@ -36,6 +38,13 @@ class IpTaskDetails extends Component
 
     //Ip Alert notification
     public $frequencyModel;
+
+    public $default_frequency; //weekly or daily
+    public $day_weekly_frequency=null;
+
+
+
+
     public $weeklyModel;
     public $dailyModel;
     public $priorityModel;
@@ -50,28 +59,10 @@ class IpTaskDetails extends Component
     public $validationAttributes = [
         'notesModel' => 'Notes / Description',
         'inChargeNameModel' => 'Name',
-        'inChargeEmailModel' => 'Email'
+        'inChargeEmailModel' => 'Email',
+        'day_weekly_frequency'=>'Week days'
     ];
 
-    public function toggleShowDeadLineForm()
-    {
-        $this->showDeadLineForm = !$this->showDeadLineForm;
-    }
-
-    public function toggleShowPriorityForm()
-    {
-        $this->showPriorityForm = !$this->showPriorityForm;
-    }
-
-    public function toggleShowTaskStatusForm()
-    {
-        $this->showTaskStatusForm = !$this->showTaskStatusForm;
-    }
-
-    public function toggleShowAttachmentForm()
-    {
-        $this->showAttachmentForm = !$this->showAttachmentForm;
-    }
 
     public function saveAttachment()
     {
@@ -113,35 +104,13 @@ class IpTaskDetails extends Component
         $val->delete();
     }
 
-    public function updatedFrequencyModel()
-    {
-        $this->validateOnly('frequencyModel');
-        $this->reset('weeklyModel');
-        $this->reset('dailyModel');
-        $this->resetValidation([
-            'weeklyModel', 'dailyModel'
-        ]);
-    }
 
-    public function toggleShowNoteModelForm()
-    {
-        $this->showNoteModelForm = !$this->showNoteModelForm;
 
-    }
 
-    public function toggleShowInChargeForm()
-    {
-        $this->showInChargeForm = !$this->showInChargeForm;
-    }
 
-    public function toggleShowUnitInChargeForm()
-    {
-        $this->showUnitInChargeForm = !$this->showUnitInChargeForm;
-    }
 
     public function deleteData($id)
     {
-
 
         $this->delete($id, $this->ip_task->attachments);
         $this->emit('reloadPage');
@@ -182,7 +151,7 @@ class IpTaskDetails extends Component
         $this->emit('reloadPage');
     }
 
-    public function saveUnit()
+    public function saveUnit(): void
     {
         $this->validate([
             'unitInChargeModel' => [
@@ -197,32 +166,34 @@ class IpTaskDetails extends Component
         $this->emit('reloadPage');
     }
 
-    public function saveDeadline()
+    public function saveDeadline(): void
     {
         $this->validate([
             'deadLineModel' => [
                 'required',
-                'date_format:Y-m-d H:i',
+
             ]
         ]);
+
         $this->ip_task->deadline = $this->deadLineModel;
         $this->ip_task->save();
         $this->emit('reloadPage');
     }
 
-    public function saveNotification()
+
+    public function saveNotification(): void
     {
         $this->validate([
-            'frequencyModel' => 'required|in:weekly,daily',
+            'default_frequency' => 'required|in:weekly,daily',
             'noteDescModel' => 'required|min:10',
-            'weeklyModel' => 'required_if:frequency,weekly',
-            'dailyModel' => 'required|date_format:g:i A'
+            'day_weekly_frequency'=>'required_if:default_frequency,weekly'
         ]);
 
         $this->ip_task->ip_task_stage_notifications->notification_details = $this->noteDescModel;
-        $this->ip_task->ip_task_stage_notifications->frequency = $this->frequencyModel;
-        $this->ip_task->ip_task_stage_notifications->day_of_week = $this->weeklyModel;
-        $this->ip_task->ip_task_stage_notifications->time_of_day = Carbon::createFromFormat('h:i A', $this->dailyModel)->format('H:i:s');
+
+        $this->ip_task->ip_task_stage_notifications->frequency = $this->default_frequency;
+        $this->ip_task->ip_task_stage_notifications->day_of_week =($this->default_frequency==='weekly')? $this->day_weekly_frequency:null;
+
         $this->ip_task->ip_task_stage_notifications->save();
         $this->emit('reloadPage');
     }
@@ -305,6 +276,9 @@ class IpTaskDetails extends Component
         $this->notesModel = $ipTask->description;
         $this->priorityModel = $ipTask->priority;
         $this->taskStatusModel = $ipTask->task_status;
+        $this->default_frequency=$ipTask->ip_task_stage_notifications->frequency;
+        $this->noteDescModel=$ipTask->ip_task_stage_notifications->notification_details;
+
     }
 
     public function render()

@@ -7,9 +7,10 @@
                         <form wire:submit.prevent="saveNote">
                             <div class="mb-6">
 
-                                <div wire:ignore>
-                                    <textarea wire:model.lazy="notesModel" rows="5" name="content"
-                                              id="editorNote"></textarea>
+                                <div wire:ignore class="text-black dark:text-black">
+
+                                    <x-text-box wire:model.lazy="notesModel" rows="5" name="content"
+                                                id="editorNote" />
 
                                 </div>
                                 <div wire:loading wire:target="noteModel" class="text-blue-600 font-medium">
@@ -55,9 +56,9 @@
                         </i>
                     </div>
                 </x-slot:footer>
-                <div class="my-4 text-gray-500 font-normal dark:text-gray-300">
+                <div class="my-4 text-black dark:text-black">
 
-                    <div class="p-2 bg-white rounded">
+                    <div class="p-2 py-4 bg-white rounded">
                         {!! $notesModel !!}
                     </div>
                 </div>
@@ -280,10 +281,6 @@
                                         <span
                                             class="font-medium text-gray-600 dark:text-gray-200 me-3">DATE:</span> {{\Carbon\Carbon::parse($this->ip_task->deadline)->format('d-M-Y ')}}
                                     </div>
-                                    <div>
-                                        <span
-                                            class="font-medium text-gray-600 dark:text-gray-200 me-3">TIME : </span> {{\Carbon\Carbon::parse($this->ip_task->deadline)->format('g:i A')}}
-                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -323,10 +320,7 @@
                         <span
                             class="font-medium text-gray-600 dark:text-gray-200 me-3">DATE:</span> {{\Carbon\Carbon::parse($deadLineModel)->format('d-M-Y ')}}
                     </div>
-                    <div>
-                        <span
-                            class="font-medium text-gray-600 dark:text-gray-200 me-3">TIME : </span> {{\Carbon\Carbon::parse($deadLineModel)->format('g:i A')}}
-                    </div>
+
                 </div>
 
             </x-card-panel>
@@ -335,93 +329,69 @@
                     <x-pop-modal modal-title="Update IP Notifications" name="ipAlertMod" static="true" class="max-w-md">
                         <form class="space-y-6" wire:submit.prevent="saveNotification">
                             <div>
+                                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Notification Details
+                                </label>
 
-                                <label for="message"
-                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notification
-                                    Details</label>
-                                <textarea wire:model="noteDescModel" id="message" rows="4"
-                                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                          placeholder="Write your thoughts here..."></textarea>
-                                <div wire:loading wire:target="noteDescModel" class="text-blue-500 font-medium">
-                                    Loading...
-                                </div>
-                                @error('noteDescModel')
-                                <div id="alert-border-2"
-                                     class="flex items-center p-4 mb-4 text-red-800 border-t border-b border-l border-r border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800 rounded-lg mt-2"
-                                     role="alert">
-                                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                    </svg>
-                                    <div class="ml-3 text-sm font-medium">
-                                        {{$message}}
-                                    </div>
-                                </div>
-                                @enderror
+                                <x-text-box wire:model="noteDescModel" id="message" rows="4" placeholder="Enter text here..." />
+                                <x-input-error :messages="$errors->get('noteDescModel')"/>
                             </div>
                             <div class="my-4">
                                 <label for="message"
                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Frequency</label>
-                                <div>
+                                <div class="space-y-2">
 
-                                    <div class="flex items-center mb-4">
-                                        <input wire:model="frequencyModel" id="default-radio-1" type="radio"
-                                               value="weekly" name="default-radio"
-                                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
-                                        <label for="default-radio-1"
-                                               class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Weekly</label>
+                                    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                                        <input id="bordered-radio-1" type="radio" wire:model="default_frequency" value="weekly" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">WEEKLY</label>
                                     </div>
-                                    <div class="flex items-center">
-                                        <input wire:model="frequencyModel" id="default-radio-2" type="radio"
-                                               value="daily" name="default-radio"
-                                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
-                                        <label for="default-radio-2"
-                                               class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Daily</label>
+                                    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                                        <input checked id="bordered-radio-2" type="radio" wire:model="default_frequency" value="daily" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">DAILY</label>
                                     </div>
 
                                 </div>
-                                <div wire:loading wire:target="frequencyModel" class="text-blue-500 font-medium">
+
+                                <div wire:loading wire:target="default_frequency" class="text-blue-500 font-medium">
                                     Loading...
                                 </div>
-                                <div class="my-4 @if($frequencyModel!=='daily') hidden @endif">
-                                    <label for="message"
-                                           class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Daily
-                                        Notification</label>
-                                </div>
-                                <div class="my-4 @if($frequencyModel!=='weekly') hidden @endif">
-                                    <label for="message"
-                                           class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Weekly
-                                        Notification</label>
-                                    <div class="mb-6">
-                                        <label for="day"
-                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Day
-                                            of the week</label>
-                                        <select wire:model="weeklyModel" id="day"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option selected>Select</option>
-                                            <option value="Monday">Monday</option>
-                                            <option value="Tuesday">Tuesday</option>
-                                            <option value="Wednesday">Wednesday</option>
-                                            <option value="Thursday">Thursday</option>
-                                            <option value="Friday">Friday</option>
-                                            <option value="Saturday">Saturday</option>
-                                            <option value="Sunday">Sunday</option>
-                                        </select>
+                                @if($default_frequency==='weekly')
+                                    <div class="my-4">
+                                        <label for="message"
+                                               class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Weekly
+                                            Notification</label>
+                                        <div>
+                                            <label for="day"
+                                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Day
+                                                of the week</label>
+                                            <select wire:model="day_weekly_frequency" id="day"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option selected>Select</option>
+                                                <option value="Monday">Monday</option>
+                                                <option value="Tuesday">Tuesday</option>
+                                                <option value="Wednesday">Wednesday</option>
+                                                <option value="Thursday">Thursday</option>
+                                                <option value="Friday">Friday</option>
+                                                <option value="Saturday">Saturday</option>
+                                                <option value="Sunday">Sunday</option>
+                                            </select>
+                                            <x-input-error :messages="$errors->get('day_weekly_frequency')"/>
+                                        </div>
+                                        <x-sub-label>
+                                            <i>
+                                                Notification will be sent every monday.
+                                            </i>
+                                        </x-sub-label>
                                     </div>
-                                </div>
+                                @else
+                                    <x-sub-label>
+                                        <i>
+                                            Notification will be sent everyday.
+                                        </i>
+                                    </x-sub-label>
 
-                                <div class="my-4"
-                                     @if($frequencyModel!=='weekly'&& $frequencyModel!=='daily') hidden @endif>
-                                    <div class="mb-6">
-                                        <label for="time"
-                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter
-                                            Time of the day</label>
-                                        <input wire:model="dailyModel" type="text" id="time"
-                                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                               placeholder="day time" required>
-                                    </div>
-                                </div>
+                                @endif
+
                             </div>
 
                             <button type="submit"
@@ -430,7 +400,7 @@
                             </button>
 
                         </form>
-                    </x-pop-modal>
+                    </x-pop-modal>{{dd( (\Carbon\Carbon::now()<'2024-02-06 17:13:03'))}}
                     <x-secondary-button data-modal-target="ipAlertMod" data-modal-toggle="ipAlertMod"
                                         class="text-sky-600 dark:text-sky-600">
                         <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -444,50 +414,38 @@
                     </x-secondary-button>
                 </x-slot:button>
                 <div class="text-gray-500 font-normal dark:text-gray-300">
+
                     @if($ip_task->ip_task_stage_notifications)
-                        @if ($ip_task->ip_task_stage_notifications->time_of_day)
-                            @if($ip_task->ip_task_stage_notifications->frequency==='daily')
-                                <label for="message"
-                                       class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Notification
-                                    will be sent everyday at</label>
-
-                                <span class="font-medium text-lg text-gray-700 dark:text-gray-300 border-b">
-
-                             {{\Carbon\Carbon::parse($ip_task->ip_task_stage_notifications->time_of_day)->format('g:i A')}}
-                        </span>
-                            @else
-                                <label for="message"
-                                       class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Notification
-                                    will be sent every</label>
-                                <span
-                                    class="font-medium text-lg text-gray-700 dark:text-gray-300"> {{$ip_task->ip_task_stage_notifications->day_of_week}}</span>
-                                <span class="font-medium text-lg text-gray-700 dark:text-gray-300 border-b">
-
-                             {{\Carbon\Carbon::parse($ip_task->ip_task_stage_notifications->time_of_day)->format('g:i A')}}
-
-                            </span>
-                            @endif
-                            <div class="border-l border-r border-t border-b rounded-lg shadow my-3 p-2">
-                                <h1 class="flex font-medium">
-                                    <svg class="w-6 h-6 text-green-500" aria-hidden="true"
-                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-width="2"
-                                              d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                    </svg>
-                                    <span class="ms-2 text-green-500">
-                                    Note!
+                        @if($ip_task->ip_task_stage_notifications->frequency==='weekly')
+                            <div class="font-medium">
+                                Weekly Notification
+                            </div>
+                        <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                            <x-alert-success :message="$ip_task->ip_task_stage_notifications->notification_details"/>
+                        </div>
+                            <x-sub-label>
+                                Notification will be sent every
+                                <span class="text-gray-700 dark:text-white">
+                                    {{$ip_task->ip_task_stage_notifications->day_of_week}}
                                 </span>
-                                </h1>
-                                {{$ip_task->ip_task_stage_notifications->notification_details}}
-                            </div>
-
+                                morning.
+                            </x-sub-label>
                         @else
-                            <div class="text-gray-600 dark:text-gray-400">
-                                Notification time has not been set
-                                yet {{$ip_task->ip_task_stage_notifications->day_of_week}}
+                            <div class="font-medium">
+                                Daily Notification
                             </div>
+                            <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+                                <x-alert-success :message="$ip_task->ip_task_stage_notifications->notification_details"/>
+
+                            </div>
+                            <x-sub-label>
+                                Notification will be sent everyday morning.
+                            </x-sub-label>
                         @endif
+                    @else
+                        <div class="text-gray-600 dark:text-gray-400">
+                            Notification time has not been set yet.
+                        </div>
                     @endif
 
                 </div>
