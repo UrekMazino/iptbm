@@ -39,10 +39,13 @@ class DailyNotification extends Command
             'ip_alert.ip_type',
             'ip_alert.technology',
             'ip_alert.technology.iptbmprofiles',
-            'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
+           /*
+            *  'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
                 $query->where('contact_type', 'email');
-            }])
+            }
+            */])
             ->whereDoesntHave('dailySend',function ($sent){
+
                 $sent->whereDate('created_at', Carbon::today());
             })
             ->where('task_status', 'ONGOING')

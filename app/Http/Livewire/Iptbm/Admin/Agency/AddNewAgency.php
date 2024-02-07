@@ -26,13 +26,12 @@ class AddNewAgency extends Component
         $region = IptbmRegion::find($this->regionId);
         $agency = new IptbmAgency([
             'name' => $this->agencyModel,
-            'address' => $this->addressModel
+            'address' => $this->addressModel,
+            'head'=>$this->headModel,
+            'designation'=>$this->designationModel,
         ]);
         $region->agencies()->save($agency);
-        $agency->head()->save(new AgencyHead([
-            'head' => $this->headModel,
-            'designation' => $this->designationModel,
-        ]));
+
 
         $this->emit('reloadPage');
     }
