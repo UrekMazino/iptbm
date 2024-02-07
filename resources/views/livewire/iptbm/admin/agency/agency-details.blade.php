@@ -2,8 +2,8 @@
     <x-header-label class="mb-2 mt-10">
         Update Agency Details
     </x-header-label>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-14">
-        <div class="md:col-span-2">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-x-14">
+        <div class="md:col-span-3">
 
             <x-card class="shadow-lg  ">
                 <div class="space-y-8">
@@ -429,7 +429,8 @@
                 </div>
             </x-card>
         </div>
-        <div class="space-y-4"><x-card-panel title="Agency Head">
+        <div class="space-y-4 md:col-span-2">
+            <x-card-panel title="Agency Head">
                 <div class="space-y-4">
                     <div class=" p-2 border border-gray-400 dark:border-gray-600 rounded-lg">
                         <div>

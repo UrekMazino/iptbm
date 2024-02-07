@@ -23,7 +23,7 @@ class AgenciesController extends Controller
 
     public function index(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        $agencies = IptbmAgency::with('region',  'profiles.users')->get();
+        $agencies = IptbmAgency::with('region',  'profiles.users')->latest()->get();
         return view('admin.iptbm.add-record.agencies', compact('agencies'));
     }
 
