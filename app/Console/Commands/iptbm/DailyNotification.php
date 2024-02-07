@@ -29,7 +29,6 @@ class DailyNotification extends Command
 
     public function handle(): void
     {
-
         $deadlinesDaily = IptbmIpAlertTask::with(['ip_alert',
             'stage',
             'dailySend',
@@ -50,7 +49,8 @@ class DailyNotification extends Command
             ->whereHas('ip_task_stage_notifications', function ($query) {
                 $query->where('frequency', 'daily');
                 /*
-                 *   $query->where('frequency', 'daily')
+                 *
+                 * $query->where('frequency', 'daily')
                     ->whereTime('time_of_day', '>', now()->format('Y-m-d'));
                  */
             })
@@ -65,12 +65,9 @@ class DailyNotification extends Command
 
     public function mailer($data)
     {
-
-
         foreach ($data as $profile) {
             foreach ($profile->ip_alert->technology->iptbmprofiles->users as $user)
             {
-
                 $user->notify(new DeadlineNotif(
                     $profile->ip_alert->technology->title,
                     $profile->ip_alert->ip_type->name,
@@ -81,7 +78,7 @@ class DailyNotification extends Command
                     route("iptbm.staff.iptask.view", ['id' => $profile->id])
                 ));
             }
-
+            $this->info('Notification sent successfully.');
 
 
             $profile->dailySend()->save(new IptbmSendNotification([]));

@@ -6,12 +6,9 @@
                     <x-pop-modal static="true" class="max-w-4xl" name="updateDesc" modal-title="Notes/Description">
                         <form wire:submit.prevent="saveNote">
                             <div class="mb-6">
-
                                 <div wire:ignore class="text-black dark:text-black">
-
                                     <x-text-box wire:model.lazy="notesModel" rows="5" name="content"
                                                 id="editorNote" />
-
                                 </div>
                                 <div wire:loading wire:target="noteModel" class="text-blue-600 font-medium">
                                     Loading...
@@ -389,18 +386,14 @@
                                             Notification will be sent everyday.
                                         </i>
                                     </x-sub-label>
-
                                 @endif
-
                             </div>
-
-                            <button type="submit"
-                                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Update
                             </button>
-
                         </form>
-                    </x-pop-modal>{{dd( (\Carbon\Carbon::now()<'2024-02-06 17:13:03'))}}
+                    </x-pop-modal>
+
                     <x-secondary-button data-modal-target="ipAlertMod" data-modal-toggle="ipAlertMod"
                                         class="text-sky-600 dark:text-sky-600">
                         <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"

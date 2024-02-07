@@ -1,7 +1,7 @@
 @component('mail::message')
     # Deadline Notification
 
-    Hello,
+    ATTENTION,
 
     This is a reminder that the deadline for your task is approaching. Here are the details:
 
