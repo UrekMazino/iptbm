@@ -33,26 +33,27 @@
 
 
                 <table id="allProf"
-                       class="w-fit display cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                       class="w-full table-fixed text-sm cell-border stripe hover rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+
                     <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col"
-                            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="px-6 py-3 w-56 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             Region
                         </th>
                         <th scope="col"
-                            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="px-6  w-72 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             Agency
                         </th>
                         <th scope="col"
-                            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="px-6 py-3 w-44 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             Project Leader
                         </th>
                         <th scope="col"
-                            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="px-6 w-44  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             Actions
                         </th>
@@ -88,7 +89,9 @@
                         <tr>
                             <td class="px-2 py-3">
                                 @if($val->agency)
-                                    {{$val->agency->region->name}}
+                                   <p>
+                                       {{$val->agency->region->name}}
+                                   </p>
                                 @endif
 
                             </td>

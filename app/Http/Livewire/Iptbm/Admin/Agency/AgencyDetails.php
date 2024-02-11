@@ -15,6 +15,7 @@ class AgencyDetails extends Component
     public $agency;
     public $agencyName;
     public $agencyAddress;
+    public $agency_code;
     public $agencyHead;
     public $designation;
 
@@ -121,9 +122,42 @@ class AgencyDetails extends Component
         $this->emit('reloadPage');
     }
 
+
+
+
+
+    public function agency_details_reset()
+    {
+        $this->agencyName=$this->agency->name;
+        $this->agency_code=$this->agency->code;
+        $this->resetValidation('agencyName');
+        $this->resetValidation('agency_code');
+    }
+
     public function saveAgencyName()
     {
+        if($this->agency_code!==$this->agency->code)
+        {
+            $this->validateOnly('agency_code',[
+                'agency_code' => [
+                    'nullable',
+                    'max:10',
+                    'unique:iptbm_agencies,code'
+                ]
+            ]);
+        }
+        if($this->agencyName!==$this->agency->name)
+        {
+            $this->validateOnly('agency_code',[
+                'agencyName' => [
+                    'required',
+                    'max:100',
+                    'unique:iptbm_agencies,name'
+                ]
+            ]);
+        }
         $this->agency->name = $this->agencyName;
+        $this->agency->code = $this->agency_code;
         $this->agency->save();
         $this->emit('reloadPage');
     }
@@ -143,6 +177,10 @@ class AgencyDetails extends Component
                 'unique:iptbm_agencies,name'
             ],
             'agencyAddress' => 'required',
+            'agency_code'=>[
+                'required',
+
+            ],
             'agencyHead' => 'required',
             'designation' => 'required',
             'phone' => 'required|min:9|max:10',
@@ -225,6 +263,8 @@ class AgencyDetails extends Component
     public function mount($agency): void
     {
         $this->agency = $agency;
+        $this->agencyName=$agency->name;
+        $this->agency_code=$agency->code;
     }
 
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application

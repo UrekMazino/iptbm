@@ -91,7 +91,7 @@
                             </th>
 
                             <th scope="col"
-                                class="w-min px-6 action py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="w-44 px-6 action py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Action
                             </th>
@@ -202,16 +202,16 @@
                                     {{$pre_com->updated_at->format('F-d-Y')}}
                                 </td>
                                 <td>
-                                    <div class="h-full justify-start gap-4 flex">
-                                        <x-link-button :url="route('iptbm.staff.precom.details',['id'=>$pre_com->id])">
-                                            <span class="fa-solid fa-folder-open"></span>
+                                    <div class="h-full justify-start items-center gap-2 flex">
+                                        <x-link-button class="text-sky-600 dark:text-sky-600" :url="route('iptbm.staff.precom.details',['id'=>$pre_com->id])">
+                                            Details
                                         </x-link-button>
 
 
                                         <livewire:iptbm.staff.precom.delete-precom wire:key="{{$pre_com->id}}"
                                                                                    :precom="$pre_com"/>
-                                        <x-secondary-button data-modal-toggle="popup-modal-precom-{{$pre_com->id}}">
-                                            <span class="fa-solid fa-trash text-red-500"></span>
+                                        <x-secondary-button class="text-red-600 dark:text-red-600" data-modal-toggle="popup-modal-precom-{{$pre_com->id}}">
+                                            Delete
                                         </x-secondary-button>
 
                                     </div>

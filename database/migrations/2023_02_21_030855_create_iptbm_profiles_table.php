@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->boolean('techno_transfer')->nullable();
             $table->string('logo')->comment('Uploaded in JPEG, PNG, or PDF copies url only')->nullable();
             $table->string('tag_line')->nullable();
+
             $table->timestamps();
         });
     }

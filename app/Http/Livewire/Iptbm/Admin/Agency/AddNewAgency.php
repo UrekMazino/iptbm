@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Iptbm\Admin\Agency;
 
 use App\Models\iptbm\AgencyHead;
 use App\Models\iptbm\IptbmAgency;
+use App\Models\iptbm\IptbmProfile;
 use App\Models\iptbm\IptbmRegion;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class AddNewAgency extends Component
 
     public $regionModel;
     public $agencyModel;
+    public $agency_code;
     public $addressModel;
     public $headModel;
     public $designationModel;
@@ -26,13 +28,14 @@ class AddNewAgency extends Component
         $region = IptbmRegion::find($this->regionId);
         $agency = new IptbmAgency([
             'name' => $this->agencyModel,
+            'code'=>$this->agency_code,
             'address' => $this->addressModel,
             'head'=>$this->headModel,
             'designation'=>$this->designationModel,
         ]);
+
         $region->agencies()->save($agency);
-
-
+        $agency->profiles()->save(new IptbmProfile([]));
         $this->emit('reloadPage');
     }
 
@@ -54,6 +57,10 @@ class AddNewAgency extends Component
             'agencyModel' => [
                 'required',
                 'unique:iptbm_agencies,name'
+            ],
+            'agency_code'=>[
+                'nullable',
+                'unique:iptbm_agencies,code'
             ],
             'addressModel' => 'required',
             'headModel' => [

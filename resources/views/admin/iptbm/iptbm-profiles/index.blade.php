@@ -35,10 +35,7 @@
                     <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="border-0">
 
-                        <th scope="col"
-                            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            Profile photo
-                        </th>
+
                         <th scope="col"
                             class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             Region
@@ -64,16 +61,13 @@
                             Technologies
                         </th>
                         <th scope="col"
-                            class="action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="action w-20 px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             Actions
                         </th>
                     </tr>
                     <tr class="border-0 filters">
 
-                        <th scope="col"
-                            class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        </th>
                         <th scope="col"
                             class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -99,7 +93,7 @@
 
                         </th>
                         <th scope="col"
-                            class="fil action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class=" action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                         </th>
                     </tr>
@@ -107,20 +101,29 @@
                     <tbody>
                     @foreach($profiles as $profile)
                         <tr>
+
                             <td>
-                                @if($profile->logo)
-                                    <x-thumbnail-holder :url="$profile->logo?? null" class="w-24 rounded-lg p-2 mx-auto"/>
+                                @if($profile->agency)
+                                    <a href="{{route("iptbm.admin.editregion.index",['id'=>$profile->agency->region->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        {{$profile->agency->region->name}}
+                                    </a>
+
 
                                 @else
-                                    Empty
+                                    Not belong to any region
                                 @endif
 
                             </td>
                             <td>
-                                {{$profile->agency->region->name}}
-                            </td>
-                            <td>
-                                {{$profile->agency->name}}
+                                @if($profile->agency)
+                                    <a href="{{route("iptbm.admin.view-agency",['agency'=>$profile->agency->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        {{$profile->agency->name}} @if($profile->agency->code) ({{$profile->agency->code}}) @endif
+                                    </a>
+
+                                @else
+                                    Not belong to any agency
+                                @endif
+
                             </td>
                             <td>
                                 <ul class="divide-y divide-gray-400 dark:divide-gray-600 ">

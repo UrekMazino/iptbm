@@ -52,7 +52,7 @@
 
                     <tr>
                         <th scope="col"
-                            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="px-6 py-3  border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             Email
                         </th>
@@ -67,7 +67,16 @@
                             Agency
                         </th>
                         <th scope="col"
-                            class="action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="px-6 py-3 w-32 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            Updated
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 w-32 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            Status
+                        </th>
+
+                        <th scope="col"
+                            class="action w-24 px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             Action
                         </th>
@@ -85,6 +94,15 @@
 
                         </th>
                         <th scope="col"
+                            class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        </th>
+                        <th scope="col"
+                            class=" px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        </th>
+
+                        <th scope="col"
                             class=" px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                         </th>
@@ -94,20 +112,51 @@
                     @foreach($users as $user)
                         <tr>
                             <td class="py-2 px-2">
-                                {{$user->email}}
+                                <p class="break-all">
+                                    {{$user->email}}
+                                </p>
                             </td>
                             <td class="py-2 px-2">
                                 {{$user->name}}
                             </td>
                             <td class="py-2 px-2">
-                                {{$user->profile->agency->name}}
+                                @if($user->profile->agency)
+                                    {{$user->profile->agency->name}}
+                                @endif
+
+                            </td>
+                            <td>
+                                {{$user->updated_at->format('F-d-Y')}}
+                            </td>
+                            <td>
+                                <div class="divide-y mx-auto w-fit divide-gray-200 dark:divide-gray-600">
+                                    <div>
+                                        @if($user->trashed())
+                                            <div class="text-red-600 text-xl font-medium">
+                                                Disabled
+                                            </div>
+                                        @else
+                                            <div class="text-green-600 text-xl font-medium">
+                                                Active
+                                            </div>
+
+                                        @endif
+                                    </div>
+                                    <div>
+                                        @if($user->trashed())
+                                            {{$user->deleted_at->format('F-d-Y')}}
+                                        @else
+                                            {{$user->updated_at->format('F-d-Y')}}
+                                        @endif
+
+                                    </div>
+                                </div>
                             </td>
                             <td class="py-2 px-2">
-                                <a href="{{route("iptbm.admin.addrecord.editaccount",['id'=>$user->id])}}">
-                                    <x-secondary-button>
-                                        Update
-                                    </x-secondary-button>
-                                </a>
+                                <x-link-button class="w-24 text-sky-500 dark:text-sky-500" :url="route('iptbm.admin.addrecord.editaccount',['id'=>$user->id])">
+                                    UPDATE
+                                </x-link-button>
+
 
                             </td>
 
@@ -126,9 +175,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var table = $('#accountTable').DataTable({
-                stateSave: true,
+
                 pagingType: 'full_numbers',
-                colReorder: true,
+
                 horizontalScroll: true,
                 dom: 'Bfrtip',
                 autoWidth: false,
@@ -148,7 +197,7 @@
                             )
                                 .off('keyup change')
                                 .on('keyup change', function (e) {
-                                    console.log('askjdas');
+
                                     e.stopPropagation();
                                     $(this).attr('title', $(this).val());
                                     var regexr = '({search})'; //$(this).parents('th').find('select').val();
@@ -265,9 +314,6 @@
             table.buttons().container().appendTo('#botNav');
 
 
-            $('.reset').click(function (e) {
-                table.colReorder.reset();
-            });
         })
     </script>
 @endsection

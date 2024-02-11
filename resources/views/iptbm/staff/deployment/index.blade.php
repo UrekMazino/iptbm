@@ -63,7 +63,7 @@
                             </th>
 
                             <th scope="col"
-                                class="px-6 action  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="px-6 action w-44  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Actions
                             </th>
                         </tr>
@@ -155,10 +155,10 @@
                                 </td>
                                 <td>
                                     <div class="h-full justify-start gap-4 flex">
-                                        <a class="link-primary text-decoration-none me-3 "
-                                           href="{{route("iptbm.staff.deployment.deployed_tech",['id'=>$data->id])}}">
-                                            <span class="fa-solid fa-edit " style="scale: 1.5"></span>
-                                        </a>
+
+                                        <x-link-button :url='route("iptbm.staff.deployment.deployed_tech",["id"=>$data->id])'>
+                                            Details
+                                        </x-link-button>
                                         <livewire:iptbm.staff.deployment.delete-deployed-tech wire:key="{{$data->id}}"
                                                                                               :technology="$data"/>
                                     </div>

@@ -22,6 +22,7 @@ class AgencyForm extends Component
 
     public $agency_name;
     public $agency_address;
+    public $agency_code;
 
     public $prof;
 
@@ -92,11 +93,25 @@ class AgencyForm extends Component
 
     public function agencyName()
     {
-        $this->validateOnly('agency_name');
+     if($this->agency_name!==$this->prof->agency->name)
+     {
+         $this->validateOnly('agency_name');
+     }
+        if($this->agency_code!==$this->prof->agency->code)
+        {
+            $this->validateOnly('agency_code');
+        }
+        if($this->agency_address!==$this->prof->agency->address)
+        {
+            $this->validateOnly('agency_address');
+        }
+
+
         $this->prof->agency->name=$this->agency_name;
         $this->prof->agency->address=$this->agency_address;
+        $this->prof->agency->code=$this->agency_code;
         $this->prof->agency->save();
-        session()->flash('saveAgency','updated successfully!');
+        $this->emit('reloadPage');
     }
 
     public function resetHead()
@@ -122,17 +137,26 @@ class AgencyForm extends Component
     {
         $this->reset('agency_name');
         $this->resetValidation(['agency_name']);
+        $this->agency_name=$this->prof->agency->name;
     }
     public function resetAgencyAddress()
     {
         $this->reset('agency_address');
         $this->resetValidation(['agency_address']);
+        $this->agency_address=$this->prof->agency->address;
+    }
+    public function resetAgencyCode()
+    {
+        $this->reset('agency_code');
+        $this->resetValidation(['agency_code']);
+        $this->agency_code=$this->prof->agency->code;
     }
 
     public function reseterAgecnyDetails()
     {
         $this->resetAgencyAddress();
         $this->resetAgencyName();
+        $this->resetAgencyCode();
     }
 
     public function rules()
@@ -147,9 +171,15 @@ class AgencyForm extends Component
                 'required',
                 'max:100',
             ],
+
+            'agency_code' =>[
+                'required',
+                'max:100',
+                Rule::unique(IptbmAgency::class,'name')
+            ],
             'agency_head' =>[
                 'required',
-                'max:50',
+                'max:10',
             ],
             'designation'=>[
                 'required',
@@ -226,6 +256,9 @@ class AgencyForm extends Component
     {
 
         $this->prof = $profile->load('agency.contact_mobile');
+        $this->agency_name=$this->prof->agency->name;
+        $this->agency_code=$this->prof->agency->code;
+        $this->agency_address=$this->prof->agency->address;
 
 
 

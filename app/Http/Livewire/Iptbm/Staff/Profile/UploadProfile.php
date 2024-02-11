@@ -23,7 +23,7 @@ class UploadProfile extends Component
     }
 
 
-    public function upload(): RedirectResponse
+    public function upload(): void
     {
         $this->validate([
             'photo' => 'required|image|mimes:png,jpg,jpeg|max:20480',
@@ -38,7 +38,7 @@ class UploadProfile extends Component
         $path = $this->photo->store('public/profile');
         $this->profile->logo = $path;
         $this->profile->save();
-        return redirect()->route('iptbm.staff.ipProfile');
+        $this->emit('reloadPage');
     }
 
 

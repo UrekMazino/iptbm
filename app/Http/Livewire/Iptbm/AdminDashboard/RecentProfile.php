@@ -12,7 +12,7 @@ class RecentProfile extends Component
 
     public function render()
     {
-        $this->profiles = IptbmProfile::all()->take(5);
+        $this->profiles = IptbmProfile::whereHas('agency')->latest()->take(5)->get();
         return view('livewire.iptbm.admin-dashboard.recent-profile')->with([
             'profiles' => $this->profiles
         ]);

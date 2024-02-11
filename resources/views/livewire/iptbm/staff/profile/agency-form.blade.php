@@ -5,7 +5,7 @@
             <div class="divide-y w-full divide-gray-300 dark:divide-gray-700 ">
                 @if($profile->agency->name)
                     <div class="text-gray-600 dark:text-white font-medium">
-                        {{$profile->agency->name}}
+                        {{$profile->agency->name}} @if($profile->agency->code) ({{$profile->agency->code}}) @endif
                     </div>
                     <div>
                         {{$profile->agency->address}}
@@ -26,13 +26,16 @@
                             <x-input-error :messages="$errors->get('agency_name')"/>
                         </div>
                         <div>
+                            <x-input-label value="Code"/>
+                            <x-text-input wire:model.lazy="agency_code" class="w-full" placeholder="Enter text here.."/>
+                            <x-input-error :messages="$errors->get('agency_code')"/>
+                        </div>
+                        <div>
                             <x-input-label value="Agency Address"/>
                             <x-text-input wire:model.lazy="agency_address" class="w-full" placeholder="Enter text here.."/>
                             <x-input-error :messages="$errors->get('agency_address')"/>
                         </div>
-                        @if(session()->has('saveAgency'))
-                            <x-alert-success :message="session('saveAgency')"/>
-                        @endif
+
                         <div>
                             <x-submit-button class="min-w-full" wire:loading.attr="disabled"
                                              wire:target="agencyName">
@@ -365,7 +368,7 @@
                     </form>
                 </x-pop-modal>
                 <x-secondary-button data-modal-toggle="addEmail" data-modal-target="addEmail" class="text-sky-500 dark:text-sky-500" >
-                    Add Fax
+                    Add Email
                 </x-secondary-button>
             </div>
             <ul class="mt-5">

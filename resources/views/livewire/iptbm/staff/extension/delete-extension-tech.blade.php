@@ -1,9 +1,10 @@
-<div class="flex justify-start items-center space-x-10">
+<div class="flex justify-start items-center space-x-4">
 
     <div>
-        <a href="{{route("iptbm.staff.extension.view_tech",['id'=>$technology->id])}}" title="Edit">
-            <span class="fa-solid fa-edit " style="scale: 1.5"></span>
-        </a>
+
+        <x-link-button :url='route("iptbm.staff.extension.view_tech",["id"=>$technology->id])'>
+            Details
+        </x-link-button>
     </div>
 
     <!-- Modal toggle -->
@@ -47,10 +48,9 @@
             </div>
         </div>
     </div>
-    <button id="deleteButton" data-modal-toggle="deleteModal{{$technology->id}}"
-            class="block text-red-500 bg-primary-700 hover:bg-primary-800  font-medium rounded-lg text-sm py-2.5"
-            type="button">
-        <span class="fa-solid fa-trash-can" style="scale: 1.5"></span>
-    </button>
+
+    <x-secondary-button id="deleteButton" data-modal-toggle="deleteModal{{$technology->id}}" class="text-red-600 dark:text-red-600">
+        Delete
+    </x-secondary-button>
 
 </div>

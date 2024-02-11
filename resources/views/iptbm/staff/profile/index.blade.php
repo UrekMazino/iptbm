@@ -133,7 +133,7 @@
                         <livewire:iptbm.staff.profile.ip-policy :profile="$profile"/>
                         <livewire:iptbm.staff.profile.contact
                             :profile="$profile->id"></livewire:iptbm.staff.profile.contact>
-
+                        <livewire:iptbm.staff.profile.user-account :profile="$profile" />
                     </div>
                 </div>
 

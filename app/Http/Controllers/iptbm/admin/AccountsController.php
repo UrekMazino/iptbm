@@ -29,6 +29,7 @@ class AccountsController extends Controller
     {
         $users = User::with('profile', 'profile.agency', 'profile.agency.region')
             ->whereHas('profile')
+            ->withTrashed()
             ->get();
 
         return view('admin.iptbm.add-record.accounts', [

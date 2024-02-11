@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Iptbm\Staff\Precom;
 
 use App\Models\iptbm\IptbmPrecomTechVideo;
+use App\Rules\YoutubeOrGoogleDriveVideo;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -49,7 +50,11 @@ class VideoClip extends Component
             ], '', $this->onlineVideo);
         $this->onlineVideo = str_replace([" ", '"',], '', $video);
         $this->validate([
-            'onlineVideo' => 'required|url'
+            'onlineVideo' => [
+                'required',
+                'url',
+                new YoutubeOrGoogleDriveVideo
+            ]
         ]);
 
 

@@ -28,6 +28,13 @@ class IpApplicationDetails extends Component
         'abstractModel' => 'Abstract'
     ];
 
+
+    public function delete_expenses(IptbmIpApplicationExpencess $expenses): void
+    {
+        $expenses->delete();
+        $this->emit('reloadPage');
+    }
+
     public function toggleShwExpenseModelForm()
     {
         $this->showExpenseModelForm = !$this->showExpenseModelForm;

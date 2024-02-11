@@ -18,6 +18,7 @@ class IptbmAgency extends Model
         'name',
         'address',
         'head',
+        'code',
         'designation',
         'verified_at'
     ];
@@ -54,6 +55,7 @@ class IptbmAgency extends Model
     {
         return $this->hasMany(AgencyContact::class)->where('contact_type','email');
     }
+
 
 
 

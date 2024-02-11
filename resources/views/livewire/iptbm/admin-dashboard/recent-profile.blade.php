@@ -13,7 +13,7 @@
                             {{$profile->agency->name}}
                         </a>
                         <div class="text-xs">
-                            {{\Carbon\Carbon::parse($profile->created_at)->format("F-d-Y")}}
+                            {{$profile->created_at->format("F-d-Y")}}
                         </div>
                     </x-input-label>
                 </li>

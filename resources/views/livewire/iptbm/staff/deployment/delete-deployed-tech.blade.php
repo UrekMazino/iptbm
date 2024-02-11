@@ -42,10 +42,9 @@
             </div>
         </div>
     </div>
-    <button id="deleteButton" data-modal-toggle="deleteModal{{$technology->id}}"
-            class="block text-red-500 bg-primary-700 hover:bg-primary-800  font-medium rounded-lg text-sm "
-            type="button">
-        <span class="fa-solid fa-trash-can" style="scale: 1.5"></span>
-    </button>
+    <x-secondary-button data-modal-toggle="deleteModal{{$technology->id}}" class="text-red-600 dark:text-red-500">
+        Delete
+    </x-secondary-button>
+
 
 </div>

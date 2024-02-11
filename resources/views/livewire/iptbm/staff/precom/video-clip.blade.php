@@ -198,8 +198,7 @@
                                   d="M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z"/>
                         </g>
                     </svg>
-                <svg class="w-5 h-5 mx-2" viewBox="0 -3 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="w-5 h-5 mx-2" viewBox="0 -3 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
                     <title>drive-color</title>
                     <desc>Created with Sketch.</desc>
@@ -271,16 +270,52 @@
                 </div>
 
                 <div class="cursor-pointer">
-                    <div class="w-full flex justify-between items-center">
-                        <x-input-label data-modal-target="authentication-video{{$key}}"
-                                       data-modal-toggle="authentication-video{{$key}}"
+                    <div class="w-full flex justify-between items-center" data-modal-target="authentication-video{{$key}}"
+                         data-modal-toggle="authentication-video{{$key}}">
+                        <x-input-label
                                        class="flex justify-start cursor-pointer items-center">
-                            <svg class="w-6 h-6 me-2 text-gray-800 dark:text-white" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2"
-                                      d="M6 1v4a1 1 0 0 1-1 1H1m14 12a.97.97 0 0 1-.933 1H1.933A.97.97 0 0 1 1 18V5.828a2 2 0 0 1 .586-1.414l2.828-2.828A2 2 0 0 1 5.828 1h8.239A.97.97 0 0 1 15 2v16ZM5 10h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Zm5.697 2.395v-.733l1.268-1.219v2.984l-1.268-1.032Z"/>
-                            </svg>
+                            @if($video->type==='local')
+                                <svg class="w-6 h-6 me-2 text-sky-600 dark:text-sky-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M10 3v4c0 .6-.4 1-1 1H5m14-4v16c0 .6-.4 1-1 1H6a1 1 0 0 1-1-1V8c0-.4.1-.6.3-.8l4-4 .6-.2H18c.6 0 1 .4 1 1ZM9 12h2c.6 0 1 .4 1 1v2c0 .6-.4 1-1 1H9a1 1 0 0 1-1-1v-2c0-.6.4-1 1-1Zm5.7 2.4v-.7l1.3-1.3v3l-1.3-1Z"/>
+                                </svg>
+                            @else
+
+                                @if(parse_url($video->url)['host']==='www.youtube.com')
+                                    <svg class="w-6 h-6 me-2 text-red-500 dark:text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" d="M21.7 8c0-.7-.4-1.3-.8-2-.5-.5-1.2-.8-2-.8C16.2 5 12 5 12 5s-4.2 0-7 .2c-.7 0-1.4.3-2 .9-.3.6-.6 1.2-.7 2l-.2 3.1v1.5c0 1.1 0 2.2.2 3.3 0 .7.4 1.3.8 2 .6.5 1.4.8 2.2.8l6.7.2s4.2 0 7-.2c.7 0 1.4-.3 2-.9.3-.5.6-1.2.7-2l.2-3.1v-1.6c0-1 0-2.1-.2-3.2ZM10 14.6V9l5.4 2.8-5.4 2.8Z" clip-rule="evenodd"/>
+                                    </svg>
+
+                                @else
+                                    <svg class="w-5 h-5 mx-2" viewBox="0 -3 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+                                        <title>drive-color</title>
+                                        <desc>Created with Sketch.</desc>
+                                        <defs>
+
+                                        </defs>
+                                        <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="Color-" transform="translate(-601.000000, -955.000000)">
+                                                <g id="drive" transform="translate(601.000000, 955.000000)">
+                                                    <polygon id="Shape" fill="#3777E3"
+                                                             points="8.00048064 42 15.9998798 28 48 28 39.9998798 42">
+
+                                                    </polygon>
+                                                    <polygon id="Shape" fill="#FFCF63"
+                                                             points="32.0004806 28 48 28 32.0004806 0 15.9998798 0">
+
+                                                    </polygon>
+                                                    <polygon id="Shape" fill="#11A861" points="0 28 8.00048064 42 24 14 15.9998798 0">
+
+                                                    </polygon>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                @endif
+
+
+                            @endif
+
                             <span>
                         {{$video->description}}
                             </span>

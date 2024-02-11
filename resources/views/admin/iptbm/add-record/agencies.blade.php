@@ -48,6 +48,10 @@
                                 Agency
                             </th>
                             <th scope="col"
+                                class="px-6 w-24 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Code
+                            </th>
+                            <th scope="col"
                                 class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Region
@@ -62,7 +66,7 @@
                                 Users Account
                             </th>
                             <th scope="col"
-                                class="action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="action w-24 px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Actions
                             </th>
@@ -71,6 +75,10 @@
                             <th scope="col"
                                 class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Agency
+                            </th>
+                            <th scope="col"
+                                class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Code
                             </th>
                             <th scope="col"
                                 class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -95,6 +103,9 @@
                             <tr>
                                 <td>
                                     {{$agency->name}}
+                                </td>
+                                <td>
+                                    {{$agency->code}}
                                 </td>
                                 <td>
                                     {{$agency->region->name}}

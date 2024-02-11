@@ -36,17 +36,33 @@
             update
         </x-secondary-button>
     </x-slot:button>
-    <div class="mt-4">
-        <ul class="divide-y divide-gray-400 dark:divide-gray-600">
-            @forelse($technology->owner as $key=>$agency)
-                <li class="py-2">
-                    <livewire:iptbm.staff.technology.tech-owner-detail wire:key="tech-owner-{{$key}}"
-                                                                       :techowner="$agency"/>
+    <div class="mt-4 space-y-5">
+        <div class="border border-gray-200 dark:border-gray-600 rounded divide-y divide-gray-200 dark:divide-gray-600">
+            <div class="p-2 text-center text-gray-700 dark:text-white font-medium">
+                {{$technology->iptbmprofiles->agency->name}}
+            </div>
+            <div class="p-2 text-center">
+                Technology Owner
+            </div>
+        </div>
+        <div class="border border-gray-200 dark:border-gray-600 rounded p-2">
+            <div>
+               <x-item-header>
+                   Technology Co-owners
+               </x-item-header>
+            </div>
+            <ul class="divide-y divide-gray-400 dark:divide-gray-600">
+                @forelse($technology->owner as $key=>$agency)
+                    <li class="py-2">
+                        <livewire:iptbm.staff.technology.tech-owner-detail wire:key="tech-owner-{{$key}}"
+                                                                           :techowner="$agency"/>
 
-                </li>
-            @empty
-                No data Avilable
-            @endforelse
-        </ul>
+                    </li>
+                @empty
+                    No data Avilable
+                @endforelse
+            </ul>
+        </div>
+
     </div>
 </x-card-panel>

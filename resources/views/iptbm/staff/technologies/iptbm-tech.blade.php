@@ -63,7 +63,7 @@
                                 Year
                             </th>
                             <th scope="col"
-                                class="action w-fit py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="action w-20 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Actions
                             </th>
@@ -126,14 +126,14 @@
                                     {{$technology->year_developed}}
                                 </td>
                                 <td>
-                                    <x-link-button
+                                    <x-link-button class="gap-2 text-sky-500 dark:text-sky-500"
                                         :url="route('iptbm.staff.tech.public-view',['id'=>$technology->id])">
-                                        <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                        <svg class="w-4 h-4" aria-hidden="true"
                                              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                              viewBox="0 0 18 18">
                                             <path
                                                 d="M0 6v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6H0Zm13.457 6.707-2.5 2.5a1 1 0 0 1-1.414-1.414l.793-.793H5a1 1 0 0 1 0-2h5.336l-.793-.793a1 1 0 0 1 1.414-1.414l2.5 2.5a1 1 0 0 1 0 1.414ZM9.043.8a2.009 2.009 0 0 0-1.6-.8H2a2 2 0 0 0-2 2v2h11.443L9.043.8Z"/>
-                                        </svg>
+                                        </svg> Update
                                     </x-link-button>
                                 </td>
                             </tr>

@@ -86,7 +86,7 @@
                             Contact Details
                         </th>
                         <th scope="col"
-                            class="px-6 action py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            class="px-6 w-44 action py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             Action
                         </th>
                     </tr>
@@ -183,9 +183,9 @@
                             </td>
                             <td class="break-words">
                                 <div class="flex justify-start items-center gap-4">
-                                    <x-link-button
+                                    <x-link-button class="text-sky-600 dark:text-sky-600"
                                         :url="route('iptbm.staff.commercialization.adoptedTech',['id'=>$tech->id])">
-                                        <span class="fa-solid fa-edit w-4 h-4"></span>
+                                        Details
                                     </x-link-button>
 
                                     <livewire:iptbm.staff.adopter.delete-adopter wire:key="{{$tech->id}}"

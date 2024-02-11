@@ -17,6 +17,15 @@
                 <x-input-error :messages="$errors->get('agencyModel')"/>
             </div>
             <div>
+                <x-input-label for="agenCode" value="Agency Code"/>
+                <x-text-input wire:model.lazy="agency_code" id="agenCode" class="w-full" type="text"/>
+                <x-sub-label class="text-sm">
+                    Leave it empty if none
+                </x-sub-label>
+                <x-input-error :messages="$errors->get('agency_code')"/>
+
+            </div>
+            <div>
                 <x-input-label for="agenAdd" value="Address"/>
                 <x-text-input wire:model.lazy="addressModel" id="agenAdd" class="w-full" type="text"/>
                 <x-input-error :messages="$errors->get('addressModel')"/>

@@ -47,63 +47,67 @@
             </div>
         </x-card-panel>
 
-        <x-card-panel title=" Region Details">
-            <div class="mt-4 space-y-4">
-                <div>
-                    <div class="text-lg text-gray-700 dark:text-gray-300">
-                        {{$profile->agency->region->name}}
-                    </div>
-                    Region name
-                </div>
-                <div>
+        @if($profile->agency)
+            <x-card-panel title=" Region Details">
+                <div class="mt-4 space-y-4">
                     <div>
-                        @if($profile->rrdc_chair)
-                            <div class="text-lg text-gray-700 dark:text-gray-300">
-                                {{$profile->rrdc_chair}}
-                            </div>
-                        @else
-                            No data available
-                        @endif
+                        <div class="text-lg text-gray-700 dark:text-gray-300">
+                            {{$profile->agency->region->name}}
+                        </div>
+                        Region name
                     </div>
-                    RRDCC Chair
-                </div>
-                <div>
                     <div>
-                        @if($profile->consortium_dir)
-                            <div class="text-lg text-gray-700 dark:text-gray-300">
-                                {{$profile->consortium_dir}}
-                            </div>
-                        @else
-                            No data available
-                        @endif
+                        <div>
+                            @if($profile->rrdc_chair)
+                                <div class="text-lg text-gray-700 dark:text-gray-300">
+                                    {{$profile->rrdc_chair}}
+                                </div>
+                            @else
+                                No data available
+                            @endif
+                        </div>
+                        RRDCC Chair
                     </div>
-                    Consortium Director
-                </div>
-            </div>
-        </x-card-panel>
-        <x-card-panel title="Agency Details">
-            <div class="mt-4 space-y-4">
-                <div>
-                    <div class="text-lg text-gray-700 dark:text-gray-300">
-                        {{$profile->agency->name}}
-                    </div>
-                    Agency
-                </div>
-                <div>
                     <div>
-                        @if($profile->agency->head)
-                            <div class="text-lg text-gray-700 dark:text-gray-300">
-                                {{$profile->agency->head}}
-                            </div>
-                        @else
-                            No data available
-                        @endif
+                        <div>
+                            @if($profile->consortium_dir)
+                                <div class="text-lg text-gray-700 dark:text-gray-300">
+                                    {{$profile->consortium_dir}}
+                                </div>
+                            @else
+                                No data available
+                            @endif
+                        </div>
+                        Consortium Director
                     </div>
-                    Agency Head
                 </div>
+            </x-card-panel>
+            <x-card-panel title="Agency Details">
+                <div class="mt-4 space-y-4">
+                    <div>
+                        <div class="text-lg text-gray-700 dark:text-gray-300">
 
-            </div>
-        </x-card-panel>
+                            {{$profile->agency->name}}
+                        </div>
+                        Agency
+                    </div>
+                    <div>
+                        <div>
+                            @if($profile->agency->head)
+                                <div class="text-lg text-gray-700 dark:text-gray-300">
+                                    {{$profile->agency->head}}
+                                </div>
+                            @else
+                                No data available
+                            @endif
+                        </div>
+                        Agency Head
+                    </div>
+
+                </div>
+            </x-card-panel>
+
+        @endif
 
     </div>
     <div class="space-y-4 md:col-span-2">

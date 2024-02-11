@@ -266,13 +266,17 @@
             myIcon = L.divIcon({
                 className: 'relative w-1',
                 html: `<div class="absolute -top-7 flex justify-start items-center">
-        <svg class="w-7 h-7 text-blue-950" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+        <svg data-popover-target="openAgenName-{{$location->profile->id}}" data-popover-placement="right" class="w-7 h-7 hover:scale-150 transition duration-300 text-blue-950 border-transparent outline-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
             <path d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
         </svg>
-        <div class="bg-white text-sky-950 text-base  font-medium   backdrop-blur  shadow-lg shadow-black p-2 w-64 rounded-lg">
-{{$location->profile->agency->name}}
+
+    <div data-popover id="openAgenName-{{$location->profile->id}}" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-lg shadow-black dark:shadow-black opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            <div class="p-4">
+                {{$location->profile->agency->name}}
                 </div>
-            </div>`
+                <div data-popper-arrow></div>
+            </div>
+                </div>`
             })
 
 

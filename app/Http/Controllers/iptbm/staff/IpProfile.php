@@ -45,7 +45,7 @@ class IpProfile extends Controller
             return redirect()->route('iptbm.staff.addProfile');
         }
         */
-        $profile = IptbmProfile::with('contact', 'projects', 'projects.projectDetails', 'agency',  'agency.region')->where('agency_id', Auth::user()->profile->agency->id)->first();
+        $profile = IptbmProfile::with('contact','users', 'projects', 'projects.projectDetails', 'agency',  'agency.region')->where('agency_id', Auth::user()->profile->agency->id)->first();
 
 
         return view('iptbm.staff.profile.index', [

@@ -23,7 +23,7 @@
         <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
 
 
-        <ul class=" space-y-2 ">
+        <ul class=" space-y-2 mb-20">
             <li>
                 <div class="mt-10 flex justify-start items-center text-gray-500 dark:text-gray-500">
                     <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
