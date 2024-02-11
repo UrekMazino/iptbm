@@ -207,8 +207,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        document.addEventListener("livewire:load", function (event) {
-
+        $(document).ready(function(){
 
             var philippinesBounds = L.latLngBounds(
                 L.latLng(4.6413, 116.6895), // Southwest corner (latitude, longitude)
@@ -276,26 +275,6 @@
             }).addTo(map).bindPopup(template);
             @endforeach
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             @this.
             iptbm_location.forEach(val => {
 
@@ -336,6 +315,10 @@ ${val.profile.agency.name}
                     icon: myIcon
                 }).addTo(map).bindPopup(template);
             })
+
+        })
+        document.addEventListener("livewire:load", function (event) {
+
 
 
         });
