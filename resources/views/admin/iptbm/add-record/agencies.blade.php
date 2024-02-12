@@ -161,7 +161,7 @@
     <script>
         $(document).ready(function () {
             var table = $('#agencyTable').DataTable({
-                stateSave: true,
+                //stateSave: true,
                 pagingType: 'full_numbers',
                 horizontalScroll: true,
                 dom: 'Bfrtip',
