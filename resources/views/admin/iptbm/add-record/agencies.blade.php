@@ -44,11 +44,15 @@
                         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col"
+                                class="px-6 id w-10 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                ID#
+                            </th>
+                            <th scope="col"
                                 class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Agency
                             </th>
                             <th scope="col"
-                                class="px-6 w-24 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="px-6 w-20 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Code
                             </th>
                             <th scope="col"
@@ -66,12 +70,20 @@
                                 Users Account
                             </th>
                             <th scope="col"
+                                class="date_created w-44 px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Date Created
+                            </th>
+                            <th scope="col"
                                 class="action w-24 px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Actions
                             </th>
                         </tr>
                         <tr class="border-0 filters">
+                            <th scope="col"
+                                class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                ID
+                            </th>
                             <th scope="col"
                                 class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 Agency
@@ -93,6 +105,10 @@
                                 Users Account
                             </th>
                             <th scope="col"
+                                class="fil  px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                Date created
+                            </th>
+                            <th scope="col"
                                 class=" px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                             </th>
@@ -101,6 +117,9 @@
                         <tbody>
                         @foreach($agencies as $agency)
                             <tr>
+                                <td>
+                                    {{$agency->id}}
+                                </td>
                                 <td>
                                     {{$agency->name}}
                                 </td>
@@ -130,6 +149,9 @@
                                         </ul>
                                     @endif
 
+                                </td>
+                                <td>
+                                    {{$agency->created_at->format('F-d-Y h:i A')}}
                                 </td>
                                 <td>
                                     <div class="h-full w-full justify-evenly flex items-center">
@@ -169,8 +191,6 @@
                 orderCellsTop: true,
                 initComplete: function () {
                     var api = this.api();
-
-
                     api
                         .columns()
                         .eq(0)
@@ -297,7 +317,7 @@
                 .appendTo('#searchPan').attr({placeHolder: 'Search'});
             $('.dataTables_filter').addClass('hidden')
             table.buttons().container().appendTo('#botNav');
-            table.columns(['.agencies', '.account']).visible(false, false);
+            table.columns(['.agencies', '.account','.date_created','.id']).visible(false, false);
 
             $('.reset').click(function (e) {
                 table.colReorder.reset();
