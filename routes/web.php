@@ -486,9 +486,10 @@ Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function (
             Route::get('precom', AbhPrecomPage::class)->name('abh.admin.commercialization.all_precom');
             Route::get('adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
         });
-       */
-        Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
+            Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
         Route::get('extension', AbhExtensionPage::class)->name('abh.admin.all_extension');
+       */
+
 
 
         Route::get('/regions', AbhRegionPage::class)->name('abh.admin.all_regions');
