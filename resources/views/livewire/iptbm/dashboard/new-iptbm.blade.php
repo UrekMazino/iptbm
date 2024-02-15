@@ -12,7 +12,10 @@
                         <div>
                             <a href="{{route("iptbm.staff.viewProfile",['id'=>$profile->id])}}"
                                class="font-medium text-sky-600 dark:text-sky-500 hover:underline">
-                                {{$profile->agency->name}}
+                                @if($profile->agency)
+                                    {{$profile->agency->name}}
+                                @endif
+
                             </a>
                         </div>
                         <div class="text-sm">

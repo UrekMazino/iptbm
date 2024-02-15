@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\abh\admin\AbhAdminController;
-use App\Http\Controllers\abh\staff\AbhGeneratorController;
-use App\Http\Controllers\abh\staff\AbhProfileController;
-use App\Http\Controllers\abh\staff\AbhTechController;
 use App\Http\Controllers\api\AbhApi;
 use App\Http\Controllers\iptbm\admin\AccountsController;
 use App\Http\Controllers\iptbm\admin\AdminDashboard;
@@ -39,6 +35,21 @@ use App\Http\Controllers\iptbm\staff\ProjectController;
 use App\Http\Controllers\iptbm\staff\Technology;
 use App\Http\Controllers\iptbm\staff\TechnologyDescription;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Abh\Admin\Pages\Dashboard\Index;
+
+use App\Http\Livewire\Abh\Admin\Pages\Profile\AllAbhProfile;
+use App\Http\Livewire\Abh\Admin\Pages\Projects\AbhProject;
+use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhTechIndustryPage;
+use App\Http\Livewire\Abh\Admin\Pages\Technologies\AbhTechnology;
+
+use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhDeploymentPage;
+use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhExtensionPage;
+use App\Http\Livewire\Abh\Admin\Pages\Techtrans\Commercialization\AbhAdopterPage;
+use App\Http\Livewire\Abh\Admin\Pages\Techtrans\Commercialization\AbhPrecomPage;
+use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAccountPage;
+use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAgenciesPage;
+use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhRegionDetails;
+use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhRegionPage;
 use App\Http\Livewire\Abh\Dashboard\DashBoardPage;
 use App\Http\Livewire\Abh\Pages\Generator\AbhGeneratorDetailsPage;
 use App\Http\Livewire\Abh\Pages\Generator\GeneratorPage;
@@ -57,7 +68,7 @@ use App\Http\Livewire\Iptbm\Admin\IpAlert\IpAlert;
 use App\Http\Livewire\Iptbm\Admin\Plantvariety\PlantVariety;
 use App\Http\Livewire\Iptbm\Admin\Trademark\TradeMark;
 use App\Http\Livewire\Iptbm\Admin\UtilityModel\UtilityModel;
-use App\Http\Resources\User;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -466,10 +477,39 @@ Route::middleware(['component:IPTBM', 'auth:admin', 'verified'])->prefix('/admin
 });
 
 Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function () {
-    Route::controller(AbhAdminController::class)->prefix('/admin/abh')->group(function () {
+    Route::prefix('/admin/abh')->group(function () {
+        Route::get('/dashboard', Index::class)->name('abh.admin.dashboard');
+        Route::get('/', AllAbhProfile::class)->name('abh.admin.my_profile');
+        Route::get('/projects', AbhProject::class)->name('abh.admin.all_projects');
+        Route::get('/technologies', AbhTechnology::class)->name('abh.admin.all_technologies');
+
+
+        Route::prefix('/commercialization')->group(function (){
+            Route::get('precom', AbhPrecomPage::class)->name('abh.admin.commercialization.all_precom');
+            Route::get('adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
+        });
+        Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
+        Route::get('extension', AbhExtensionPage::class)->name('abh.admin.all_extension');
+
+
+        Route::get('/regions', AbhRegionPage::class)->name('abh.admin.all_regions');
+        Route::get('/region/{region}', AbhRegionDetails::class)->name('abh.admin.all_regions.details');
+        Route::get('/agencies', AbhAgenciesPage::class)->name('abh.admin.all_agencies');
+        Route::get('/accounts', AbhAccountPage::class)->name('abh.admin.all_accounts');
+
+
+
+        Route::get('/industries', AbhTechIndustryPage::class)->name('abh.admin.all_industries');
+
+
+    });
+
+    /*
+     * Route::controller(AbhAdminController::class)->prefix('/admin/abh')->group(function () {
         Route::get('/{dashboard?}', 'index')->name('abh.admin.dashboard');
 
     });
+     */
 
 });
 

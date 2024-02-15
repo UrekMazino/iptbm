@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('abh_region_id')->constrained('abh_regions')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('abh_profile_id')->constrained('abh_profiles')->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('name');
+            $table->text('code');
             $table->string('address')->nullable();
             $table->text('head')->nullable();
             $table->timestamps();

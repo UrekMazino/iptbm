@@ -19,7 +19,7 @@ class AbhRegion extends Model
 
     function agencies(): HasMany
     {
-        return $this->hasMany(AbhAgency::class);
+        return $this->hasMany(AbhAgency::class,'abh_region_id','id');
     }
 
 

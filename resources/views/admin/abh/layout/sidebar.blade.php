@@ -61,7 +61,7 @@
                             >
                                 <div>
                                     <i class="fa-solid fa-building-shield me-1"></i>
-                                    IP-TBM's
+                                    ABH Profiles
                                 </div>
 
                                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"

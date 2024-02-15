@@ -2,6 +2,7 @@
 
 namespace App\Models\abh;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,7 +25,12 @@ class AbhProfile extends Model
         'tag_line',
     ];
 
-    public function agency()
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class,'abh_profile_id','id');
+    }
+
+    public function agency(): HasOne
     {
         return $this->hasOne(AbhAgency::class,'abh_profile_id','id');
 

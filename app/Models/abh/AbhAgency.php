@@ -14,6 +14,7 @@ class AbhAgency extends Model
 
     protected $fillable = [
         'name',
+        'code',
         'address',
         'head'
     ];

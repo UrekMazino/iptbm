@@ -2,19 +2,31 @@
 
 namespace App\Http\Livewire\Abh\Technology;
 
+use App\Models\abh\AbhAgency;
+use App\Models\abh\AbhTechOwner;
 use Livewire\Component;
 
 class TechnologyOwner extends Component
 {
     public $technology;
 
+    public function delete_co_owner(AbhTechOwner $co_owner): void
+    {
+       $co_owner->delete();
+       $this->emit('reloadPage');
+    }
+
     public function mount($technology)
     {
         $technology->load('profile.agency','co_owner.agency');
+
         $this->technology=$technology;
     }
     public function render()
     {
-        return view('livewire.abh.technology.technology-owner');
+        $agencies=AbhAgency::whereNotIn('id',[\Auth::user()->abh_profile->agency->id]);
+        return view('livewire.abh.technology.technology-owner',[
+            'agencies'=>$agencies
+        ]);
     }
 }

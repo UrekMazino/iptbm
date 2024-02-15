@@ -36,7 +36,7 @@
             </li>
             <li>
                 <a href="{{\App\Providers\RouteServiceProvider::IPTBM_ADMIN_DASHBOARD}}"
-                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Request::segment(3)==null||Request::segment(3)=="dashboard") bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
+                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()=='abh.admin.dashboard') bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
 
                     <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                          viewBox="0 0 20 20">
@@ -49,7 +49,7 @@
 
             <li>
                 <div class="divide-y divide-slate-200 ">
-                    <div x-data="{expanded: @if(Request::segment(4)=="iptbm-prof") true @else false @endif}"
+                    <div x-data="{expanded: @if(Route::currentRouteName()=="abh.admin.my_profile"||Route::currentRouteName()==='abh.admin.all_projects') true @else false @endif}"
                          class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -62,7 +62,7 @@
                             >
                                 <div>
                                     <i class="fa-solid fa-building-shield me-1"></i>
-                                    IP-TBM's
+                                    ABH
                                 </div>
 
                                 <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
@@ -85,8 +85,8 @@
                                 <ul id="dropdown-profile" class="py-2 space-y-2 text-sm text-gray-600 dark:text-white ">
 
                                     <li>
-                                        <a href="{{ route('iptbm.admin.iptbm_profiles.index') }}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if((Request::segment(4)=="iptbm-prof" && Request::segment(6)==null ) || Request::segment(6)=="view-profile") bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                        <a href="{{ route('abh.admin.my_profile') }}"
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.my_profile') bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             <svg class="w-4 h-4 me-2" aria-hidden="true"
                                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                                 <path stroke="currentColor" stroke-linecap="round"
@@ -97,8 +97,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('iptbm.admin.iptbm_profiles.profile-projects') }}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Request::segment(6)=="profile-projects"||Route::currentRouteName()==="iptbm.admin.iptbm_profiles.profile-projects.view") bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                        <a href="{{ route('abh.admin.all_projects') }}"
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.all_projects') bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             <svg class="w-4 h-4 me-2" aria-hidden="true"
                                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 21">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
@@ -114,8 +114,8 @@
                 </div>
             </li>
             <li>
-                <a href="{{ route('iptbm.admin.technologies-report') }}"
-                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Request::segment(4)=="technologies"||Request::segment(5)=="view-techology") bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
+                <a href="{{ route('abh.admin.all_technologies') }}"
+                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==='abh.admin.all_technologies') bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
                     <svg class="w-4 h-4 me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="1em"
                          viewBox="0 0 512 512">
                         <path
@@ -191,7 +191,7 @@
                 </div>
             </li>
            -----------}}
-           {{----------------
+
             <li>
                 <div class="mt-10 flex justify-start items-center text-gray-400 dark:text-gray-600">
                     <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -205,7 +205,7 @@
             <li>
                 <div class="divide-y divide-slate-200 ">
                     <div
-                        x-data="{expanded: @if((Request::segment(5)=="precom"||(Request::segment(4)==='tech-trans' && Request::segment(5)===null))||Request::segment(5)=="adopter") true @else false @endif}"
+                        x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.commercialization.all_precom'||Route::currentRouteName()==='abh.admin.commercialization.all_adopter') true @else false @endif}"
                         class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -246,14 +246,14 @@
                             <div class="overflow-hidden">
                                 <ul id="dropdown-profile" class="py-2 space-y-2 text-sm text-gray-600 dark:text-white ">
                                     <li>
-                                        <a href="{{route("iptbm.admin.techtrans.precom")}}" class="flex items-center w-full p-2
-                                          transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Request::segment(5)=="precom"||(Request::segment(4)==='tech-trans' && Request::segment(5)===null))  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                        <a href="{{route("abh.admin.commercialization.all_precom")}}" class="flex items-center w-full p-2
+                                          transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()==='abh.admin.commercialization.all_precom')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             Pre Com
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{route('iptbm.admin.techtrans.adopter')}}" class="flex items-center w-full p-2
-                                         transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Request::segment(5)=="adopter")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                        <a href="{{route('abh.admin.commercialization.all_adopter')}}" class="flex items-center w-full p-2
+                                         transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.commercialization.all_adopter')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             Adopter
                                         </a>
                                     </li>
@@ -266,8 +266,8 @@
                 </div>
             </li>
             <li>
-                <a href="{{ route('iptbm.admin.techtrans.deployment') }}"
-                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==="iptbm.admin.techtrans.deployment") bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
+                <a href="{{ route('abh.admin.all_deployment') }}"
+                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==="abh.admin.all_deployment") bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
 
                     <svg class="w-4 h-4 me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 640 512">
@@ -279,8 +279,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('iptbm.admin.techtrans.extension') }}"
-                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==="iptbm.admin.techtrans.extension")  bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
+                <a href="{{ route('abh.admin.all_extension') }}"
+                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==="abh.admin.all_extension")  bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
                     <svg class="w-4 h-4 me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 640 512">
                         <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -290,7 +290,7 @@
                     Extension
                 </a>
             </li>
-           ---------------}}
+
             <li>
                 <div class="mt-10 flex justify-start items-center text-gray-400 dark:text-gray-600">
                     <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -305,7 +305,7 @@
             <li>
                 <div class="divide-y divide-slate-200 ">
                     <div
-                        x-data="{expanded: @if(Request::segment(4)=="region"||Request::segment(4)=="agencies"||Request::segment(4)=="account") true @else false @endif}"
+                        x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.all_regions'||Route::currentRouteName()==='abh.admin.all_regions.details'||Route::currentRouteName()==='abh.admin.all_agencies'||Route::currentRouteName()==='abh.admin.all_accounts') true @else false @endif}"
                         class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -346,20 +346,20 @@
                                 <ul id="dropdown-profile" class="py-2 space-y-2 text-sm text-gray-900 dark:text-white ">
 
                                     <li>
-                                        <a href="{{route("iptbm.admin.addrecord.region")}}" class="flex items-center w-full p-2
-                                          transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Request::segment(4)=="region")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                        <a href="{{route("abh.admin.all_regions")}}" class="flex items-center w-full p-2
+                                          transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()==='abh.admin.all_regions'||Route::currentRouteName()==='abh.admin.all_regions.details')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             Regions
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{route('iptbm.admin.addrecord.agencies')}}" class="flex items-center w-full p-2
-                                         transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Request::segment(4)=="agencies")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                        <a href="{{route('abh.admin.all_agencies')}}" class="flex items-center w-full p-2
+                                         transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.all_agencies')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             Agencies
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{route('iptbm.admin.addrecord.account')}}" class="flex items-center w-full p-2
-                                         transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Request::segment(4)=="account")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                        <a href="{{route('abh.admin.all_accounts')}}" class="flex items-center w-full p-2
+                                         transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.all_accounts')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             Accounts
                                         </a>
                                     </li>
@@ -373,7 +373,7 @@
             </li>
             <li>
                 <div class="divide-y divide-slate-200 ">
-                    <div x-data="{expanded: @if(Request::segment(4)==="tech-component") true @else false @endif}"
+                    <div x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.all_industries') true @else false @endif}"
                          class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -414,8 +414,8 @@
                                 <ul id="dropdown-profile" class="py-2 space-y-2 text-sm text-gray-900 dark:text-white ">
 
                                     <li>
-                                        <a href="{{route("iptbm.addrecord.tech-comp.industry")}}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600  @if(Route::current()->getName()==="iptbm.addrecord.tech-comp.industry")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">Industries</a>
+                                        <a href="{{route("abh.admin.all_industries")}}"
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600  @if(Route::currentRouteName()==='abh.admin.all_industries')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">Industries</a>
                                     </li>
                                     <li>
 
