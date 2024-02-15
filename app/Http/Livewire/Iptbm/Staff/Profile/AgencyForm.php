@@ -179,7 +179,7 @@ class AgencyForm extends Component
             ],
             'agency_head' =>[
                 'required',
-                'max:10',
+                'max:100',
             ],
             'designation'=>[
                 'required',

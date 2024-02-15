@@ -36,16 +36,14 @@ use App\Http\Controllers\iptbm\staff\Technology;
 use App\Http\Controllers\iptbm\staff\TechnologyDescription;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Abh\Admin\Pages\Dashboard\Index;
-
 use App\Http\Livewire\Abh\Admin\Pages\Profile\AllAbhProfile;
 use App\Http\Livewire\Abh\Admin\Pages\Projects\AbhProject;
 use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhTechIndustryPage;
 use App\Http\Livewire\Abh\Admin\Pages\Technologies\AbhTechnology;
-
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhDeploymentPage;
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhExtensionPage;
-use App\Http\Livewire\Abh\Admin\Pages\Techtrans\Commercialization\AbhAdopterPage;
-use App\Http\Livewire\Abh\Admin\Pages\Techtrans\Commercialization\AbhPrecomPage;
+use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhAdopterPage;
+use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhPrecomPage;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAccountPage;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAgenciesPage;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhRegionDetails;
@@ -68,7 +66,6 @@ use App\Http\Livewire\Iptbm\Admin\IpAlert\IpAlert;
 use App\Http\Livewire\Iptbm\Admin\Plantvariety\PlantVariety;
 use App\Http\Livewire\Iptbm\Admin\Trademark\TradeMark;
 use App\Http\Livewire\Iptbm\Admin\UtilityModel\UtilityModel;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -484,14 +481,12 @@ Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function (
         Route::get('/technologies', AbhTechnology::class)->name('abh.admin.all_technologies');
 
 
-        /*
-         * Route::prefix('/commercialization')->group(function (){
+        Route::prefix('/commercialization')->group(function (){
             Route::get('precom', AbhPrecomPage::class)->name('abh.admin.commercialization.all_precom');
             Route::get('adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
         });
         Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
         Route::get('extension', AbhExtensionPage::class)->name('abh.admin.all_extension');
-         */
 
 
         Route::get('/regions', AbhRegionPage::class)->name('abh.admin.all_regions');
