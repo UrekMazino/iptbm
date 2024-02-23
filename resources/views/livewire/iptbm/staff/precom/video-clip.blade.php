@@ -279,39 +279,42 @@
                                     <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M10 3v4c0 .6-.4 1-1 1H5m14-4v16c0 .6-.4 1-1 1H6a1 1 0 0 1-1-1V8c0-.4.1-.6.3-.8l4-4 .6-.2H18c.6 0 1 .4 1 1ZM9 12h2c.6 0 1 .4 1 1v2c0 .6-.4 1-1 1H9a1 1 0 0 1-1-1v-2c0-.6.4-1 1-1Zm5.7 2.4v-.7l1.3-1.3v3l-1.3-1Z"/>
                                 </svg>
                             @else
+                                @if($video->url)
+                                    @if(parse_url($video->url)['host']==='www.youtube.com')
+                                        <svg class="w-6 h-6 me-2 text-red-500 dark:text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" d="M21.7 8c0-.7-.4-1.3-.8-2-.5-.5-1.2-.8-2-.8C16.2 5 12 5 12 5s-4.2 0-7 .2c-.7 0-1.4.3-2 .9-.3.6-.6 1.2-.7 2l-.2 3.1v1.5c0 1.1 0 2.2.2 3.3 0 .7.4 1.3.8 2 .6.5 1.4.8 2.2.8l6.7.2s4.2 0 7-.2c.7 0 1.4-.3 2-.9.3-.5.6-1.2.7-2l.2-3.1v-1.6c0-1 0-2.1-.2-3.2ZM10 14.6V9l5.4 2.8-5.4 2.8Z" clip-rule="evenodd"/>
+                                        </svg>
 
-                                @if(parse_url($video->url)['host']==='www.youtube.com')
-                                    <svg class="w-6 h-6 me-2 text-red-500 dark:text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M21.7 8c0-.7-.4-1.3-.8-2-.5-.5-1.2-.8-2-.8C16.2 5 12 5 12 5s-4.2 0-7 .2c-.7 0-1.4.3-2 .9-.3.6-.6 1.2-.7 2l-.2 3.1v1.5c0 1.1 0 2.2.2 3.3 0 .7.4 1.3.8 2 .6.5 1.4.8 2.2.8l6.7.2s4.2 0 7-.2c.7 0 1.4-.3 2-.9.3-.5.6-1.2.7-2l.2-3.1v-1.6c0-1 0-2.1-.2-3.2ZM10 14.6V9l5.4 2.8-5.4 2.8Z" clip-rule="evenodd"/>
-                                    </svg>
+                                    @else
+                                        <svg class="w-5 h-5 mx-2" viewBox="0 -3 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
-                                @else
-                                    <svg class="w-5 h-5 mx-2" viewBox="0 -3 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <title>drive-color</title>
+                                            <desc>Created with Sketch.</desc>
+                                            <defs>
 
-                                        <title>drive-color</title>
-                                        <desc>Created with Sketch.</desc>
-                                        <defs>
+                                            </defs>
+                                            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <g id="Color-" transform="translate(-601.000000, -955.000000)">
+                                                    <g id="drive" transform="translate(601.000000, 955.000000)">
+                                                        <polygon id="Shape" fill="#3777E3"
+                                                                 points="8.00048064 42 15.9998798 28 48 28 39.9998798 42">
 
-                                        </defs>
-                                        <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="Color-" transform="translate(-601.000000, -955.000000)">
-                                                <g id="drive" transform="translate(601.000000, 955.000000)">
-                                                    <polygon id="Shape" fill="#3777E3"
-                                                             points="8.00048064 42 15.9998798 28 48 28 39.9998798 42">
+                                                        </polygon>
+                                                        <polygon id="Shape" fill="#FFCF63"
+                                                                 points="32.0004806 28 48 28 32.0004806 0 15.9998798 0">
 
-                                                    </polygon>
-                                                    <polygon id="Shape" fill="#FFCF63"
-                                                             points="32.0004806 28 48 28 32.0004806 0 15.9998798 0">
+                                                        </polygon>
+                                                        <polygon id="Shape" fill="#11A861" points="0 28 8.00048064 42 24 14 15.9998798 0">
 
-                                                    </polygon>
-                                                    <polygon id="Shape" fill="#11A861" points="0 28 8.00048064 42 24 14 15.9998798 0">
-
-                                                    </polygon>
+                                                        </polygon>
+                                                    </g>
                                                 </g>
                                             </g>
-                                        </g>
-                                    </svg>
+                                        </svg>
+                                    @endif
                                 @endif
+
+
 
 
                             @endif

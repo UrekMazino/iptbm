@@ -38,17 +38,27 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Abh\Admin\Pages\Dashboard\Index;
 use App\Http\Livewire\Abh\Admin\Pages\Profile\AllAbhProfile;
 use App\Http\Livewire\Abh\Admin\Pages\Projects\AbhProject;
+use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhCommoditiesPage;
+use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhTechCategoriesPage;
 use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhTechIndustryPage;
+use App\Http\Livewire\Abh\Admin\Pages\Technologies\AbhTechnologiesDetail;
 use App\Http\Livewire\Abh\Admin\Pages\Technologies\AbhTechnology;
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhDeploymentPage;
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhExtensionPage;
 use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhAdopterPage;
 use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhPrecomPage;
+use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAccountDetails;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAccountPage;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAgenciesPage;
+use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAgencyDetails;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhRegionDetails;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhRegionPage;
 use App\Http\Livewire\Abh\Dashboard\DashBoardPage;
+use App\Http\Livewire\Abh\Pages\Commercialization\AbhPrecomDetails;
+use App\Http\Livewire\Abh\Pages\Commercialization\AbhPrecomFileViewer;
+use App\Http\Livewire\Abh\Pages\Commercialization\ComerAdopter;
+use App\Http\Livewire\Abh\Pages\Commercialization\Precom;
+use App\Http\Livewire\Abh\Pages\Commercialization\PrecomTechPhoto;
 use App\Http\Livewire\Abh\Pages\Generator\AbhGeneratorDetailsPage;
 use App\Http\Livewire\Abh\Pages\Generator\GeneratorPage;
 use App\Http\Livewire\Abh\Pages\Profile\AbhAllProfilePage;
@@ -56,10 +66,11 @@ use App\Http\Livewire\Abh\Pages\Profile\AbhAllProfileProjectPage;
 use App\Http\Livewire\Abh\Pages\Profile\AbhPublicProfileView;
 use App\Http\Livewire\Abh\Pages\Profile\Profile;
 use App\Http\Livewire\Abh\Pages\Profile\ProjectPage;
-use App\Http\Livewire\Abh\Pages\Technology\AbhAllTechnologyPage;
+
 use App\Http\Livewire\Abh\Pages\Technology\AbhTechImagePage;
 use App\Http\Livewire\Abh\Pages\Technology\AbhTechnologyDetailPage;
 use App\Http\Livewire\Abh\Pages\Technology\AbhTechnologyPage;
+use App\Http\Livewire\FileView;
 use App\Http\Livewire\Iptbm\Admin\Copyright\CopyRight;
 use App\Http\Livewire\Iptbm\Admin\Industrial\IndustrialDesign;
 use App\Http\Livewire\Iptbm\Admin\IpAlert\IpAlert;
@@ -106,6 +117,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
 });
 
 
@@ -314,7 +327,7 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
         return Redirect::to('/dashboard');
     });
     Route::get('/dashboard', DashBoardPage::class);
-
+    Route::get('/file', FileView::class)->name('rtms.file.viewer');
   /*
    *   Route::controller(AbhController::class)->group(function () {
         Route::get('/{dashboard?}', 'dashboard')->where(['dashboard' => 'dashboard']);
@@ -333,9 +346,18 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
     });
     Route::prefix('/technology')->group(function () {
         Route::get('/', AbhTechnologyPage::class)->name('abh.staff.technology');
-        Route::get('/{technology}', AbhTechnologyDetailPage::class)->name('abh.staff.technology.view-technology');
+        Route::get('/{application}', AbhTechnologyDetailPage::class)->name('abh.staff.technology.tech_application.detail');
         Route::get('/photo/{technology}', AbhTechImagePage::class)->name('abh.image-viewer');
-        Route::get('/all-tech/view', AbhAllTechnologyPage::class)->name('abh.staff.technology.allTech');
+
+    });
+
+    Route::prefix('/commercialization')->group(function (){
+        Route::get('/precom', Precom::class)->name('abh.staff.commercialization.precom');
+        Route::get('/precom/{precom}', AbhPrecomDetails::class)->name('abh.staff.commercialization.precom.details');
+        Route::get('/precom-tech-images/{technology}', PrecomTechPhoto::class)->name('abh.staff.commercialization.precom.show.images');
+        Route::get('/precom/files/{precom}/{type}/', AbhPrecomFileViewer::class)->name('abh.staff.commercialization.precom.show.files');
+
+        Route::get('/adopter', ComerAdopter::class)->name('abh.staff.commercialization.adopter');
     });
 
 
@@ -478,29 +500,37 @@ Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function (
         Route::get('/dashboard', Index::class)->name('abh.admin.dashboard');
         Route::get('/', AllAbhProfile::class)->name('abh.admin.my_profile');
         Route::get('/projects', AbhProject::class)->name('abh.admin.all_projects');
+
+
         Route::get('/technologies', AbhTechnology::class)->name('abh.admin.all_technologies');
+        Route::get('/tech-details/{ipprotec}', AbhTechnologiesDetail::class)->name('abh.admin.technology.details');
 
 
-      /*
-       *   Route::prefix('/commercialization')->group(function (){
+        Route::prefix('/commercialization')->group(function (){
             Route::get('precom', AbhPrecomPage::class)->name('abh.admin.commercialization.all_precom');
             Route::get('adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
         });
-            Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
+        Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
         Route::get('extension', AbhExtensionPage::class)->name('abh.admin.all_extension');
-       */
-
 
 
         Route::get('/regions', AbhRegionPage::class)->name('abh.admin.all_regions');
         Route::get('/region/{region}', AbhRegionDetails::class)->name('abh.admin.all_regions.details');
+
         Route::get('/agencies', AbhAgenciesPage::class)->name('abh.admin.all_agencies');
+        Route::get('/agency/{agency}', AbhAgencyDetails::class)->name('abh.admin.all_agencies.updates');
+
         Route::get('/accounts', AbhAccountPage::class)->name('abh.admin.all_accounts');
+        Route::get('/account/{account}', AbhAccountDetails::class)->withTrashed()->name('abh.admin.all_accounts_details');
 
 
 
-        Route::get('/industries', AbhTechIndustryPage::class)->name('abh.admin.all_industries');
+       /*
+        *  Route::get('/industries', AbhTechIndustryPage::class)->name('abh.admin.all_industries');
+        Route::get('/commodity/{industry}', AbhCommoditiesPage::class)->name('abh.admin.commodity');
+        Route::get('/category/{industry}', AbhTechCategoriesPage::class)->name('abh.admin.category');
 
+        */
 
     });
 

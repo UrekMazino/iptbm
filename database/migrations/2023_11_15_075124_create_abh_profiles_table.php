@@ -12,6 +12,8 @@ return new class extends Migration {
     {
         Schema::create('abh_profiles', function (Blueprint $table) {
             $table->id();
+           // $table->foreignId('abh_profile_id')->nullable()->constrained('abh_profiles')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('iptbm_agency_id')->constrained('iptbm_agencies')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('rrdc_chair')->nullable();
             $table->string('consortium_dir')->nullable();
             $table->string('office_address')->nullable();

@@ -62,6 +62,7 @@
 
             <div class="divide-y w-full divide-gray-300 dark:divide-gray-700 ">
 
+
                 @if($profile->agency->head)
                     <div class="text-gray-600 dark:text-white font-medium">
                         {{$profile->agency->head}}

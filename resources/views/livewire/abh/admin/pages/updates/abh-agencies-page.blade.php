@@ -1,11 +1,63 @@
 <div class="w-full">
+
+    <x-pop-modal name="addAgencyAbh" class="max-w-xl" static="true" modal-title="Add new Agency">
+        <form class="space-y-6" wire:submit.prevent="save_form">
+            <div class="space-y-4">
+               <div>
+                   <x-input-label value="Region"/>
+                   <x-text-input list="regionListAbh" wire:model.lazy="agency_region" class="w-full" placeholder="enter text here" required/>
+                   <x-input-error :messages="$errors->get('agency_region')"/>
+                   <x-data-list id="regionListAbh">
+                       @foreach($regions as $region)
+                           <option value="{{$region->name}}"></option>
+                       @endforeach
+                   </x-data-list>
+               </div>
+                <div>
+                    <x-input-label value="Agency Name"/>
+                    <x-text-input wire:model.lazy="agency_name" class="w-full" placeholder="enter text here" required/>
+                    <x-input-error :messages="$errors->get('agency_name')"/>
+                </div>
+                <div>
+                    <x-input-label value="Agency Code"/>
+                    <x-text-input wire:model.lazy="agency_code" class="w-full" placeholder="enter text here" required/>
+                    <x-input-error :messages="$errors->get('agency_code')"/>
+                </div>
+                <div>
+                    <x-input-label value="Agency Address"/>
+                    <x-text-input wire:model.lazy="agency_address" class="w-full" placeholder="enter text here" required/>
+                    <x-input-error :messages="$errors->get('agency_address')"/>
+                </div>
+                <div>
+                    <x-input-label value="Agency Head"/>
+                    <x-text-input wire:model.lazy="agency_head" class="w-full" placeholder="enter text here" required/>
+                    <x-input-error :messages="$errors->get('agency_head')"/>
+                </div>
+                <div>
+                    <x-input-label value="Agency Head Designation"/>
+                    <x-text-input wire:model.lazy="agency_head_designation" class="w-full" placeholder="enter text here" required/>
+                    <x-input-error :messages="$errors->get('agency_head_designation')"/>
+                </div>
+            </div>
+            <div>
+                <x-submit-button class="min-w-full" wire:target="save_form" wire:loading.attr="disabled">
+                    <div class="w-full text-center p-2" wire:loading.remove wire:target="save_form">
+                        Submit
+                    </div>
+                    <div class="w-full text-center p-2" wire:loading wire:target="save_form">
+                        Processing...
+                    </div>
+                </x-submit-button>
+            </div>
+        </form>
+    </x-pop-modal>
     <nav wire:ignore
          class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
         <nav class="bg-white border-gray-200 dark:bg-gray-900">
             <div class="block md:flex justify-between items-center">
                 <div class="ps-4">
-                    <x-secondary-button data-modal-toggle="addRegionAbh" class="text-sky-700 dark:text-sky-500">
+                    <x-secondary-button data-modal-toggle="addAgencyAbh" class="text-sky-700 dark:text-sky-500">
                         Add Agency
                     </x-secondary-button>
                 </div>
@@ -128,26 +180,30 @@
                         </td>
                         <td>
                             <ul class=" space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 space-y-4">
-                                @foreach($agency->profile->users as $user)
-                                    <li class="flex justify-start items-center">
-                                       <div>
-                                           <div>
-                                               {{$user->name}}
-                                           </div>
-                                           <small>
-                                               {{$user->email}}
-                                           </small>
-                                       </div>
-                                    </li>
-                                @endforeach
+                                @if($agency->abh_profile)
+                                    @foreach($agency->abh_profile->users as $user)
+                                        <li class="flex justify-start items-center">
+                                            <div>
+                                                <div>
+                                                    {{$user->name}}
+                                                </div>
+                                                <small>
+                                                    {{$user->email}}
+                                                </small>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                @endif
+
                             </ul>
                         </td>
                         <td>
                             {{$agency->created_at->format('F-d-Y')}}
                         </td>
-
                         <td>
-
+                            <x-link-button :url="route('abh.admin.all_agencies.updates',['agency'=>$agency->id])">
+                                Details
+                            </x-link-button>
                         </td>
                     </tr>
                 @endforeach

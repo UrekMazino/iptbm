@@ -2,6 +2,7 @@
 
 namespace App\Models\iptbm;
 
+use App\Models\abh\AbhProfile;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -63,6 +64,10 @@ class IptbmAgency extends Model
     public function profiles(): HasOne
     {
         return $this->hasOne(IptbmProfile::class, 'agency_id', 'id');
+    }
+    public function abh_profile(): HasOne
+    {
+        return $this->hasOne(AbhProfile::class, 'iptbm_agency_id','id');
     }
 
 

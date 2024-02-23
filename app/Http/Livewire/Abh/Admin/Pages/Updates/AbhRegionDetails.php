@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Abh\Admin\Pages\Updates;
 
 use App\Models\abh\AbhRegion;
+use App\Models\iptbm\IptbmRegion;
 use App\View\Components\abh\admin\AbhAdminApp;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -58,28 +59,27 @@ class AbhRegionDetails extends Component
         return[
             'region_name'=>[
                 'required',
-                'unique:abh_regions,name',
+                'unique:iptbm_regions,name',
                 'max:100'
             ],
             'region_rrdcc_chair'=>[
                 'required',
                 'max:60',
-
             ],
             'region_consortium'=>[
                 'required',
                 'max:60',
-                'unique:abh_regions,consortium',
+                'unique:iptbm_regions,consortium',
             ],
             'region_consortium_director'=>[
                 'required',
                 'max:60',
-                'unique:abh_regions,consortium_director',
+                'unique:iptbm_regions,consortium_director',
             ],
 
         ];
     }
-    public function mount(AbhRegion $region): void
+    public function mount(IptbmRegion $region): void
     {
         $this->region=$region;
         $this->region_name=$this->region->name;

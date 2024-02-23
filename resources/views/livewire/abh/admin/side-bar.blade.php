@@ -115,7 +115,7 @@
             </li>
             <li>
                 <a href="{{ route('abh.admin.all_technologies') }}"
-                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==='abh.admin.all_technologies') bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
+                   class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==='abh.admin.all_technologies'||Route::currentRouteName()==='abh.admin.technology.details') bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
                     <svg class="w-4 h-4 me-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="1em"
                          viewBox="0 0 512 512">
                         <path
@@ -305,7 +305,7 @@
             <li>
                 <div class="divide-y divide-slate-200 ">
                     <div
-                        x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.all_regions'||Route::currentRouteName()==='abh.admin.all_regions.details'||Route::currentRouteName()==='abh.admin.all_agencies'||Route::currentRouteName()==='abh.admin.all_accounts') true @else false @endif}"
+                        x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.all_regions'||Route::currentRouteName()==='abh.admin.all_regions.details'||Route::currentRouteName()==='abh.admin.all_agencies'||Route::currentRouteName()==="abh.admin.all_agencies.updates"||Route::currentRouteName()==='abh.admin.all_accounts') true @else false @endif}"
                         class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -353,7 +353,7 @@
                                     </li>
                                     <li>
                                         <a href="{{route('abh.admin.all_agencies')}}" class="flex items-center w-full p-2
-                                         transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.all_agencies')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                         transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.all_agencies'||Route::currentRouteName()==='abh.admin.all_agencies.updates')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             Agencies
                                         </a>
                                     </li>
@@ -403,53 +403,7 @@
                                 </svg>
                             </button>
                         </h2>
-                        <div
-                            id="faqs-text-profile"
-                            role="region"
-                            aria-labelledby="faqs-title-profile"
-                            class="grid text-sm text-slate-600 overflow-hidden transition-all duration-300 ease-in-out"
-                            :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
-                        >
-                            <div class="overflow-hidden">
-                                <ul id="dropdown-profile" class="py-2 space-y-2 text-sm text-gray-900 dark:text-white ">
 
-                                    <li>
-                                        <a href="{{route("abh.admin.all_industries")}}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600  @if(Route::currentRouteName()==='abh.admin.all_industries')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">Industries</a>
-                                    </li>
-                                    <li>
-
-                                        <a data-popover-target="popover-commodity-profile"
-                                           data-popover-placement="right"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600  @if(Route::current()->getName()==="iptbm.addrecord.techCommodities")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">Commodities</a>
-                                    </li>
-                                    <div data-popover id="popover-commodity-profile" role="tooltip"
-                                         class="absolute z-50 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-lg shadow-black opacity-0 w-80 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-                                        <livewire:iptbm.admin.side-nav-popup-industry
-                                            route="iptbm.addrecord.techCommodities"/>
-                                        <div data-popper-arrow></div>
-                                    </div>
-
-                                    <li>
-                                        <a data-popover-target="popover-category-profile" data-popover-placement="right"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::current()->getName()==="iptbm.addrecord.techCategories")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">Categories</a>
-                                    </li>
-                                    <div data-popover id="popover-category-profile" role="tooltip"
-                                         class="absolute z-50 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-lg shadow-black opacity-0 w-80 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-                                       {{--
-                                        <livewire:iptbm.admin.side-nav-popup-industry
-                                            route="iptbm.addrecord.techCategories"/>
-                                       ---}}
-                                        <div data-popper-arrow></div>
-                                    </div>
-                                    <li>
-                                        <a href="{{route("iptbm.addrecord.tech-adopter")}}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::current()->getName()==="iptbm.addrecord.tech-adopter")  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">Adopters</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Abh\Admin\Pages\Updates;
 
 use App\Models\abh\AbhRegion;
+use App\Models\iptbm\IptbmRegion;
 use App\View\Components\abh\admin\AbhAdminApp;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -21,7 +22,7 @@ class AbhRegionPage extends Component
     public function save_region()
     {
         $this->validate();
-        AbhRegion::create([
+        IptbmRegion::create([
             'name'=>$this->region_name,
             'rrdcc_chair'=>$this->region_rrdc,
             'consortium'=>$this->region_consortium,
@@ -65,7 +66,7 @@ class AbhRegionPage extends Component
 
         return view('livewire.abh.admin.pages.updates.abh-region-page')
             ->with([
-                'regions' => AbhRegion::with('agencies')->get()
+                'regions' => IptbmRegion::with('agencies')->get()
             ])
             ->layout(AbhAdminApp::class);
     }

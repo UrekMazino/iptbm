@@ -10,7 +10,7 @@
     <title>
 
         @if(isset($pagetitle))
-             {{$pagetitle}} |
+           {{$pagetitle}} |
         @endif
             {{ config('app.name', 'Laravel') }}
     </title>

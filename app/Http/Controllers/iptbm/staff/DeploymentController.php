@@ -26,7 +26,9 @@ class DeploymentController extends Controller
     {
 
 
-        $deployedTechnologies = IptbmDeploymentPathway::with('technology')->get();
+        $deployedTechnologies = IptbmDeploymentPathway::with('technology')
+            ->whereHas('technology')
+            ->get();
         $profile = IptbmProfile::with("technologies", "technologies.techgenerators", "technologies.techgenerators.inventor")->where("agency_id", Auth::user()->profile->agency->id)->first();
 
 

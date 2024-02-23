@@ -56,7 +56,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
         ]);
          */
-        $this->call([
+       /*
+        *  $this->call([
 
             IptbmAdminSeeder::class,
             RegionSeeder::class,
@@ -77,6 +78,12 @@ class DatabaseSeeder extends Seeder
             AbhProfileSeeder::class,
             abh\AgencySeeder::class,
             UserSeeder::class,
+        ]);
+        */
+
+        $this->call([
+
+            TechCategorySeeder::class
         ]);
     }
 }

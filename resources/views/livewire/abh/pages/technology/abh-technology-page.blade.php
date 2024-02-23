@@ -1,5 +1,5 @@
 <div class="w-full">
-    <livewire:abh.technology.add-tech :profile="$profile" />
+
     <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
         <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -27,73 +27,105 @@
     </x-slot>
 
     <div class=" md:px-4">
-        <x-header-label class="mt-10">
-            ABH Profiles
+        <x-header-label class="mt-10 mb-2">
+            Technologies under IP Applications
         </x-header-label>
         <x-card-panel class="relative overflow-x-auto w-full">
             <table id="allProf"
-                   class="w-fit display cell-border stripe table-fixed  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                   class="w-fit display cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
                 <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col"
-                        class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-
-                        Year
+                        class="id_db px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        ID
                     </th>
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Title
+                        IP Type
                     </th>
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Description
+                        Application number
                     </th>
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Actions
+                        Technology title
+                    </th>
+                    <th scope="col"
+                        class="owner px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Owner
+                    </th>
+
+                    <th scope="col"
+                        class="date px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Date inserted
+                    </th>
+                    <th scope="col"
+                        class="action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Action
                     </th>
                 </tr>
-                </thead>
-                <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="border-0 filters">
                     <th scope="col"
                         class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Region
                     </th>
                     <th scope="col"
                         class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Agency
                     </th>
                     <th scope="col"
                         class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Project Leader
                     </th>
-                    <th scope="col" class=" px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <th scope="col"
+                        class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                    </th>
+                    <th scope="col"
+                        class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                    </th>
+                    <th scope="col"
+                        class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+
+                    </th>
+                    <th scope="col" class="action px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($technologies as $technology)
+                @foreach($ip_tech as $application)
                     <tr>
                         <td>
-                            {{$technology->year_developed}}
+                            {{$application->id}}
                         </td>
                         <td>
-                            {{$technology->title}}
+                            {{$application->ip_type->name}}
                         </td>
                         <td>
-                            {{$technology->tech_desc}}
+                            {{$application->application_number}}
                         </td>
                         <td>
-                            <x-link-button :url="route('abh.staff.technology.view-technology',['technology'=>$technology->id])">
-                                Open
+                            {{$application->technology->title}}
+                        </td>
+                        <td>
+                            {{$application->technology->iptbmprofiles->agency->name}}
+                        </td>
+                        <td>
+                            {{$application->created_at->format('F-d-Y')}}
+                        </td>
+                        <td>
+                            <x-link-button :url="route('abh.staff.technology.tech_application.detail',['application'=>$application->id])" class="text-sky-500 dark:text-sky-500">
+                                Details
                             </x-link-button>
                         </td>
                     </tr>
@@ -104,15 +136,16 @@
     </div>
     @section('script')
         <script>
+
             $(function () {
                 var table = $('#allProf').DataTable({
-                    rowCallback: function (row, data) {
-                        $(row).addClass('bg-gray-800 border-b text-base dark:bg-gray-800 dark:border-gray-700 transition duration:300 dark:hover:text-gray-50 hover:bg-gray-200 dark:hover:bg-gray-600');
-                    },
-                    stateSave: true,
+                    //  stateSave: true,
                     pagingType: 'full_numbers',
+                    // colReorder: true,
                     horizontalScroll: true,
                     dom: 'Bfrtip',
+                    autoWidth: false,
+                    orderCellsTop: true,
                     initComplete: function () {
                         var api = this.api();
 
@@ -191,6 +224,7 @@
                     .appendTo('#searchPan').attr({placeHolder: 'Search'});
                 $('.dataTables_filter').addClass('hidden')
                 table.buttons().container().appendTo('#botNav');
+                table.columns(['.id_db','.owner','.date']).visible(false, false);
 
             });
         </script>

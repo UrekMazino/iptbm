@@ -149,9 +149,15 @@
                     <div>
                         <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
                             @foreach($region->agencies as $agency)
+
                                 <li>
-                                    {{$agency->name}}
+
+
+                                    <a href="{{route("abh.admin.all_agencies.updates",['agency'=>$agency->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">   {{$agency->name}}</a>
+
+
                                 </li>
+
                             @endforeach
                         </ul>
 

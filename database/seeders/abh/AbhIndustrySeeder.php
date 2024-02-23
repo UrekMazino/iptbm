@@ -493,7 +493,7 @@ class AbhIndustrySeeder extends Seeder
             {
                 foreach ($data_category[$key] as $category)
                 {
-                    $indus->commodities()->save(new AbhTechCategory($category));
+                    $indus->categories()->save(new AbhTechCategory($category));
                 }
             }
 

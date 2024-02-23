@@ -69,11 +69,12 @@ class AddDeploedTechnology extends Component
 
         $this->validate();
         $tech = IptbmTechnologyProfile::find($this->techId);
-
-        $tech->deployment()->save(new IptbmDeploymentPathway([
+        $tech?->deployment()->save(new IptbmDeploymentPathway([
             'adoptor_name' => $this->adopter,
             'address' => $this->address
         ]));
+
+
 
         $this->emit('reloadPage');
 

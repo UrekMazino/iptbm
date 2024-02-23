@@ -2,6 +2,7 @@
 
 namespace App\Models\abh;
 
+use App\Models\iptbm\IptbmAgency;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ class AbhProfile extends Model
     use HasFactory;
 
     protected $fillable = [
+        'iptbm_agency_id',
         'rrdc_chair',
         'consortium_dir',
         'office_address',
@@ -30,11 +32,18 @@ class AbhProfile extends Model
         return $this->hasMany(User::class,'abh_profile_id','id');
     }
 
-    public function agency(): HasOne
+    public function agency(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(IptbmAgency::class,'iptbm_agency_id','id');
+    }
+   /*
+    * this  was for separated table from ABH agency
+    *  public function agency(): HasOne
     {
         return $this->hasOne(AbhAgency::class,'abh_profile_id','id');
 
     }
+    */
 
     public function region(): \Illuminate\Database\Eloquent\Relations\HasOneThrough
     {
