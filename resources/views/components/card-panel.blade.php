@@ -12,12 +12,12 @@
                     @if(isset($icon))
                         <div class="gap-2 flex justify-start items-center ms-0 w-fit">
                             {{$icon}}
-                            <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                            <label class="block font-medium  text-base text-gray-500 dark:text-gray-300">
                                 {{$title}}
                             </label>
                         </div>
                     @else
-                        <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                        <label class="block font-medium  text-base text-gray-500 dark:text-gray-300">
                             {{$title}}
                         </label>
                     @endif
@@ -30,12 +30,12 @@
                 @if(isset($icon))
                     <div class="gap-2 flex justify-start items-center ms-0 w-fit">
                         {{$icon}}
-                        <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                        <label class="block font-medium  text-base text-gray-500 dark:text-gray-300">
                             {{$title}}
                         </label>
                     </div>
                 @else
-                    <label class="block font-normal  text-xl text-sky-950 dark:text-sky-200">
+                    <label class="block font-medium  text-base text-gray-500 dark:text-gray-300">
                         {{$title}}
                     </label>
                 @endif

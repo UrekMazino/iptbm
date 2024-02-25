@@ -23,10 +23,14 @@ class FileView extends Component
         if (!$this->file_type || !$this->file || !$this->return_path || !$this->base_layout) {
             throw new NotFoundHttpException(); // Return a 404 response
         }
-        $filePath = urldecode($this->file);
-        if (!Storage::exists($filePath)) {
-            throw new NotFoundHttpException(); // Return a 404 response
+        if($this->file_type!=='online')
+        {
+            $filePath = urldecode($this->file);
+            if (!Storage::exists($filePath)) {
+                throw new NotFoundHttpException(); // Return a 404 response
+            }
         }
+
     }
     public function render()
     {

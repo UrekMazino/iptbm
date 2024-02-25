@@ -151,7 +151,20 @@
                             {{$precom->return_of_investment}}
                         </td>
                         <td>
-                            {{$precom->commercialization_mode}}
+                            <table>
+                                @forelse($precom->modes as $mode)
+                                    <tr>
+                                        <td>
+                                            {{$mode->commercialization_mode}}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    No data available
+                                @endforelse
+
+                            </table>
+
+
                         </td>
                         <td>
                             {{$precom->created_at}}
