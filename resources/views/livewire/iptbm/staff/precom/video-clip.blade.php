@@ -1,4 +1,7 @@
 <x-card-panel title="Technology Video Clips">
+
+{{---------------
+
     <div class="mt-4  space-y-2">
         <div>
             <x-pop-modal modal-title="Upload local video clip" static="true" name="authentication-modal-localVid" class="max-w-lg">
@@ -229,160 +232,85 @@
 
         </div>
     </div>
+----------------}}
+
     <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-10 ">
         @foreach($precom->video as $key=>$video)
 
             <!-- Main modal -->
 
-            <li class="cursor-pointer p-2 hover:bg-gray-400 dark:hover:bg-gray-950 transition duration-300">
-                <div data-modal-backdrop="static" id="authentication-video{{$key}}" tabindex="-1" aria-hidden="true"
-                     class="fixed top-0 left-0 right-0 z-50 backdrop-blur hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-5xl max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <button id="botVideo{{$video->id}}" type="button"
-                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-hide="authentication-video{{$key}}">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                                <span class="sr-only">Close modal</span>
-                            </button>
-                            <div class="px-6 py-6 aspect-video lg:px-8">
-                                <x-input-label class="mb-1  font-normal" value="{{$video->description}}"/>
-                                @if($video->type==='local')
-                                    <video id="video{{$video->id}}" class=" block h-full "
-                                           alt="..." controls>
-                                        <source src="{{Storage::url($video->url)}}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                @else
-                                    <iframe id="videoIframe{{$video->id}}" class="w-full m-auto h-full"
-                                            src="{{$video->url}}" frameborder="0"
-                                            allow="accelerometer;pause;  encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <li >
+               <div class="py-4">
+                   <div class="aspect-video flex text-white justify-center items-center group bg-gray-900 dark:bg-gray-950 rounded relative">
+                       <div class="space-y-3 hidden group-hover:block">
+                           <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$video->type,
+                                                'file'=>$video->url,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                               <div class="border text-center hover:scale-110 transition duration-300 justify-center items-center flex gap-1 w-full rounded-full px-2 py-1 border-gray-200 dark:border-gray-700">
+                                   <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                       <path fill-rule="evenodd" d="M8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8l8-6a1 1 0 0 0 0-1.6l-8-6Z" clip-rule="evenodd"/>
+                                   </svg>
 
-                <div class="cursor-pointer">
-                    <div class="w-full flex justify-between items-center" data-modal-target="authentication-video{{$key}}"
-                         data-modal-toggle="authentication-video{{$key}}">
-                        <x-input-label
-                                       class="flex justify-start cursor-pointer items-center">
-                            @if($video->type==='local')
-                                <svg class="w-6 h-6 me-2 text-sky-600 dark:text-sky-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M10 3v4c0 .6-.4 1-1 1H5m14-4v16c0 .6-.4 1-1 1H6a1 1 0 0 1-1-1V8c0-.4.1-.6.3-.8l4-4 .6-.2H18c.6 0 1 .4 1 1ZM9 12h2c.6 0 1 .4 1 1v2c0 .6-.4 1-1 1H9a1 1 0 0 1-1-1v-2c0-.6.4-1 1-1Zm5.7 2.4v-.7l1.3-1.3v3l-1.3-1Z"/>
-                                </svg>
-                            @else
-                                @if($video->url)
-                                    @if(parse_url($video->url)['host']==='www.youtube.com')
-                                        <svg class="w-6 h-6 me-2 text-red-500 dark:text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                            <path fill-rule="evenodd" d="M21.7 8c0-.7-.4-1.3-.8-2-.5-.5-1.2-.8-2-.8C16.2 5 12 5 12 5s-4.2 0-7 .2c-.7 0-1.4.3-2 .9-.3.6-.6 1.2-.7 2l-.2 3.1v1.5c0 1.1 0 2.2.2 3.3 0 .7.4 1.3.8 2 .6.5 1.4.8 2.2.8l6.7.2s4.2 0 7-.2c.7 0 1.4-.3 2-.9.3-.5.6-1.2.7-2l.2-3.1v-1.6c0-1 0-2.1-.2-3.2ZM10 14.6V9l5.4 2.8-5.4 2.8Z" clip-rule="evenodd"/>
-                                        </svg>
+                                   <div>
+                                       Play video
+                                   </div>
+                               </div>
+                           </a>
 
-                                    @else
-                                        <svg class="w-5 h-5 mx-2" viewBox="0 -3 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                       </div>
+                       <div class="rounded-full group-hover:hidden flex justify-center items-center border border-gray-200 dark:border-gray-700 border-white  px-4 py-1">
+                           @if($video->type==='local')
+                               <svg class="w-6 h-6 me-2 text-sky-600 dark:text-sky-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                   <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M10 3v4c0 .6-.4 1-1 1H5m14-4v16c0 .6-.4 1-1 1H6a1 1 0 0 1-1-1V8c0-.4.1-.6.3-.8l4-4 .6-.2H18c.6 0 1 .4 1 1ZM9 12h2c.6 0 1 .4 1 1v2c0 .6-.4 1-1 1H9a1 1 0 0 1-1-1v-2c0-.6.4-1 1-1Zm5.7 2.4v-.7l1.3-1.3v3l-1.3-1Z"/>
+                               </svg>
+                               <div>
+                                   Local video
+                               </div>
+                           @else
+                               @if(parse_url($video->url)['host']==='www.youtube.com')
+                                   <svg class="w-6 h-6 me-2 text-red-500 dark:text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                       <path fill-rule="evenodd" d="M21.7 8c0-.7-.4-1.3-.8-2-.5-.5-1.2-.8-2-.8C16.2 5 12 5 12 5s-4.2 0-7 .2c-.7 0-1.4.3-2 .9-.3.6-.6 1.2-.7 2l-.2 3.1v1.5c0 1.1 0 2.2.2 3.3 0 .7.4 1.3.8 2 .6.5 1.4.8 2.2.8l6.7.2s4.2 0 7-.2c.7 0 1.4-.3 2-.9.3-.5.6-1.2.7-2l.2-3.1v-1.6c0-1 0-2.1-.2-3.2ZM10 14.6V9l5.4 2.8-5.4 2.8Z" clip-rule="evenodd"/>
+                                   </svg>
+                               @else
+                                   <svg class="w-5 h-5 mx-2" viewBox="0 -3 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
-                                            <title>drive-color</title>
-                                            <desc>Created with Sketch.</desc>
-                                            <defs>
+                                       <title>drive-color</title>
+                                       <desc>Created with Sketch.</desc>
+                                       <defs>
 
-                                            </defs>
-                                            <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <g id="Color-" transform="translate(-601.000000, -955.000000)">
-                                                    <g id="drive" transform="translate(601.000000, 955.000000)">
-                                                        <polygon id="Shape" fill="#3777E3"
-                                                                 points="8.00048064 42 15.9998798 28 48 28 39.9998798 42">
+                                       </defs>
+                                       <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                           <g id="Color-" transform="translate(-601.000000, -955.000000)">
+                                               <g id="drive" transform="translate(601.000000, 955.000000)">
+                                                   <polygon id="Shape" fill="#3777E3"
+                                                            points="8.00048064 42 15.9998798 28 48 28 39.9998798 42">
 
-                                                        </polygon>
-                                                        <polygon id="Shape" fill="#FFCF63"
-                                                                 points="32.0004806 28 48 28 32.0004806 0 15.9998798 0">
+                                                   </polygon>
+                                                   <polygon id="Shape" fill="#FFCF63"
+                                                            points="32.0004806 28 48 28 32.0004806 0 15.9998798 0">
 
-                                                        </polygon>
-                                                        <polygon id="Shape" fill="#11A861" points="0 28 8.00048064 42 24 14 15.9998798 0">
+                                                   </polygon>
+                                                   <polygon id="Shape" fill="#11A861" points="0 28 8.00048064 42 24 14 15.9998798 0">
 
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                        </svg>
-                                    @endif
-                                @endif
+                                                   </polygon>
+                                               </g>
+                                           </g>
+                                       </g>
+                                   </svg>
+                               @endif
+                               <div>
+                                   Online video
+                               </div>
+                           @endif
+                       </div>
+                   </div>
 
-
-
-
-                            @endif
-
-                            <span>
-                        {{$video->description}}
-                            </span>
-                        </x-input-label>
-
-
-                        <div id="popup-deleteVid{{$video->id}}" tabindex="-1"
-                             class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative w-full max-w-md max-h-full">
-                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    <button type="button"
-                                            class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                            data-modal-hide="popup-deleteVid{{$video->id}}">
-                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                             fill="none" viewBox="0 0 14 14">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                        </svg>
-                                        <span class="sr-only">Close modal</span>
-                                    </button>
-                                    <div class="p-6 text-center">
-                                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
-                                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                             viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-width="2"
-                                                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-
-                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you
-                                            sure you want to delete this video?</h3>
-                                        <button wire:loading.remove wire:target="deleteVideo"
-                                                wire:click.prevent="deleteVideo({{$video}})" type="button"
-                                                class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                            Yes, I'm sure
-                                        </button>
-                                        <button wire:loading wire:target="deleteVideo" type="button"
-                                                class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                            Processing...
-                                        </button>
-                                        <button data-modal-hide="popup-deleteVid{{$video->id}}" type="button"
-                                                class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                            No, cancel
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <x-secondary-button data-modal-target="popup-deleteVid{{$video->id}}"
-                                            data-modal-toggle="popup-deleteVid{{$video->id}}"
-                                            class="text-red-600 dark:text-red-600">
-                            <svg class="w-5 h-5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 18 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2"
-                                      d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
-                            </svg>
-                        </x-secondary-button>
-                    </div>
-
-
-                </div>
-
+                   <div class=" pt-2">
+                       {{$video->description}}
+                   </div>
+               </div>
             </li>
 
         @endforeach

@@ -1,5 +1,6 @@
-<div class="w-full space-y-6 md:col-span-2">
+<div class="w-full space-y-10 md:col-span-2">
     <x-card-panel title="Market Study">
+        {{-----------
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-market-precom"
                                 data-modal-toggle="authentication-market-precom" class="text-sky-600 dark:text-sky-600">
@@ -42,12 +43,21 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+        -----------}}
         @if($precom->market_study_files->count()>0)
-            <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
+            <ul class="divide-y divide-gray-200 dark:divide-gray-600 mt-4">
                 @foreach($precom->market_study_files as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="market-{{$key}}-{{$file->id}}"
-                                                                 univ-id="market" :file="$file"/>
+                    <li >
+                        <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="market-{{$key}}-{{$file->id}}"
+                                                                     univ-id="market" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
 
@@ -58,8 +68,18 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
     <x-card-panel title=" Valuation Summary">
+       {{-----------
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-valuation-precom"
                                 data-modal-toggle="authentication-valuation-precom"
@@ -101,12 +121,20 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+       ----------}}
         @if($precom->valuation_summary_files->count()>0)
             <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                 @foreach($precom->valuation_summary_files as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="valuation-{{$key}}-{{$file->id}}"
-                                                                 univ-id="valuation" :file="$file"/>
+                    <li>
+                        <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="valuation-{{$key}}-{{$file->id}}"
+                                                                     univ-id="valuation" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
 
@@ -117,9 +145,19 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
 
    <x-card-panel title="Freedom to Operate Summary">
+      {{--------
        <x-slot:button>
            <x-secondary-button data-modal-target="authentication-freedom-precom"
                                data-modal-toggle="authentication-freedom-precom"
@@ -161,12 +199,20 @@
                </form>
            </x-pop-modal>
        </x-slot:button>
+      ------}}
        @if($precom->freedom_summary_files->count()>0)
            <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                @foreach($precom->freedom_summary_files as $key=>$file)
-                   <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                       <livewire:iptbm.staff.precom.file-holder wire:key="freedom-{{$key}}-{{$file->id}}"
-                                                                univ-id="freedom" :file="$file"/>
+                   <li>
+                   <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                           <livewire:iptbm.staff.precom.file-holder wire:key="freedom-{{$key}}-{{$file->id}}"
+                                                                    univ-id="freedom" :file="$file"/>
+                       </a>
+
                    </li>
                @endforeach
 
@@ -177,9 +223,19 @@
                No data available
            </x-sub-label>
        @endif
+       <x-slot:footer>
+           <div>
+               <i>
+                   <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                       Attachments should be in pdf or image (png,jpg) format.
+                   </p>
+               </i>
+           </div>
+       </x-slot:footer>
    </x-card-panel>
 
    <x-card-panel title=" Proposed Term Sheet">
+      {{-----------
        <x-slot:button>
            <x-secondary-button data-modal-target="authentication-termsheet-precom"
                                data-modal-toggle="authentication-termsheet-precom"
@@ -223,12 +279,20 @@
                </form>
            </x-pop-modal>
        </x-slot:button>
+      -------}}
        @if($precom->term_sheet_files->count()>0)
            <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                @foreach($precom->term_sheet_files as $key=>$file)
-                   <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                       <livewire:iptbm.staff.precom.file-holder wire:key="termsheet-{{$key}}-{{$file->id}}"
-                                                                univ-id="termsheet" :file="$file"/>
+                   <li>
+                   <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                           <livewire:iptbm.staff.precom.file-holder wire:key="termsheet-{{$key}}-{{$file->id}}"
+                                                                    univ-id="termsheet" :file="$file"/>
+                       </a>
+
                    </li>
                @endforeach
 
@@ -239,9 +303,19 @@
                No data available
            </x-sub-label>
        @endif
+       <x-slot:footer>
+           <div>
+               <i>
+                   <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                       Attachments should be in pdf or image (png,jpg) format.
+                   </p>
+               </i>
+           </div>
+       </x-slot:footer>
    </x-card-panel>
 
     <x-card-panel title="Licensing Agreement Copy">
+        {{-----
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-agreement-precom"
                                 data-modal-toggle="authentication-agreement-precom"
@@ -286,12 +360,20 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+        -------}}
         @if($precom->license_agreement_copies->count()>0)
             <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                 @foreach($precom->license_agreement_copies as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="agreement-{{$key}}-{{$file->id}}"
-                                                                 univ-id="agreement" :file="$file"/>
+                    <li>
+                    <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="agreement-{{$key}}-{{$file->id}}"
+                                                                     univ-id="agreement" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
 
@@ -302,9 +384,19 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
 
     <x-card-panel title="Financial/Economic Analysis">
+       {{------------
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-financial-precom"
                                 data-modal-toggle="authentication-financial-precom"
@@ -347,12 +439,20 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+       -----------}}
         @if($precom->financial_annalysis->count()>0)
             <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                 @foreach($precom->financial_annalysis as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="financial-{{$key}}-{{$file->id}}"
-                                                                 univ-id="financial" :file="$file"/>
+                    <li>
+                    <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="financial-{{$key}}-{{$file->id}}"
+                                                                     univ-id="financial" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
 
@@ -363,9 +463,19 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
 
     <x-card-panel title="Machine Testing and Certification">
+       {{--------------
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-certification-precom"
                                 data-modal-toggle="authentication-certification-precom"
@@ -409,12 +519,20 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+       ------------}}
         @if($precom->testing_certification->count()>0)
             <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                 @foreach($precom->testing_certification as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="certification-{{$key}}-{{$file->id}}"
-                                                                 univ-id="certification" :file="$file"/>
+                    <li>
+                    <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="certification-{{$key}}-{{$file->id}}"
+                                                                     univ-id="certification" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
 
@@ -425,9 +543,19 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
 
     <x-card-panel title="Feasibility Study">
+       {{------------------
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-feasibility-precom"
                                 data-modal-toggle="authentication-feasibility-precom"
@@ -469,12 +597,20 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+       ---------------}}
         @if($precom->feasibility_studies->count()>0)
             <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                 @foreach($precom->feasibility_studies as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="feasibbility-{{$key}}-{{$file->id}}"
-                                                                 univ-id="feasibbility" :file="$file"/>
+                    <li>
+                    <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="feasibbility-{{$key}}-{{$file->id}}"
+                                                                     univ-id="feasibbility" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
 
@@ -485,8 +621,18 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
     <x-card-panel title="Business Model/Business Plan">
+        {{----------------
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-business-precom"
                                 data-modal-toggle="authentication-business-precom"
@@ -530,12 +676,20 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+        ---------------}}
         @if($precom->business_plan->count()>0)
             <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                 @foreach($precom->business_plan as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="business-{{$key}}-{{$file->id}}"
-                                                                 univ-id="business" :file="$file"/>
+                    <li>
+                    <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="business-{{$key}}-{{$file->id}}"
+                                                                     univ-id="business" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
             </ul>
@@ -544,8 +698,18 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
     <x-card-panel title="Fairness Opinion Report">
+       {{-------
         <x-slot:button>
             <x-secondary-button data-modal-target="authentication-report-precom"
                                 data-modal-toggle="authentication-report-precom" class="text-sky-600 dark:text-sky-600">
@@ -588,12 +752,21 @@
                 </form>
             </x-pop-modal>
         </x-slot:button>
+       ------}}
         @if($precom->opinion_report->count()>0)
             <ul class="divide-y divide-gray-400 dark:divide-gray-600 mt-4">
                 @foreach($precom->opinion_report as $key=>$file)
-                    <li class="py-3 transition duration-300 hover:bg-gray-200 hover:dark:bg-gray-800 hover:text-gray-800 hover:dark:text-white text-gray-600 dark:text-gray-400">
-                        <livewire:iptbm.staff.precom.file-holder wire:key="report-{{$key}}-{{$file->id}}"
-                                                                 univ-id="report" :file="$file"/>
+                    <li>
+
+                    <a href="{{route('rtms.file.viewer.iptbm',[
+                                                'type'=>$file->file_type,
+                                                'file'=>$file->file,
+                                                'home'=>route('iptbm.staff.precom.details',['id'=>$precom->id]),
+                                                ])}}">
+                            <livewire:iptbm.staff.precom.file-holder wire:key="report-{{$key}}-{{$file->id}}"
+                                                                     univ-id="report" :file="$file"/>
+                        </a>
+
                     </li>
                 @endforeach
 
@@ -604,6 +777,15 @@
                 No data available
             </x-sub-label>
         @endif
+        <x-slot:footer>
+            <div>
+                <i>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                        Attachments should be in pdf or image (png,jpg) format.
+                    </p>
+                </i>
+            </div>
+        </x-slot:footer>
     </x-card-panel>
 
 

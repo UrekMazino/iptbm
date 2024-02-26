@@ -1,7 +1,7 @@
 @extends('layouts.iptbm.staff')
 
 @section('title')
-    {{"| dashboard"}}
+    {{"| adopter"}}
 @endsection
 
 @section('content')
@@ -10,7 +10,9 @@
             class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
-                <div class="flex justify-between items-center">
+                <div class="flex justify-end items-center">
+                    {{----------
+
                     <div class="me-4 p-4">
                         <button data-modal-target="addAdopter" data-modal-toggle="addAdopter"
                                 class="bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0  hover:border-0 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -20,6 +22,7 @@
 
 
                     </div>
+                    -------}}
                     <div id="searchPan"
                          class="me-0 md:me-4 gap-4 justify-end items-center pb-4 md:pb-0 px-2 md:px-0  md:flex grid grid-cols-1 md:grid-cols-2">
                         <div id="botNav">
@@ -35,7 +38,9 @@
         </nav>
 
 
+        {{----------
         <livewire:iptbm.staff.adopter.add-adopter-tech :technologies="$profile->technologies"/>
+        -------}}
 
         <div class="px-4 mt-10">
 

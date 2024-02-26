@@ -10,6 +10,7 @@
                     </svg>
                     Mobile
                 </div>
+             {{-------
                 <x-pop-modal name="addMobile" class="max-w-md" modal-title="Add mobile number">
                     <form class="space-y-6" wire:submit.prevent="saveMobile">
                         <div class="space-y-4">
@@ -40,14 +41,27 @@
                     </svg>
                     Add
                 </x-secondary-button>
+             --------}}
             </div>
             <div class="mt-2 ps-4">
                 <ul class="divide-y divide-gray-200 dark:divide-gray-600">
-                    @foreach($mobiles as $mobile)
+                    @forelse($mobiles as $mobile)
                         <li>
-                            <livewire:iptbm.staff.adopter.contact wire:key="mobile-{{$mobile->id}}" :contact="$mobile"/>
+                            <div
+                                class="flex justify-between items-center p-2 hover:bg-gray-300 dark:hover:bg-gray-950 bg-opacity-25 transition duration-300">
+                                <div class="text-gray-700 dark:text-gray-300">
+                                    {{$mobile->contact}}
+                                </div>
+                            </div>
+                            {{-------
+                 <livewire:iptbm.staff.adopter.contact wire:key="mobile-{{$mobile->id}}" :contact="$mobile"/>
+                           ------}}
+
                         </li>
-                    @endforeach
+                    @empty
+                        No data available
+                    @endforelse
+
                 </ul>
 
             </div>
@@ -62,6 +76,7 @@
                     </svg>
                     Phone
                 </div>
+              {{---------
                 <x-pop-modal name="addPhone" class="max-w-md" modal-title="Add Phone number">
                     <form class="space-y-6" wire:submit.prevent="savePhone">
                         <div class="space-y-4">
@@ -92,14 +107,27 @@
                     </svg>
                     Add
                 </x-secondary-button>
+              -----------}}
             </div>
             <div class="mt-2 ps-4">
                 <ul class="divide-y divide-gray-200 dark:divide-gray-600">
-                    @foreach($phones as $phone)
+                    @forelse($phones as $phone)
                         <li>
-                            <livewire:iptbm.staff.adopter.contact wire:key="phone-{{$phone->id}}" :contact="$phone"/>
+                            <div
+                                class="flex justify-between items-center p-2 hover:bg-gray-300 dark:hover:bg-gray-950 bg-opacity-25 transition duration-300">
+                                <div class="text-gray-700 dark:text-gray-300">
+                                    {{$phone->contact}}
+                                </div>
+                            </div>
+                            {{-------
+                         <livewire:iptbm.staff.adopter.contact wire:key="phone-{{$phone->id}}" :contact="$phone"/>
+                           ------}}
+
                         </li>
-                    @endforeach
+                    @empty
+                        No data available
+                    @endforelse
+
                 </ul>
 
             </div>
@@ -116,6 +144,7 @@
                     </svg>
                     Fax
                 </div>
+               {{-----------------
                 <x-pop-modal name="addFax" class="max-w-md" modal-title="Add Fax number">
                     <form class="space-y-6" wire:submit.prevent="saveFax">
                         <div class="space-y-4">
@@ -146,14 +175,27 @@
                     </svg>
                     Add
                 </x-secondary-button>
+               -----------------}}
             </div>
             <div class="mt-2 ps-4">
                 <ul class="divide-y divide-gray-200 dark:divide-gray-600">
-                    @foreach($faxs as $fax)
+                    @forelse($faxs as $fax)
                         <li>
-                            <livewire:iptbm.staff.adopter.contact wire:key="fax-{{$fax->id}}" :contact="$fax"/>
+
+                            <div
+                                class="flex justify-between items-center p-2 hover:bg-gray-300 dark:hover:bg-gray-950 bg-opacity-25 transition duration-300">
+                                <div class="text-gray-700 dark:text-gray-300">
+                                    {{$fax->contact}}
+                                </div>
+                            </div>
+                            {{-------
+                           <livewire:iptbm.staff.adopter.contact wire:key="fax-{{$fax->id}}" :contact="$fax"/>
+                           ------}}
+
                         </li>
-                    @endforeach
+                    @empty
+                        No data available
+                    @endforelse
                 </ul>
 
             </div>
@@ -168,6 +210,7 @@
                     </svg>
                     Email
                 </div>
+               {{--------------
                 <x-pop-modal name="addEmail" class="max-w-md" modal-title="Add Fax number">
                     <form class="space-y-6" wire:submit.prevent="saveEmail">
                         <div class="space-y-4">
@@ -198,14 +241,25 @@
                     </svg>
                     Add
                 </x-secondary-button>
+               ----------------}}
             </div>
             <div class="mt-2 ps-4">
                 <ul class="divide-y divide-gray-200 dark:divide-gray-600">
-                    @foreach($emails as $email)
+                    @forelse($emails as $email)
                         <li>
-                            <livewire:iptbm.staff.adopter.contact wire:key="fax-{{$email->id}}" :contact="$email"/>
+                            <div
+                                class="flex justify-between items-center p-2 hover:bg-gray-300 dark:hover:bg-gray-950 bg-opacity-25 transition duration-300">
+                                <div class="text-gray-700 dark:text-gray-300">
+                                    {{$email->contact}}
+                                </div>
+                            </div>
+                           {{-------
+                           <livewire:iptbm.staff.adopter.contact wire:key="fax-{{$email->id}}" :contact="$email"/>
+                          ------}}
                         </li>
-                    @endforeach
+                    @empty
+                        No data available
+                    @endforelse
                 </ul>
 
             </div>

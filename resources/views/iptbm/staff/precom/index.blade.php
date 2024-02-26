@@ -14,7 +14,8 @@
             class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
-                <div class="flex justify-between items-center">
+                <div class="flex justify-end items-center">
+                   {{-----------
                     <div class="me-4 p-4">
                         <button data-modal-target="addPrecomBot" data-modal-toggle="addPrecomBot"
                                 class="bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0  hover:border-0 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -23,6 +24,7 @@
                         </button>
 
                     </div>
+                   ---------------}}
                     <div id="searchPan"
                          class="me-0 md:me-4 gap-4 justify-end items-center pb-4 md:pb-0 px-2 md:px-0  md:flex grid grid-cols-1 md:grid-cols-2">
                         <div id="botNav">
@@ -91,7 +93,7 @@
                             </th>
 
                             <th scope="col"
-                                class="w-44 px-6 action py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                class="w-24 px-6 action py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                                 Action
                             </th>
@@ -208,11 +210,7 @@
                                         </x-link-button>
 
 
-                                        <livewire:iptbm.staff.precom.delete-precom wire:key="{{$pre_com->id}}"
-                                                                                   :precom="$pre_com"/>
-                                        <x-secondary-button class="text-red-600 dark:text-red-600" data-modal-toggle="popup-modal-precom-{{$pre_com->id}}">
-                                            Delete
-                                        </x-secondary-button>
+
 
                                     </div>
 

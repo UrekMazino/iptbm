@@ -134,7 +134,7 @@
                 <div class="divide-y divide-slate-200">
                     <!-- Accordion item -->
                     <div
-                        x-data="{ expanded: @if(Route::currentRouteName()==="abh.staff.commercialization.precom.show.images"||Route::currentRouteName()==="abh.staff.commercialization.precom.details"||Route::currentRouteName()==="abh.staff.commercialization.precom"||Route::currentRouteName()=='abh.staff.commercialization.adopter') true @else false @endif   }"
+                        x-data="{ expanded: @if(Route::currentRouteName()==="abh.staff.commercialization.precom.show.images"||Route::currentRouteName()==="abh.staff.commercialization.precom.details"||Route::currentRouteName()==="abh.staff.commercialization.precom"||Route::currentRouteName()=='abh.staff.commercialization.adopter'||Route::currentRouteName()==='abh.staff.commercialization.adopter.details') true @else false @endif   }"
                         class="py-2">
                         <h2>
                             <button
@@ -189,9 +189,9 @@
                                     <li>
 
                                         <a
-                                            class="flex items-center  p-2 rounded-lg transition duration-300 @if(Route::currentRouteName()=='abh.staff.commercialization.adopter') bg-gray-300 dark:bg-gray-950 text-sky-700 @endif hover:bg-gray-700  dark:hover:bg-gray-700 group"
+                                            class="flex items-center  p-2 rounded-lg transition duration-300 @if(Route::currentRouteName()=='abh.staff.commercialization.adopter'||Route::currentRouteName()==='abh.staff.commercialization.adopter.details') bg-gray-300 dark:bg-gray-950 text-sky-700 @endif hover:bg-gray-700  dark:hover:bg-gray-700 group"
                                             href="{{route("abh.staff.commercialization.adopter")}}">
-                                            <div class=" @if(Route::currentRouteName()=='abh.staff.commercialization.adopter') text-blue-600 @endif">
+                                            <div class=" @if(Route::currentRouteName()=='abh.staff.commercialization.adopter'||Route::currentRouteName()==='abh.staff.commercialization.adopter.details') text-blue-600 @endif">
                                                 <i class="fa-solid fa-building-circle-arrow-right  me-2  "></i>Adopter
                                             </div>
 

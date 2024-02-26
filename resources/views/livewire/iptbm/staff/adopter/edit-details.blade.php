@@ -29,6 +29,7 @@
                         </form>
                     </x-pop-modal>
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300   border border-gray-200 dark:border-gray-600 p-2 rounded">
+                        {{------------
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button class="text-sky-500 dark:text-sky-500 gap-2" data-modal-toggle="updateCompName" data-modal-target="updateCompName" >
                                 <svg class="w-4 h-4 " aria-hidden="true"
@@ -42,10 +43,11 @@
                                     Update
                                 </div>
                             </x-secondary-button>
-
                         </div>
+
+                        -----------}}
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
-                            <div class="flex flex-col">
+                            <div class="flex flex-col space-y-4">
                                 <dt class="text-gray-500 dark:text-gray-400">
                                     Company Name
                                 </dt>
@@ -85,6 +87,7 @@
                         </form>
                     </x-pop-modal>
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300 border border-gray-200 dark:border-gray-600 p-2 rounded">
+                        {{--------------
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button  data-modal-toggle="updateCompAdd" data-modal-target="updateCompAdd" class="text-sky-500 dark:text-sky-500 gap-2" >
                                 <svg class=" w-4 h-4 " aria-hidden="true"
@@ -101,6 +104,8 @@
                             </x-secondary-button>
 
                         </div>
+
+                        --------}}
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col">
                                 <dt class="text-gray-500 dark:text-gray-400">
@@ -154,6 +159,7 @@
 
                     </x-pop-modal>
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300 border border-gray-200 dark:border-gray-600 p-2 rounded">
+                        {{-------------
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button  data-modal-toggle="updateCompStruct" data-modal-target="updateCompStruct" class="text-sky-500 dark:text-sky-500 gap-2" >
                                 <svg class=" w-4 h-4 " aria-hidden="true"
@@ -170,6 +176,8 @@
                             </x-secondary-button>
 
                         </div>
+
+                        ------------}}
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col">
                                 <dt class="text-gray-500 dark:text-gray-400">
@@ -220,6 +228,7 @@
                         </form>
                     </x-pop-modal>
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300 border border-gray-200 dark:border-gray-600 p-2 rounded">
+                       {{--------------
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button  data-modal-toggle="updateBusReg" data-modal-target="updateBusReg" class="text-sky-500 dark:text-sky-500 gap-2" >
                                 <svg class=" w-4 h-4 " aria-hidden="true"
@@ -236,6 +245,8 @@
                             </x-secondary-button>
 
                         </div>
+
+                       ------------------}}
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col">
                                 <dt class="text-gray-500 dark:text-gray-400">
@@ -291,6 +302,7 @@
                         </form>
                     </x-pop-modal>
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300 border border-gray-200 dark:border-gray-600 p-2 rounded">
+                        {{-------------
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button  data-modal-toggle="updateLicens" data-modal-target="updateLicens" class="text-sky-500 dark:text-sky-500 gap-2" >
                                 <svg class=" w-4 h-4 " aria-hidden="true"
@@ -307,6 +319,8 @@
                             </x-secondary-button>
 
                         </div>
+
+                        ----------}}
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col">
                                 <dt class="text-gray-500 dark:text-gray-400">
@@ -353,6 +367,7 @@
                         </form>
                     </x-pop-modal>
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300 border border-gray-200 dark:border-gray-600 p-2 rounded">
+                        {{-----------
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button  data-modal-toggle="updateConForIncu" data-modal-target="updateConForIncu" class="text-sky-500 dark:text-sky-500 gap-2" >
                                 <svg class=" w-4 h-4 " aria-hidden="true"
@@ -369,6 +384,8 @@
                             </x-secondary-button>
 
                         </div>
+
+                        --------------}}
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col">
                                 <dt class="text-gray-500 dark:text-gray-400">
@@ -404,6 +421,7 @@
                     </x-pop-modal>
 
                     <div class="relative overflow-hidden group hover:bg-gray-300 hover:dark:bg-gray-900 transition duration-300 border border-gray-200 dark:border-gray-600 p-2 rounded">
+                        {{------------
                         <div class="absolute bg-gray-500 dark:bg-gray-950 bg-opacity-60 dark:bg-opacity-60 transition duration-300 flex justify-center items-center border border-gray-200 dark:border-gray-600 md:rounded-l-full right-0 md:-right-56 w-fit h-full px-2 md:px-10 top-0 md:group-hover:transform md:group-hover:-translate-x-56">
                             <x-secondary-button  data-modal-toggle="updateBrfDes" data-modal-target="updateBrfDes" class="text-sky-500 dark:text-sky-500 gap-2" >
                                 <svg class=" w-4 h-4 " aria-hidden="true"
@@ -420,6 +438,8 @@
                             </x-secondary-button>
 
                         </div>
+
+                        ------------}}
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col">
                                 <dt class="text-gray-500 dark:text-gray-400">

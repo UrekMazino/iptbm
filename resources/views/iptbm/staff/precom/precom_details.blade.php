@@ -65,7 +65,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 mt-5 gap-x-14">
                 <livewire:iptbm.staff.precom.precom-details :precom="$precom"/>
-                <div>
+                <div class="space-y-4">
                     <livewire:iptbm.staff.precom.video-clip :precom="$precom"/>
                     <livewire:iptbm.staff.precom.precom-accounting :precom="$precom"/>
                 </div>

@@ -23,12 +23,7 @@ class ContactDetails extends Component
     public $emailModel;
     public $showEmailForm = false;
 
-    public function toggleShowMobileForm()
-    {
-        $this->showMobileForm = !$this->showMobileForm;
-        $this->reset('mobileModel');
-        $this->resetValidation('mobileModel');
-    }
+
 
     public function saveMobile()
     {
@@ -40,12 +35,7 @@ class ContactDetails extends Component
         $this->emit('reloadPage');
     }
 
-    public function toggleShowPhoneForm()
-    {
-        $this->showPhoneForm = !$this->showPhoneForm;
-        $this->reset('phoneModel');
-        $this->resetValidation('phoneModel');
-    }
+
 
     public function savePhone()
     {
@@ -57,12 +47,7 @@ class ContactDetails extends Component
         $this->emit('reloadPage');
     }
 
-    public function toggleShowFaxForm()
-    {
-        $this->showFaxForm = !$this->showFaxForm;
-        $this->reset('faxModel');
-        $this->resetValidation('faxModel');
-    }
+
 
     public function saveFax()
     {
@@ -74,12 +59,7 @@ class ContactDetails extends Component
         $this->emit('reloadPage');
     }
 
-    public function toggleShowEmailForm()
-    {
-        $this->showEmailForm = !$this->showEmailForm;
-        $this->reset('emailModel');
-        $this->resetValidation('emailModel');
-    }
+
 
     public function saveEmail()
     {

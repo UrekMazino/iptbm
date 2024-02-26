@@ -9,6 +9,7 @@
             </svg>
         </div>
     </x-slot:icon>
+{{-----
     <x-slot:button>
         <livewire:iptbm.staff.technology.techtrans.precom-modal modal-name="precomModal" :technology="$technology"/>
         <livewire:iptbm.staff.technology.techtrans.adopter-modal modal-name="adopterModal" :technology="$technology"/>
@@ -109,6 +110,7 @@
             Update
         </x-secondary-button>
     </x-slot:button>
+--}}
 
     <div class="mt-4 space-y-4">
         <livewire:iptbm.staff.technology.precom-coun :technology-id="$technology->id"/>

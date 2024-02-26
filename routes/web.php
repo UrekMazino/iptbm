@@ -57,6 +57,7 @@ use App\Http\Livewire\Abh\Dashboard\DashBoardPage;
 use App\Http\Livewire\Abh\Pages\Commercialization\AbhPrecomDetails;
 use App\Http\Livewire\Abh\Pages\Commercialization\AbhPrecomFileViewer;
 use App\Http\Livewire\Abh\Pages\Commercialization\ComerAdopter;
+use App\Http\Livewire\Abh\Pages\Commercialization\ComerAdopterDetail;
 use App\Http\Livewire\Abh\Pages\Commercialization\Precom;
 use App\Http\Livewire\Abh\Pages\Commercialization\PrecomTechPhoto;
 use App\Http\Livewire\Abh\Pages\Generator\AbhGeneratorDetailsPage;
@@ -77,6 +78,7 @@ use App\Http\Livewire\Iptbm\Admin\IpAlert\IpAlert;
 use App\Http\Livewire\Iptbm\Admin\Plantvariety\PlantVariety;
 use App\Http\Livewire\Iptbm\Admin\Trademark\TradeMark;
 use App\Http\Livewire\Iptbm\Admin\UtilityModel\UtilityModel;
+use App\Http\Livewire\IptbmFileViewer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -123,7 +125,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['component:IPTBM', 'auth', 'verified'])->prefix('/iptbm')->group(function () {
-
+    Route::get('/iptbm-file', IptbmFileViewer::class)->name('rtms.file.viewer.iptbm');
 
     Route::get('/dashboard', [DashBoard::class, 'index'])->name('iptbm.staff.dashboard');
     Route::controller(IpProfile::class)->prefix('/profile')->group(function () {
@@ -358,6 +360,7 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
         Route::get('/precom/files/{precom}/{type}/', AbhPrecomFileViewer::class)->name('abh.staff.commercialization.precom.show.files');
 
         Route::get('/adopter', ComerAdopter::class)->name('abh.staff.commercialization.adopter');
+        Route::get('/adopter/{adopter}', ComerAdopterDetail::class)->name('abh.staff.commercialization.adopter.details');
     });
 
 
