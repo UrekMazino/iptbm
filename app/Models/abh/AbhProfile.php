@@ -3,6 +3,7 @@
 namespace App\Models\abh;
 
 use App\Models\iptbm\IptbmAgency;
+use App\Models\iptbm\IptbmMapLocation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -94,6 +95,11 @@ class AbhProfile extends Model
     public function generators(): HasMany
     {
         return $this->hasMany(AbhGenerator::class,'abh_profile_id','id');
+    }
+
+    function map_location()
+    {
+        return $this->hasOne(AbhMapLocation::class, 'abh_profiles_id', 'id');
     }
 
 }

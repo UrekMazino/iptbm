@@ -10,6 +10,12 @@ use Livewire\Component;
 
 class ComerAdopter extends Component
 {
+
+    public function delete_adopter(IptbmCommercializationAdopter $adopter): void
+    {
+        $adopter->delete();
+        $this->emit('reloadPage');
+    }
     public function render()
     {
 

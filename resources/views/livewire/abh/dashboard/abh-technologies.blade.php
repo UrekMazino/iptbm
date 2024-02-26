@@ -1,5 +1,5 @@
 <div class="rounded-none md:rounded-lg bg-gradient-to-tr from-emerald-700 to-emerald-300 ">
-    <x-pop-modal name="crypto-modal-iptbmProf" class="max-w-5xl" modal-title="Total IP-TBMs Profiles">
+    <x-pop-modal name="crypto-modal-technologyCom" class="max-w-5xl" modal-title="Total IP-TBMs Profiles">
         <x-card>
             <div class="relative overflow-x-auto ">
                 <table id="techtTable" style="width:100%"
@@ -7,27 +7,35 @@
                     <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr class="border-0 ">
                         <th scope="col"
-                            class=" whitespace-nowrap px-10 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            Region
+                            class="  w-1/2 px-10 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            Agency
                         </th>
 
                         <th scope="col"
-                            class="  px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            Agency
+                            class=" w-1/2 px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            Technology
                         </th>
                     </tr>
 
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="w-fit">
-                            <x-thumbnail-holder class="w-40"/>
-                        </td>
-                        <td class="w-full">
-                            sample
+                    @foreach($commercial_tech as $commercial)
+                        <tr>
+                            <td >
+                                {{$commercial->technology->iptbmprofiles->agency->name}}
+                            </td>
 
-                        </td>
-                    </tr>
+                            <td >
+
+                                <a href="{{route("iptbm.staff.technology.show",['id'=>$commercial->technology->id])}}"
+                                   class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
+                                    {{$commercial->technology->title}}
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -36,12 +44,12 @@
     <div class="p-2  grid grid-cols-4">
         <div class="col-span-3 text-gray-50">
             <h1 class="text-3xl font-bold">
-                1
+                {{$commercial_tech->count()}}
             </h1>
 
             <div class=" font-medium">
 
-                Total number of ABH Profiles
+                Total number of Commercialized Technologies
             </div>
         </div>
         <div class="justify-content-center flex items-center">
@@ -56,9 +64,9 @@
     </div>
     <div class="rounded-b-lg bg-green-900 bg-opacity-75 py-2 text-center">
 
-        <button data-modal-target="crypto-modal-iptbmProf" data-modal-toggle="crypto-modal-iptbmProf"
+        <button data-modal-target="crypto-modal-technologyCom" data-modal-toggle="crypto-modal-technologyCom"
                 class="text-center text-gray-300 font-medium text-lg hover:text-blue-400 duration-300 transition active:text-blue-600">
-            View List
+            View
             <span class="fa-solid fa-circle-arrow-right"></span>
         </button>
     </div>

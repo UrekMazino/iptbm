@@ -1,5 +1,5 @@
 <div class="rounded-none md:rounded-lg  bg-gradient-to-tr from-yellow-800 to-yellow-300">
-    <x-pop-modal name="crypto-modal-iptbmProf" class="max-w-5xl" modal-title="Total IP-TBMs Profiles">
+    <x-pop-modal name="crypto-modal-iptbmProf-techTrans" class="max-w-5xl" modal-title="Total Tech transfer Protocol">
         <x-card>
             <div class="relative overflow-x-auto ">
                 <table id="transtTable" style="width:100%"
@@ -19,15 +19,21 @@
 
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="w-fit">
-                            <x-thumbnail-holder class="w-40"/>
-                        </td>
-                        <td class="w-full">
-                            sample
+                    @foreach($techTrans as $profile)
+                        <tr>
+                            <td>
+                                {{$profile->agency->region->name}}
 
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <a href="{{route("iptbm.staff.viewProfile",['id'=>$profile])}}"
+                                   class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
+                                    {{$profile->agency->name}}
+                                </a>
+
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -36,7 +42,7 @@
     <div class="p-2  grid grid-cols-4">
         <div class="col-span-3 text-gray-50">
             <h1 class="text-3xl font-bold">
-                1
+                {{$techTrans->count()}}
             </h1>
 
             <div class=" font-medium">
@@ -56,7 +62,7 @@
     </div>
     <div class="rounded-b-lg bg-yellow-800 bg-opacity-75 py-2 text-center">
 
-        <button data-modal-target="crypto-modal-iptbmProf" data-modal-toggle="crypto-modal-iptbmProf"
+        <button data-modal-target="crypto-modal-iptbmProf-techTrans" data-modal-toggle="crypto-modal-iptbmProf-techTrans"
                 class="text-center text-gray-300 font-medium text-lg hover:text-blue-400 duration-300 transition active:text-blue-600">
             View List
             <span class="fa-solid fa-circle-arrow-right"></span>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Abh\Profile;
 
 use App\Models\abh\AbhAgencyContact;
 use App\Models\iptbm\AgencyContact;
+use App\Models\iptbm\IptbmAgency;
 use App\Rules\iptbm\MaxContact;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -44,14 +45,14 @@ class AbhAgencyContactDetails extends Component
             'mobile'=> [
                 'required',
                 'digits:11',
-                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agency_id',$this->agency->id)->where('type',$this->type),
+                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->agency->id)->where('contact_type',$this->type),
                 new MaxContact(
                     3,
-                    'abh_agency_contacts',
+                    'agency_contacts',
                     'contact',
-                    'type',
+                    'contact_type',
                     $this->type,
-                    'abh_agency_id',
+                    'iptbm_agency_id',
                     $this->agency->id,
                     $this->costumMesg[$this->type]
                 ),
@@ -60,30 +61,31 @@ class AbhAgencyContactDetails extends Component
                 'required',
                 'min:9',
                 'max:10',
-                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agency_id',$this->agency->id)->where('type',$this->type),
+                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->agency->id)->where('contact_type',$this->type),
                 new MaxContact(
                     3,
-                    'abh_agency_contacts',
+                    'agency_contacts',
                     'contact',
-                    'type',
+                    'contact_type',
                     $this->type,
-                    'abh_agency_id',
+                    'iptbm_agency_id',
                     $this->agency->id,
                     $this->costumMesg[$this->type]
                 ),
             ],
+
             'email' => [
                 'required',
                 'email',
                 'max:40',
-                Rule::unique(AbhAgencyContact::class,'contact')->where('abh_agency_id',$this->agency->id)->where('type',$this->type),
+                Rule::unique(AgencyContact::class,'contact')->where('iptbm_agency_id',$this->agency->id)->where('contact_type',$this->type),
                 new MaxContact(
                     3,
-                    'abh_agency_contacts',
+                    'agency_contacts',
                     'contact',
-                    'type',
+                    'contact_type',
                     $this->type,
-                    'abh_agency_id',
+                    'iptbm_agency_id',
                     $this->agency->id,
                     $this->costumMesg[$this->type]
                 ),
@@ -95,8 +97,8 @@ class AbhAgencyContactDetails extends Component
     public function saveContact(): void
     {
         $this->validate();
-        $this->agency->contacts()->save(new AbhAgencyContact([
-            'type'=>$this->type,
+        $this->agency->contacts()->save(new AgencyContact([
+            'contact_type'=>$this->type,
             'contact'=>$this->contact
         ]));
         $this->emit('reloadPage');

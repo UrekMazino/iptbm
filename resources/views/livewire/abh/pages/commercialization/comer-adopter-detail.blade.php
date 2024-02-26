@@ -1,6 +1,6 @@
 <div>
     <x-slot name="pagetitle">
-        Pre com
+        Adopter Details
     </x-slot>
     <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 

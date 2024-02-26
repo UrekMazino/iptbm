@@ -29,9 +29,14 @@
 @push('scripts')
     <script>
         document.addEventListener('livewire:load', function () {
+            let total =@this.countPerYear.map(function (d) {
+                return d.total
+            })
 
-            let max = Math.max.apply(null, [4, 2, 7, 3]);
-            let year = [2019, 2020, 2021, 2022, 2023];
+            let max = Math.max.apply(null, total);
+            let year =@this.countPerYear.map(function (d) {
+                return d.year
+            })
             let options = {
                 chart: {
                     height: "50%",
@@ -107,7 +112,7 @@
                 series: [
                     {
                         name: "Total of IPTBMs established  ",
-                        data: 100,
+                        data: total,
                         color: "#00eeff",
                     },
 

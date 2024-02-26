@@ -19,15 +19,16 @@
 
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="w-fit">
-                            <x-thumbnail-holder class="w-40"/>
-                        </td>
-                        <td class="w-full">
-                            sample
-
-                        </td>
-                    </tr>
+                    @foreach($profile as $prof)
+                        <tr>
+                            <td>
+                                {{$prof->agency->region->name}}
+                            </td>
+                            <td>
+                                {{$prof->agency->name}}
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -36,7 +37,7 @@
     <div class="p-2  grid grid-cols-4">
         <div class="col-span-3 text-gray-50">
             <h1 class="text-3xl font-bold">
-                1
+                {{$profile->count()}}
             </h1>
 
             <div class=" font-medium">

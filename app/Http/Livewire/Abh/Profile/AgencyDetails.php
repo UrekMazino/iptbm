@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Abh\Profile;
 
 use App\Models\abh\AbhAgency;
+use App\Models\iptbm\IptbmAgency;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
@@ -45,9 +46,9 @@ class AgencyDetails extends Component
         $this->validateOnly($props);
     }
 
-    public function mount(AbhAgency $agency): void
+    public function mount(IptbmAgency $agency): void
     {
-        $this->agency = $agency->load('mobile_contact', 'phone_contact', 'fax_contact', 'email_contact');
+        $this->agency = $agency->load('contact_mobile', 'contact_phone', 'contact_fax', 'contact_email');
         $this->agencyName = $agency->name;
         $this->agencyHead = $agency->head;
     }
