@@ -49,7 +49,7 @@
 
             <li>
                 <div class="divide-y divide-slate-200 ">
-                    <div x-data="{expanded: @if(Route::currentRouteName()=="abh.admin.my_profile"||Route::currentRouteName()==='abh.admin.all_projects') true @else false @endif}"
+                    <div x-data="{expanded: @if(Route::currentRouteName()=="abh.admin.my_profile"||Route::currentRouteName()==='abh.admin.my_profile.details'||Route::currentRouteName()==='abh.admin.all_projects') true @else false @endif}"
                          class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -86,7 +86,7 @@
 
                                     <li>
                                         <a href="{{ route('abh.admin.my_profile') }}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.my_profile') bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.my_profile'||Route::currentRouteName()==='abh.admin.my_profile.details') bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             <svg class="w-4 h-4 me-2" aria-hidden="true"
                                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                                 <path stroke="currentColor" stroke-linecap="round"
@@ -371,43 +371,7 @@
                 </div>
 
             </li>
-            <li>
-                <div class="divide-y divide-slate-200 ">
-                    <div x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.all_industries') true @else false @endif}"
-                         class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
-                        <h2>
-                            <button
-                                id="faqs-title-profile"
-                                type="button"
-                                class="flex items-center justify-between w-full text-left font-semibold"
-                                @click="expanded = !expanded"
-                                :aria-expanded="expanded"
-                                aria-controls="faqs-text-profile"
-                            >
-                                <div class="flex justify-start items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4"
-                                         viewBox="0 0 448 512">
-                                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                        <path
-                                            d="M384 96V224H256V96H384zm0 192V416H256V288H384zM192 224H64V96H192V224zM64 288H192V416H64V288zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>
-                                    </svg>
-                                    Tech Components
-                                </div>
 
-                                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor"
-                                          class="transform origin-center transition duration-200 ease-out"
-                                          :class="{'!rotate-180': expanded}" stroke-linecap="round"
-                                          stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
-                                </svg>
-                            </button>
-                        </h2>
-
-                    </div>
-                </div>
-
-            </li>
         </ul>
     </div>
 

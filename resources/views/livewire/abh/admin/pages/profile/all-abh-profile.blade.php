@@ -37,34 +37,63 @@
                     <th scope="col"
                         class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Project Leader
+                        Accounts
                     </th>
                     <th scope="col"
-                        class="px-6 w-44 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        class="px-6 contact py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Contact
+                    </th>
+                    <th scope="col"
+                        class="px-6 project py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Projects
+                    </th>
+                    <th scope="col"
+                        class="px-6 technology py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Pre Commercialized Technologies
+                    </th>
+                    <th scope="col"
+                        class="px-6  w-24 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                         Actions
                     </th>
                 </tr>
-                </thead>
-                <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="border-0 filters">
                     <th scope="col"
-                        class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        class="px-6 fil py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                         Region
                     </th>
                     <th scope="col"
-                        class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        class="px-6 fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                         Agency
                     </th>
                     <th scope="col"
-                        class="fil px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        class="px-6 fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-                        Project Leader
+                        Accounts
                     </th>
                     <th scope="col"
-                        class=" px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        class="px-6  fil contact py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Contact
+                    </th>
+                    <th scope="col"
+                        class="px-6 fil  project py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Projects
+                    </th>
+                    <th scope="col"
+                        class="px-6 fil  technology py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Pre Commercialized Technologies
+                    </th>
+                    <th scope="col"
+                        class="px-6  w-24 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
 
                     </th>
                 </tr>
@@ -73,16 +102,99 @@
                 @foreach($profiles as $profile)
                     <tr>
                         <td>
-                            {{$profile->agency->region->name}}
-                        </td>
-                        <td>
-                            {{$profile->agency->name}}
-                        </td>
-                        <td>
+
+                            <a href="{{route('abh.admin.all_regions.details',['region'=>$profile->agency->region->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                {{$profile->agency->region->name}}
+                            </a>
 
                         </td>
                         <td>
 
+                            <a href="{{route('abh.admin.all_agencies.updates',['agency'=>$profile->agency->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                {{$profile->agency->name}}
+                            </a>
+
+
+                        </td>
+                        <td>
+                            <ul class="list-inside">
+                                @foreach($profile->users as $user)
+                                    <li>
+                                        <a href="{{route('abh.admin.all_accounts_details',['account'=>$user->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <div>
+                                                {{$user->name}}
+                                            </div>
+                                            <div>
+                                                {{$user->email}}
+                                            </div>
+                                        </a>
+
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td>
+                            @if($profile->contacts_mobiles->count()>0)
+                                <ul class="list-inside">
+                                    @foreach($profile->contacts_mobiles as $contact)
+                                        <li>
+                                            {{$contact->contact}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            @if($profile->contacts_phones->count()>0)
+                                <ul class="list-inside">
+                                    @foreach($profile->contacts_phones as $contact)
+                                        <li>
+                                            {{$contact->contact}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            @if($profile->contacts_faxes->count()>0)
+                                <ul class="list-inside">
+                                    @foreach($profile->contacts_faxes as $contact)
+                                        <li>
+                                            {{$contact->contact}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            @if($profile->contacts_emails->count()>0)
+                                <ul class="list-inside">
+                                    @foreach($profile->contacts_emails as $contact)
+                                        <li>
+                                            {{$contact->contact}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                        </td>
+                        <td>
+                            <ul>
+                                @foreach($profiles as $profile)
+                                    <li>
+                                        {{$profile->project_name}}
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                        </td>
+                        <td>
+                            <ul>
+                                @foreach ($profile->agency->profiles->technologies as $technology)
+                                    <li>
+                                        {{$technology->title}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td>
+                            <x-link-button :url="route('abh.admin.my_profile.details',['profile'=>$profile->id])">
+                                Details
+                            </x-link-button>
                         </td>
                     </tr>
                 @endforeach
@@ -96,13 +208,14 @@
     <script>
         $(function () {
             var table = $('#allProf').DataTable({
-                rowCallback: function (row, data) {
-                    $(row).addClass('bg-gray-800 border-b text-base dark:bg-gray-800 dark:border-gray-700 transition duration:300 dark:hover:text-gray-50 hover:bg-gray-200 dark:hover:bg-gray-600');
-                },
-                stateSave: true,
+
+                //  stateSave: true,
                 pagingType: 'full_numbers',
+                // colReorder: true,
                 horizontalScroll: true,
                 dom: 'Bfrtip',
+                autoWidth: false,
+                orderCellsTop: true,
                 initComplete: function () {
                     var api = this.api();
                     api
@@ -141,29 +254,75 @@
 
                     {
                         extend: 'pageLength',
-                        text: 'pageLength',
+                        text: '<i class="fa-regular fa-file-lines"></i> Page Length',
                         className: 'bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0 my-3 hover:border-0'
                     },
+
+
                     {
                         extend: 'colvis',
-                        text: 'Visible Column',
+                        text: '<i class="fa-solid fa-table-columns"></i> Visible Column',
                         className: 'bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0 my-3 hover:border-0'
                     },
                     {
                         extend: 'collection',
-                        text: 'Export',
-                        className: 'bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0 my-3 hover:border-0',
+                        text: '<span class="fa-solid fa-download"></span> Export',
+                        className: 'bg-white px-10 text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0 my-3 hover:border-0',
                         buttons: [
                             {
-                                extend: 'excel',
-                                text: 'excel',
-                                className: 'bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0 my-3 hover:border-0'
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                                className: 'w-5',
+                                messageTop: 'ABH Profiles',
+                                //    messageTop: 'PDF created by Buttons for DataTables.',
+                                exportOptions: {
+                                    columns: ':visible' // Export only visible columns
+                                }
+                            },
+                            {
+                                extend: 'collection',
+                                text: 'PDF',
+                                className: 'w-5',
+                                buttons: [
+                                    {
+                                        extend: 'pdfHtml5',
+                                        text: 'Landscape',
+                                        //   messageTop: 'PDF created by Buttons for DataTables.',
+                                        exportOptions: {
+                                            width: 'auto',
+                                            columns: ':visible' // Export only visible columns
+                                        },
+                                        orientation: 'landscape',
+                                        pageSize: 'LEGAL',
+                                        messageTop: 'ABH Profiles',
+                                    },
+                                    {
+                                        extend: 'pdfHtml5',
+                                        text: 'Portrait',
+                                        //   messageTop: 'PDF created by Buttons for DataTables.',
+                                        exportOptions: {
+                                            width: 'auto',
+                                            columns: ':visible' // Export only visible columns
+                                        },
+                                        orientation: 'portrait',
+                                        pageSize: 'LEGAL',
+                                        messageTop: 'ABH Profiles',
+                                    },
+                                ]
                             },
 
+
                             {
-                                extend: 'pdf',
-                                text: 'pdf',
-                                className: 'bg-white text-blue-500 dark:bg-gray-700 dark:text-sky-500 border-0 my-3 hover:border-0'
+                                extend: 'print',
+                                text: 'Print',
+                                messageTop: 'ABH Profiles',
+                                exportOptions: {
+                                    stripHtml: false,
+                                    columns: ':visible',// Export only visible columns,
+
+                                },
+
+
                             },
                         ]
                     },
@@ -179,7 +338,7 @@
                 .appendTo('#searchPan').attr({placeHolder: 'Search'});
             $('.dataTables_filter').addClass('hidden')
             table.buttons().container().appendTo('#botNav');
-
+            table.columns(['.contact', '.technology', '.project']).visible(false, false);
         });
     </script>
 @endsection

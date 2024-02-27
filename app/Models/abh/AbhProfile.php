@@ -46,17 +46,7 @@ class AbhProfile extends Model
     }
     */
 
-    public function region(): \Illuminate\Database\Eloquent\Relations\HasOneThrough
-    {
-        return $this->hasOneThrough(
-            AbhRegion::class,
-            AbhAgency::class,
-            'abh_region_id',
-            'id',
-            'id',
-            'abh_region_id',
-        );
-    }
+
 
     public function contacts_mobiles(): HasMany
     {
@@ -69,17 +59,17 @@ class AbhProfile extends Model
     }
     public function contacts_phones(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class)->where('type', 'phone');
+        return $this->hasMany(AbhProfileContact::class,'abh_profile_id','id')->where('type', 'phone');
     }
 
     public function contacts_faxes(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class)->where('type', 'fax');
+        return $this->hasMany(AbhProfileContact::class,'abh_profile_id','id')->where('type', 'fax');
     }
 
     public function contacts_emails(): HasMany
     {
-        return $this->hasMany(AbhProfileContact::class)->where('type', 'email');
+        return $this->hasMany(AbhProfileContact::class,'abh_profile_id','id')->where('type', 'email');
     }
 
     public function projects(): HasMany
@@ -87,17 +77,9 @@ class AbhProfile extends Model
         return $this->hasMany(AbhProject::class);
     }
 
-    public function technologies(): HasMany
-    {
-        return $this->hasMany(AbhTechnologyProfile::class,'abh_profile_id','id');
-    }
 
-    public function generators(): HasMany
-    {
-        return $this->hasMany(AbhGenerator::class,'abh_profile_id','id');
-    }
 
-    function map_location()
+    function map_location(): HasOne
     {
         return $this->hasOne(AbhMapLocation::class, 'abh_profiles_id', 'id');
     }

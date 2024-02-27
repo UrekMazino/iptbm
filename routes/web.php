@@ -36,6 +36,7 @@ use App\Http\Controllers\iptbm\staff\Technology;
 use App\Http\Controllers\iptbm\staff\TechnologyDescription;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Abh\Admin\Pages\Dashboard\Index;
+use App\Http\Livewire\Abh\Admin\Pages\Profile\AbhProfileDetail;
 use App\Http\Livewire\Abh\Admin\Pages\Profile\AllAbhProfile;
 use App\Http\Livewire\Abh\Admin\Pages\Projects\AbhProject;
 use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhCommoditiesPage;
@@ -501,7 +502,8 @@ Route::middleware(['component:IPTBM', 'auth:admin', 'verified'])->prefix('/admin
 Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function () {
     Route::prefix('/admin/abh')->group(function () {
         Route::get('/dashboard', Index::class)->name('abh.admin.dashboard');
-        Route::get('/', AllAbhProfile::class)->name('abh.admin.my_profile');
+        Route::get('/profiles', AllAbhProfile::class)->name('abh.admin.my_profile');
+        Route::get('/profile/{profile}', AbhProfileDetail::class)->name('abh.admin.my_profile.details');
         Route::get('/projects', AbhProject::class)->name('abh.admin.all_projects');
 
 
