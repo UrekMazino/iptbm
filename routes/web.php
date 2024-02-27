@@ -39,6 +39,7 @@ use App\Http\Livewire\Abh\Admin\Pages\Dashboard\Index;
 use App\Http\Livewire\Abh\Admin\Pages\Profile\AbhProfileDetail;
 use App\Http\Livewire\Abh\Admin\Pages\Profile\AllAbhProfile;
 use App\Http\Livewire\Abh\Admin\Pages\Projects\AbhProject;
+use App\Http\Livewire\Abh\Admin\Pages\Projects\AbhProjectDetails;
 use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhCommoditiesPage;
 use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhTechCategoriesPage;
 use App\Http\Livewire\Abh\Admin\Pages\TechComponents\AbhTechIndustryPage;
@@ -47,6 +48,7 @@ use App\Http\Livewire\Abh\Admin\Pages\Technologies\AbhTechnology;
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhDeploymentPage;
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhExtensionPage;
 use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhAdopterPage;
+use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhPrecomDetailsAdmin;
 use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhPrecomPage;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAccountDetails;
 use App\Http\Livewire\Abh\Admin\Pages\Updates\AbhAccountPage;
@@ -505,6 +507,7 @@ Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function (
         Route::get('/profiles', AllAbhProfile::class)->name('abh.admin.my_profile');
         Route::get('/profile/{profile}', AbhProfileDetail::class)->name('abh.admin.my_profile.details');
         Route::get('/projects', AbhProject::class)->name('abh.admin.all_projects');
+        Route::get('/project/{project}', AbhProjectDetails::class)->name('abh.admin.project.details');
 
 
         Route::get('/technologies', AbhTechnology::class)->name('abh.admin.all_technologies');
@@ -513,6 +516,8 @@ Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function (
 
         Route::prefix('/commercialization')->group(function (){
             Route::get('precom', AbhPrecomPage::class)->name('abh.admin.commercialization.all_precom');
+            Route::get('precom-details/{precom}', AbhPrecomDetailsAdmin::class)->name('abh.admin.commercialization.precom-details.admin');
+
             Route::get('adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
         });
         Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');

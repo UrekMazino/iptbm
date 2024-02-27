@@ -49,7 +49,7 @@
 
             <li>
                 <div class="divide-y divide-slate-200 ">
-                    <div x-data="{expanded: @if(Route::currentRouteName()=="abh.admin.my_profile"||Route::currentRouteName()==='abh.admin.my_profile.details'||Route::currentRouteName()==='abh.admin.all_projects') true @else false @endif}"
+                    <div x-data="{expanded: @if(Route::currentRouteName()=="abh.admin.my_profile"||Route::currentRouteName()==='abh.admin.my_profile.details'||Route::currentRouteName()==='abh.admin.all_projects'||Route::currentRouteName()==='abh.admin.project.details') true @else false @endif}"
                          class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -98,7 +98,7 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('abh.admin.all_projects') }}"
-                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.all_projects') bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                           class="flex items-center w-full p-2  transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600 @if(Route::currentRouteName()==='abh.admin.all_projects'||Route::currentRouteName()==='abh.admin.project.details') bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             <svg class="w-4 h-4 me-2" aria-hidden="true"
                                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 21">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
@@ -192,16 +192,7 @@
             </li>
            -----------}}
 
-            <li>
-                <div class="mt-10 flex justify-start items-center text-gray-400 dark:text-gray-600">
-                    <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                         viewBox="0 0 20 20">
-                        <path
-                            d="M1 5h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 1 0 0-2H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2Zm18 4h-1.424a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2h10.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Zm0 6H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 0 0 0 2h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Z"/>
-                    </svg>
-                    Tech Trans Pathways
-                </div>
-            </li>
+
             <li>
                 <div class="divide-y divide-slate-200 ">
                     <div
@@ -265,6 +256,7 @@
                     </div>
                 </div>
             </li>
+           {{------
             <li>
                 <a href="{{ route('abh.admin.all_deployment') }}"
                    class="flex items-center p-2 text-gray-600 rounded-lg dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if(Route::currentRouteName()==="abh.admin.all_deployment") bg-gray-400 dark:bg-gray-950 text-sky-950 font-bold @endif">
@@ -290,6 +282,7 @@
                     Extension
                 </a>
             </li>
+           --------}}
 
             <li>
                 <div class="mt-10 flex justify-start items-center text-gray-400 dark:text-gray-600">

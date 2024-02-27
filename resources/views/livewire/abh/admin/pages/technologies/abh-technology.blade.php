@@ -49,10 +49,16 @@
                         Title
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        class="px-6 region py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                        Region
+                    </th>
+                    <th scope="col"
+                        class="px-6 owner py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
                         Owner
                     </th>
+
                     <th scope="col"
                         class="date_isert px-6 py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         Date inserted
@@ -66,6 +72,11 @@
                 <tr class="border-0 filters">
                     <th scope="col"
                         class="px-6 fil  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                    </th>
+                    <th scope="col"
+                        class="px-6 fil py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
 
                     </th>
                     <th scope="col"
@@ -113,6 +124,9 @@
                         </td>
                         <td>
                             {{$protection->technology->title}}
+                        </td>
+                        <td>
+                            {{$protection->technology->iptbmprofiles->agency->region->name}}
                         </td>
                         <td>
                             {{$protection->technology->iptbmprofiles->agency->name}}
@@ -274,7 +288,7 @@
                 .appendTo('#searchPan').attr({placeHolder: 'Search'});
             $('.dataTables_filter').addClass('hidden')
             table.buttons().container().appendTo('#botNav');
-            table.columns(['.db_id','.date_isert']).visible(false, false);
+            table.columns(['.db_id','.date_isert','.region','.owner']).visible(false, false);
             $('.reset').click(function (e) {
                 table.colReorder.reset();
             });
