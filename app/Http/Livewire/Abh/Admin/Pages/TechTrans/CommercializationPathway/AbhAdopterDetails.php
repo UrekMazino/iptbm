@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Abh\Admin\Pages\Techtrans\CommercializationPathway;
+namespace App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway;
 
 use App\Models\iptbm\IptbmCommercializationAdopter;
 use App\View\Components\abh\admin\AbhAdminApp;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\iptbm\task;
+namespace App\Notifications\iptbm\Task;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
