@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AbhApi;
+use App\Http\Controllers\api\IptbmApi;
 use App\Http\Controllers\iptbm\admin\AccountsController;
 use App\Http\Controllers\iptbm\admin\AdminDashboard;
 use App\Http\Controllers\iptbm\admin\AgenciesController;
@@ -111,7 +112,7 @@ Route::prefix('/api')->group(function (){
     Route::controller(AbhApi::class)->prefix('/abh')->group(function (){
         Route::get('abh-profile','abh_profile');
     });
-    Route::controller(\App\Http\Controllers\api\IptbmApi::class)->prefix('iptbm')->group(function (){
+    Route::controller(IptbmApi::class)->prefix('iptbm')->group(function (){
         Route::get('/profile','iptbm_profile');
     });
 });
