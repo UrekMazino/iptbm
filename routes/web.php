@@ -47,6 +47,7 @@ use App\Http\Livewire\Abh\Admin\Pages\Technologies\AbhTechnologiesDetail;
 use App\Http\Livewire\Abh\Admin\Pages\Technologies\AbhTechnology;
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhDeploymentPage;
 use App\Http\Livewire\Abh\Admin\Pages\Techtrans\AbhExtensionPage;
+use App\Http\Livewire\Abh\Admin\Pages\Techtrans\CommercializationPathway\AbhAdopterDetails;
 use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhAdopterPage;
 use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhPrecomDetailsAdmin;
 use App\Http\Livewire\Abh\Admin\Pages\TechTrans\CommercializationPathway\AbhPrecomPage;
@@ -502,6 +503,7 @@ Route::middleware(['component:IPTBM', 'auth:admin', 'verified'])->prefix('/admin
 });
 
 Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function () {
+    Route::get('/file-vide-admin',\App\Http\Livewire\Abh\Admin\FileViewAdmin::class)->name('abh.admin.file');
     Route::prefix('/admin/abh')->group(function () {
         Route::get('/dashboard', Index::class)->name('abh.admin.dashboard');
         Route::get('/profiles', AllAbhProfile::class)->name('abh.admin.my_profile');
@@ -519,6 +521,7 @@ Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function (
             Route::get('precom-details/{precom}', AbhPrecomDetailsAdmin::class)->name('abh.admin.commercialization.precom-details.admin');
 
             Route::get('adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
+            Route::get('adopter-details/{adopter}', AbhAdopterDetails::class)->name('abh.admin.commercialization.adopter.details');
         });
         Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
         Route::get('extension', AbhExtensionPage::class)->name('abh.admin.all_extension');

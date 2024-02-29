@@ -46,9 +46,8 @@
                 </x-slot:button>
             </x-dash-board-counter-card>
         </div>
-        <x-card-panel>
-            sadasd
-        </x-card-panel>
+        <livewire:abh.admin.component.dashboard.abh-admin-line-graph />
+        <livewire:abh.admin.component.dashboard.abh-admin-map />
 
 
     </div>

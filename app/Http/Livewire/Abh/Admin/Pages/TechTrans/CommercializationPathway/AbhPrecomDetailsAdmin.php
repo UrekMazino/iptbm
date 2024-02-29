@@ -486,7 +486,7 @@ class AbhPrecomDetailsAdmin extends Component
     }
     public function render()
     {
-        return view('livewire.abh.admin.pages.commercialization.abh-precom-details-admin')
+        return view('livewire.abh.admin.pages.techtrans.commercialization-pathway.abh-precom-details-admin')
             ->with([
                 'technology' =>$this->precom_tech->technology
             ])
