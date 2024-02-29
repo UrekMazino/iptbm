@@ -483,15 +483,15 @@ Route::middleware(['component:ABH', 'auth:admin', 'verified'])->group(function (
         Route::get('/tech-details/{ipprotec}', AbhTechnologiesDetail::class)->name('abh.admin.technology.details');
 
 
-        Route::prefix('/commercialization')->group(function (){
-            Route::get('precom', AbhPrecomPage::class)->name('abh.admin.commercialization.all_precom');
-            Route::get('precom-details/{precom}', AbhPrecomDetailsAdmin::class)->name('abh.admin.commercialization.precom-details.admin');
+        Route::prefix('/commercialized-tech')->group(function (){
+            Route::get('/precom', AbhPrecomPage::class)->name('abh.admin.commercialization.all_precom');
+            Route::get('/precom-details/{precom}', AbhPrecomDetailsAdmin::class)->name('abh.admin.commercialization.precom-details.admin');
 
-            Route::get('adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
-            Route::get('adopter-details/{adopter}', AbhAdopterDetails::class)->name('abh.admin.commercialization.adopter.details');
+            Route::get('/adopter', AbhAdopterPage::class)->name('abh.admin.commercialization.all_adopter');
+            Route::get('/adopter-details/{adopter}', AbhAdopterDetails::class)->name('abh.admin.commercialization.adopter.details');
         });
-        Route::get('deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
-        Route::get('extension', AbhExtensionPage::class)->name('abh.admin.all_extension');
+        Route::get('/deployment',AbhDeploymentPage::class)->name('abh.admin.all_deployment');
+        Route::get('/extension', AbhExtensionPage::class)->name('abh.admin.all_extension');
 
 
         Route::get('/regions', AbhRegionPage::class)->name('abh.admin.all_regions');
