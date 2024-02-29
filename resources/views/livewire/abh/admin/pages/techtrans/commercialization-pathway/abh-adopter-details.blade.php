@@ -6,7 +6,7 @@
 
         <nav class="bg-white border-gray-200 dark:bg-gray-900">
             <div class="block md:flex p-3 justify-between items-center">
-                <x-link-button :url="route('abh.staff.commercialization.adopter')">
+                <x-link-button :url="route('abh.admin.commercialization.all_adopter')">
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
                     </svg>
@@ -33,8 +33,6 @@
                                 'type' => 'png',
                                 'file'=>$technology->tech_photo,
                                 'home'=>route('abh.admin.commercialization.adopter.details',['adopter' => $adopter->id]),
-
-
                                 ]) }}" >
                                 <div class="aspect-square flex justify-center items-center">
                                     <img src="{{\Illuminate\Support\Facades\Storage::url($technology->tech_photo)}}" class="max-w-full w-auto max-h-full  h-auto hover:brightness-50 hover:scale-125 transition duration-300 "/>

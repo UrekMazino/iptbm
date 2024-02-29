@@ -50,7 +50,7 @@ class AbhAdopterDetails extends Component
         $this->faxs = $adopter->contacts->where('type', 'fax');
         $this->emails = $adopter->contacts->where('type', 'email');
     }
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.abh.admin.pages.techtrans.commercialization-pathway.abh-adopter-details')
             ->with([
