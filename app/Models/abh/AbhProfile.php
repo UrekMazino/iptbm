@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Storage;
 
 class AbhProfile extends Model
 {
@@ -27,6 +28,18 @@ class AbhProfile extends Model
         'logo',
         'tag_line',
     ];
+
+    public function getLogoAttribute($value): string
+    {
+
+        if($value)
+        {
+            return Storage::exists($value)? $value:'public/temp.jpg';
+        }else{
+            return  'public/temp.jpg';
+        }
+
+    }
 
     public function users(): HasMany
     {

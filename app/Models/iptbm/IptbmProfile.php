@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Storage;
 
 class IptbmProfile extends Model
 {
@@ -26,6 +27,18 @@ class IptbmProfile extends Model
         'tag_line',
         // 'user_id'
     ];
+
+    public function getLogoAttribute($value): string
+    {
+
+        if($value)
+        {
+            return Storage::exists($value)? $value:'public/temp.jpg';
+        }else{
+            return  'public/temp.jpg';
+        }
+
+    }
     /*
      *
      * public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

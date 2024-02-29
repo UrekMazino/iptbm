@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
 
 
 class IptbmTechnologyProfile extends Model
@@ -26,6 +27,17 @@ class IptbmTechnologyProfile extends Model
         'tech_res_amount',
         'tech_trans_plan',
     ];
+    public function getTechPhotoAttribute($value): string
+    {
+
+        if($value)
+        {
+            return Storage::exists($value)? $value:'public/temp.jpg';
+        }else{
+            return  'public/temp.jpg';
+        }
+
+    }
 
 
     function iptbmprofiles(): BelongsTo

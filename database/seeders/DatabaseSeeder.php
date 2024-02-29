@@ -83,7 +83,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
 
-            TechCategorySeeder::class
+            TechCategorySeeder::class,
+            IptbmAdminSeeder::class,
         ]);
     }
 }

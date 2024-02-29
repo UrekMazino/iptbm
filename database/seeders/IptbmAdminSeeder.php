@@ -14,12 +14,12 @@ class IptbmAdminSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            [
-                'name' => 'Andy Mark Servania IPTBM',
-                'component' => 'IPTBM',
-                'email' => 'andymarkservania1991@gmail.com',
-                'password' => Hash::make('staff12345'),
-            ],
+           // [
+            //                'name' => 'Andy Mark Servania IPTBM',
+            //                'component' => 'IPTBM',
+            //                'email' => 'andymarkservania1991@gmail.com',
+            //                'password' => Hash::make('staff12345'),
+            //            ],
             [
                 'name' => 'Andy Mark Servania ABH',
                 'component' => 'ABH',
