@@ -332,11 +332,7 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
     });
     Route::get('/dashboard', DashBoardPage::class);
     Route::get('/file', FileView::class)->name('rtms.file.viewer');
-  /*
-   *   Route::controller(AbhController::class)->group(function () {
-        Route::get('/{dashboard?}', 'dashboard')->where(['dashboard' => 'dashboard']);
-    });
-   */
+
     Route::prefix('profile')->group(function (){
         Route::get('/', Profile::class)->name('abh.staff.profile');
         Route::get('project/{project}', ProjectPage::class)->name('abh.staff.profile.project');
@@ -366,34 +362,7 @@ Route::middleware(['component:ABH', 'auth', 'verified'])->prefix('/abh')->group(
     });
 
 
-   /*
-    *
-        Route::controller(AbhProfileController::class)->prefix('/profiles')->group(function () {
-        Route::get('/', 'index');
-        Route::get('project/{project}','view_project');
-        Route::post('project/delete/{project}','delete')->name('abh.staff.profile.project.delete');
-        Route::get('/all-profile','view_all_profile');
-        Route::get('/public-view{profile}','all_profile_public_view');
-        Route::get('/profile-projects/{profile}','all_projects');
-    });
-    */
 
-
-   /*
-    *  Route::controller(AbhGeneratorController::class)->prefix('/generator')->group(function (){
-        Route::get('/','index')->name('abh.staff.generators');
-        Route::get('/details/{generator}','generator_details')->name('abh.staff.generator_details');
-        Route::post('/delete_generator/{generator}}','delete_generator')->name('abh.staff.delete_generator');
-    });
-    */
-
-  /*
-   *   Route::controller(AbhTechController::class)->prefix('/technologyies')->group(function () {
-        Route::get('/','index');
-        Route::get('/{technology}','view_tech');
-        Route::get('view-image/{technology}','view_image');
-    });
-   */
 
 });
 

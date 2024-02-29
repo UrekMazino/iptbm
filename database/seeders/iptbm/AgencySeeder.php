@@ -4,8 +4,7 @@ namespace Database\Seeders\iptbm;
 
 use App\Models\iptbm\AgencyHead;
 use App\Models\iptbm\IptbmAgency;
-use App\Models\iptbm\IptbmAgencyContact;
-use App\Models\iptbm\IptbmAgencyHead;
+
 use Illuminate\Database\Seeder;
 
 class AgencySeeder extends Seeder

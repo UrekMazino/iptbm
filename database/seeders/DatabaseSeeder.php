@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Seeders\abh\AbhIndustrySeeder;
+
 use Database\Seeders\abh\AbhProfileSeeder;
 use Database\Seeders\iptbm\AgencySeeder;
 use Database\Seeders\iptbm\CommoditySeeder;

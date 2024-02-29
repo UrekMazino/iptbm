@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Pages\Generator;
 
-use App\Models\abh\AbhGenerator;
+
 use App\View\Components\abh\AbhLayout;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -14,7 +14,7 @@ class GeneratorPage extends Component
 
 
 
-    public function delete_generator(AbhGenerator $generator): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    public function delete_generator( $generator): Application|Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $generator->delete();
         return redirect(route("abh.staff.generators"));

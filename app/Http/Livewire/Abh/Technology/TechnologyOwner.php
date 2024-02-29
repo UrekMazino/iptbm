@@ -3,14 +3,14 @@
 namespace App\Http\Livewire\Abh\Technology;
 
 use App\Models\abh\AbhAgency;
-use App\Models\abh\AbhTechOwner;
+
 use Livewire\Component;
 
 class TechnologyOwner extends Component
 {
     public $technology;
 
-    public function delete_co_owner(AbhTechOwner $co_owner): void
+    public function delete_co_owner( $co_owner): void
     {
        $co_owner->delete();
        $this->emit('reloadPage');

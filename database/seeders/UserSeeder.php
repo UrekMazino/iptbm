@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AbhUser;
+
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -64,9 +64,7 @@ class UserSeeder extends Seeder
             array('id' => '56', 'name' => 'Reggie S. Mendoza', 'component' => 'IPTBM', 'email' => 'reggie.mendoza@ssu.edu.ph', 'email_verified_at' => NULL, 'password' => '$2y$10$SAk944scXKwg8of3zzrgrunmvdWzmPTSCvp1bUb0NPOeXDWxEa69.', 'remember_token' => NULL, 'created_at' => '2023-09-02 00:20:16', 'updated_at' => '2023-09-02 00:20:16', 'profile_id' => '19')
         );
 
-        foreach ($users as $user) {
-          //  User::create($user);
-        }
+
 
         $dataAbh = [
             'abh_profile_id'=>'1',

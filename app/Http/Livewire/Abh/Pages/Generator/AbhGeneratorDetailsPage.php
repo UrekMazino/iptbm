@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Pages\Generator;
 
-use App\Models\abh\AbhGenerator;
-use App\Models\abh\AbhGeneratorExpertise;
-use App\Models\abh\AbhGeneratorsContac;
+
 use App\Rules\iptbm\MaxContact;
 use App\View\Components\abh\AbhLayout;
 use Illuminate\Contracts\View\Factory;
@@ -25,143 +23,45 @@ class AbhGeneratorDetailsPage extends Component
     public $fax;
     public $email;
 
-    public function delete_expertise(AbhGeneratorExpertise $expertise): void
+    public function delete_expertise( $expertise): void
     {
         $expertise->delete();
         $this->emit('reloadPage');
     }
     public function save_expertise()
     {
-        $this->validateOnly('expertise');
-        $this->generator->expertise()->save(new AbhGeneratorExpertise([
-            'field'=>$this->expertise
-        ]));
-        $this->emit('reloadPage');
+
     }
 
 
-    public function delete_contact(AbhGeneratorsContac $contact): void
+    public function delete_contact( $contact): void
     {
         $contact->delete();
         $this->emit('reloadPage');
     }
     public function save_mobile(): void
     {
-        $this->validateOnly('mobile');
-        $this->generator->contacts()->save(new AbhGeneratorsContac([
-            'contact'=>$this->mobile,
-            'type'=>'mobile'
-        ]));
-        $this->emit('reloadPage');
+
     }
     public function save_phone(): void
     {
-        $this->validateOnly('phone');
-        $this->generator->contacts()->save(new AbhGeneratorsContac([
-            'contact'=>$this->phone,
-            'type'=>'phone'
-        ]));
-        $this->emit('reloadPage');
+
     }
     public function save_fax(): void
     {
-        $this->validateOnly('fax');
-        $this->generator->contacts()->save(new AbhGeneratorsContac([
-            'contact'=>$this->fax,
-            'type'=>'fax'
-        ]));
-        $this->emit('reloadPage');
+
     }
     public function save_email(): void
     {
-        $this->validateOnly('email');
-        $this->generator->contacts()->save(new AbhGeneratorsContac([
-            'contact'=>$this->email,
-            'type'=>'email'
-        ]));
-        $this->emit('reloadPage');
+
     }
 
 
     public function rules()
     {
-        return[
-            'expertise' =>'required|max:60',
-            'mobile'=>[
-                'required',
-                'digits:11',
-                Rule::unique(AbhGeneratorsContac::class,'contact')
-                    ->where('abh_generator_id', $this->generator->id)
-                ->where('type', 'mobile'),
-                new MaxContact(
-                    3,
-                    'abh_generators_contacs',
-                    'contact',
-                    'type',
-                    'mobile',
-                    'abh_generator_id',
-                    $this->generator->id,
-                    'Mobile number was already reached its maximum limit.'
-                ),
-            ],
-            'phone'=>[
-                'required',
-                'min_digits:9',
-                'max_digits:10',
-                Rule::unique(AbhGeneratorsContac::class,'contact')
-                    ->where('abh_generator_id', $this->generator->id)
-                    ->where('type', 'phone'),
-                new MaxContact(
-                    3,
-                    'abh_generators_contacs',
-                    'contact',
-                    'type',
-                    'phone',
-                    'abh_generator_id',
-                    $this->generator->id,
-                    'Phone number was already reached its maximum limit.'
-                ),
-            ],
-            'fax'=>[
-                'required',
-                'min_digits:9',
-                'max_digits:10',
-                Rule::unique(AbhGeneratorsContac::class,'contact')
-                    ->where('abh_generator_id', $this->generator->id)
-                    ->where('type', 'fax'),
-                new MaxContact(
-                    3,
-                    'abh_generators_contacs',
-                    'contact',
-                    'type',
-                    'fax',
-                    'abh_generator_id',
-                    $this->generator->id,
-                    'Fax number was already reached its maximum limit.'
-                ),
-            ],
-            'email'=>[
-                'required',
-                'email',
-                'max:60',
-                Rule::unique(AbhGeneratorsContac::class,'contact')
-                    ->where('abh_generator_id', $this->generator->id)
-                    ->where('type', 'email'),
-                new MaxContact(
-                    3,
-                    'abh_generators_contacs',
-                    'contact',
-                    'type',
-                    'email',
-                    'abh_generator_id',
-                    $this->generator->id,
-                    'Email address was already reached its maximum limit.'
-                ),
-            ],
 
-        ];
     }
-    public function mount(AbhGenerator $generator): void
+    public function mount( $generator): void
     {
         $generator->load(['contacts','expertise','status','latest_agency_affiliated']);
 

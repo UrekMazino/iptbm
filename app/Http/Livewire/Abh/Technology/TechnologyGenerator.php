@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Technology;
 
-use App\Models\abh\AbhGenerator;
+
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -32,9 +32,9 @@ class TechnologyGenerator extends Component
     }
     public function render(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $generators=AbhGenerator::all();
+
         return view('livewire.abh.technology.technology-generator')->with([
-            'generators' => $generators,
+
         ]);
     }
 }

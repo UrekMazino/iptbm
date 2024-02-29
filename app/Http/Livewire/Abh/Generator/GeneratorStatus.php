@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Generator;
 
-use App\Models\abh\AbhGeneratorStatus;
+
 use Livewire\Component;
 
 class GeneratorStatus extends Component

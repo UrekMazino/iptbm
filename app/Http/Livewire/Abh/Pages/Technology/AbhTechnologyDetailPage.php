@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Pages\Technology;
 
-use App\Models\abh\AbhTechnologyProfile;
+
 use App\Models\iptbm\IptbmCommercializationAdopter;
 use App\Models\iptbm\IptbmCommercializationPrecom;
 use App\Models\iptbm\IptbmIpAlert;

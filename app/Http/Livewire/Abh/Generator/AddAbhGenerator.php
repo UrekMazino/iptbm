@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Generator;
 
-use App\Models\abh\AbhGenerator;
-use App\Models\abh\AbhGeneratorStatus;
+
 use App\Rules\FullNameValidation;
 use Auth;
 use Illuminate\Contracts\View\Factory;

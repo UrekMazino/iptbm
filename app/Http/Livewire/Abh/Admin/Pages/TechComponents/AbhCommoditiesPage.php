@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Abh\Admin\Pages\TechComponents;
 
-use App\Models\abh\AbhTechIndustry;
+
 use App\View\Components\abh\admin\AbhAdminApp;
 use Livewire\Component;
 
 class AbhCommoditiesPage extends Component
 {
     public $industry;
-    public function mount(AbhTechIndustry $industry)
+    public function mount( $industry)
     {
         $this->industry=$industry->load([
             'commodities'=>function ($commodity) {

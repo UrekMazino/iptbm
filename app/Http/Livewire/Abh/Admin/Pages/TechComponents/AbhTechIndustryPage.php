@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Abh\Admin\Pages\TechComponents;
 
-use App\Models\abh\AbhTechIndustry;
+
 use App\View\Components\abh\admin\AbhAdminApp;
 use Livewire\Component;
 
@@ -12,9 +12,7 @@ class AbhTechIndustryPage extends Component
     public function save_industry()
     {
         $this->validate();
-        AbhTechIndustry::create([
-            'name'=>$this->industry_name
-        ]);
+
         $this->emit('reloadPage');
     }
 
