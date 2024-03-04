@@ -196,7 +196,7 @@
             <li>
                 <div class="divide-y divide-slate-200 ">
                     <div
-                        x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.commercialization.all_precom'||Route::currentRouteName()==='abh.admin.commercialization.all_adopter') true @else false @endif}"
+                        x-data="{expanded: @if(Route::currentRouteName()==='abh.admin.commercialization.all_precom'||Route::currentRouteName()==="abh.admin.commercialization.precom-details.admin"||Route::currentRouteName()==='abh.admin.commercialization.all_adopter') true @else false @endif}"
                         class="text-gray-600 rounded-lg dark:text-gray-400 p-2">
                         <h2>
                             <button
@@ -238,7 +238,7 @@
                                 <ul id="dropdown-profile" class="py-2 space-y-2 text-sm text-gray-600 dark:text-white ">
                                     <li>
                                         <a href="{{route("abh.admin.commercialization.all_precom")}}" class="flex items-center w-full p-2
-                                          transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()==='abh.admin.commercialization.all_precom')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
+                                          transition duration-300 rounded-lg pl-11 group  hover:bg-gray-200  dark:hover:bg-gray-600   @if(Route::currentRouteName()==='abh.admin.commercialization.all_precom'||Route::currentRouteName()==='abh.admin.commercialization.precom-details.admin')  bg-gray-300 dark:bg-gray-950 text-sky-950 dark:text-gray-400 font-bold @endif">
                                             Pre Com
                                         </a>
                                     </li>

@@ -1,5 +1,5 @@
 <div class="rounded-none md:rounded-lg bg-gradient-to-tr from-emerald-700 to-emerald-300 ">
-    <x-pop-modal name="crypto-modal-technologyCom" class="max-w-5xl" modal-title="Total IP-TBMs Profiles">
+    <x-pop-modal name="crypto-modal-technologyCom" class="max-w-5xl" modal-title="Total number of Commercialized Technologies">
         <x-card>
             <div class="relative overflow-x-auto ">
                 <table id="techtTable" style="width:100%"

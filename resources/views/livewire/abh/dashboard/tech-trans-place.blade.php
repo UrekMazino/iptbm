@@ -46,8 +46,7 @@
             </h1>
 
             <div class=" font-medium">
-
-                Total number of ABH Profiles
+                Total Tech transfer Protocol
             </div>
         </div>
         <div class="justify-content-center flex items-center">

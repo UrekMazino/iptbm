@@ -2,6 +2,7 @@
 
 namespace App\Models\iptbm;
 
+use App\Models\abh\AbhProfile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -26,5 +27,10 @@ class IptbmRegion extends Model
     public function iptbms()
     {
         return $this->hasManyThrough(IptbmProfile::class,IptbmAgency::class,'iptbm_region_id','agency_id','id','id');
+    }
+
+    public function abh()
+    {
+        return $this->hasManyThrough(AbhProfile::class,IptbmAgency::class,'iptbm_region_id','iptbm_agency_id','id','id');
     }
 }

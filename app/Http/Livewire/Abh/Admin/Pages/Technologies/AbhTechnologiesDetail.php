@@ -14,6 +14,7 @@ class AbhTechnologiesDetail extends Component
     public $ip_tech;
     public function mount(IptbmIpAlert $ipprotec): void
     {
+
         $this->ip_tech=$ipprotec->load(
             'expenses',
             'technology',

@@ -10,16 +10,20 @@
             <livewire:abh.dashboard.recent-profile/>
         </div>
     </x-grid>
-    <x-grid col="3" gap="4">
+    <x-grid col="2" gap="4">
         <div>
             <livewire:abh.dashboard.abh-profiles/>
         </div>
         <div>
             <livewire:abh.dashboard.abh-technologies/>
         </div>
+       {{---
+
         <div>
             <livewire:abh.dashboard.tech-trans-place/>
         </div>
+
+        -----}}
     </x-grid>
     <div>
         <livewire:abh.dashboard.abh-istablish/>

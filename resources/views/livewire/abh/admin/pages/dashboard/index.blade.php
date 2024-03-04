@@ -5,7 +5,7 @@
         </x-header-label>
     </div>
     <div class=" md:px-4 space-y-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <x-dash-board-counter-card class=" bg-gradient-to-tr from-sky-700 to-sky-300 0 ">
                 <livewire:abh.admin.counter.total-abh   modal_id="totalAbh" />
                 <x-slot:button>
@@ -20,9 +20,9 @@
                 </x-slot:button>
             </x-dash-board-counter-card>
             <x-dash-board-counter-card class="bg-gradient-to-tr from-emerald-700 to-emerald-300  ">
-                <livewire:abh.admin.counter.total-technologies  />
+                <livewire:abh.admin.counter.total-technologies modal_id="totslPrecomTech"  />
                 <x-slot:button>
-                    <a class="text-white hover:scale-110 transition duration-300 flex justify-center items-center gap-2">
+                    <a data-modal-toggle="totslPrecomTech" class="text-white cursor-pointer hover:scale-110 transition duration-300 flex justify-center items-center gap-2">
                         <span>
                             View List
                         </span>
@@ -32,10 +32,11 @@
                     </a>
                 </x-slot:button>
             </x-dash-board-counter-card>
+           {{--------------
             <x-dash-board-counter-card class="bg-gradient-to-tr from-yellow-700 to-yellow-300 ">
-                <livewire:abh.admin.counter.total-tech-trans  />
+                <livewire:abh.admin.counter.total-tech-trans  modal_id="totalTechTrans"  />
                 <x-slot:button>
-                    <a class="text-white hover:scale-110 transition duration-300 flex justify-center items-center gap-2">
+                    <a  data-modal-toggle="totalTechTrans" class="text-white hover:scale-110 transition duration-300 flex justify-center items-center gap-2">
                         <span>
                             View List
                         </span>
@@ -45,6 +46,7 @@
                     </a>
                 </x-slot:button>
             </x-dash-board-counter-card>
+           -------------}}
         </div>
         <livewire:abh.admin.component.dashboard.abh-admin-line-graph />
         <livewire:abh.admin.component.dashboard.abh-admin-map />

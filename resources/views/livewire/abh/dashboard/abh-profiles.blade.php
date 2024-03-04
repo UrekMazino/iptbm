@@ -1,5 +1,5 @@
 <div class="rounded-none md:rounded-lg bg-gradient-to-tr from-sky-700 to-sky-300 ">
-    <x-pop-modal name="crypto-modal-iptbmProf" class="max-w-5xl" modal-title="Total IP-TBMs Profiles">
+    <x-pop-modal name="crypto-modal-iptbmProf" class="max-w-5xl" modal-title="Total ABH Profiles">
         <x-card>
             <div class="relative overflow-x-auto ">
                 <table id="patentTable" style="width:100%"

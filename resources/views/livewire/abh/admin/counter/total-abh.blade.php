@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center">
     <div class="w-full ">
         <div class="text-3xl font-bold text-white">
-            34
+            {{$abh_profile}}
         </div>
         <div class="text-white font-medium text-md">
             Total number of ABH
@@ -14,6 +14,82 @@
         </svg>
     </div>
     <x-pop-modal class="max-w-4xl" name="{{$modal_id}}">
-        a
+        <div class="relative overflow-x-auto text-gray-700 dark:text-gray-50">
+            <table id="patentTable" style="width:100%"
+                   class="w-fit display cell-border stripe table-auto  hover text-sm  rounded text-left text-gray-500  border-gray-300 dark:border-gray-600  dark:text-gray-400">
+                <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr class="border-0 ">
+                    <th scope="col"
+                        class=" whitespace-nowrap px-10 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        Region
+                    </th>
+
+                    <th scope="col"
+                        class="  px-6 py-3 border border-gray-300 dark:border-gray-600 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        Agency
+                    </th>
+                </tr>
+
+                </thead>
+                <tbody>
+                @foreach($regions as $region)
+
+                    @foreach($region->abh as $profile)
+                        <tr>
+                            <td>
+                                <a href="{{route("abh.admin.all_regions.details",['region'=>$profile->agency->region])}}"
+                                   class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
+                                    {{$profile->agency->region->name}}
+                                </a>
+
+                            </td>
+                            <td>
+                                <a href="{{route("abh.admin.all_agencies.updates",['agency'=>$profile->agency])}}"
+                                   class="font-medium hover:text-gray-900 hover:dark:text-white hover:underline">
+                                    {{$profile->agency->name}}
+                                </a>
+
+                            </td>
+                        </tr>
+                    @endforeach
+
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </x-pop-modal>
 </div>
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#patentTable').DataTable({
+
+                pagingType: 'full_numbers',
+                horizontalScroll: true,
+                dom: 'Bfrtip',
+                rowGroup: {
+                    startRender: function (rows, group) {
+                        return group + ' ( ' + rows.count() + ' IP-TBMs Profile )';
+                    }
+                },
+
+                scroller: {
+                    rowHeight: 300
+                },
+                buttons: [
+
+                    {
+                        extend: 'pageLength',
+                        text: '<i class="fa-regular fa-file-lines"></i> Page Length',
+                        className: 'bg-white text-blue-500  dark:bg-gray-700 dark:text-sky-500 w-full md:w-fit border-0 my-1 md:my-3  hover:border-0',
+                    },
+
+
+                    // Add more buttons here
+                ],
+
+            });
+            table.columns(['.abstract']).visible(false, false);
+        })
+    </script>
+@endpush
