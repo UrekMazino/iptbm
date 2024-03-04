@@ -28,9 +28,14 @@
 
             <div class="px-6 py-6 lg:px-8">
                 @if($modalTitle)
-                    <h3 class="text-base mb-5 font-medium text-gray-900 dark:text-white">
-                        {{$modalTitle}}
-                    </h3>
+                    <div class="flex justify-start items-center mb-5">
+                        @if(isset($modalicon))
+                            {{$modalicon}}
+                        @endif
+                        <h3 class="text-base font-medium text-gray-900 dark:text-white">
+                            {{$modalTitle}}
+                        </h3>
+                    </div>
                 @endif
                 {{$slot}}
             </div>

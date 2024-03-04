@@ -340,9 +340,47 @@
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-x-10 border-t pt-4 border-gray-600 dark:border-400">
             <div class="space-y-10 md:col-span-3">
+                <x-card-panel title="Year Developed">
+                    <x-slot:button>
+                        <x-pop-modal class="max-w-md" name="UpdateYerDev" modal-title="Update year of development">
+                            <form class="space-y-5" wire:submit.prevent="updateYearDev">
+                                <div>
+                                    <x-input-label value="Year"/>
+                                    <x-text-input wire:model.lazy="year_dev" class="w-full" type="number"  min="1900" max="{{$max_year}}"/>
+                                    <x-input-error :messages="$errors->get('year_dev')"/>
+                                </div>
+                                <div>
+                                    <x-submit-button class="min-w-full" wire:loading.attr="disabled" wire:target="updateYearDev">
+                                       <div class="w-full p-2 text-center" wire:loading.remove wire:target="updateYearDev">
+                                           Submit
+                                       </div>
+                                        <div class="w-full p-2 text-center" wire:loading wire:target="updateYearDev">
+                                            Processing
+                                        </div>
+                                    </x-submit-button>
+                                </div>
+                            </form>
+                        </x-pop-modal>
+                        <x-secondary-button data-modal-toggle="UpdateYerDev" class="text-sky-600 dark:text-sky-600">
+                            Update
+                        </x-secondary-button>
+                    </x-slot:button>
+                    <div class="text-xl">
+                        <span class="font-medium">
+                            YEAR :
+                        </span>
+                        {{$technology->year_developed}}
+                    </div>
+                    <x-slot:footer>
+                        <i>
+                            This will be the year when the technology development started.
+                        </i>
+                    </x-slot:footer>
+                </x-card-panel>
                 <livewire:iptbm.staff.technology.tech-owner :technology="$technology"/>
                 <livewire:iptbm.staff.technology.tech-inventor :technology="$technology"/>
                 <livewire:iptbm.staff.technology.tech-research :technology="$technology"/>
+
             </div>
 
             <div class="md:col-span-2 space-y-4">

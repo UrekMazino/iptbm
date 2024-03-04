@@ -143,7 +143,33 @@
                     </a>
 
                 </div>
+
                 <div class="flex items-center lg:order-2">
+                    <x-pop-modal name="Note" class="max-w-4xl" modal-title="System Notification">
+                        <x-slot name="modalicon">
+                            <div class="me-2">
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13V8m0 8h0m9-4a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg>
+                            </div>
+                        </x-slot>
+                        <p class="text-gray-700 dark:text-gray-400">
+                            Due to technical issues, all images were accidentally deleted from the system folder.
+                            We advised all users to update the data containing the images. We temporarily replaced  the data
+                            related to the profile and technology deleted images. Apologies for the inconvenience it may have caused.
+                        </p>
+                    </x-pop-modal>
+                    <button data-modal-toggle="Note">
+                        <div class="flex items-center p-1 px-2  text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800" role="alert">
+                            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            </svg>
+                            <span class="sr-only">Info</span>
+                            <div>
+                                <span class="font-medium">Note!</span>
+                            </div>
+                        </div>
+                    </button>
                     <button
                         type="button"
                         data-drawer-toggle="drawer-navigation"

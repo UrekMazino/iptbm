@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Iptbm\Staff\Technology;
 use App\Models\iptbm\IptbmIndustry;
 use App\Models\iptbm\IptbmTechIndustry;
 use App\Models\iptbm\IptbmTechStatus;
+use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,6 +13,8 @@ use Livewire\WithFileUploads;
 class TechnologyProfile extends Component
 {
     use WithFileUploads;
+
+
 
     public $techStatus;
     public $statusModel;
@@ -97,6 +100,7 @@ class TechnologyProfile extends Component
             ],
             'description' => 'required|min:10',
             'techTitle' => 'required|min:5|unique:iptbm_technology_profiles,title',
+            'year_dev'=>'required|digits:4|integer|min:1900|max:'.(Carbon::now()->year+1),
         ];
     }
 
@@ -181,6 +185,15 @@ class TechnologyProfile extends Component
         $this->validateOnly($properties);
     }
 
+    public $year_dev;
+    public function updateYearDev()
+    {
+        $this->validateOnly('year_dev');
+        $this->technology->year_developed=$this->year_dev;
+        $this->technology->save();
+        $this->emit('reloadPage');
+    }
+
 
     public function mount($technology)
     {
@@ -191,11 +204,14 @@ class TechnologyProfile extends Component
         $this->techPhoto = $technology->tech_photo;
         $this->techIndustry = IptbmIndustry::all();
         $this->techStatus = $this->technology->statuses;
+        $this->year_dev= $this->technology->year_developed;
 
     }
 
     public function render()
     {
-        return view('livewire.iptbm.staff.technology.technology-profile');
+        return view('livewire.iptbm.staff.technology.technology-profile')->with([
+            'max_year'=>Carbon::now()->year
+        ]);
     }
 }

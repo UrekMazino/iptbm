@@ -36,7 +36,7 @@
                                 <p class="text-xs text-gray-500 dark:text-gray-400"> PNG, JPG (MAX. 20mb)</p>
                             </div>
                         @endif
-                        <input wire:model="photo" accept="image/jpeg,img/png" id="dropzone-file" type="file"
+                        <input wire:model="photo" accept="image/jpeg,image/png" id="dropzone-file" type="file"
                                class="hidden"/>
                     </label>
 
