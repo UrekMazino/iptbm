@@ -63,6 +63,7 @@ class IpProfile extends Controller
     public function allProfile(): View|Factory|Application
     {
         $profile = IptbmProfile::with('agency','agency.region')
+            ->whereHas('agency')
             /*
              * ->whereHas('agency',function ($query){
                 $query->where('iptbm_region_id',Auth::user()->profile->agency->region->id);

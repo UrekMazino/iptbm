@@ -60,8 +60,6 @@ class HighPriorityNotification extends Command
             if ($profile->ip_alert->technology->iptbmprofiles->contact->count() > 0) {
 
                 foreach ($profile->ip_alert->technology->iptbmprofiles->contact as $email) {
-
-
                     Mail::to('warzservania@gmail.com')
                         ->send(new UnfinishedTask(
                             $profile->ip_alert->technology->title,

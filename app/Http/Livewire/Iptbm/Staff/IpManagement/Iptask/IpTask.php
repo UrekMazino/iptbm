@@ -31,6 +31,8 @@ class IpTask extends Component
 
     public $taskStages;
 
+
+
     public function rules()
     {
         return [
@@ -60,15 +62,17 @@ class IpTask extends Component
         ];
     }
 
-    public function updated($prop)
+    public function updated($prop): void
     {
+
         $this->validateOnly($prop);
     }
 
 
     public function saveTask()
     {
-        $this->validate();
+
+         $this->validate();
         $path = $this->attachmentModel->store('public/ip-alert-attachment');
 
         $task = new IptbmIpAlertTask([
@@ -77,7 +81,7 @@ class IpTask extends Component
             'priority' => $this->priorityModel,
             'task_status' => $this->taskStatusModel,
             'description' => $this->noteModel,
-            'deadline' => Carbon::parse($this->deadlineModel)->format('Y-n-j'),
+            'deadline' => Carbon::createFromFormat('F-d-Y', $this->deadlineModel)->format('Y-n-j'),
             'attachment' => $path
         ]);
 
@@ -87,7 +91,8 @@ class IpTask extends Component
         $task->ip_task_stage_notifications()->save($notif);
 
 
-        $this->reset(
+
+          $this->reset(
             'taskModel',
             'priorityModel',
             'taskStatusModel',
@@ -103,7 +108,9 @@ class IpTask extends Component
             'noteModel',
             'attachmentModel'
         ]);
+
         $this->emit('reloadPage');
+
     }
 
     public function deleteTask($id)

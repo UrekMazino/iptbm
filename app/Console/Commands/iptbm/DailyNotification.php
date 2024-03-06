@@ -39,26 +39,16 @@ class DailyNotification extends Command
             'ip_alert.ip_type',
             'ip_alert.technology',
             'ip_alert.technology.iptbmprofiles',
-           /*
-            *  'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
-                $query->where('contact_type', 'email');
-            }
-            */])
+            ])
             ->whereDoesntHave('dailySend',function ($sent){
-
                 $sent->whereDate('created_at', Carbon::today());
             })
             ->where('task_status', 'ONGOING')
             ->whereHas('ip_task_stage_notifications', function ($query) {
                 $query->where('frequency', 'daily');
-                /*
-                 *
-                 * $query->where('frequency', 'daily')
-                    ->whereTime('time_of_day', '>', now()->format('Y-m-d'));
-                 */
             })
-            ->whereDate('deadline', '>', now()->format('Y-m-d'))
-            ->get();
+            ->whereDate('deadline', '>=', now()->format('Y-m-d'))
+            ->orderBy('priority', 'desc')->get();
         $this->mailer($deadlinesDaily);
     }
 

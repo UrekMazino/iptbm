@@ -113,8 +113,7 @@
             </x-header-label>
             @foreach($tasks as $key=>$task)
 
-                <livewire:iptbm.staff.ip-management.iptask.ip-task wire:key="{{$task->id}}" :task="$task"
-                                                                   :ipAlert="$ip_alert"/>
+                <livewire:iptbm.staff.ip-management.iptask.ip-task wire:key="ip-alert-{{$key}}" :task="$task" :ipAlert="$ip_alert"/>
 
             @endforeach
         </div>

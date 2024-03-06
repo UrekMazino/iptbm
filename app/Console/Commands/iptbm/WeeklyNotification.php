@@ -55,8 +55,8 @@ class WeeklyNotification extends Command
                     ->whereTime('time_of_day', '<=', now());
                  */
             })
-            ->whereDate('deadline', '>', now())
-            ->get();
+            ->whereDate('deadline', '>=', now())
+            ->orderBy('priority', 'desc')->get();
 
         $this->mailer($deadlinesWeekly);
 

@@ -2,7 +2,7 @@
     <x-card-panel title="{{$task->task_name}}">
         <x-slot:button>
             <!-- Main modal -->
-            <x-pop-modal name="modal{{$task->id}}" class="max-w-4xl" static="true"
+            <x-pop-modal name="modal-{{$task->task_name}}-{{$task->id}}" class="max-w-4xl" static="true"
                          modal-title="{{$task->task_name}} Task">
                 <form wire:submit.prevent="saveTask" class="space-y-6">
                     <div class="space-y-4">
@@ -24,7 +24,6 @@
                         <div>
                             <x-input-label value="Deadline"/>
 
-
                             <div class="relative w-full ">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -33,9 +32,10 @@
                                             d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <x-text-input  id="dateDeadline" autocomplete="off" wire:model.lazy="deadlineModel"
-                                               type="text" class="pl-10 p-2.5 w-full" datepicker datepicker-format="MM-dd-yyyy"
-                                               placeholder="select date"/>
+
+                                <x-text-input wire:model="deadlineModel" id="dateDeadlineTime-{{$task->id}}" readonly class="pl-10 p-2.5 w-full"
+                                              autocomplete="off" datepicker datepicker-format="MM-dd-yyyy"
+                                              placeholder="select date"/>
                             </div>
 
                             <x-input-error :messages="$errors->get('deadlineModel')"/>
@@ -105,8 +105,8 @@
             </x-pop-modal>
 
 
-            <x-secondary-button class="text-sky-500 dark:text-sky-500" data-modal-target="modal{{$task->id}}"
-                                data-modal-toggle="modal{{$task->id}}">
+            <x-secondary-button class="text-sky-500 dark:text-sky-500" data-modal-target="modal-{{$task->task_name}}-{{$task->id}}"
+                                data-modal-toggle="modal-{{$task->task_name}}-{{$task->id}}">
                 <svg class="w-4 h-4 me-3 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                      viewBox="0 0 18 18">
                     <path
@@ -127,10 +127,13 @@
                         Task Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Task Name
+                        Task Deadline
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Priority
                     </th>
                     <th scope="col" class="px-6 py-3 w-20">
                        Action
@@ -145,10 +148,14 @@
                             {{$stage->stage->stage_name}}
                         </th>
                         <td class="px-6 py-4">
-                            {{\Carbon\Carbon::parse($task->deadline)->format('d-M-Y')}}
+
+                            {{\Carbon\Carbon::parse($stage->deadline)->format('F-d-Y')}}
                         </td>
                         <td class="px-6 py-4">
                             {{$stage->task_status}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$stage->priority}}
                         </td>
                         <td class="px-6 py-4">
                            <div class="w-full flex justify-start gap-4 items-center">
@@ -185,18 +192,10 @@
 
 </div>
 @push('scripts')
-    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
     <script type="text/javascript">
 
-        document.addEventListener('livewire:load', function () {
 
-            document.getElementById('dateDeadline').addEventListener('changeDate', (event) => {
-
-                @this.deadlineModel = event.target.value;
-
-            });
-
-        });
         $(document).ready(function () {
 
 
@@ -227,5 +226,15 @@
 
 
         })
+        document.addEventListener('livewire:load', function () {
+
+
+            document.getElementById('dateDeadlineTime-{{$task->id}}').addEventListener('changeDate', (event) => {
+
+                @this.deadlineModel = event.target.value;
+
+            });
+
+        });
     </script>
 @endpush
