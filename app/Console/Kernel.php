@@ -25,10 +25,23 @@ class Kernel extends ConsoleKernel
 
 
 
-        $schedule->command('app:daily-notification')->withoutOverlapping()->everySecond()->runInBackground();// daily notification
-        $schedule->command('app:weekly-notification')->withoutOverlapping()->everySecond()->runInBackground(); // weekly notification
-       $schedule->command('app:clean-notif-logs')->withoutOverlapping()
-           ->sundays()->at('17:00')->runInBackground();
+        $schedule->command('app:daily-notification')
+            ->withoutOverlapping()
+            ->dailyAt('01:00')
+            ->runInBackground();// daily notification
+
+
+        $schedule->command('app:weekly-notification')
+            ->withoutOverlapping()
+            ->weeklyOn(1,'01:00')
+            ->runInBackground(); // weekly notification
+
+
+       $schedule->command('app:clean-notif-logs')
+           ->withoutOverlapping()
+           ->sundays() // Run on Sundays
+           ->at('17:00') // At 5:00 PM
+           ->runInBackground();
 
        // $schedule->job(new SendIpAlerReminder())->everySecond();
         //  $schedule->command('app:high-priority-notification')->everyFourHours();
