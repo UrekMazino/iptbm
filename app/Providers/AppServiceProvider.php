@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
             })
             ->whereDate('deadline', '>=', now()->format('Y-m-d'))
             ->orderBy('priority', 'desc')->get();
-       dd($deadlinesDaily);
+       //dd($deadlinesDaily);
 
     }
 }
