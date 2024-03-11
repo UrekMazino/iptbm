@@ -723,7 +723,13 @@
                 input: true
             });
             ClassicEditor
-                .create(document.querySelector('#editorNote'))
+                .create(document.querySelector('#editorNote', {
+
+                    toolbar: [ 'insertTable', /* ... */ ],
+                    table: {
+                        contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
+                    }
+                }))
                 .then(editor => {
                     editor.model.document.on('change:data', () => {
                         @this.

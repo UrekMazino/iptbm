@@ -25,8 +25,8 @@ class Kernel extends ConsoleKernel
 
 
 
-        $schedule->command('app:daily-notification')->dailyAt('01:00');// daily notification
-        $schedule->command('app:weekly-notification')->everySecond(); // weekly notification
+        $schedule->command('app:daily-notification')->everySecond();// daily notification
+        $schedule->command('app:weekly-notification')->dailyAt('01:00'); // weekly notification
        $schedule->command('app:clean-notif-logs')->sundays()->at('17:00');
 
        // $schedule->job(new SendIpAlerReminder())->everySecond();

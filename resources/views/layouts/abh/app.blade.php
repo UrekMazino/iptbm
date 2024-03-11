@@ -57,6 +57,7 @@
     <script
         src="https://cdn.datatables.net/v/ju/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/rg-1.4.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
     <!--- new Lub DataTable---->
 
     <script src="https://kit.fontawesome.com/c9f4f44ea7.js" crossorigin="anonymous"></script>

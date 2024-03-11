@@ -18,7 +18,7 @@ class IptbmProfileResource extends ResourceCollection
         $this->collection->map(function ($profile){
             $profile->load(['technologies','agency','contact_mobile','contact_phone','contact_fax','contact_email']);
         });
-        return [
+        return [    
             'data'=>$this->collection
         ];
     }

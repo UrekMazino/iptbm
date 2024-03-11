@@ -32,7 +32,7 @@ class IptbmTechnologyProfile extends Model
 
         if($value)
         {
-            return Storage::exists($value)? $value:'public/temp.jpg';
+            return Storage::exists($value)? asset(Storage::url($value)):'public/temp.jpg';
         }else{
             return  'public/temp.jpg';
         }
