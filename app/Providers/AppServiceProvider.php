@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
-        $deadlinesWeekly = IptbmIpAlertTask::with(['ip_alert',
+        $deadlinesDaily = IptbmIpAlertTask::with(['ip_alert',
             'stage',
             'dailySend',
             'dailySend.ipAlertTask',
@@ -38,25 +38,17 @@ class AppServiceProvider extends ServiceProvider
             'ip_alert.ip_type',
             'ip_alert.technology',
             'ip_alert.technology.iptbmprofiles',
-            /*
-             * 'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
-                $query->where('contact_type', 'email');
-            }
-             */])
+        ])
             ->whereDoesntHave('dailySend',function ($sent){
-
                 $sent->whereDate('created_at', Carbon::today());
             })
             ->where('task_status', 'ONGOING')
             ->whereHas('ip_task_stage_notifications', function ($query) {
-                $query->where('frequency', 'weekly');
-                /*
-                 * ->where('day_of_week', Carbon::now()->format('l'))
-                    ->whereTime('time_of_day', '<=', now());
-                 */
+                $query->where('frequency', 'daily');
             })
-            ->whereDate('deadline', '>', now())
-            ->orderBy('priority')->get();
+            ->whereDate('deadline', '>=', now()->format('Y-m-d'))
+            ->orderBy('priority', 'desc')->get();
+       dd($deadlinesDaily);
 
     }
 }
