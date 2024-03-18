@@ -191,11 +191,20 @@
                         data-dropdown-toggle="user-menu-profile"
                     >
                         <span class="sr-only">Open user menu</span>
-                        <img
-                            class="w-8 h-8 rounded-full"
-                            src="{{asset('assets/icon/profile-blank.png')}}"
-                            alt="user photo"
-                        />
+                        @if(Auth::user()->abh_profile->logo)
+                            <img
+                                class="w-8 h-8 rounded-full"
+                                src="{{Storage::url(Auth::user()->abh_profile->logo)}}"
+                                alt="user photo"
+                            />
+                        @else
+                            <img
+                                class="w-8 h-8 rounded-full"
+                                src="{{asset('assets/icon/profile-blank.png')}}"
+                                alt="user photo"
+                            />
+                        @endif
+
                     </button>
                     <!-- Dropdown menu -->
                     <div
