@@ -18,21 +18,17 @@ class Kernel extends ConsoleKernel
         Commands\iptbm\HighPriorityNotification::class,
         Commands\iptbm\CleanNotifLogs::class
     ];
-
     protected function schedule(Schedule $schedule): void
     {
-
         $schedule->command('app:daily-notification')
             ->withoutOverlapping()
-            ->dailyAt('01:00')
+            ->everySecond()
             ->runInBackground();// daily notification
-
 
         $schedule->command('app:weekly-notification')
             ->withoutOverlapping()
             ->weeklyOn(1,'01:00')
             ->runInBackground(); // weekly notification
-
 
        $schedule->command('app:clean-notif-logs')
            ->withoutOverlapping()

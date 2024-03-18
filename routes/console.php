@@ -19,8 +19,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-Artisan::command('logs:remove', function() {
-    exec('rm -f ' . storage_path('logs/*.log'));
-    exec('rm -f ' . base_path('*.log'));
-    $this->comment('Logs have been removed!');
-})->describe('Remove log files');
+

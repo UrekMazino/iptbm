@@ -5,6 +5,7 @@
 /public/storage
 /vendor
 /.env.production
+Lotto2.js
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
