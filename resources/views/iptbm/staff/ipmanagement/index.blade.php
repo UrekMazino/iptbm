@@ -239,10 +239,11 @@
                                             </div>
 
                                             <div class="flex justify-start gap-2 items-center">
-                                                <livewire:iptbm.staff.ip-management.delete-ip-tech wire:key="del-ip-{{$val->id}}" :ipAlert="$val"/>
                                                 <x-secondary-button data-popover-placement="left" data-popover-trigger="click" data-popover-target="action-{{$val->id}}">
                                                     Action
                                                 </x-secondary-button>
+                                                <livewire:iptbm.staff.ip-management.delete-ip-tech wire:key="del-ip-{{$val->id}}" :ipAlert="$val"/>
+
                                             </div>
 
                                         </td>
