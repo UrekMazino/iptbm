@@ -47,7 +47,7 @@ class DailyNotification extends Command
             ->whereHas('ip_task_stage_notifications', function ($query) {
                 $query->where('frequency', 'daily');
             })
-            ->whereDate('deadline', '>=', now()->format('Y-m-d'))
+            ->whereDate('deadline', '>=', Carbon::today())
             ->orderBy('priority', 'desc')->get();
         $this->mailer($deadlinesDaily);
     }

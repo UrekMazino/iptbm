@@ -19,7 +19,9 @@ class Kernel extends ConsoleKernel
         Commands\iptbm\CleanNotifLogs::class
     ];
     protected function schedule(Schedule $schedule): void
+
     {
+
         $schedule->command('app:daily-notification')
             ->withoutOverlapping()
             //->dailyAt('01:00')
