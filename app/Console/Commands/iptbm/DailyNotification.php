@@ -74,7 +74,7 @@ class DailyNotification extends Command
             $this->info('Notification sent successfully.');
 
 
-            $profile->dailySend()->save(new IptbmSendNotification([]));
+            $profile->dailySend()->save(new IptbmSendNotification());
 
 
         }
