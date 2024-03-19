@@ -22,7 +22,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('app:daily-notification')
             ->withoutOverlapping()
-            ->dailyAt('01:00')
+            //->dailyAt('01:00')
+                ->everyMinute()
             ->runInBackground();// daily notification
 
         $schedule->command('app:weekly-notification')
