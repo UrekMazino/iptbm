@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
             })
             ->whereDate('deadline', '>=', Carbon::today())
             ->orderBy('priority', 'desc')->get();
-       dd($deadlinesDaily);
+     //  dd($deadlinesDaily);
 
     }
 }
