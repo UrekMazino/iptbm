@@ -58,6 +58,7 @@ class DailyNotification extends Command
 
     public function mailer($data)
     {
+
         foreach ($data as $profile) {
             foreach ($profile->ip_alert->technology->iptbmprofiles->users as $user)
             {
