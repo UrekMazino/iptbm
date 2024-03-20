@@ -57,20 +57,7 @@ class DailyNotification extends Command
             })
             ->whereDate('deadline', '>=', Carbon::today())
             ->orderBy('priority', 'desc')->get();
-        $this->mailer($deadlinesDaily);
-    }
-
-    /**
-     * Execute the console command.
-     */
-
-    /**
-     * this function is assigned to send notification to all users
-     */
-    public function mailer($data)
-    {
-
-        foreach ($data as $profile) {
+        foreach ($deadlinesDaily as $profile) {
             foreach ($profile->ip_alert->technology->iptbmprofiles->users as $user)
             {
                 $user->notify(new DeadlineNotif(
@@ -95,4 +82,7 @@ class DailyNotification extends Command
         }
 
     }
+
+
+
 }
