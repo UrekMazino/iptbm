@@ -6,7 +6,9 @@ use App\Mail\UnfinishedTask;
 use App\Models\DeadlineEndTask;
 use App\Models\iptbm\IptbmIpAlertTask;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Mail;
+use Mail;
+
 
 class HighPriorityNotification extends Command
 {

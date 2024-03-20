@@ -27,8 +27,16 @@ class DailyNotification extends Command
      */
     protected $description = 'Sending emails for daily notifications';
 
+    /*
+     * this function is executing queries for schedules tasks
+     */
     public function handle(): void
     {
+
+        //querying all task with the scheduled notification.
+        /*
+         * All tasks are set to occur daily and must be completed within their respective deadlines.
+         */
         $deadlinesDaily = IptbmIpAlertTask::with(['ip_alert',
             'stage',
             'dailySend',
@@ -56,6 +64,9 @@ class DailyNotification extends Command
      * Execute the console command.
      */
 
+    /**
+     * this function is assigned to send notification to all users
+     */
     public function mailer($data)
     {
 
@@ -75,6 +86,9 @@ class DailyNotification extends Command
             $this->info('Notification sent successfully.');
 
 
+            /*
+             * users are saved to table and mark as notified
+             */
             $profile->dailySend()->save(new IptbmSendNotification());
 
 

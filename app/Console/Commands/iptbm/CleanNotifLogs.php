@@ -7,6 +7,12 @@ use App\Models\IptbmSendNotification;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
+// use to reset the table for sent notifications
+
+
+/*
+ * This class is to reset the notification table
+ */
 class CleanNotifLogs extends Command
 {
     /**
