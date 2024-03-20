@@ -46,7 +46,7 @@ class DailyNotification extends Command
             'stage.task',
             'ip_alert.ip_type',
             'ip_alert.technology',
-            'ip_alert.technology.iptbmprofiles',
+            'ip_alert.technology.iptbmprofiles.users',
             ])
             ->whereDoesntHave('dailySend',function ($sent){
                 $sent->whereDate('created_at', Carbon::today());

@@ -5,7 +5,7 @@
 /public/storage
 /vendor
 /.env.production
-/.env
+.env
 Lotto2.js
 .phpunit.result.cache
 Homestead.json
