@@ -67,14 +67,7 @@ class DeploymentController extends Controller
         return redirect()->back();
     }
 
-    public function ajax_call(Request $request)
-    {
-        $data = IptbmDeploymentPathway::with('technology')->get();
-        if ($request->ajax()) {
-            return response()->json($data);
-        }
 
-    }
 
 }
 

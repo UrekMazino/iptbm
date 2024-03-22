@@ -203,22 +203,7 @@
                 </div>
             </li>
 
-            <li>
 
-                <a
-                    class="flex items-center  p-2 rounded-lg transition duration-300  @if(Request::segment(2)=="deployment") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif hover:bg-gray-700  dark:hover:bg-gray-700 group"
-                    href="{{route("iptbm.staff.deployment.index")}}">
-                    <i class="fa-solid fa-truck-arrow-right me-2  @if(Request::segment(2)=="deployment") text-blue-600 @endif"></i>Deployment</a>
-
-            </li>
-            <li>
-
-
-                <a
-                    class="flex items-center  p-2 rounded-lg transition duration-300  @if(Request::segment(2)=="extension") bg-gray-300 dark:bg-gray-950 text-sky-700 @endif hover:bg-gray-700  dark:hover:bg-gray-700 group"
-                    href="{{route("iptbm.staff.extension.index")}}">
-                    <i class="fa-solid fa-people-arrows  me-2  @if(Request::segment(2)=="extension") text-blue-600 @endif hover:bg-gray-200  dark:hover:bg-gray-700 group"></i>Extension</a>
-            </li>
 
 
         </ul>

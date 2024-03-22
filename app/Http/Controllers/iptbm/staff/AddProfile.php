@@ -25,6 +25,7 @@ class AddProfile extends Controller
             ->where('region_id', Auth::user()->profile->agency->region->id)
             ->exists();
 
+        // to prevent the access of users without profile initializations
         if ($profile) {
             return redirect()->route('iptbm.staff.ipProfile');
         }
@@ -40,18 +41,5 @@ class AddProfile extends Controller
     }
 
 
-    public function addprofile(Request $request): RedirectResponse
-    {
 
-        $request->validate([
-            'agency_id' => 'required',
-            'region_id' => 'required'
-        ]);
-        IptbmProfile::create([
-            'agency_id' => $request->agency_id,
-            'region_id' => $request->region_id
-        ]);
-
-        return redirect()->route('iptbm.staff.ipProfile')->with('status', 'Profile created successfully..!');
-    }
 }

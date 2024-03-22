@@ -23,15 +23,14 @@ class AdoptedTechController extends Controller
     public function index(IptbmCommercializationAdopter $id): Application|Factory|View|RedirectResponse
     {
         $tech = $id->load("technology", "contacts");
-        if (!$tech) {
-            return redirect()->route("iptbm.staff.adopter.index");
-        }
+
         return view('iptbm.staff.adopter.adopted_tech', [
             'tech' => $tech
         ]);
     }
 
-    public function update_details(Request $request, $id): RedirectResponse
+/*
+ *     public function update_details(Request $request, $id): RedirectResponse
     {
 
 
@@ -157,5 +156,6 @@ class AdoptedTechController extends Controller
         IptbmDeploymentAdoptorContact::find($request->adopId)->delete();
         return redirect()->back();
     }
+ */
 
 }

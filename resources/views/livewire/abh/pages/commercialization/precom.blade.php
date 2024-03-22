@@ -5,13 +5,8 @@
     <nav class="bg-white border-b border-gray-200 shadow-lg  dark:shadow-black sticky top-0 left-0 z-30  dark:bg-gray-800 dark:border-gray-700 ">
 
         <nav class="bg-white border-gray-200 dark:bg-gray-900">
-            <div class="block md:flex justify-between items-center">
-                <div class="ms-2">
+            <div class="block md:flex justify-end items-center">
 
-                    <x-secondary-button data-modal-toggle="addAbhTech">
-                        Add Technology
-                    </x-secondary-button>
-                </div>
                 <div id="searchPan"
                      class="me-0 md:me-4 gap-4 justify-end items-center pb-4 md:pb-0 px-2 md:px-0  md:flex grid grid-cols-1 md:grid-cols-2">
                     <div id="botNav">

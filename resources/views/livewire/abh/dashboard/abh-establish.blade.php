@@ -2,7 +2,7 @@
     <div class="w-full h-75  p-4 md:p-6">
         <div class="flex justify-between mb-5">
             <div class="my-3 text-gray-600 dark:text-gray-200 text-2xl font-bold">
-                Established IPTBMs
+                Established ABHs
             </div>
             <div>
 
@@ -21,7 +21,7 @@
         <div id="line-chart"></div>
         <div class="my-4 text-sm font-medium text-gray-500">
             The quantity of ticks (Y-axis) on the line graph adjusts according to the maximum count of established
-            IP-TBMs.
+            ABHs.
         </div>
     </div>
 

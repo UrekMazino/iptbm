@@ -36,7 +36,7 @@ class Projects extends Component
             'projectName' => 'required|unique:iptbm_projects,project_name|min:5',
             'projectLeader' => 'required|min:5',
             'implementationStart' => 'required',
-            'duration'=>'required|min:1|max:60',
+            'duration'=>'required|min:6|max:60',
             'year1Budget' => 'required|numeric|min:0|max:999999999',
         ];
     }

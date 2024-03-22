@@ -11,7 +11,7 @@
 
                             @if($location)
                                 <x-pop-modal static="true" class="max-w-lg" name="updateLoc"
-                                             modal-title="Update Map Location of IP-TBM Office">
+                                             modal-title="Update Map Location of ABH Office">
                                     <form class="space-y-4" wire:submit.prevent="updateLocation">
                                         <div class="flex justify-start items-center">
                                             <x-sub-label>
@@ -53,7 +53,7 @@
                                 </x-pop-modal>
 
                                 <x-secondary-button data-modal-toggle="updateLoc">
-                                    Update IP-TBM Location
+                                    Update ABH Location
                                 </x-secondary-button>
                             @else
                                 <x-pop-modal static="true" class="max-w-lg" name="addLoc"

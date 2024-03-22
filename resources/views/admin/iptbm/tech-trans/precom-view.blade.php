@@ -38,7 +38,7 @@
                             <div class="mx-auto px-3  ">
                                 <div class="mx-auto px-3 text-center text-2xl">
                                     <a class="font-medium text-sky-600 dark:text-sky-500 hover:underline"
-                                       href="{{route("iptbm.staff.technology.show",["id"=>$precom->technology->id])}}">
+                                       href="{{route("iptbm.admin.technology.view-tech",["technology"=>$precom->technology->id])}}">
                                         @if($precom->pre_com_tech_name)
                                             {{$precom->pre_com_tech_name}}
                                         @else

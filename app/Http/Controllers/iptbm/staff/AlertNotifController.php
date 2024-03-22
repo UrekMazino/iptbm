@@ -18,9 +18,9 @@ class AlertNotifController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($id, $name): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
+    public function index(IptbmIpAlertTask $id, $name): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        $ip_task = IptbmIpAlertTask::with("stage", "ip_alert", "ip_alert.ip_type", 'personnel', 'units', 'task_deadline', 'ip_task_stage_notifications')->find($id);
+        $ip_task = $id->load("stage", "ip_alert", "ip_alert.ip_type", 'personnel', 'units', 'task_deadline', 'ip_task_stage_notifications');
         return view('iptbm.staff.ipmanagement.notification', [
             'ip_task' => $ip_task,
             'name' => $name

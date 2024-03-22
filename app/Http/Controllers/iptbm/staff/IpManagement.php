@@ -53,7 +53,7 @@ class IpManagement extends Controller
             "industries",
             "ip_applications.patent_agent",
         )
-            ->where("iptbm_profile_id", $profile->id)->get();
+            ->where("iptbm_profile_id", $profile->id)->latest()->get();
 
 
         return view('iptbm.staff.ipmanagement.index', [

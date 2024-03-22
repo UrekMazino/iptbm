@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Abh\Component\Precom;
 
 use App\Models\iptbm\IptbmPrecomTechVideo;
 use App\Rules\YoutubeOrGoogleDriveVideo;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -50,8 +53,20 @@ class AbhTechVideo extends Component
 
         $this->emit('reloadPage');
     }
+
+
+    /**
+     * Method for uploading a video.
+     * - Extracts the video ID from the provided online video URL.
+     * - Validates the online video URL format and type, ensuring it is a valid YouTube or Google Drive video link.
+     * - Saves the video information to the database, associating it with the current IPTBM Precom.
+     * - Emits a 'reloadPage' event to trigger a page reload after successful upload.
+     *
+     * @return void
+     */
     public function uploadVideo()
     {
+        // Extract the video ID from the provided online video URL
         $video = str_replace(
             [
                 'width="560" height="315" ',
@@ -61,8 +76,12 @@ class AbhTechVideo extends Component
                 'allow="autoplay"></iframe>',
                 '<iframe width="560" height="315" src="',
                 '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
-            ], '', $this->onlineVideo);
-        $this->onlineVideo = str_replace([" ", '"',], '', $video);
+            ],
+            '', $this->onlineVideo
+        );
+        $this->onlineVideo = str_replace([" ", '"'], '', $video);
+
+        // Validate the online video URL format and type (YouTube or Google Drive)
         $this->validate([
             'onlineVideo' => [
                 'required',
@@ -71,14 +90,18 @@ class AbhTechVideo extends Component
             ]
         ]);
 
-
+        // Save the video information to the database, associating it with the current IPTBM Precom
         $this->precom->video()->save(new IptbmPrecomTechVideo([
             'type' => 'online',
             'description' => $this->description,
             'url' => $this->onlineVideo
         ]));
+
+        // Emit a 'reloadPage' event to trigger a page reload after successful upload
         $this->emit('reloadPage');
     }
+
+
     public function rules()
     {
         return [
@@ -95,7 +118,7 @@ class AbhTechVideo extends Component
     {
         $this->precom=$precom;
     }
-    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
+    public function render(): View|Application|Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.abh.component.precom.abh-tech-video');
     }

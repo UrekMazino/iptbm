@@ -28,6 +28,6 @@ class AbhIstablish extends Component
                 'total' => AbhProfile::where('year_established', $year)->count()
             ];
         }
-        return view('livewire.abh.dashboard.abh-istablish');
+        return view('livewire.abh.dashboard.abh-establish');
     }
 }

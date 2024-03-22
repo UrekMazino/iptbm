@@ -2,15 +2,20 @@
 
 namespace App\Console\Commands\iptbm;
 
-use App\Mail\DeadlineNotificationMail;
+
 use App\Models\iptbm\IptbmIpAlertTask;
 use App\Models\IptbmSendNotification;
 use App\Notifications\iptbm\task\DeadlineNotif;
-use App\Notifications\iptbm\Task\TaskDeadlineDaily;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-
+/**
+ * Class DailyNotification
+ *
+ * This class represents the console command for sending daily notifications.
+ *
+ * @package App\Console\Commands\iptbm
+ */
 class DailyNotification extends Command
 {
     /**
@@ -27,17 +32,18 @@ class DailyNotification extends Command
      */
     protected $description = 'Sending emails for daily notifications';
 
-    /*
-     * this function is executing queries for schedules tasks
+    /**
+     * Execute the console command.
+     *
+     * This function handles the execution of the console command.
+     *
+     * @return void
      */
     public function handle(): void
     {
-
-        //querying all task with the scheduled notification.
-        /*
-         * All tasks are set to occur daily and must be completed within their respective deadlines.
-         */
-        $deadlinesDaily = IptbmIpAlertTask::with(['ip_alert',
+        // Retrieve ongoing tasks with daily notifications enabled and pending notifications for today
+        $deadlinesDaily = IptbmIpAlertTask::with([
+            'ip_alert',
             'stage',
             'dailySend',
             'dailySend.ipAlertTask',
@@ -47,19 +53,17 @@ class DailyNotification extends Command
             'ip_alert.ip_type',
             'ip_alert.technology',
             'ip_alert.technology.iptbmprofiles.users',
-            ])
-            ->whereDoesntHave('dailySend',function ($sent){
-                $sent->whereDate('created_at', Carbon::today());
-            })
-            ->where('task_status', 'ONGOING')
+        ])->whereDoesntHave('dailySend', function ($sent) {
+            $sent->whereDate('created_at', Carbon::today());
+        })->where('task_status', 'ONGOING')
             ->whereHas('ip_task_stage_notifications', function ($query) {
                 $query->where('frequency', 'daily');
-            })
-            ->whereDate('deadline', '>=', Carbon::today())
+            })->whereDate('deadline', '>=', Carbon::today())
             ->orderBy('priority', 'desc')->get();
+
+        // Iterate through tasks and send notifications
         foreach ($deadlinesDaily as $profile) {
-            foreach ($profile->ip_alert->technology->iptbmprofiles->users as $user)
-            {
+            foreach ($profile->ip_alert->technology->iptbmprofiles->users as $user) {
                 $user->notify(new DeadlineNotif(
                     $profile->ip_alert->technology->title,
                     $profile->ip_alert->ip_type->name,
@@ -72,17 +76,8 @@ class DailyNotification extends Command
             }
             $this->info('Notification sent successfully.');
 
-
-            /*
-             * users are saved to table and mark as notified
-             */
+            // Mark the notification as sent
             $profile->dailySend()->save(new IptbmSendNotification());
-
-
         }
-
     }
-
-
-
 }

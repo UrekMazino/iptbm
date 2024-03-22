@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
@@ -38,18 +39,18 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Redirects to the appropriate dashboard component based on the provided type.
+     *
+     * @param string $type The type of dashboard component to redirect to (e.g., 'IPTBM', 'ATBI', 'ABH').
+     * @return Redirector|RedirectResponse The redirect response.
      */
-
-    public function RedirectToComponent($type)
+    public function RedirectToComponent(string $type)
     {
-
-
         return match ($type) {
             'IPTBM' => RouteServiceProvider::IPTBM_STAFF_DASHBOARD,
             'ATBI' => RouteServiceProvider::ATBI_STAFF_DASHBOARD,
             'ABH' => RouteServiceProvider::ABH_STAFF_DASHBOARD,
-            default => redirect('/'),
+            default => redirect('/'), // Redirect to the default route if type is not recognized.
         };
     }
 

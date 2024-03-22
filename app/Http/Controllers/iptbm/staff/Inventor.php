@@ -45,22 +45,7 @@ class Inventor extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'inventor_name' => 'required|unique:iptbm_inventors,name',
-            'inventor_status' => 'required',
-            'inventor_address' => 'required',
-            'inventor_agency' => 'required',
-        ]);
-        IptbmInventor::create([
-            'name' => $request->inventor_name,
-            'address' => $request->inventor_address,
-            'agency' => $request->inventor_agency,
-            'status' => $request->inventor_status
-        ]);
-        return redirect()->back()->with('inventor-success', 'Inventor saved successfully.');
-    }
+
 
     /**
      * Store a newly created resource in storage.

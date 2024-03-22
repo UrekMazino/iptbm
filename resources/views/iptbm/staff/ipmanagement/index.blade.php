@@ -98,6 +98,14 @@
                                 Total Cost
                             </th>
 
+                            <th scope="col"
+                                class="py-3 dateCreated border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                date created
+                            </th>
+                            <th scope="col"
+                                class="py-3 dateUpdated border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                date Updated
+                            </th>
 
                             <th scope="col"
                                 class="action py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -153,7 +161,14 @@
 
                             </th>
 
-
+                            <th scope="col"
+                                class="py-3  border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                date created
+                            </th>
+                            <th scope="col"
+                                class="py-3  border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                date Updated
+                            </th>
                             <th scope="col"
                                 class="read-only  py-3 border border-gray-300 dark:border-gray-600 text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -219,6 +234,12 @@
                                                 {{number_format($val->expenses->sum('amount'),2)}}
                                             </x-input-label>
 
+                                        </td>
+                                        <td>
+                                            {{$val->created_at->format('F-d-Y')}}
+                                        </td>
+                                        <td>
+                                            {{$val->updated_at->format('F-d-Y')}}
                                         </td>
                                         <td class="py-2 ">
                                             <div data-popover id="action-{{$val->id}}" role="tooltip" class="absolute z-10 invisible inline-block w-fit text-sm text-gray-500 transition-opacity duration-300 bg-gray-300 border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-900">
@@ -415,7 +436,7 @@
             $('.dataTables_filter').addClass('hidden')
 
             table.buttons().container().appendTo('#botNav');
-            table.columns(['.ipstatus', '.agent', '.abstract', '.totalcost', '.task']).visible(false, false);
+            table.columns(['.ipstatus', '.agent', '.abstract', '.totalcost', '.task','.dateUpdated','.dateCreated']).visible(false, false);
 
 
         });

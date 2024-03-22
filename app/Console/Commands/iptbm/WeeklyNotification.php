@@ -38,11 +38,8 @@ class WeeklyNotification extends Command
             'ip_alert.ip_type',
             'ip_alert.technology',
             'ip_alert.technology.iptbmprofiles',
-            /*
-             * 'ip_alert.technology.iptbmprofiles.contact' => function ($query) {
-                $query->where('contact_type', 'email');
-            }
-             */])
+
+             ])
             ->whereDoesntHave('dailySend',function ($sent){
 
                 $sent->whereDate('created_at', Carbon::today());
@@ -50,10 +47,6 @@ class WeeklyNotification extends Command
             ->where('task_status', 'ONGOING')
             ->whereHas('ip_task_stage_notifications', function ($query) {
                 $query->where('frequency', 'weekly');
-                /*
-                 * ->where('day_of_week', Carbon::now()->format('l'))
-                    ->whereTime('time_of_day', '<=', now());
-                 */
             })
             ->whereDate('deadline', '>=', now())
             ->orderBy('priority', 'desc')->get();

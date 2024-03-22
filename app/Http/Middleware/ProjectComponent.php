@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectComponent
@@ -14,19 +15,23 @@ class ProjectComponent
      * Handle an incoming request.
      *
      * @param Request $request
-     * @param Closure(Request): (\Illuminate\Http\Response|RedirectResponse) $next
+     * @param Closure(Request): (Response|RedirectResponse) $next
      * @param string $component
-     * @return \Illuminate\Http\Response|RedirectResponse|JsonResponse
+     * @return Response|RedirectResponse|JsonResponse
      */
-    public function handle(Request $request, Closure $next, string $component): \Illuminate\Http\Response|RedirectResponse|JsonResponse
+    public function handle(Request $request, Closure $next, string $component): Response|RedirectResponse|JsonResponse
     {
-        if (!Auth::check()) // This isn't necessary, it should be part of your 'auth' middleware
-            return redirect('/');
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            return redirect('/'); // Redirect to the default route if not authenticated
+        }
 
         $user = Auth::user();
-        if ($user->component == $component)
-            return $next($request);
+        // Check if the user's component matches the expected component
+        if ($user->component == $component) {
+            return $next($request); // Allow access to the requested component
+        }
 
-        return redirect('/');
+        return redirect('/'); // Redirect to the default route if the user's component doesn't match
     }
 }
